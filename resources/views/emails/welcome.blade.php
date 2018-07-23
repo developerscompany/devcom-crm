@@ -1,7 +1,16 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: maxymshylo
- * Date: 23.07.2018
- * Time: 12:44
- */
+@component('mail::message')
+
+    Дорогий {{ $name }},
+
+    Дякуємо за реєстрацію.
+
+    Пройдіть за посиланням для підтвердження та активації вашого аккаунту:
+
+    @component('mail::button', ['url' => url('/verifyemail/' .$email_token)])
+        Підтвердити
+    @endcomponent
+
+
+    {{ config('app.name') }}
+
+@endcomponent

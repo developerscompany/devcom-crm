@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Google_Client;
+use Google_Service_Sheets;
+use Revolution\Google\Sheets\Sheets;
 
 class HomeController extends Controller
 {
@@ -23,6 +30,51 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+//        dd('1') ;
+
+        $client = new Google_Client();
+        $client->setApplicationName(config('google.APPLICATION_NAME'));
+        $client->setClientId(config('google.CLIENT_ID'));
+        $client->setScopes([config('google.scopes')]);
+//        $client->setAuthConfig(config('google.KEY_FILE'));
+
+        // credentials - required
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=../service.json'); // service account json file
+        $client->useApplicationDefaultCredentials();
+
+        if ($client->isAccessTokenExpired()) {
+            $client->refreshTokenWithAssertion();
+        }
+
+        $service_token = $client->getAccessToken();
+
+        $service = new Google_Service_Sheets($client);
+
+        $sheets = new Sheets();
+        $sheets->setService($service);
+
+        $token = 'AIzaSyCbZlPRungrWExi4fE9pmfN25vHy9gaP5I';
+        $prKey = '4d537d0cdf4638a78dbb44762cbbf347890a8d05';
+        $prKey2 = '4e88410485c4a5ca65c988ff38a2c2bdb0c37598';
+        $id = '1o3kjb_wX3GeUXP5HxdDUwunfFzMUf81fW83a16Na0oI';
+        $sheet = 'sent offers';
+        $data = array(array('abc', 'def', 'ghi'), array('jkl', 'mno', 'prs'));
+
+        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all(); //spreadsheetID is from URL of your google spreadsheet, sheet name is sheet inside it
+
+//        $sheets->spreadsheet($id)->sheet($sheet)->append($data);
+
+        /* Update sheet in Spreadsheet */
+//        $sheets->sheet($sheet)->range('B1')->update([[90],[01.2]]);
+        /* finish */
+
+        $rows = $sheets->sheet($sheet)->all();
+
+        $sheets->spreadsheet($id)->sheet('my')->range('A1:C3');
+
+//        dd($rows);
+
+        return view('welcome', compact('rows'));
     }
 }
