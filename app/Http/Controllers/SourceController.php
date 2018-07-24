@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Manager;
+use App\Source;
 use Illuminate\Http\Request;
 
-class ManagerController extends Controller
+class SourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,23 +35,16 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//            'name' => 'request'
-//        ]);
-
-        Manager::create([
-            'name' => 'Nikolas'
-        ]);
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Manager  $manager
+     * @param  \App\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function show(Manager $manager)
+    public function show(Source $source)
     {
         //
     }
@@ -60,10 +52,10 @@ class ManagerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Manager  $manager
+     * @param  \App\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function edit(Manager $manager)
+    public function edit(Source $source)
     {
         //
     }
@@ -72,10 +64,10 @@ class ManagerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Manager  $manager
+     * @param  \App\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manager $manager)
+    public function update(Request $request, Source $source)
     {
         //
     }
@@ -83,10 +75,10 @@ class ManagerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Manager  $manager
+     * @param  \App\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manager $manager)
+    public function destroy(Source $source)
     {
         //
     }
