@@ -71,10 +71,20 @@ class HomeController extends Controller
 
         $rows = $sheets->sheet($sheet)->all();
 
-        $sheets->spreadsheet($id)->sheet('my')->range('A1:C3');
-
 //        dd($rows);
 
-        return view('welcome', compact('rows'));
+        $array = [];
+
+        foreach ($rows as $row)
+        {
+            if ($row[1] == auth()->user()->name) {
+                $array[] = $row;
+//                dd($row);
+            }
+        }
+
+//        dd($array);
+
+        return view('welcome', compact('array'));
     }
 }

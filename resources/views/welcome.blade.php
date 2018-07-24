@@ -2,6 +2,26 @@
 
 @section('content')
 
+    {{--<div class="row">--}}
+        {{--<form method="post" action="/add-post" enctype="multipart/form-data">--}}
+            {{--{{ csrf_field() }}--}}
+
+            {{--<div class="form-group">--}}
+                {{--<label for="title">Назва</label>--}}
+                {{--<input class="form-control" type="text" name="title" id="title" value="" required>--}}
+            {{--</div>--}}
+
+            {{--<div class="form-group">--}}
+                {{--<label for="img">Лого</label>--}}
+                {{--<input type="file" id="img" name="img" class="form-control" required>--}}
+            {{--</div>--}}
+
+            {{--<div class="form-group">--}}
+                {{--<button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>--}}
+            {{--</div>--}}
+        {{--</form>--}}
+    {{--</div>--}}
+
     <div class="content">
 
         <div class="table-responsive">
@@ -47,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($rows as $index => $row)
+                    @foreach($array as $index => $row)
                         @if($index != 0)
                             <tr>
                                 <td>
