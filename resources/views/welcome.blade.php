@@ -5,7 +5,7 @@
     <div class="content">
 
         <div class="table-responsive">
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <td>
@@ -16,6 +16,33 @@
                         </td>
                         <td>
                             Source
+                        </td>
+                        <td>
+                            Link to lead
+                        </td>
+                        <td>
+                            Niche
+                        </td>
+                        <td>
+                            Current site
+                        </td>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            Timing
+                        </td>
+                        <td>
+                            Budget $
+                        </td>
+                        <td>
+                            Responce
+                        </td>
+                        <td>
+                            Status
+                        </td>
+                        <td>
+                            Comments
                         </td>
                     </tr>
                 </thead>
@@ -36,6 +63,51 @@
                                 <td>
                                     @if(isset($row[2]))
                                         {{ $row[2] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[3]))
+                                        {{ $row[3] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[4]))
+                                        {{ $row[4] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[5]))
+                                        {{ $row[5] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[6]))
+                                        {{ $row[6] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[7]))
+                                        {{ $row[7] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[8]))
+                                        {{ $row[8] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[9]))
+                                        {{ $row[9] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[10]))
+                                        {{ $row[10] }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($row[11]))
+                                        {{ $row[11] }}
                                     @endif
                                 </td>
                             </tr>
