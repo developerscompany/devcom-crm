@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Source;
+use App\Status;
+use App\Timing;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +57,6 @@ class HomeController extends Controller
         $sheets = new Sheets();
         $sheets->setService($service);
 
-        $token = 'AIzaSyCbZlPRungrWExi4fE9pmfN25vHy9gaP5I';
-        $prKey = '4d537d0cdf4638a78dbb44762cbbf347890a8d05';
-        $prKey2 = '4e88410485c4a5ca65c988ff38a2c2bdb0c37598';
         $id = '1o3kjb_wX3GeUXP5HxdDUwunfFzMUf81fW83a16Na0oI';
         $sheet = 'sent offers';
         $data = array(array('abc', 'def', 'ghi'), array('jkl', 'mno', 'prs'));
@@ -71,8 +71,6 @@ class HomeController extends Controller
 
         $rows = $sheets->sheet($sheet)->all();
 
-//        dd($rows);
-
         $array = [];
 
         foreach ($rows as $row)
@@ -83,8 +81,60 @@ class HomeController extends Controller
             }
         }
 
-//        dd($array);
+        $sourses = Source::all();
+        $statuses = Status::all();
+        $timings = Timing::all();
 
-        return view('welcome', compact('array'));
+        return view('welcome', compact('array', 'sourses', 'statuses', 'timings'));
+    }
+
+    public function store(Request $request)
+    {
+        $client = new Google_Client();
+        $client->setApplicationName(config('google.APPLICATION_NAME'));
+        $client->setClientId(config('google.CLIENT_ID'));
+        $client->setScopes([config('google.scopes')]);
+//        $client->setAuthConfig(config('google.KEY_FILE'));
+
+        // credentials - required
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=../service.json'); // service account json file
+        $client->useApplicationDefaultCredentials();
+
+        if ($client->isAccessTokenExpired()) {
+            $client->refreshTokenWithAssertion();
+        }
+
+        $service = new \Google_Service_Sheets($client);
+
+        $sheets = new Sheets();
+        $sheets->setService($service);
+
+        $id = '1o3kjb_wX3GeUXP5HxdDUwunfFzMUf81fW83a16Na0oI';
+        $sheet = 'sent offers';
+
+        $arr = [
+            date("Y-m-d"),
+            auth()->user()->name,
+            request('source'),
+            request('link'),
+            request('niche'),
+            request('site'),
+            request('desc'),
+            request('timing'),
+            request('budget'),
+            request('resp'),
+            request('status'),
+            request('comment')
+        ];
+
+        $data = array($arr);
+
+        $sheets->spreadsheet($id)->sheet($sheet)->range('')->append($data);
+
+//        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
+
+//        return $rows;
+
+        return $data;
     }
 }

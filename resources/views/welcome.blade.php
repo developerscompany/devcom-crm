@@ -1,26 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
+            <form id="line-form" method="post" action="/user/add-line" enctype="multipart/form-data" style="width: 100%;">
+            {{ csrf_field() }}
+            <div class="row">
+            <div class="form-group col-md-1">
+                <label for="title">Source</label>
+                <select name="source" id="source" class="form-control" required>
+                    @foreach($sourses as $source)
+                        <option value="{{ $source->name }}"> {{ $source->name }} </option>
+                    @endforeach
+                </select>
+            </div>
 
-    {{--<div class="row">--}}
-        {{--<form method="post" action="/add-post" enctype="multipart/form-data">--}}
-            {{--{{ csrf_field() }}--}}
+            <div class="form-group col-md-1">
+                <label for="img">Link</label>
+                <input type="text" id="link" name="link" class="form-control" required>
+            </div>
 
-            {{--<div class="form-group">--}}
-                {{--<label for="title">Назва</label>--}}
-                {{--<input class="form-control" type="text" name="title" id="title" value="" required>--}}
-            {{--</div>--}}
+            <div class="form-group col-md-1">
+                <label for="img">Niche</label>
+                <input type="text" id="niche" name="niche" class="form-control" required>
+            </div>
 
-            {{--<div class="form-group">--}}
-                {{--<label for="img">Лого</label>--}}
-                {{--<input type="file" id="img" name="img" class="form-control" required>--}}
-            {{--</div>--}}
+            <div class="form-group col-md-1">
+                <label for="img">Site</label>
+                <input type="text" id="site" name="site" class="form-control" required>
+            </div>
 
-            {{--<div class="form-group">--}}
-                {{--<button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>--}}
-            {{--</div>--}}
-        {{--</form>--}}
-    {{--</div>--}}
+            <div class="form-group col-md-1">
+                <label for="img">Description</label>
+                <input type="text" id="desc" name="desc" class="form-control" required>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="img">Timing</label>
+                <select name="timing" id="timing" class="form-control" required>
+                    @foreach($timings as $timing)
+                        <option value="{{ $timing->title }}"> {{ $timing->title }} </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="img">Budget</label>
+                <input type="text" id="budget" name="budget" class="form-control" required>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="img">Responce</label>
+                <input type="text" id="resp" name="resp" class="form-control" required>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="img">Status</label>
+                <select name="status" id="status" class="form-control" required>
+                    @foreach($statuses as $status)
+                        <option value="{{ $status->title }}"> {{ $status->title }} </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="img">Comments</label>
+                <input type="text" id="comment" name="comment" class="form-control" required>
+            </div>
+
+            <div class="form-group col-md-1 align-self-end">
+                <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+            </div>
+            </div>
+        </form>
 
     <div class="content">
 
@@ -138,4 +188,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

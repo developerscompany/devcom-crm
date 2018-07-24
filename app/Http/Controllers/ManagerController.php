@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Manager;
 use App\Source;
+use App\Status;
+use App\Timing;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -41,9 +42,9 @@ class ManagerController extends Controller
 //            'name' => 'request'
 //        ]);
 
-        Source::create([
-            'name' => 'Upwork'
-        ]);
+//        Timing::create([
+//            'title' => '1-3 month'
+//        ]);
 
     }
 

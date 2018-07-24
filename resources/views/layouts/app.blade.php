@@ -71,9 +71,17 @@
             </div>
         </nav>
 
-        <main class="py-4 container-fluid">
+        <main id="app" class="py-4 container-fluid">
             @yield('content')
         </main>
     </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    @yield('script')
 </body>
 </html>
