@@ -1,6 +1,6 @@
 // new Vue({
 //
-//     el: '#app',
+//     el: '#root',
 //
 //     data: {
 //         lines: []

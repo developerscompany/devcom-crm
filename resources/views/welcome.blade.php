@@ -115,7 +115,7 @@
                         </td>
                     </tr>
                 </thead>
-                <tbody id="app">
+                <tbody id="root">
                     <tr v-for="line in lines">
                         <td>@{{ line[0] }}</td>
                         <td>@{{ line[1] }}</td>
@@ -150,7 +150,7 @@
     <script>
         var app = new Vue({
 
-            el: '#app',
+            el: '#root',
 
             data: {
                 lines: []
@@ -169,7 +169,23 @@
                     console.log(data);
 
                     axios.post('/user/add-google-line', data)
-                        .then(response => app.lines = response.data);
+                        // .then(response => app.lines = response.data);
+                        .then(response => {
+                            $('#root').prepend('<tr>' +
+                                    '<td>' + response.data[0][0] + '</td>' +
+                                    '<td>' + response.data[0][1] + '</td>' +
+                                    '<td>' + response.data[0][2] + '</td>' +
+                                    '<td>' + response.data[0][3] + '</td>' +
+                                    '<td>' + response.data[0][4] + '</td>' +
+                                    '<td>' + response.data[0][5] + '</td>' +
+                                    '<td>' + response.data[0][6] + '</td>' +
+                                    '<td>' + response.data[0][7] + '</td>' +
+                                    '<td>' + response.data[0][8] + '</td>' +
+                                    '<td>' + response.data[0][9] + '</td>' +
+                                    '<td>' + response.data[0][10] + '</td>' +
+                                    '<td>' + response.data[0][11] + '</td>' +
+                                '</tr>');
+                        });
                 });
             }
 

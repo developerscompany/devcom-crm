@@ -168,16 +168,16 @@ class HomeController extends Controller
 
         $sheets->spreadsheet($id)->sheet($sheet)->range('')->append($data);
 
-        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
-        $array = [];
+//        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
+//        $array = [];
+//
+//        foreach ($rows as $row)
+//        {
+//            if ($row[1] == auth()->user()->name) {
+//                $array[] = $row;
+//            }
+//        }
 
-        foreach ($rows as $row)
-        {
-            if ($row[1] == auth()->user()->name) {
-                $array[] = $row;
-            }
-        }
-
-        return array_reverse($array);
+        return $data;
     }
 }
