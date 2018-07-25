@@ -1,0 +1,12 @@
+label.required {
+    position: relative;
+}
+label.required:after {
+    position: absolute;
+    display: block;
+    content: '*';
+    top: -2px;
+    right: -10px;
+    font-size: 20px;
+    color: red;
+}

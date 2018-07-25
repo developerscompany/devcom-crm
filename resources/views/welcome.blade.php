@@ -5,7 +5,7 @@
         {{ csrf_field() }}
         <div class="row">
         <div class="form-group col-md-1">
-            <label for="title">Source</label>
+            <label class="required" for="source">Source</label>
             <select name="source" id="source" class="form-control" required>
                 @foreach($sourses as $source)
                     <option value="{{ $source->name }}"> {{ $source->name }} </option>
@@ -14,28 +14,28 @@
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Link</label>
+            <label class="required" for="link">Link</label>
             <input type="text" id="link" name="link" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Niche</label>
+            <label class="required" for="niche">Niche</label>
             <input type="text" id="niche" name="niche" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Site</label>
+            <label class="required" for="site">Site</label>
             <input type="text" id="site" name="site" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Description</label>
+            <label class="required" for="desc">Description</label>
             <input type="text" id="desc" name="desc" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Timing</label>
-            <select name="timing" id="timing" class="form-control" required>
+            <label class="required" for="timing">Timing</label>
+            <select class="form-control" name="timing" id="timing" class="form-control" required>
                 @foreach($timings as $timing)
                     <option value="{{ $timing->title }}"> {{ $timing->title }} </option>
                 @endforeach
@@ -43,17 +43,17 @@
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Budget</label>
+            <label class="required" for="budget">Budget</label>
             <input type="text" id="budget" name="budget" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Responce</label>
+            <label class="required" for="resp">Responce</label>
             <input type="text" id="resp" name="resp" class="form-control" required>
         </div>
 
         <div class="form-group col-md-1">
-            <label for="img">Status</label>
+            <label class="required" for="status">Status</label>
             <select name="status" id="status" class="form-control" required>
                 @foreach($statuses as $status)
                     <option value="{{ $status->title }}"> {{ $status->title }} </option>
@@ -63,7 +63,7 @@
 
         <div class="form-group col-md-1">
             <label for="img">Comments</label>
-            <input type="text" id="comment" name="comment" class="form-control" required>
+            <input type="text" id="comment" name="comment" class="form-control">
         </div>
 
         <div class="form-group col-md-1 align-self-end">
@@ -167,10 +167,18 @@
 
                     let data = $(this).serialize();
                     console.log(data);
+                    $('#line-form')[0].reset();
 
                     axios.post('/user/add-google-line', data)
                         // .then(response => app.lines = response.data);
                         .then(response => {
+
+                            if (response.data[0][11] == null){
+                                let comment = '';
+                            } else {
+                                let comment = response.data[0][11];
+                            }
+
                             $('#root').prepend('<tr>' +
                                     '<td>' + response.data[0][0] + '</td>' +
                                     '<td>' + response.data[0][1] + '</td>' +
@@ -183,7 +191,7 @@
                                     '<td>' + response.data[0][8] + '</td>' +
                                     '<td>' + response.data[0][9] + '</td>' +
                                     '<td>' + response.data[0][10] + '</td>' +
-                                    '<td>' + response.data[0][11] + '</td>' +
+                                    '<td>' + comment + '</td>' +
                                 '</tr>');
                         });
                 });
