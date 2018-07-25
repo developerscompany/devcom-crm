@@ -71,7 +71,7 @@
             </div>
         </nav>
 
-        <main id="app" class="py-4 container-fluid">
+        <main class="py-4 container-fluid">
             @yield('content')
         </main>
     </div>
@@ -82,6 +82,7 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     @yield('script')
 </body>
 </html>

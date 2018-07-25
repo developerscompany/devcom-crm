@@ -19,9 +19,6 @@ Auth::routes();
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
-//Route::get('/', 'HomeController@index')->name('home');
-
-
 Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
 
 });
@@ -29,7 +26,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 Route::prefix('user')->middleware('auth')->group(function () {
 
     Route::get('/', 'HomeController@index');
-//    Route::post('/add-line', 'HomeController@store');
+
+    Route::get('lines', 'HomeController@show');
+
     Route::post('add-google-line', 'HomeController@store');
 
 });
