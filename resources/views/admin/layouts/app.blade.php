@@ -19,7 +19,7 @@
         <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.Notice.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -35,14 +35,12 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-10">
-                        <div class="row">
+                    <div class="col-md-10 p-4">
 
-                            @include('admin.layouts.status')
+                        @include('admin.layouts.status')
 
-                            @yield('content')
+                        @yield('content')
 
-                        </div>
                     </div>
                 </div>
             </div>
