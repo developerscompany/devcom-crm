@@ -22,31 +22,9 @@
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
-    {{--<div id="loader-wrapper">--}}
-        {{--<div class="loader">--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="line"></div>--}}
-            {{--<div class="subline"></div>--}}
-            {{--<div class="subline"></div>--}}
-            {{--<div class="subline"></div>--}}
-            {{--<div class="subline"></div>--}}
-            {{--<div class="subline"></div>--}}
-            {{--<div class="loader-circle-1">--}}
-                {{--<div class="loader-circle-2"></div>--}}
-            {{--</div>--}}
-            {{--<div class="needle"></div>--}}
-            {{--<div class="loading">Loading</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
         <div id="app">
 
-            @include('user.layouts.header')
-
-            @include('layouts.nav')
+            {{--@include('layouts.nav')--}}
 
             <div class="container-fluid">
                 <div class="row">
@@ -72,7 +50,8 @@
 
         <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
         <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/preloader.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         @yield('script')
     </body>
 </html>

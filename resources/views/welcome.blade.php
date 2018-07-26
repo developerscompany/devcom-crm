@@ -173,10 +173,10 @@
                         // .then(response => app.lines = response.data);
                         .then(response => {
 
-                            if (response.data[0][11] == null){
-                                let comment = '';
-                            } else {
-                                let comment = response.data[0][11];
+                            let comment = '';
+                            console.log(response.data[0][11]);
+                            if (response.data[0][11]){
+                                comment = response.data[0][11];
                             }
 
                             $('#root').prepend('<tr>' +
