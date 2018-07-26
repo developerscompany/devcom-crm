@@ -39,7 +39,7 @@ td.sourse input{
     color: #e6ebf3 !important;
 }
 .viewNumber a.active {
-    color: #1763ff;
+    color: #1763ff !important;
 }
 
 .viewPager button {

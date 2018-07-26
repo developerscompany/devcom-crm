@@ -6,12 +6,12 @@
             <div class="pager-view clearfix">
                 <div class="pull-left text-left viewNumber">
                     <span>Show: </span>
-                    <a @click="changeNum(5)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">5</a>
-                    <a @click="changeNum(10)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">10</a>
-                    <a @click="changeNum(15)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">15</a>
-                    <a @click="changeNum(20)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">20</a>
-                    <a @click="changeNum(20)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">50</a>
-                    <a @click="changeNum(20)" v-link="{path : 'your-link', activeClass: 'active', exact: true}">100</a>
+                    <a class="nums" @click="changeNum(5)">5</a>
+                    <a class="nums" @click="changeNum(10)">10</a>
+                    <a class="nums" @click="changeNum(15)">15</a>
+                    <a class="nums" @click="changeNum(20)">20</a>
+                    <a class="nums" @click="changeNum(20)">50</a>
+                    <a class="nums" @click="changeNum(20)">100</a>
                 </div>
                 <div class="pull-right text-right viewPager">
                     <button
@@ -41,7 +41,7 @@
                                 </td>
                                 <td class="sourse">
                                     Source
-                                    <input v-model="ssource" class="form-control mt-1" placeholder="Filter">
+                                    <input v-model="filterByName" class="form-control mt-1" placeholder="Filter">
                                 </td>
                                 <td>
                                     Link to lead
@@ -99,25 +99,17 @@
 @section('script')
 
     <script>
+
         var app = new Vue({
 
             el: '#root',
 
             data: {
                 lines: [],
-                filteredLines: [],
+                filterByName: [],
                 ssource: '',
-                number: 20,
+                number: 5,
                 pageNumber: 0,
-                listData:{
-                    type:Array,
-                    required:true
-                },
-                size:{
-                    type:Number,
-                    required:false,
-                    default: this.number
-                }
             },
 
             mounted() {
@@ -125,14 +117,19 @@
                 axios.get('/admin/lines')
                     .then(response => this.lines = response.data);
 
-                // filteredItems: function () {
-                //     return this.lines.slice(0, 10)
-                // },
+
             },
 
             computed: {
-                filteredItems: function () {
-                    return this.lines.slice(0, this.number)
+                listView: function () {
+                    var self = this;
+                    if (self.filterByName.length > 0) {
+                        return self.lines.filter(function(item) {
+                            return self.filterByName.indexOf(item[2]) > -1;
+                        });
+                    } else {
+                        return this.lines;
+                    }
                 },
 
                 pageCount(){
@@ -141,10 +138,20 @@
                     return Math.floor(l/s);
                 },
                 paginatedData(){
-                    const start = this.pageNumber * this.number,
-                        end = start + this.number;
-                    return this.lines
-                        .slice(start, end);
+                    var self = this;
+
+                    const start = self.pageNumber * self.number,
+                        end = start + self.number;
+                    // return self.lines
+                    //     .slice(start, end);
+
+                    if (self.filterByName.length > 0) {
+                        return self.lines.filter(function(item) {
+                            return self.filterByName.indexOf(item[2]) > -1;
+                        }).slice(start, end);
+                    } else {
+                        return this.lines.slice(start, end);
+                    }
                 }
             },
 
