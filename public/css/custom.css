@@ -10,3 +10,9 @@ label.required:after {
     font-size: 20px;
     color: red;
 }
+a {
+    cursor: pointer;
+}
+td.sourse input{
+    padding: 0.02rem 0.3rem;
+}

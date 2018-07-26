@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
-        <title>DSV</title>
+        <title>RIVo</title>
         <link rel="shortcut icon" href="{{ asset('favicon1.png') }}">
 
         <!-- Styles -->
@@ -19,7 +19,7 @@
         <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.Notice.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">

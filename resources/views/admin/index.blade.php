@@ -2,74 +2,93 @@
 
 @section('content')
     <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table" style="font-size: 14px; line-height: 15px">
-                <thead>
-                <tr>
-                    <td>
-                        Date
-                    </td>
-                    <td>
-                        Agent
-                    </td>
-                    <td>
-                        Source
-                    </td>
-                    <td>
-                        Link to lead
-                    </td>
-                    <td>
-                        Niche
-                    </td>
-                    <td>
-                        Current site
-                    </td>
-                    <td>
-                        Description
-                    </td>
-                    <td>
-                        Timing
-                    </td>
-                    <td>
-                        Budget $
-                    </td>
-                    <td>
-                        Responce
-                    </td>
-                    <td>
-                        Status
-                    </td>
-                    <td>
-                        Comments
-                    </td>
-                </tr>
-                </thead>
-                <tbody id="root">
-                <tr v-for="line in lines">
-                    <td>@{{ line[0] }}</td>
-                    <td>@{{ line[1] }}</td>
-                    <td>@{{ line[2] }}</td>
-                    <td>@{{ line[3] }}</td>
-                    <td>@{{ line[4] }}</td>
-                    <td>@{{ line[5] }}</td>
-                    <td>@{{ line[6] }}</td>
-                    <td>@{{ line[7] }}</td>
-                    <td>@{{ line[8] }}</td>
-                    <td>@{{ line[9] }}</td>
-                    <td>@{{ line[10] }}</td>
-                    <td>@{{ line[11] }}</td>
-                </tr>
-                </tbody>
-            </table>
+        <div id="root" class="wrapper">
 
-            {{--<div>--}}
-            {{--<ul v-for="line in lines">--}}
-            {{--<li>--}}
-            {{--@{{ line[0] }}--}}
-            {{--</li>--}}
-            {{--</ul>--}}
-            {{--</div>--}}
+            <div>
+                <div class="viewNumber">
+                    <span>Show: </span>
+                    <a @click="changeNum(5)" >5</a>
+                    <a @click="changeNum(10)" >10</a>
+                    <a @click="changeNum(15)" >15</a>
+                    <a @click="changeNum(20)" >20</a>
+                    <a @click="changeNum(20)" >50</a>
+                    <a @click="changeNum(20)" >100</a>
+                </div>
+                <div class="viewPager">
+                    <button
+                            :disabled="pageNumber === 0"
+                            @click="prevPage">
+                        Previous
+                    </button>
+                    <button
+                            :disabled="pageNumber >= pageCount - 1"
+                            @click="nextPage">
+                        Next
+                    </button>
+                </div>
+            </div>
 
+            <div class="table-responsive">
+                <table class="table" style="font-size: 14px; line-height: 15px">
+                    <thead>
+                    <tr>
+                        <td>
+                            Date
+                        </td>
+                        <td>
+                            Agent
+                        </td>
+                        <td class="sourse">
+                            Source
+                            <input v-model="ssource" class="form-control mt-1" placeholder="Filter">
+                        </td>
+                        <td>
+                            Link to lead
+                        </td>
+                        <td>
+                            Niche
+                        </td>
+                        <td>
+                            Current site
+                        </td>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            Timing
+                        </td>
+                        <td>
+                            Budget $
+                        </td>
+                        <td>
+                            Responce
+                        </td>
+                        <td>
+                            Status
+                        </td>
+                        <td>
+                            Comments
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="line in paginatedData">
+                        <td>@{{ line[0] }}</td>
+                        <td>@{{ line[1] }}</td>
+                        <td>@{{ line[2] }}</td>
+                        <td>@{{ line[3] }}</td>
+                        <td>@{{ line[4] }}</td>
+                        <td>@{{ line[5] }}</td>
+                        <td>@{{ line[6] }}</td>
+                        <td>@{{ line[7] }}</td>
+                        <td>@{{ line[8] }}</td>
+                        <td>@{{ line[9] }}</td>
+                        <td>@{{ line[10] }}</td>
+                        <td>@{{ line[11] }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
@@ -82,14 +101,63 @@
             el: '#root',
 
             data: {
-                lines: []
+                lines: [],
+                filteredLines: [],
+                ssource: '',
+                number: 20,
+                pageNumber: 0,
+                listData:{
+                    type:Array,
+                    required:true
+                },
+                size:{
+                    type:Number,
+                    required:false,
+                    default: this.number
+                }
             },
 
             mounted() {
 
                 axios.get('/admin/lines')
                     .then(response => this.lines = response.data);
-            }
+
+                // filteredItems: function () {
+                //     return this.lines.slice(0, 10)
+                // },
+            },
+
+            computed: {
+                filteredItems: function () {
+                    return this.lines.slice(0, this.number)
+                },
+
+                pageCount(){
+                    let l = this.lines.length,
+                        s = this.number;
+                    return Math.floor(l/s);
+                },
+                paginatedData(){
+                    const start = this.pageNumber * this.number,
+                        end = start + this.number;
+                    return this.lines
+                        .slice(start, end);
+                }
+            },
+
+            methods: {
+
+                changeNum(index) {
+                    this.number = index;
+                },
+                nextPage()  {
+                    this.pageNumber++;
+                },
+                prevPage(){
+                    this.pageNumber--;
+                }
+
+            },
 
         })
     </script>
