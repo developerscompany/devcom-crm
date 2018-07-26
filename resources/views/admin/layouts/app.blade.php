@@ -24,7 +24,7 @@
     <body>
         <div id="app">
 
-            {{--@include('layouts.nav')--}}
+            @include('layouts.header')
 
             <div class="container-fluid">
                 <div class="row">

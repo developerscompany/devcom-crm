@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="sales-page page">
-        <div id="root" class="wrapper">
+        <div id="root" class="wrapper p-3">
             <div class="pager-view clearfix">
                 <div class="pull-left text-left viewNumber">
                     <span>Show: </span>

@@ -141,7 +141,8 @@ a.badge,
  *
  * ---------------------------------------------------------------------------- */
 .sidebar {
-    background-color: #263238;
+    background-color: #313541;
+    height: 100%;
     color: #fff;
     position: relative;
     width: 100%;
@@ -337,12 +338,14 @@ a.badge,
     padding: 12px 20px;
     min-height: 44px;
     font-weight: 500;
+    font-size: 13px;
 }
 .navigation > li.active > a,
 .navigation > li.active > a:hover,
 .navigation > li.active > a:focus {
-    background-color: #26A69A;
+    background-color: #1763ff;
     color: #fff;
+    text-decoration: none;
 }
 .navigation > li.active > a > [class*=text-] {
     color: #fff;
