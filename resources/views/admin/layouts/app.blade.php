@@ -19,6 +19,7 @@
         <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.Notice.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body class="">

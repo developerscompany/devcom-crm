@@ -36,12 +36,13 @@
                                 <td>
                                     Date
                                 </td>
-                                <td>
+                                <td class="filter-cell agent">
                                     Agent
+                                    <input v-model="sagent" class="form-control mt-1" placeholder="Filter">
                                 </td>
-                                <td class="sourse">
+                                <td class="filter-cell sourse">
                                     Source
-                                    <input v-model="filterByName" class="form-control mt-1" placeholder="Filter">
+                                    <input v-model="ssource" class="form-control mt-1" placeholder="Filter">
                                 </td>
                                 <td>
                                     Link to lead
@@ -106,8 +107,8 @@
 
             data: {
                 lines: [],
-                filterByName: [],
-                ssource: '',
+                ssource: [],
+                sagent: [],
                 number: 5,
                 pageNumber: 0,
             },
@@ -121,16 +122,6 @@
             },
 
             computed: {
-                listView: function () {
-                    var self = this;
-                    if (self.filterByName.length > 0) {
-                        return self.lines.filter(function(item) {
-                            return self.filterByName.indexOf(item[2]) > -1;
-                        });
-                    } else {
-                        return this.lines;
-                    }
-                },
 
                 pageCount(){
                     let l = this.lines.length,
@@ -142,16 +133,27 @@
 
                     const start = self.pageNumber * self.number,
                         end = start + self.number;
-                    // return self.lines
-                    //     .slice(start, end);
 
-                    if (self.filterByName.length > 0) {
-                        return self.lines.filter(function(item) {
-                            return self.filterByName.indexOf(item[2]) > -1;
+                    if (self.ssource.length > 0) {
+
+                        return self.lines.filter(function (item) {
+                            return Object.keys(item).some(function (key) {
+                                return String(item[2]).toLowerCase().indexOf(self.ssource) > -1
+                            });
+                        }).slice(start, end);
+
+                    } else if (self.sagent.length > 0) {
+
+                        return self.lines.filter(function (item) {
+                            return Object.keys(item).some(function (key) {
+                                return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
+                            });
                         }).slice(start, end);
                     } else {
                         return this.lines.slice(start, end);
                     }
+
+
                 }
             },
 
