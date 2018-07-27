@@ -21,27 +21,32 @@
         <link href="{{ asset('assets/jBox/jBox.Notice.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     </head>
-    <body>
+    <body class="">
         <div id="app">
 
             @include('layouts.header')
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-2 left-menu">
-                        <div class="row">
-                            @if(auth()->check())
-                                @include('admin.layouts.menu')
-                            @endif
+            <div class="page-container">
+
+                <!-- Page content -->
+                <div class="page-content">
+
+                    @if(auth()->check())
+                        @include('admin.layouts.menu')
+                    @endif
+
+                    <div class="content-wrapper">
+
+                        <!-- Content area -->
+                        <div class="content">
+
+                            @include('admin.layouts.status')
+
+                            @yield('content')
+
                         </div>
                     </div>
-                    <div class="col-md-10 p-4">
 
-                        @include('admin.layouts.status')
-
-                        @yield('content')
-
-                    </div>
                 </div>
             </div>
         </div>

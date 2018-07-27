@@ -13,7 +13,7 @@ td.sourse input{
     background: #ffffff;
     border-radius: 5px;
 }
-.col-md-10.p-4 {
+.page-container {
     background: #e6ebf3;
     min-height: calc(100vh - 56px);
 }
