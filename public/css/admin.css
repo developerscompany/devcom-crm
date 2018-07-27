@@ -17,6 +17,9 @@ td.sourse input{
     background: #e6ebf3;
     min-height: calc(100vh - 56px);
 }
+header > .navbar {
+    justify-content: flex-start;
+}
 .sales-page #root {
     font-size: 13px;
     font-family: "Open Sans";

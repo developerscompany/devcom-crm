@@ -1,13 +1,5 @@
-// new Vue({
-//
-//     el: '#root',
-//
-//     data: {
-//         lines: []
-//     },
-//
-//     mounted() {
-//
-//     }
-//
-// });
+$('document').ready(function () {
+    $('#navbar-mobile .sidebar-main-toggle').on('click', function () {
+        $('body').toggleClass('sidebar-xs');
+    })
+});

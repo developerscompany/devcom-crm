@@ -1,15 +1,21 @@
 <header>
 
     <!-- Main navbar -->
-    <div class="navbar navbar-expand-xl navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-                <img src="{{ asset('img/front/logo.png') }}" class="logo d-inline-block align-top img-fluid">
-            </a>
+    <div class="navbar navbar-inverse row">
+        <div class="navbar-header col-md-2">
+            <a class="navbar-brand" href="/"><img src="/img/logo.png"></a>
+
+            <ul class="nav navbar-nav d-block d-sm-none">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
         </div>
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample" aria-expanded="false" aria-label="Toggle navigation">
-            <span><i class="fa fa-bars" aria-hidden="true"></i></span>
-        </button>
+
+        <div class="navbar-collapse col-md-3" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
     </div>
     <!-- /main navbar -->
 
