@@ -16,6 +16,52 @@
                 <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
             </ul>
         </div>
+        <ul class="navbar-nav ml-auto">
+            <!-- Authentication Links -->
+            @guest
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <div class="icn-wrapper d-inline-block">
+                        <span class="text-under-icn kab-icn-text">
+                            Кабінет
+                        </span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Увійти') }}</a>
+                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Зареєструватись') }}</a>
+                    </div>
+                </li>
+            @else
+                <li class="nav-item dropdown">
+
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <div class="icn-wrapper d-inline-block">
+                            Menu
+                        </div>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @if (is_role('admin'))
+                            <a class="dropdown-item" href="/admin/bids">Адмін</a>
+                        @else
+                            <a class="dropdown-item" href="/user"> {{ auth()->user()->name }} </a>
+                        @endif
+
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Вийти') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            @endguest
+        </ul>
     </div>
     <!-- /main navbar -->
 

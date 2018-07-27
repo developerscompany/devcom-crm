@@ -10,8 +10,8 @@
                     <a class="nums" @click="changeNum(10)">10</a>
                     <a class="nums" @click="changeNum(15)">15</a>
                     <a class="nums" @click="changeNum(20)">20</a>
-                    <a class="nums" @click="changeNum(20)">50</a>
-                    <a class="nums" @click="changeNum(20)">100</a>
+                    <a class="nums" @click="changeNum(50)">50</a>
+                    <a class="nums" @click="changeNum(100)">100</a>
                 </div>
                 <div class="pull-right text-right viewPager">
                     <button
@@ -47,8 +47,9 @@
                                 <td>
                                     Link to lead
                                 </td>
-                                <td>
+                                <td class="filter-cell niche">
                                     Niche
+                                    <input v-model="stech" class="form-control mt-1" placeholder="Filter">
                                 </td>
                                 <td>
                                     Current site
@@ -109,6 +110,7 @@
                 lines: [],
                 ssource: [],
                 sagent: [],
+                stech: [],
                 number: 5,
                 pageNumber: 0,
             },
@@ -147,6 +149,13 @@
                         return self.lines.filter(function (item) {
                             return Object.keys(item).some(function (key) {
                                 return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
+                            });
+                        }).slice(start, end);
+                    } else if (self.stech.length > 0) {
+
+                        return self.lines.filter(function (item) {
+                            return Object.keys(item).some(function (key) {
+                                return String(item[4]).toLowerCase().indexOf(self.stech) > -1
                             });
                         }).slice(start, end);
                     } else {

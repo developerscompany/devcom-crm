@@ -80,8 +80,8 @@
                 <a class="nums" @click="changeNum(10)">10</a>
                 <a class="nums" @click="changeNum(15)">15</a>
                 <a class="nums" @click="changeNum(20)">20</a>
-                <a class="nums" @click="changeNum(20)">50</a>
-                <a class="nums" @click="changeNum(20)">100</a>
+                <a class="nums" @click="changeNum(50)">50</a>
+                <a class="nums" @click="changeNum(100)">100</a>
             </div>
             <div class="pull-right text-right viewPager">
                 <button
