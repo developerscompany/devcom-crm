@@ -17,14 +17,40 @@ label.required:after {
     font-size: 10px;
     color: red;
 }
+.user .form-group {
+    margin: 0;
+    text-align: center;
+    position: relative;
+}
+.user .form-group:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -0.7rem;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: #e5e5e5;
+}
+.user .form-group:last-child:after {
+    display: none;
+}
 .user .form-control {
     border-color: #e5e5e5;
-    padding: 0.02rem 0.7rem;
+    padding: 0.02rem 0.1rem;
     height: auto !important;
     font-size: 13px;
+    text-align: center;
+    border: none;
+    color: #a1a1a1;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.user .form-control:focus {
+    box-shadow: none;
 }
 input::placeholder {
-    color: #e5e5e5;
+    color: #a1a1a1;
 }
 .user .btn {
     font-size: 13px;
@@ -50,4 +76,12 @@ input::placeholder {
     background: none;
     border: none;
     cursor: pointer;
+}
+.content-wrap,
+.form-wrapper {
+    background: #fff;
+    border-radius: 5px;
+}
+.pager-view {
+    padding: 0.75rem;
 }

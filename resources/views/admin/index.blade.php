@@ -30,48 +30,48 @@
             <div class="">
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table" style="font-size: 14px; line-height: 15px">
+                        <table class="table table-striped" style="font-size: 14px; line-height: 15px">
                             <thead>
                             <tr>
-                                <td>
+                                <th>
                                     Date
-                                </td>
-                                <td class="filter-cell agent">
+                                </th>
+                                <th class="filter-cell agent">
                                     Agent
                                     <input v-model="sagent" class="form-control mt-1" placeholder="Filter">
-                                </td>
-                                <td class="filter-cell sourse">
+                                </th>
+                                <th class="filter-cell sourse">
                                     Source
                                     <input v-model="ssource" class="form-control mt-1" placeholder="Filter">
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Link to lead
-                                </td>
-                                <td class="filter-cell niche">
+                                </th>
+                                <th class="filter-cell niche">
                                     Niche
                                     <input v-model="stech" class="form-control mt-1" placeholder="Filter">
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Current site
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Description
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Timing
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Budget $
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Responce
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Status
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     Comments
-                                </td>
+                                </th>
                             </tr>
                             </thead>
                             <tbody>

@@ -1,144 +1,141 @@
 @extends('layouts.app')
 
 @section('content')
-    <form id="line-form" method="post" action="/" enctype="multipart/form-data" style="width: 100%;">
-        {{ csrf_field() }}
-        <div class="row">
-        <div class="form-group col-md-1">
-            <label class="required" for="source">Source</label>
-            <select name="source" id="source" class="form-control" required>
-                @foreach($sourses as $source)
-                    <option value="{{ $source->name }}"> {{ $source->name }} </option>
-                @endforeach
-            </select>
-        </div>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="link">Link</label>
-            <input type="text" id="link" name="link" class="form-control" required>
-        </div>
+    <div class="form-wrapper mb-4 p-3">
+        <form id="line-form" method="post" action="/" enctype="multipart/form-data" style="width: 100%;">
+            {{ csrf_field() }}
+            <ul class="nav navbar">
+                <li class="form-group">
+                    <select name="source" id="source" class="form-control" required>
+                        <option value="">Source...</option>
+                        @foreach($sourses as $source)
+                            <option value="{{ $source->name }}"> {{ $source->name }} </option>
+                        @endforeach
+                    </select>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="niche">Niche</label>
-            <input type="text" id="niche" name="niche" class="form-control" required>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="site">Site</label>
-            <input type="text" id="site" name="site" class="form-control" required>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="desc">Description</label>
-            <input type="text" id="desc" name="desc" class="form-control" required>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="timing">Timing</label>
-            <select class="form-control" name="timing" id="timing" class="form-control" required>
-                @foreach($timings as $timing)
-                    <option value="{{ $timing->title }}"> {{ $timing->title }} </option>
-                @endforeach
-            </select>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="budget">Budget</label>
-            <input type="text" id="budget" name="budget" class="form-control" required>
-        </div>
+                <li class="form-group">
+                    <select class="form-control" name="timing" id="timing" class="form-control" required>
+                        <option value="">Timing...</option>
+                        @foreach($timings as $timing)
+                            <option value="{{ $timing->title }}"> {{ $timing->title }} </option>
+                        @endforeach
+                    </select>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="resp">Responce</label>
-            <input type="text" id="resp" name="resp" class="form-control" required>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label class="required" for="status">Status</label>
-            <select name="status" id="status" class="form-control" required>
-                @foreach($statuses as $status)
-                    <option value="{{ $status->title }}"> {{ $status->title }} </option>
-                @endforeach
-            </select>
-        </div>
+                <li class="form-group">
+                    <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required>
+                </li>
 
-        <div class="form-group col-md-1">
-            <label for="img">Comments</label>
-            <input type="text" id="comment" name="comment" class="form-control">
-        </div>
+                <li class="form-group">
+                    <select name="status" id="status" class="form-control" required>
+                        <option value="">Response...</option>
+                        @foreach($statuses as $status)
+                            <option value="{{ $status->title }}"> {{ $status->title }} </option>
+                        @endforeach
+                    </select>
+                </li>
 
-        <div class="form-group col-md-1 align-self-end">
-            <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
-        </div>
-        </div>
-    </form>
+                <li class="form-group">
+                    <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment...">
+                </li>
 
-    <div id="root" class="content">
-        <div class="pager-view clearfix">
-            <div class="pull-left text-left viewNumber">
-                <span>Show: </span>
-                <a class="nums" @click="changeNum(5)">5</a>
-                <a class="nums" @click="changeNum(10)">10</a>
-                <a class="nums" @click="changeNum(15)">15</a>
-                <a class="nums" @click="changeNum(20)">20</a>
-                <a class="nums" @click="changeNum(50)">50</a>
-                <a class="nums" @click="changeNum(100)">100</a>
+                <li class="form-group align-self-end">
+                    <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <div class="content-wrap p-3">
+        <div id="root" class="content">
+            <div class="pager-view clearfix">
+                <div class="pull-left text-left viewNumber">
+                    <span>Show: </span>
+                    <a class="nums" @click="changeNum(5)">5</a>
+                    <a class="nums" @click="changeNum(10)">10</a>
+                    <a class="nums" @click="changeNum(15)">15</a>
+                    <a class="nums" @click="changeNum(20)">20</a>
+                    <a class="nums" @click="changeNum(50)">50</a>
+                    <a class="nums" @click="changeNum(100)">100</a>
+                </div>
+                <div class="pull-right text-right viewPager">
+                    <button
+                            :disabled="pageNumber === 0"
+                            @click="prevPage">
+                        prev
+                    </button>
+                    <button
+                            :disabled="pageNumber >= pageCount"
+                            @click="nextPage">
+                        next
+                    </button>
+                </div>
             </div>
-            <div class="pull-right text-right viewPager">
-                <button
-                        :disabled="pageNumber === 0"
-                        @click="prevPage">
-                    prev
-                </button>
-                <button
-                        :disabled="pageNumber >= pageCount"
-                        @click="nextPage">
-                    next
-                </button>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>
+                        <th>
                             Date
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Agent
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Source
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Link to lead
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Niche
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Current site
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Description
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Timing
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Budget $
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Responce
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Status
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Comments
-                        </td>
+                        </th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr v-for="line in paginatedData">
                         <td>@{{ line[0] }}</td>
                         <td>@{{ line[1] }}</td>
@@ -153,19 +150,21 @@
                         <td>@{{ line[10] }}</td>
                         <td>@{{ line[11] }}</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            {{--<div>--}}
+                {{--<div>--}}
                 {{--<ul v-for="line in lines">--}}
-                    {{--<li>--}}
-                        {{--@{{ line[0] }}--}}
-                    {{--</li>--}}
+                {{--<li>--}}
+                {{--@{{ line[0] }}--}}
+                {{--</li>--}}
                 {{--</ul>--}}
-            {{--</div>--}}
+                {{--</div>--}}
 
+            </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
@@ -206,7 +205,7 @@
                                 comment = response.data[0][11];
                             }
 
-                            $('#root').prepend('<tr>' +
+                            $('#root tbody').prepend('<tr>' +
                                     '<td>' + response.data[0][0] + '</td>' +
                                     '<td>' + response.data[0][1] + '</td>' +
                                     '<td>' + response.data[0][2] + '</td>' +
@@ -225,16 +224,16 @@
             },
 
             computed: {
-                listView: function () {
-                    var self = this;
-                    if (self.filterByName.length > 0) {
-                        return self.lines.filter(function(item) {
-                            return self.filterByName.indexOf(item[2]) > -1;
-                        });
-                    } else {
-                        return this.lines;
-                    }
-                },
+                // listView: function () {
+                //     var self = this;
+                //     if (self.filterByName.length > 0) {
+                //         return self.lines.filter(function(item) {
+                //             return self.filterByName.indexOf(item[2]) > -1;
+                //         });
+                //     } else {
+                //         return this.lines;
+                //     }
+                // },
 
                 pageCount(){
                     let l = this.lines.length,
