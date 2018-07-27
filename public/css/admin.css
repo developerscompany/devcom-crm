@@ -53,3 +53,6 @@ header > .navbar {
     border: none;
     cursor: pointer;
 }
+.curr-site-cell {
+    min-width: 100px;
+}

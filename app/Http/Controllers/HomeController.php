@@ -150,7 +150,7 @@ class HomeController extends Controller
         $sheet = 'sent offers';
 
         $arr = [
-            date("Y.m.d"),
+            date("d.m.Y"),
             auth()->user()->name,
             request('source'),
             request('link'),

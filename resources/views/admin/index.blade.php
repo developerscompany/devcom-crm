@@ -59,7 +59,7 @@
                                     Niche
                                     <input v-model="stech" class="form-control mt-1" placeholder="Filter">
                                 </td>
-                                <td>
+                                <td class="curr-site-cell">
                                     Current site
                                 </td>
                                 <td>
@@ -93,7 +93,7 @@
                                 <td>@{{ line[2] }}</td>
                                 <td>@{{ line[3] }}</td>
                                 <td>@{{ line[4] }}</td>
-                                <td>@{{ line[5] }}</td>
+                                <td class="curr-site-cell">@{{ line[5] }}</td>
                                 <td>@{{ line[6] }}</td>
                                 <td>@{{ line[7] }}</td>
                                 <td>@{{ line[8] }}</td>
