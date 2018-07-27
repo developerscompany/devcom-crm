@@ -24,6 +24,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('/bids', 'HomeController@index');
 
     Route::get('lines', 'HomeController@show');
+    Route::get('agents', 'HomeController@getAgent');
+    Route::get('sources', 'HomeController@getSource');
+    Route::get('statuss', 'HomeController@getStatus');
 
 });
 

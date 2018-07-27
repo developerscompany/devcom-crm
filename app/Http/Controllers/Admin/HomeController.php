@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Source;
+use App\Status;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -66,5 +69,23 @@ class HomeController extends Controller
 
 
         return array_reverse($rows);
+    }
+
+    public function getAgent()
+    {
+        $agents = User::where('role','!=','admin')->get();
+        return $agents;
+    }
+
+    public function getSource()
+    {
+        $sources = Source::all();
+        return $sources;
+    }
+
+    public function getStatus()
+    {
+        $statuss = Status::all();
+        return $statuss;
     }
 }

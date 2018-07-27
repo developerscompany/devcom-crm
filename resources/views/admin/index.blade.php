@@ -33,45 +33,57 @@
                         <table class="table table-striped" style="font-size: 14px; line-height: 15px">
                             <thead>
                             <tr>
-                                <th>
+                                <td>
                                     Date
-                                </th>
-                                <th class="filter-cell agent">
+                                </td>
+                                <td class="filter-cell agent">
                                     Agent
-                                    <input v-model="sagent" class="form-control mt-1" placeholder="Filter">
-                                </th>
-                                <th class="filter-cell sourse">
+                                    <select v-model="sagent" class="form-control mt-1">
+                                        <option value=""></option>
+                                        <option v-for="agent in agents"> @{{ agent.name }}</option>
+                                    </select>
+                                    {{--<input v-model="sagent" class="form-control mt-1" placeholder="Filter">--}}
+                                </td>
+                                <td class="filter-cell sourse">
                                     Source
-                                    <input v-model="ssource" class="form-control mt-1" placeholder="Filter">
-                                </th>
-                                <th>
+                                    <select v-model="ssource" class="form-control mt-1">
+                                        <option value=""></option>
+                                        <option v-for="source in sources"> @{{ source.name }}</option>
+                                    </select>
+                                    {{--<input v-model="ssource" class="form-control mt-1" placeholder="Filter">--}}
+                                </td>
+                                <td>
                                     Link to lead
-                                </th>
-                                <th class="filter-cell niche">
+                                </td>
+                                <td class="filter-cell niche">
                                     Niche
                                     <input v-model="stech" class="form-control mt-1" placeholder="Filter">
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     Current site
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     Description
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     Timing
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     Budget $
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     Responce
-                                </th>
-                                <th>
+                                </td>
+                                <td class="filter-cell status">
                                     Status
-                                </th>
-                                <th>
+                                    <select v-model="sstatus" class="form-control mt-1">
+                                        <option value=""></option>
+                                        <option v-for="status in statuss"> @{{ status.title }}</option>
+                                    </select>
+                                </td>
+                                <td>
                                     Comments
-                                </th>
+                                </td>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,9 +119,13 @@
             el: '#root',
 
             data: {
+                agents: [],
+                sources: [],
+                statuss: [],
                 lines: [],
                 ssource: [],
                 sagent: [],
+                sstatus: [],
                 stech: [],
                 number: 5,
                 pageNumber: 0,
@@ -120,6 +136,14 @@
                 axios.get('/admin/lines')
                     .then(response => this.lines = response.data);
 
+                axios.get('/admin/agents')
+                    .then(response => this.agents = response.data);
+
+                axios.get('/admin/sources')
+                    .then(response => this.sources = response.data);
+
+                axios.get('/admin/statuss')
+                    .then(response => this.statuss = response.data);
 
             },
 
@@ -138,19 +162,26 @@
 
                     if (self.ssource.length > 0) {
 
-                        return self.lines.filter(function (item) {
-                            return Object.keys(item).some(function (key) {
-                                return String(item[2]).toLowerCase().indexOf(self.ssource) > -1
-                            });
+                        return self.lines.filter(function(item) {
+                            return self.ssource.indexOf(item[2]) > -1;
                         }).slice(start, end);
 
+                        // return self.lines.filter(function (item) {
+                        //     return Object.keys(item).some(function (key) {
+                        //         return String(item[2]).toLowerCase().indexOf(self.ssource) > -1
+                        //     });
+                        // }).slice(start, end);
                     } else if (self.sagent.length > 0) {
 
-                        return self.lines.filter(function (item) {
-                            return Object.keys(item).some(function (key) {
-                                return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
-                            });
+                        return self.lines.filter(function(item) {
+                            return self.sagent.indexOf(item[1]) > -1;
                         }).slice(start, end);
+
+                        // return self.lines.filter(function (item) {
+                        //     return Object.keys(item).some(function (key) {
+                        //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
+                        //     });
+                        // }).slice(start, end);
                     } else if (self.stech.length > 0) {
 
                         return self.lines.filter(function (item) {
@@ -158,6 +189,17 @@
                                 return String(item[4]).toLowerCase().indexOf(self.stech) > -1
                             });
                         }).slice(start, end);
+                    } else if (self.sstatus.length > 0) {
+
+                        return self.lines.filter(function(item) {
+                            return self.sstatus.indexOf(item[10]) > -1;
+                        }).slice(start, end);
+
+                        // return self.lines.filter(function (item) {
+                        //     return Object.keys(item).some(function (key) {
+                        //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
+                        //     });
+                        // }).slice(start, end);
                     } else {
                         return this.lines.slice(start, end);
                     }
