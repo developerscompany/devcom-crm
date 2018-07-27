@@ -20,7 +20,7 @@
                         prev
                     </button>
                     <button
-                            :disabled="pageNumber >= pageCount - 1"
+                            :disabled="pageNumber >= pageCount"
                             @click="nextPage">
                         next
                     </button>

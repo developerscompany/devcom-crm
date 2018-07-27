@@ -3,6 +3,7 @@ a {
 }
 td.sourse input{
     padding: 0.02rem 0.3rem;
+    border-color: #e5e5e5;
     font-size: 13px;
 }
 .left-menu div{

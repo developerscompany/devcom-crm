@@ -72,7 +72,30 @@
         </div>
     </form>
 
-    <div class="content">
+    <div id="root" class="content">
+        <div class="pager-view clearfix">
+            <div class="pull-left text-left viewNumber">
+                <span>Show: </span>
+                <a class="nums" @click="changeNum(5)">5</a>
+                <a class="nums" @click="changeNum(10)">10</a>
+                <a class="nums" @click="changeNum(15)">15</a>
+                <a class="nums" @click="changeNum(20)">20</a>
+                <a class="nums" @click="changeNum(20)">50</a>
+                <a class="nums" @click="changeNum(20)">100</a>
+            </div>
+            <div class="pull-right text-right viewPager">
+                <button
+                        :disabled="pageNumber === 0"
+                        @click="prevPage">
+                    prev
+                </button>
+                <button
+                        :disabled="pageNumber >= pageCount"
+                        @click="nextPage">
+                    next
+                </button>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -115,8 +138,8 @@
                         </td>
                     </tr>
                 </thead>
-                <tbody id="root">
-                    <tr v-for="line in lines">
+                <tbody>
+                    <tr v-for="line in paginatedData">
                         <td>@{{ line[0] }}</td>
                         <td>@{{ line[1] }}</td>
                         <td>@{{ line[2] }}</td>
@@ -153,7 +176,11 @@
             el: '#root',
 
             data: {
-                lines: []
+                lines: [],
+                filterByName: [],
+                ssource: '',
+                number: 5,
+                pageNumber: 0,
             },
 
             mounted() {
@@ -195,7 +222,56 @@
                                 '</tr>');
                         });
                 });
-            }
+            },
+
+            computed: {
+                listView: function () {
+                    var self = this;
+                    if (self.filterByName.length > 0) {
+                        return self.lines.filter(function(item) {
+                            return self.filterByName.indexOf(item[2]) > -1;
+                        });
+                    } else {
+                        return this.lines;
+                    }
+                },
+
+                pageCount(){
+                    let l = this.lines.length,
+                        s = this.number;
+                    return Math.floor(l/s);
+                },
+                paginatedData(){
+                    var self = this;
+
+                    const start = self.pageNumber * self.number,
+                        end = start + self.number;
+                    // return self.lines
+                    //     .slice(start, end);
+
+                    if (self.filterByName.length > 0) {
+                        return self.lines.filter(function(item) {
+                            return self.filterByName.indexOf(item[2]) > -1;
+                        }).slice(start, end);
+                    } else {
+                        return this.lines.slice(start, end);
+                    }
+                }
+            },
+
+            methods: {
+
+                changeNum(index) {
+                    this.number = index;
+                },
+                nextPage()  {
+                    this.pageNumber++;
+                },
+                prevPage(){
+                    this.pageNumber--;
+                }
+
+            },
 
         })
     </script>

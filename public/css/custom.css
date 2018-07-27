@@ -1,3 +1,10 @@
+#app.user {
+    font-family: "Open Sans";
+    font-size: 13px;
+}
+a {
+    cursor: pointer;
+}
 label.required {
     position: relative;
 }
@@ -6,7 +13,41 @@ label.required:after {
     display: block;
     content: '*';
     top: -2px;
-    right: -10px;
-    font-size: 20px;
+    right: -7px;
+    font-size: 10px;
     color: red;
+}
+.user .form-control {
+    border-color: #e5e5e5;
+    padding: 0.02rem 0.7rem;
+    height: auto !important;
+    font-size: 13px;
+}
+input::placeholder {
+    color: #e5e5e5;
+}
+.user .btn {
+    font-size: 13px;
+    padding: 0.02rem 0.3rem;
+}
+.user .content {
+    padding: 0;
+}
+.user tbody {
+    border-top: 1px solid #f4f5f5;
+    border-bottom: 1px solid #f4f5f5;
+}
+.user td {
+    border: none;
+}
+.viewNumber a{
+    color: #e6ebf3 !important;
+}
+.viewNumber a.active {
+    color: #1763ff !important;
+}
+.viewPager button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }

@@ -14,7 +14,7 @@
         @guest
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <div class="icn-wrapper">
+                    <div class="icn-wrapper d-inline-block">
                         <span class="text-under-icn kab-icn-text">
                             Кабінет
                         </span>
@@ -37,7 +37,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @if (is_role('admin'))
-                        <a class="dropdown-item" href="/admin">Адмін</a>
+                        <a class="dropdown-item" href="/admin/bids">Адмін</a>
                     @else
                         <a class="dropdown-item" href="/user"> {{ auth()->user()->name }} </a>
                     @endif
