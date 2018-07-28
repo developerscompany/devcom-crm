@@ -33,8 +33,9 @@
                         <table class="table table-striped" style="font-size: 14px; line-height: 15px">
                             <thead>
                             <tr>
-                                <td>
+                                <td class="filter-cell date">
                                     Date
+                                    <input v-model="sdate" type="date" class="form-control mt-1">
                                 </td>
                                 <td class="filter-cell agent">
                                     Agent
@@ -127,6 +128,7 @@
                 sagent: [],
                 sstatus: [],
                 stech: [],
+                sdate: [],
                 number: 5,
                 pageNumber: 0,
             },
@@ -160,7 +162,17 @@
                     const start = self.pageNumber * self.number,
                         end = start + self.number;
 
-                    if (self.ssource.length > 0) {
+
+                    if (self.sdate.length > 0) {
+                        self.sdate = self.sdate.split("-").reverse().join(".");
+                        console.log(self.sdate);
+
+                        return self.lines.filter(function(item) {
+                            console.log(self.sdate);
+                            return self.sdate.indexOf(item[0]) > -1;
+                        }).slice(start, end);
+
+                    } else if (self.ssource.length > 0) {
 
                         return self.lines.filter(function(item) {
                             return self.ssource.indexOf(item[2]) > -1;
