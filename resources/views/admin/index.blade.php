@@ -231,7 +231,6 @@
                 prevPage(){
                     this.pageNumber--;
                 }
-
             },
 
         })
