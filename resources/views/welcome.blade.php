@@ -50,7 +50,7 @@
 
                     <li class="form-group">
                         <select name="status" id="status" class="form-control" required>
-                            <option value="">Response...</option>
+                            <option value="">Status...</option>
                             @foreach($statuses as $status)
                                 <option value="{{ $status->title }}"> {{ $status->title }} </option>
                             @endforeach

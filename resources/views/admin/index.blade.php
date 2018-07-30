@@ -35,7 +35,38 @@
                             <tr>
                                 <td class="filter-cell date">
                                     Date
-                                    <input v-model="sdate" type="date" class="form-control mt-1">
+                                    <template>
+                                        <v-layout>
+                                            <v-flex>
+                                                <v-menu
+                                                        ref="menu2"
+                                                        :close-on-content-click="false"
+                                                        v-model="menu2"
+                                                        :nudge-right="40"
+                                                        :return-value.sync="date"
+                                                        lazy
+                                                        transition="scale-transition"
+                                                        offset-y
+                                                        full-width
+                                                        min-width="290px"
+                                                >
+                                                    <v-text-field
+                                                            slot="activator"
+                                                            v-model="computedDateFormatted"
+                                                            placeholder="Date"
+                                                            readonly
+                                                    ></v-text-field>
+                                                    <v-date-picker
+                                                            v-model="date"
+                                                            locale="ru-ru"
+                                                            color="blue lighten-1"
+                                                            header-color="primary"
+                                                            @input="$refs.menu2.save(date)"></v-date-picker>
+
+                                                </v-menu>
+                                            </v-flex>
+                                        </v-layout>
+                                    </template>
                                 </td>
                                 <td class="filter-cell agent">
                                     Agent
@@ -115,11 +146,35 @@
 
     <script>
 
+        // var vm = new Vue({
+        //
+        //
+        //     export default {
+        //         data () {
+        //             return {
+        //                 picker: null,
+        //                 picker2: null
+        //             }
+        //         }
+        //     }
+        // })
+
+    </script>
+
+    <script>
+
         var app = new Vue({
 
             el: '#root',
 
             data: {
+
+                sdate: [],
+
+                date: null,
+                dateFormatted: '',
+                menu2: false,
+
                 agents: [],
                 sources: [],
                 statuss: [],
@@ -128,7 +183,7 @@
                 sagent: [],
                 sstatus: [],
                 stech: [],
-                sdate: [],
+
                 number: 5,
                 pageNumber: 0,
             },
@@ -147,10 +202,20 @@
                 axios.get('/admin/statuss')
                     .then(response => this.statuss = response.data);
 
+
+            },
+
+            watch: {
+                date (val) {
+                    this.dateFormatted = this.formatDate(this.date)
+                }
             },
 
             computed: {
 
+                computedDateFormatted () {
+                    return this.formatDate(this.date)
+                },
                 pageCount(){
                     let l = this.lines.length,
                         s = this.number;
@@ -163,16 +228,15 @@
                         end = start + self.number;
 
 
-                    if (self.sdate.length > 0) {
-                        self.sdate = self.sdate.split("-").reverse().join(".");
-                        console.log(self.sdate);
+                    if (self.dateFormatted.length > 0) {
+                        // self.sdate = self.sdate.split("-").reverse().join(".");
 
                         return self.lines.filter(function(item) {
-                            console.log(self.sdate);
-                            return self.sdate.indexOf(item[0]) > -1;
+                            return self.dateFormatted.indexOf(item[0]) > -1;
                         }).slice(start, end);
 
-                    } else if (self.ssource.length > 0) {
+                    }
+                    if (self.ssource.length > 0) {
 
                         return self.lines.filter(function(item) {
                             return self.ssource.indexOf(item[2]) > -1;
@@ -183,7 +247,8 @@
                         //         return String(item[2]).toLowerCase().indexOf(self.ssource) > -1
                         //     });
                         // }).slice(start, end);
-                    } else if (self.sagent.length > 0) {
+                    }
+                    if (self.sagent.length > 0) {
 
                         return self.lines.filter(function(item) {
                             return self.sagent.indexOf(item[1]) > -1;
@@ -194,14 +259,16 @@
                         //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
                         //     });
                         // }).slice(start, end);
-                    } else if (self.stech.length > 0) {
+                    }
+                    if (self.stech.length > 0) {
 
                         return self.lines.filter(function (item) {
                             return Object.keys(item).some(function (key) {
                                 return String(item[4]).toLowerCase().indexOf(self.stech) > -1
                             });
                         }).slice(start, end);
-                    } else if (self.sstatus.length > 0) {
+                    }
+                    if (self.sstatus.length > 0) {
 
                         return self.lines.filter(function(item) {
                             return self.sstatus.indexOf(item[10]) > -1;
@@ -212,15 +279,20 @@
                         //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
                         //     });
                         // }).slice(start, end);
-                    } else {
-                        return this.lines.slice(start, end);
                     }
 
-
+                    return this.lines.slice(start, end);
                 }
             },
 
             methods: {
+
+                formatDate (date) {
+                    if (!date) return null;
+
+                    const [year, month, day] = date.split('-');
+                    return `${day}.${month}.${year}`
+                },
 
                 changeNum(index) {
                     this.number = index;
@@ -231,6 +303,7 @@
                 prevPage(){
                     this.pageNumber--;
                 }
+
             },
 
         })
