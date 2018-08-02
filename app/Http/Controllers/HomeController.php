@@ -36,6 +36,9 @@ class HomeController extends Controller
 
 //        dd('1') ;
 
+//        $test = new \Google_Service_Sheets_Spreadsheet;
+
+
         $client = new Google_Client();
         $client->setApplicationName(config('google.APPLICATION_NAME'));
         $client->setClientId(config('google.CLIENT_ID'));
@@ -55,11 +58,19 @@ class HomeController extends Controller
         $service = new Google_Service_Sheets($client);
 
         $sheets = new Sheets();
+
         $sheets->setService($service);
 
         $id = '1o3kjb_wX3GeUXP5HxdDUwunfFzMUf81fW83a16Na0oI';
         $sheet = 'sent offers';
         $data = array(array('abc', 'def', 'ghi'), array('jkl', 'mno', 'prs'));
+
+
+
+//        $test = $sheets->spreadsheet($id)->sheetById($id);
+//        $test->addEditor('zelloooo1997@gmail.com');
+//        $edit = $test->getEditors();
+//        dd($edit);
 
         $rows = $sheets->spreadsheet($id)->sheet($sheet)->all(); //spreadsheetID is from URL of your google spreadsheet, sheet name is sheet inside it
 
@@ -167,6 +178,8 @@ class HomeController extends Controller
         $data = array($arr);
 
         $sheets->spreadsheet($id)->sheet($sheet)->range('')->append($data);
+
+
 
 //        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
 //        $array = [];

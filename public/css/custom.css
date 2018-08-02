@@ -17,22 +17,28 @@ label.required:after {
     font-size: 10px;
     color: red;
 }
-.user .form-group {
+.user #line-form ul {
+    justify-content: center;
+}
+.user select.form-control {
+    height: 22px !important;
+}
+.user .col-md-1 {
     margin: 0;
     text-align: center;
     position: relative;
 }
-.user .form-group:after {
+.user .col-md-1:after {
     content: '';
     display: block;
     position: absolute;
-    right: -0.7rem;
+    right: 1px;
     top: 0;
     height: 100%;
     width: 1px;
     background: #e5e5e5;
 }
-.user .form-group:last-child:after {
+.user .col-md-1:last-child:after {
     display: none;
 }
 .user .form-control {
@@ -42,7 +48,8 @@ label.required:after {
     font-size: 13px;
     text-align: center;
     border: none;
-    color: #a1a1a1;
+    color: #000000;
+    font-weight: bold;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
@@ -51,6 +58,7 @@ label.required:after {
 }
 input::placeholder {
     color: #a1a1a1;
+    font-weight: lighter;
 }
 .user .btn {
     font-size: 13px;

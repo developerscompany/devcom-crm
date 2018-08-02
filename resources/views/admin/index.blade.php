@@ -6,12 +6,7 @@
             <div class="pager-view clearfix">
                 <div class="pull-left text-left viewNumber">
                     <span>Show: </span>
-                    <a class="nums" @click="changeNum(5)">5</a>
-                    <a class="nums" @click="changeNum(10)">10</a>
-                    <a class="nums" @click="changeNum(15)">15</a>
-                    <a class="nums" @click="changeNum(20)">20</a>
-                    <a class="nums" @click="changeNum(50)">50</a>
-                    <a class="nums" @click="changeNum(100)">100</a>
+                    <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">@{{num}}</a>
                 </div>
                 <div class="pull-right text-right viewPager">
                     <button
@@ -52,9 +47,9 @@
                                                 >
                                                     <v-text-field
                                                             slot="activator"
-                                                            v-model="computedDateFormatted"
+                                                            v-model="dateFormatted"
                                                             placeholder="Date"
-                                                            readonly
+                                                            clearable
                                                     ></v-text-field>
                                                     <v-date-picker
                                                             v-model="date"
@@ -71,7 +66,7 @@
                                 <td class="filter-cell agent">
                                     Agent
                                     <select v-model="sagent" class="form-control mt-1">
-                                        <option value=""></option>
+                                        <option value="">Agent...</option>
                                         <option v-for="agent in agents"> @{{ agent.name }}</option>
                                     </select>
                                     {{--<input v-model="sagent" class="form-control mt-1" placeholder="Filter">--}}
@@ -79,7 +74,7 @@
                                 <td class="filter-cell sourse">
                                     Source
                                     <select v-model="ssource" class="form-control mt-1">
-                                        <option value=""></option>
+                                        <option value="">Source...</option>
                                         <option v-for="source in sources"> @{{ source.name }}</option>
                                     </select>
                                     {{--<input v-model="ssource" class="form-control mt-1" placeholder="Filter">--}}
@@ -109,7 +104,7 @@
                                 <td class="filter-cell status">
                                     Status
                                     <select v-model="sstatus" class="form-control mt-1">
-                                        <option value=""></option>
+                                        <option value="">Status...</option>
                                         <option v-for="status in statuss"> @{{ status.title }}</option>
                                     </select>
                                 </td>
@@ -146,23 +141,6 @@
 
     <script>
 
-        // var vm = new Vue({
-        //
-        //
-        //     export default {
-        //         data () {
-        //             return {
-        //                 picker: null,
-        //                 picker2: null
-        //             }
-        //         }
-        //     }
-        // })
-
-    </script>
-
-    <script>
-
         var app = new Vue({
 
             el: '#root',
@@ -186,6 +164,8 @@
 
                 number: 5,
                 pageNumber: 0,
+
+                nums: [5,10,15,20,50,100]
             },
 
             mounted() {
@@ -206,6 +186,7 @@
             },
 
             watch: {
+
                 date (val) {
                     this.dateFormatted = this.formatDate(this.date)
                 }
@@ -213,9 +194,6 @@
 
             computed: {
 
-                computedDateFormatted () {
-                    return this.formatDate(this.date)
-                },
                 pageCount(){
                     let l = this.lines.length,
                         s = this.number;
@@ -228,8 +206,10 @@
                         end = start + self.number;
 
 
+                    if (self.dateFormatted == null) {
+                        self.dateFormatted = '';
+                    }
                     if (self.dateFormatted.length > 0) {
-                        // self.sdate = self.sdate.split("-").reverse().join(".");
 
                         return self.lines.filter(function(item) {
                             return self.dateFormatted.indexOf(item[0]) > -1;

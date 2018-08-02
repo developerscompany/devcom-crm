@@ -5,8 +5,8 @@
         <div class="form-wrapper mb-4 p-3">
             <form id="line-form" method="post" action="/" enctype="multipart/form-data" style="width: 100%;">
                 {{ csrf_field() }}
-                <ul class="nav navbar">
-                    <li class="form-group">
+                <ul class="row nav">
+                    <li class="col-md-1">
                         <select name="source" id="source" class="form-control" required>
                             <option value="">Source...</option>
                             @foreach($sourses as $source)
@@ -15,23 +15,23 @@
                         </select>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <select class="form-control" name="timing" id="timing" class="form-control" required>
                             <option value="">Timing...</option>
                             @foreach($timings as $timing)
@@ -40,15 +40,15 @@
                         </select>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <select name="status" id="status" class="form-control" required>
                             <option value="">Status...</option>
                             @foreach($statuses as $status)
@@ -57,11 +57,11 @@
                         </select>
                     </li>
 
-                    <li class="form-group">
+                    <li class="col-md-1">
                         <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment...">
                     </li>
 
-                    <li class="form-group align-self-end">
+                    <li class="col-md-1 align-self-end">
                         <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
                     </li>
                 </ul>
@@ -136,6 +136,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {{--<tr v-html="newLine"></tr>--}}
                         <tr v-for="line in paginatedData">
                             <td>@{{ line[0] }}</td>
                             <td>@{{ line[1] }}</td>
@@ -192,7 +193,6 @@
                     event.preventDefault();
 
                     let data = $(this).serialize();
-                    console.log(data);
                     $('#line-form')[0].reset();
 
                     axios.post('/user/add-google-line', data)
@@ -200,12 +200,12 @@
                         .then(response => {
 
                             let comment = '';
-                            console.log(response.data[0][11]);
                             if (response.data[0][11]){
                                 comment = response.data[0][11];
                             }
 
-                            $('#root tbody').prepend('<tr>' +
+                            $('#root tbody').prepend(
+                                '<tr>' +
                                     '<td>' + response.data[0][0] + '</td>' +
                                     '<td>' + response.data[0][1] + '</td>' +
                                     '<td>' + response.data[0][2] + '</td>' +
