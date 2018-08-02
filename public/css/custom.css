@@ -23,6 +23,9 @@ label.required:after {
 .user select.form-control {
     height: 22px !important;
 }
+select {
+    background: url('/img/drop.svg') no-repeat right center / auto 10px;
+}
 .user .col-md-1 {
     margin: 0;
     text-align: center;

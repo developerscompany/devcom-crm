@@ -2,13 +2,14 @@ a {
     cursor: pointer;
 }
 td.filter-cell select,
-td.filter-cell input{
+td.filter-cell input {
     padding: 0.02rem 0.3rem;
     border-color: #a1a1a1;
     font-size: 13px;
     height: auto !important;
 }
-.left-menu div{
+
+.left-menu div {
     height: 100%;
 }
 .page {
