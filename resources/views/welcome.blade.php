@@ -173,6 +173,7 @@
                 ssource: '',
                 number: 5,
                 pageNumber: 0,
+                newLine: [],
             },
 
             mounted() {
@@ -195,21 +196,24 @@
                                 comment = response.data[0][11];
                             }
 
-                            $('#root tbody').prepend(
-                                '<tr>' +
-                                    '<td>' + response.data[0][0] + '</td>' +
-                                    '<td>' + response.data[0][1] + '</td>' +
-                                    '<td>' + response.data[0][2] + '</td>' +
-                                    '<td>' + response.data[0][3] + '</td>' +
-                                    '<td>' + response.data[0][4] + '</td>' +
-                                    '<td>' + response.data[0][5] + '</td>' +
-                                    '<td>' + response.data[0][6] + '</td>' +
-                                    '<td>' + response.data[0][7] + '</td>' +
-                                    '<td>' + response.data[0][8] + '</td>' +
-                                    '<td>' + response.data[0][9] + '</td>' +
-                                    '<td>' + response.data[0][10] + '</td>' +
-                                    '<td>' + comment + '</td>' +
-                                '</tr>');
+                            app.newLine = response.data[0];
+                            app.lines.unshift(app.newLine)
+
+                            // $('#root tbody').prepend(
+                            //     '<tr>' +
+                            //         '<td>' + response.data[0][0] + '</td>' +
+                            //         '<td>' + response.data[0][1] + '</td>' +
+                            //         '<td>' + response.data[0][2] + '</td>' +
+                            //         '<td>' + response.data[0][3] + '</td>' +
+                            //         '<td>' + response.data[0][4] + '</td>' +
+                            //         '<td>' + response.data[0][5] + '</td>' +
+                            //         '<td>' + response.data[0][6] + '</td>' +
+                            //         '<td>' + response.data[0][7] + '</td>' +
+                            //         '<td>' + response.data[0][8] + '</td>' +
+                            //         '<td>' + response.data[0][9] + '</td>' +
+                            //         '<td>' + response.data[0][10] + '</td>' +
+                            //         '<td>' + comment + '</td>' +
+                            //     '</tr>');
                         });
                 });
             },
