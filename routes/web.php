@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -30,7 +28,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 
 });
 
-Route::prefix('user')->middleware('auth')->group(function () {
+Route::prefix('user')->namespace('User')->middleware('auth')->group(function () {
 
     Route::get('/', 'HomeController@index');
 

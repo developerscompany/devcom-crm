@@ -73,7 +73,7 @@ img.clear-date {
     margin: 0;
 }
 .table-responsive {
-    overflow-x: unset;
+    /*overflow-x: unset;*/
 }
 .v-menu__content {
     top: 0 !important;
