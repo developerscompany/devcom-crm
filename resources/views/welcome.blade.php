@@ -154,14 +154,6 @@
                         </tbody>
                     </table>
 
-                    {{--<div>--}}
-                    {{--<ul v-for="line in lines">--}}
-                    {{--<li>--}}
-                    {{--@{{ line[0] }}--}}
-                    {{--</li>--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
-
                 </div>
             </div>
         </div>
@@ -196,7 +188,6 @@
                     $('#line-form')[0].reset();
 
                     axios.post('/user/add-google-line', data)
-                        // .then(response => app.lines = response.data);
                         .then(response => {
 
                             let comment = '';
@@ -224,16 +215,6 @@
             },
 
             computed: {
-                // listView: function () {
-                //     var self = this;
-                //     if (self.filterByName.length > 0) {
-                //         return self.lines.filter(function(item) {
-                //             return self.filterByName.indexOf(item[2]) > -1;
-                //         });
-                //     } else {
-                //         return this.lines;
-                //     }
-                // },
 
                 pageCount(){
                     let l = this.lines.length,
@@ -245,8 +226,6 @@
 
                     const start = self.pageNumber * self.number,
                         end = start + self.number;
-                    // return self.lines
-                    //     .slice(start, end);
 
                     if (self.filterByName.length > 0) {
                         return self.lines.filter(function(item) {

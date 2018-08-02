@@ -69,7 +69,6 @@
                                         <option value="">Agent...</option>
                                         <option v-for="agent in agents"> @{{ agent.name }}</option>
                                     </select>
-                                    {{--<input v-model="sagent" class="form-control mt-1" placeholder="Filter">--}}
                                 </td>
                                 <td class="filter-cell sourse">
                                     Source
@@ -77,7 +76,6 @@
                                         <option value="">Source...</option>
                                         <option v-for="source in sources"> @{{ source.name }}</option>
                                     </select>
-                                    {{--<input v-model="ssource" class="form-control mt-1" placeholder="Filter">--}}
                                 </td>
                                 <td>
                                     Link to lead
@@ -222,11 +220,6 @@
                             return self.ssource.indexOf(item[2]) > -1;
                         }).slice(start, end);
 
-                        // return self.lines.filter(function (item) {
-                        //     return Object.keys(item).some(function (key) {
-                        //         return String(item[2]).toLowerCase().indexOf(self.ssource) > -1
-                        //     });
-                        // }).slice(start, end);
                     }
                     if (self.sagent.length > 0) {
 
@@ -234,11 +227,6 @@
                             return self.sagent.indexOf(item[1]) > -1;
                         }).slice(start, end);
 
-                        // return self.lines.filter(function (item) {
-                        //     return Object.keys(item).some(function (key) {
-                        //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
-                        //     });
-                        // }).slice(start, end);
                     }
                     if (self.stech.length > 0) {
 
@@ -254,11 +242,6 @@
                             return self.sstatus.indexOf(item[10]) > -1;
                         }).slice(start, end);
 
-                        // return self.lines.filter(function (item) {
-                        //     return Object.keys(item).some(function (key) {
-                        //         return String(item[1]).toLowerCase().indexOf(self.sagent) > -1
-                        //     });
-                        // }).slice(start, end);
                     }
 
                     return this.lines.slice(start, end);
