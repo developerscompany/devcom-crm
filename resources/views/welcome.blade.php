@@ -121,7 +121,7 @@
                             <th>
                                 Timing
                             </th>
-                            <th>
+                            <th class="budget-td">
                                 Budget $
                             </th>
                             <th>
@@ -141,9 +141,13 @@
                             <td>@{{ line[0] }}</td>
                             <td>@{{ line[1] }}</td>
                             <td>@{{ line[2] }}</td>
-                            <td>@{{ line[3] }}</td>
+                            <td class="link-lead">
+                                <a target="_blank" :href=line[3]>@{{ line[3] }}</a>
+                            </td>
                             <td>@{{ line[4] }}</td>
-                            <td>@{{ line[5] }}</td>
+                            <td class="link-current">
+                                <a target="_blank" :href=line[5]>@{{ line[5] }}</a>
+                            </td>
                             <td>@{{ line[6] }}</td>
                             <td>@{{ line[7] }}</td>
                             <td>@{{ line[8] }}</td>
