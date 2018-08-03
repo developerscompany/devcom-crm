@@ -99,3 +99,8 @@ input::placeholder {
 .pager-view {
     padding: 0.75rem;
 }
+
+.v-tooltip__content {
+    top: 0 !important;
+    left: 100% !important;
+}

@@ -136,17 +136,47 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{--<tr v-html="newLine"></tr>--}}
                         <tr v-for="line in paginatedData">
                             <td>@{{ line[0] }}</td>
                             <td>@{{ line[1] }}</td>
                             <td>@{{ line[2] }}</td>
                             <td class="link-lead">
-                                <a target="_blank" :href=line[3]>@{{ line[3] }}</a>
+
+                            <v-tooltip top>
+                                <span slot="activator" color="primary" dark>
+                                    <a @mouseover="mouseOver" @mouseout="active = false"
+                                       :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>
+                                        @{{ line[3].substr(0, 20) }}
+                                    </a>
+                                </span>
+                                @{{ line[3] }}
+                            </v-tooltip>
+
+                            {{--<v-layout>--}}
+                                {{--<span @click="show = !show">--}}
+                                    {{--@{{ line[3] }}--}}
+                                {{--</span>--}}
+
+                                {{--<v-flex xs12 class="mt-5">--}}
+                                    {{--<v-tooltip v-model="show" top>--}}
+                                        {{--<a ref="lead" @mouseover="mouseOver" @mouseout="active = false" :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>@{{ line[3] }}</a>--}}
+                                    {{--</v-tooltip>--}}
+                                {{--</v-flex>--}}
+                            {{--</v-layout>--}}
+
+                            {{--<a ref="lead" @mouseover="mouseOver" @mouseout="active = false" :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>@{{ line[3] }}</a>--}}
                             </td>
                             <td>@{{ line[4] }}</td>
                             <td class="link-current">
-                                <a target="_blank" :href=line[5]>@{{ line[5] }}</a>
+                                <v-tooltip top>
+                                <span slot="activator" color="primary" dark>
+                                    <a @mouseover="mouseOver" @mouseout="active = false"
+                                       :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>
+                                        @{{ line[5].substr(0, 20) }}
+                                    </a>
+                                </span>
+                                    @{{ line[5] }}
+                                </v-tooltip>
                             </td>
                             <td>@{{ line[6] }}</td>
                             <td>@{{ line[7] }}</td>
@@ -178,6 +208,8 @@
                 number: 5,
                 pageNumber: 0,
                 newLine: [],
+                active: false,
+                show: false,
             },
 
             mounted() {
@@ -255,6 +287,10 @@
                 },
                 prevPage(){
                     this.pageNumber--;
+                },
+                mouseOver: function() {
+                    this.active = !this.active;
+                    console.log(this.$refs.lead);
                 }
 
             },
