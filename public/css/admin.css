@@ -40,6 +40,9 @@ header > .navbar {
 .sales-page td {
     border: none;
 }
+.budget-td {
+    min-width: 95px;
+}
 .sales-page .pager-view {
     padding: 0.75rem;
 }
@@ -86,4 +89,8 @@ img.clear-date {
 .v-picker__body {
     background: white;
     overflow-y: unset;
+}
+.v-tooltip__content {
+    top: 0 !important;
+    left: 100% !important;
 }

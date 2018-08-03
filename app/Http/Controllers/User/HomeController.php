@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Source;
 use App\Status;
 use App\Timing;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -136,6 +137,24 @@ class HomeController extends Controller
         }
 
         return array_reverse($array);
+    }
+
+    public function getAgent()
+    {
+        $agents = User::where('role','!=','admin')->get();
+        return $agents;
+    }
+
+    public function getSource()
+    {
+        $sources = Source::all();
+        return $sources;
+    }
+
+    public function getStatus()
+    {
+        $statuss = Status::all();
+        return $statuss;
     }
 
     public function store(Request $request)

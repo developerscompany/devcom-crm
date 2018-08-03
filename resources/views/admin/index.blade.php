@@ -93,7 +93,7 @@
                                 <td>
                                     Timing
                                 </td>
-                                <td>
+                                <td class="budget-td">
                                     Budget $
                                 </td>
                                 <td>
@@ -116,9 +116,29 @@
                                 <td>@{{ line[0] }}</td>
                                 <td>@{{ line[1] }}</td>
                                 <td>@{{ line[2] }}</td>
-                                <td>@{{ line[3] }}</td>
+                                <td class="link-lead">
+
+                                    <v-tooltip top>
+                                <span slot="activator" color="primary" dark>
+                                    <a target="_blank" :href=line[3]>
+                                        @{{ line[3].substr(0, 30) }}
+                                    </a>
+                                </span>
+                                        @{{ line[3] }}
+                                    </v-tooltip>
+
+                                </td>
                                 <td>@{{ line[4] }}</td>
-                                <td class="curr-site-cell">@{{ line[5] }}</td>
+                                <td class="link-current">
+                                    <v-tooltip top>
+                                <span slot="activator" color="primary" dark>
+                                    <a target="_blank" :href=line[3]>
+                                        @{{ line[5].substr(0, 30) }}
+                                    </a>
+                                </span>
+                                        @{{ line[5] }}
+                                    </v-tooltip>
+                                </td>
                                 <td>@{{ line[6] }}</td>
                                 <td>@{{ line[7] }}</td>
                                 <td>@{{ line[8] }}</td>
@@ -162,6 +182,9 @@
 
                 number: 5,
                 pageNumber: 0,
+
+                active: false,
+                show: false,
 
                 nums: [5,10,15,20,50,100]
             },

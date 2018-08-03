@@ -33,6 +33,9 @@ Route::prefix('user')->namespace('User')->middleware('auth')->group(function () 
     Route::get('/', 'HomeController@index');
 
     Route::get('lines', 'HomeController@show');
+    Route::get('agents', 'HomeController@getAgent');
+    Route::get('sources', 'HomeController@getSource');
+    Route::get('statuss', 'HomeController@getStatus');
 
     Route::post('add-google-line', 'HomeController@store');
 

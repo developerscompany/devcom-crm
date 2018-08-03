@@ -73,12 +73,7 @@
                 <div class="pager-view clearfix">
                     <div class="pull-left text-left viewNumber">
                         <span>Show: </span>
-                        <a class="nums" @click="changeNum(5)">5</a>
-                        <a class="nums" @click="changeNum(10)">10</a>
-                        <a class="nums" @click="changeNum(15)">15</a>
-                        <a class="nums" @click="changeNum(20)">20</a>
-                        <a class="nums" @click="changeNum(50)">50</a>
-                        <a class="nums" @click="changeNum(100)">100</a>
+                        <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">@{{num}}</a>
                     </div>
                     <div class="pull-right text-right viewPager">
                         <button
@@ -97,42 +92,87 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>
+                            <td class="filter-cell date">
                                 Date
-                            </th>
-                            <th>
+                                <template>
+                                    <v-layout>
+                                        <v-flex>
+                                            <v-menu
+                                                    ref="menu2"
+                                                    :close-on-content-click="false"
+                                                    v-model="menu2"
+                                                    :nudge-right="40"
+                                                    :return-value.sync="date"
+                                                    lazy
+                                                    transition="scale-transition"
+                                                    offset-y
+                                                    full-width
+                                                    min-width="290px"
+                                            >
+                                                <v-text-field
+                                                        slot="activator"
+                                                        v-model="dateFormatted"
+                                                        placeholder="Date"
+                                                        clearable
+                                                ></v-text-field>
+                                                <v-date-picker
+                                                        v-model="date"
+                                                        locale="ru-ru"
+                                                        color="blue lighten-1"
+                                                        header-color="primary"
+                                                        @input="$refs.menu2.save(date)"></v-date-picker>
+
+                                            </v-menu>
+                                        </v-flex>
+                                    </v-layout>
+                                </template>
+                            </td>
+                            <td class="filter-cell agent">
                                 Agent
-                            </th>
-                            <th>
+                                <select v-model="sagent" class="form-control mt-1">
+                                    <option value="">Agent...</option>
+                                    <option v-for="agent in agents"> @{{ agent.name }}</option>
+                                </select>
+                            </td>
+                            <td class="filter-cell sourse">
                                 Source
-                            </th>
-                            <th>
+                                <select v-model="ssource" class="form-control mt-1">
+                                    <option value="">Source...</option>
+                                    <option v-for="source in sources"> @{{ source.name }}</option>
+                                </select>
+                            </td>
+                            <td>
                                 Link to lead
-                            </th>
-                            <th>
+                            </td>
+                            <td class="filter-cell niche">
                                 Niche
-                            </th>
-                            <th>
+                                <input v-model="stech" class="form-control mt-1" placeholder="Filter">
+                            </td>
+                            <td class="curr-site-cell">
                                 Current site
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Description
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Timing
-                            </th>
-                            <th class="budget-td">
+                            </td>
+                            <td class="budget-td">
                                 Budget $
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Responce
-                            </th>
-                            <th>
+                            </td>
+                            <td class="filter-cell status">
                                 Status
-                            </th>
-                            <th>
+                                <select v-model="sstatus" class="form-control mt-1">
+                                    <option value="">Status...</option>
+                                    <option v-for="status in statuss"> @{{ status.title }}</option>
+                                </select>
+                            </td>
+                            <td>
                                 Comments
-                            </th>
+                            </td>
                         </tr>
                         </thead>
                         <tbody>
@@ -144,35 +184,20 @@
 
                             <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
-                                    <a @mouseover="mouseOver" @mouseout="active = false"
-                                       :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>
-                                        @{{ line[3].substr(0, 20) }}
+                                    <a target="_blank" :href=line[3]>
+                                        @{{ line[3].substr(0, 30) }}
                                     </a>
                                 </span>
                                 @{{ line[3] }}
                             </v-tooltip>
 
-                            {{--<v-layout>--}}
-                                {{--<span @click="show = !show">--}}
-                                    {{--@{{ line[3] }}--}}
-                                {{--</span>--}}
-
-                                {{--<v-flex xs12 class="mt-5">--}}
-                                    {{--<v-tooltip v-model="show" top>--}}
-                                        {{--<a ref="lead" @mouseover="mouseOver" @mouseout="active = false" :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>@{{ line[3] }}</a>--}}
-                                    {{--</v-tooltip>--}}
-                                {{--</v-flex>--}}
-                            {{--</v-layout>--}}
-
-                            {{--<a ref="lead" @mouseover="mouseOver" @mouseout="active = false" :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>@{{ line[3] }}</a>--}}
                             </td>
                             <td>@{{ line[4] }}</td>
                             <td class="link-current">
                                 <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
-                                    <a @mouseover="mouseOver" @mouseout="active = false"
-                                       :class="{on: active, 'off': !active}" target="_blank" :href=line[3]>
-                                        @{{ line[5].substr(0, 20) }}
+                                    <a target="_blank" :href=line[3]>
+                                        @{{ line[5].substr(0, 30) }}
                                     </a>
                                 </span>
                                     @{{ line[5] }}
@@ -197,19 +222,35 @@
 @section('script')
 
     <script>
+
         var app = new Vue({
 
             el: '#root',
 
             data: {
+
+                sdate: [],
+
+                date: null,
+                dateFormatted: '',
+                menu2: false,
+
+                agents: [],
+                sources: [],
+                statuss: [],
                 lines: [],
-                filterByName: [],
-                ssource: '',
+                ssource: [],
+                sagent: [],
+                sstatus: [],
+                stech: [],
+
                 number: 5,
                 pageNumber: 0,
-                newLine: [],
+
                 active: false,
                 show: false,
+
+                nums: [5,10,15,20,50,100]
             },
 
             mounted() {
@@ -217,41 +258,23 @@
                 axios.get('/user/lines')
                     .then(response => this.lines = response.data);
 
+                axios.get('/user/agents')
+                    .then(response => this.agents = response.data);
 
-                $('#line-form').submit(function (event) {
-                    event.preventDefault();
+                axios.get('/user/sources')
+                    .then(response => this.sources = response.data);
 
-                    let data = $(this).serialize();
-                    $('#line-form')[0].reset();
+                axios.get('/user/statuss')
+                    .then(response => this.statuss = response.data);
 
-                    axios.post('/user/add-google-line', data)
-                        .then(response => {
 
-                            let comment = '';
-                            if (response.data[0][11]){
-                                comment = response.data[0][11];
-                            }
+            },
 
-                            app.newLine = response.data[0];
-                            app.lines.unshift(app.newLine)
+            watch: {
 
-                            // $('#root tbody').prepend(
-                            //     '<tr>' +
-                            //         '<td>' + response.data[0][0] + '</td>' +
-                            //         '<td>' + response.data[0][1] + '</td>' +
-                            //         '<td>' + response.data[0][2] + '</td>' +
-                            //         '<td>' + response.data[0][3] + '</td>' +
-                            //         '<td>' + response.data[0][4] + '</td>' +
-                            //         '<td>' + response.data[0][5] + '</td>' +
-                            //         '<td>' + response.data[0][6] + '</td>' +
-                            //         '<td>' + response.data[0][7] + '</td>' +
-                            //         '<td>' + response.data[0][8] + '</td>' +
-                            //         '<td>' + response.data[0][9] + '</td>' +
-                            //         '<td>' + response.data[0][10] + '</td>' +
-                            //         '<td>' + comment + '</td>' +
-                            //     '</tr>');
-                        });
-                });
+                date (val) {
+                    this.dateFormatted = this.formatDate(this.date)
+                }
             },
 
             computed: {
@@ -267,17 +290,59 @@
                     const start = self.pageNumber * self.number,
                         end = start + self.number;
 
-                    if (self.filterByName.length > 0) {
-                        return self.lines.filter(function(item) {
-                            return self.filterByName.indexOf(item[2]) > -1;
-                        }).slice(start, end);
-                    } else {
-                        return this.lines.slice(start, end);
+
+                    if (self.dateFormatted == null) {
+                        self.dateFormatted = '';
                     }
+                    if (self.dateFormatted.length > 0) {
+
+                        return self.lines.filter(function(item) {
+                            return self.dateFormatted.indexOf(item[0]) > -1;
+                        }).slice(start, end);
+
+                    }
+                    if (self.ssource.length > 0) {
+
+                        return self.lines.filter(function(item) {
+                            return self.ssource.indexOf(item[2]) > -1;
+                        }).slice(start, end);
+
+                    }
+                    if (self.sagent.length > 0) {
+
+                        return self.lines.filter(function(item) {
+                            return self.sagent.indexOf(item[1]) > -1;
+                        }).slice(start, end);
+
+                    }
+                    if (self.stech.length > 0) {
+
+                        return self.lines.filter(function (item) {
+                            return Object.keys(item).some(function (key) {
+                                return String(item[4]).toLowerCase().indexOf(self.stech) > -1
+                            });
+                        }).slice(start, end);
+                    }
+                    if (self.sstatus.length > 0) {
+
+                        return self.lines.filter(function(item) {
+                            return self.sstatus.indexOf(item[10]) > -1;
+                        }).slice(start, end);
+
+                    }
+
+                    return this.lines.slice(start, end);
                 }
             },
 
             methods: {
+
+                formatDate (date) {
+                    if (!date) return null;
+
+                    const [year, month, day] = date.split('-');
+                    return `${day}.${month}.${year}`
+                },
 
                 changeNum(index) {
                     this.number = index;
@@ -287,10 +352,6 @@
                 },
                 prevPage(){
                     this.pageNumber--;
-                },
-                mouseOver: function() {
-                    this.active = !this.active;
-                    console.log(this.$refs.lead);
                 }
 
             },
