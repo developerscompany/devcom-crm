@@ -26,6 +26,10 @@ label.required:after {
 select {
     background: url('/img/drop.svg') no-repeat right center / auto 10px;
 }
+table select {
+    background-position: 95% 50%;
+    background-size: auto 7px;
+}
 .user .col-md-1 {
     margin: 0;
     text-align: center;
@@ -144,4 +148,28 @@ input::placeholder {
 .v-text-field__slot input {
     font-size: 13px;
     padding: 0.02rem 0.3rem;
+}
+
+input.el-range-input::placeholder {
+    color: #a1a1a1 !important;
+}
+.el-range-editor {
+    max-width: 120px;
+    padding: 0 !important;
+    padding-left: 5px !important;
+    height: 22px;
+    border-color: #a1a1a1;
+}
+.el-date-editor .el-range__close-icon,
+.el-date-editor .el-range-separator,
+.el-date-editor .el-range__icon {
+    font-size: 10px;
+    line-height: 21px;
+}
+.el-date-editor .el-range-input {
+    width: 30%;
+}
+.el-date-editor .el-range-input,
+.el-date-editor .el-range-separator {
+    font-size: 12px;
 }

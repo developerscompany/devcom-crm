@@ -22,22 +22,6 @@
                 </div>
             </div>
 
-
-            <template>
-                <div class="block">
-                    <el-date-picker
-                            v-model="value6"
-                            format="dd.MM.yyyy"
-                            value-format="dd.MM.yyyy"
-                            type="daterange"
-                            range-separator="-"
-                            start-placeholder="Start date"
-                            end-placeholder="End date">
-                    </el-date-picker>
-                </div>
-            </template>
-
-
             <div class="">
                 <div class="">
                     <div class="table-responsive">
@@ -46,37 +30,50 @@
                             <tr>
                                 <td class="filter-cell date">
                                     Date
-                                    <template>
-                                        <v-layout>
-                                            <v-flex>
-                                                <v-menu
-                                                        ref="menu2"
-                                                        :close-on-content-click="false"
-                                                        v-model="menu2"
-                                                        :nudge-right="40"
-                                                        :return-value.sync="date"
-                                                        lazy
-                                                        transition="scale-transition"
-                                                        offset-y
-                                                        full-width
-                                                        min-width="290px"
-                                                >
-                                                    <v-text-field
-                                                            slot="activator"
-                                                            v-model="dateFormatted"
-                                                            placeholder="Date"
-                                                            clearable
-                                                    ></v-text-field>
-                                                    <v-date-picker
-                                                            v-model="date"
-                                                            locale="ru-ru"
-                                                            color="blue lighten-1"
-                                                            header-color="primary"
-                                                            @input="$refs.menu2.save(date)"></v-date-picker>
+                                    {{--<template>--}}
+                                        {{--<v-layout>--}}
+                                            {{--<v-flex>--}}
+                                                {{--<v-menu--}}
+                                                        {{--ref="menu2"--}}
+                                                        {{--:close-on-content-click="false"--}}
+                                                        {{--v-model="menu2"--}}
+                                                        {{--:nudge-right="40"--}}
+                                                        {{--:return-value.sync="date"--}}
+                                                        {{--lazy--}}
+                                                        {{--transition="scale-transition"--}}
+                                                        {{--offset-y--}}
+                                                        {{--full-width--}}
+                                                        {{--min-width="290px"--}}
+                                                {{-->--}}
+                                                    {{--<v-text-field--}}
+                                                            {{--slot="activator"--}}
+                                                            {{--v-model="dateFormatted"--}}
+                                                            {{--placeholder="Date"--}}
+                                                            {{--clearable--}}
+                                                    {{--></v-text-field>--}}
+                                                    {{--<v-date-picker--}}
+                                                            {{--v-model="date"--}}
+                                                            {{--locale="ru-ru"--}}
+                                                            {{--color="blue lighten-1"--}}
+                                                            {{--header-color="primary"--}}
+                                                            {{--@input="$refs.menu2.save(date)"></v-date-picker>--}}
 
-                                                </v-menu>
-                                            </v-flex>
-                                        </v-layout>
+                                                {{--</v-menu>--}}
+                                            {{--</v-flex>--}}
+                                        {{--</v-layout>--}}
+                                    {{--</template>--}}
+                                    <template>
+                                        <div class="mt-1">
+                                            <el-date-picker
+                                                    v-model="value6"
+                                                    format="dd.MM"
+                                                    value-format="dd.MM.yyyy"
+                                                    type="daterange"
+                                                    range-separator="-"
+                                                    start-placeholder="From"
+                                                    end-placeholder="To">
+                                            </el-date-picker>
+                                        </div>
                                     </template>
                                 </td>
                                 <td class="filter-cell agent">
