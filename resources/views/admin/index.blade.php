@@ -25,13 +25,12 @@
 
             <template>
                 <div class="block">
-                    <span class="demonstration">Default</span>
                     <el-date-picker
                             v-model="value6"
                             format="dd.MM.yyyy"
                             value-format="dd.MM.yyyy"
                             type="daterange"
-                            range-separator="To"
+                            range-separator="-"
                             start-placeholder="Start date"
                             end-placeholder="End date">
                     </el-date-picker>
@@ -173,8 +172,12 @@
 @endsection
 
 @section('script')
+    <script src="//unpkg.com/element-ui"></script>
+    <script src="//unpkg.com/element-ui/lib/umd/locale/en.js"></script>
 
     <script>
+
+        ELEMENT.locale(ELEMENT.lang.en);
 
         var app = new Vue({
 
@@ -246,19 +249,48 @@
                         end = start + self.number;
 
 
-                    if (self.dateFormatted == null) {
-                        self.dateFormatted = '';
+                    if (self.value6 == null) {
+                        self.value6 = '';
                     }
-                    if (self.dateFormatted.length > 0) {
+                    if (self.value6.length > 0) {
+
+                        var st = new Date(this.value6[0].split('.').reverse());
+                        var en = new Date(this.value6[1].split('.').reverse());
+                        // var current = new Date();
+
+                        // console.log(start);
+                        // console.log(end);
+                        // console.log(current);
+                        //
+                        // function inRange(value)
+                        // {
+                        //     if (value >= start && value <= end)
+                        //     {
+                        //         return value;
+                        //     }
+                        // }
 
                         return self.lines.filter(function(item) {
-                            return self.dateFormatted.indexOf(item[0]) > -1;
+
+                            var current = new Date(item[0].split('.').reverse());
+                            // console.log(current);
+                            // console.log(start);
+                            // console.log(end);
+                            // console.log(current);
+                            // console.log('       ');
+
+                            if (current >= st && current <= en)
+                            {
+                                return true;
+                            }
+
                         }).slice(start, end);
 
                     }
                     if (self.ssource.length > 0) {
 
                         return self.lines.filter(function(item) {
+                            // console.log(self.ssource.indexOf(item[2]));
                             return self.ssource.indexOf(item[2]) > -1;
                         }).slice(start, end);
 
