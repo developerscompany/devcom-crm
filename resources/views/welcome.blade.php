@@ -220,6 +220,24 @@
                     </table>
 
                 </div>
+                <div class="pager-view clearfix">
+                    <div class="pull-left text-left viewNumber">
+                        <span>Show: </span>
+                        <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">@{{num}}</a>
+                    </div>
+                    <div class="pull-right text-right viewPager">
+                        <button
+                                :disabled="pageNumber === 0"
+                                @click="prevPage">
+                            prev
+                        </button>
+                        <button
+                                :disabled="pageNumber >= pageCount"
+                                @click="nextPage">
+                            next
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
