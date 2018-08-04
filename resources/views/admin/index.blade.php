@@ -22,6 +22,23 @@
                 </div>
             </div>
 
+
+            <template>
+                <div class="block">
+                    <span class="demonstration">Default</span>
+                    <el-date-picker
+                            v-model="value6"
+                            format="dd.MM.yyyy"
+                            value-format="dd.MM.yyyy"
+                            type="daterange"
+                            range-separator="To"
+                            start-placeholder="Start date"
+                            end-placeholder="End date">
+                    </el-date-picker>
+                </div>
+            </template>
+
+
             <div class="">
                 <div class="">
                     <div class="table-responsive">
@@ -164,6 +181,8 @@
             el: '#root',
 
             data: {
+
+                value6: '',
 
                 sdate: [],
 

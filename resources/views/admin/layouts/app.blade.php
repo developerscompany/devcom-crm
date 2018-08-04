@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
         <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
         <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -59,6 +60,8 @@
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="//unpkg.com/element-ui@2.4.5/lib/index.js"></script>
+
         @yield('script')
     </body>
 </html>
