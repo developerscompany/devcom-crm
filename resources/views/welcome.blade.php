@@ -351,12 +351,6 @@
 
                     axios.post('/user/add-google-line', data)
                         .then(response => {
-                            //
-                            // let comment = '';
-                            // if (response.data[0][11]){
-                            //     comment = response.data[0][11];
-                            // }
-
                             app.newLine = response.data[0];
                             app.lines.unshift(app.newLine)
                         });
@@ -373,10 +367,6 @@
                 dialog (val) {
                     val || this.close()
                 },
-
-                // editLine(val) {
-                //     this.lines[this.editedIndex][10] = this.editedItem.status
-                // }
 
             },
 
@@ -458,23 +448,22 @@
 
                     let data = this.editedItem;
                     let index = this.editedIndex;
-                    console.log(this.editedItem[10]);
-                    console.log('1');
 
+                    if (this.editedIndex > -1) {
+
+                        app.lines[app.editedIndex][10] = app.editedItem.status;
+                        // Object.assign(app.lines[app.editedIndex][10], app.editedItem.status)
+                    }
 
                     axios.post('/user/edit-google-line', {data, index})
                         .then(
-                            this.lines[this.editedIndex][10] = this.editedItem.status
+                            // this.lines[this.editedIndex][10] = this.editedItem.status
                         );
 
-                    // if (this.editedIndex > -1) {
-                        
-                        // Object.assign(this.lines[this.editedIndex], this.editedItem)
-                    // }
                     // else {
                     //     this.desserts.push(this.editedItem)
                     // }
-                    this.close()
+                    // this.close()
                 },
 
                 formatDate (date) {
