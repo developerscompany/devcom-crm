@@ -136,6 +136,7 @@ class HomeController extends Controller
             }
         }
 
+//        return array_reverse($rows);
         return array_reverse($array);
     }
 
@@ -200,18 +201,60 @@ class HomeController extends Controller
 
         $sheets->spreadsheet($id)->sheet($sheet)->range('')->append($data);
 
-
-
-//        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
-//        $array = [];
-//
-//        foreach ($rows as $row)
-//        {
-//            if ($row[1] == auth()->user()->name) {
-//                $array[] = $row;
-//            }
-//        }
-
         return $data;
+    }
+
+    public function update(Request $request)
+    {
+        $client = new Google_Client();
+        $client->setApplicationName(config('google.APPLICATION_NAME'));
+        $client->setClientId(config('google.CLIENT_ID'));
+        $client->setScopes([config('google.scopes')]);
+//        $client->setAuthConfig(config('google.KEY_FILE'));
+
+        // credentials - required
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=../service.json'); // service account json file
+        $client->useApplicationDefaultCredentials();
+
+        if ($client->isAccessTokenExpired()) {
+            $client->refreshTokenWithAssertion();
+        }
+
+        $service = new \Google_Service_Sheets($client);
+
+        $sheets = new Sheets();
+        $sheets->setService($service);
+
+        $id = '1o3kjb_wX3GeUXP5HxdDUwunfFzMUf81fW83a16Na0oI';
+        $sheet = 'sent offers';
+
+        $rows = $sheets->spreadsheet($id)->sheet($sheet)->all();
+
+//        $rows = array_reverse($rows);
+
+        $array = [];
+
+        foreach ($rows as $row)
+        {
+            if ($row[1] == auth()->user()->name) {
+                $array[] = $row;
+//                dd($row);
+            }
+        }
+
+        $array = array_reverse($array);
+
+        $c = 0;
+        for ($i=1; $i<count($rows); $i++) {
+
+            if ($rows[$i] === $array[request('index')])
+            {
+                $c = $i + 1;
+            }
+
+        }
+
+        $sheets->sheet($sheet)->range('K'.$c)->update([[request('data')['status']]]);
+
     }
 }

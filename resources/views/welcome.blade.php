@@ -184,7 +184,6 @@
                         <tbody>
                         <tr v-for="line in paginatedData">
                             <td>@{{ line[0] }}</td>
-                            <td>@{{ line[1] }}</td>
                             <td>@{{ line[2] }}</td>
                             <td class="link-lead">
 
@@ -213,13 +212,48 @@
                             <td>@{{ line[7] }}</td>
                             <td>@{{ line[8] }}</td>
                             <td>@{{ line[9] }}</td>
-                            <td>@{{ line[10] }}</td>
+                            <td>
+                                @{{ line[10] }}
+                                <v-icon
+                                        small
+                                        class=""
+                                        @click="editItem(line)">
+                                    edit
+                                </v-icon>
+                            </td>
                             <td>@{{ line[11] }}</td>
                         </tr>
                         </tbody>
                     </table>
 
                 </div>
+                <v-dialog v-model="dialog" max-width="500px">
+                    {{--<v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>--}}
+                    <v-card>
+                        <v-card-text>
+                            <v-layout wrap>
+                                <v-flex xs12 sm6 md4>
+
+                                    <v-select
+                                            v-model="editedItem.status"
+                                            :items="statuss"
+                                            label="Status"
+                                            item-text="title"
+                                            item-value="title"
+                                            required
+                                    ></v-select>
+
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                            <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
                 <div class="pager-view clearfix">
                     <div class="pull-left text-left viewNumber">
                         <span>Show: </span>
@@ -258,6 +292,17 @@
 
             data: {
 
+                dialog: false,
+                editedIndex: -1,
+                editedItem: {
+                    status: '',
+                },
+                defaultItem: {
+                    status: '',
+                },
+
+                value6: '',
+
                 sdate: [],
 
                 date: null,
@@ -279,7 +324,8 @@
                 active: false,
                 show: false,
 
-                nums: [5,10,15,20,50,100]
+                nums: [5,10,15,20,50,100],
+
             },
 
             mounted() {
@@ -297,13 +343,41 @@
                     .then(response => this.statuss = response.data);
 
 
+                $('#line-form').submit(function (event) {
+                    event.preventDefault();
+
+                    let data = $(this).serialize();
+                    $('#line-form')[0].reset();
+
+                    axios.post('/user/add-google-line', data)
+                        .then(response => {
+                            //
+                            // let comment = '';
+                            // if (response.data[0][11]){
+                            //     comment = response.data[0][11];
+                            // }
+
+                            app.newLine = response.data[0];
+                            app.lines.unshift(app.newLine)
+                        });
+                });
+
             },
 
             watch: {
 
                 date (val) {
                     this.dateFormatted = this.formatDate(this.date)
-                }
+                },
+
+                dialog (val) {
+                    val || this.close()
+                },
+
+                // editLine(val) {
+                //     this.lines[this.editedIndex][10] = this.editedItem.status
+                // }
+
             },
 
             computed: {
@@ -365,6 +439,43 @@
             },
 
             methods: {
+
+                editItem (item) {
+                    this.editedIndex = this.lines.indexOf(item);
+                    this.editedItem = Object.assign({}, item);
+
+                    this.dialog = true;
+                },
+                close () {
+                    this.dialog = false;
+                    setTimeout(() => {
+                        this.editedItem = Object.assign({}, this.defaultItem);
+                        this.editedIndex = -1;
+                    }, 300)
+                },
+                save () {
+                    console.log('save');
+
+                    let data = this.editedItem;
+                    let index = this.editedIndex;
+                    console.log(this.editedItem[10]);
+                    console.log('1');
+
+
+                    axios.post('/user/edit-google-line', {data, index})
+                        .then(
+                            this.lines[this.editedIndex][10] = this.editedItem.status
+                        );
+
+                    // if (this.editedIndex > -1) {
+                        
+                        // Object.assign(this.lines[this.editedIndex], this.editedItem)
+                    // }
+                    // else {
+                    //     this.desserts.push(this.editedItem)
+                    // }
+                    this.close()
+                },
 
                 formatDate (date) {
                     if (!date) return null;

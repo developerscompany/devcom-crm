@@ -39,4 +39,6 @@ Route::prefix('user')->namespace('User')->middleware('auth')->group(function () 
 
     Route::post('add-google-line', 'HomeController@store');
 
+    Route::post('edit-google-line', 'HomeController@update');
+
 });

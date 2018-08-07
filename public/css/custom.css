@@ -173,3 +173,10 @@ input.el-range-input::placeholder {
 .el-date-editor .el-range-separator {
     font-size: 12px;
 }
+
+.v-dialog {
+    overflow: initial;
+}
+.v-dialog .v-card {
+    background: #ffffff;
+}
