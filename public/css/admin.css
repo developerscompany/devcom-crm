@@ -1,6 +1,10 @@
 a {
     cursor: pointer;
 }
+.v-icon {
+    display: flex;
+    justify-content: center;
+}
 td.filter-cell select,
 td.filter-cell input {
     padding: 0.02rem 0.3rem;
@@ -122,4 +126,14 @@ input.el-range-input::placeholder {
 .el-date-editor .el-range-input,
 .el-date-editor .el-range-separator {
     font-size: 12px;
+}
+.v-menu__content {
+    background: #fff;
+}
+.v-dialog {
+    background: #fff;
+    max-height: initial !important;
+}
+.elevation-1 {
+    width: 100%;
 }

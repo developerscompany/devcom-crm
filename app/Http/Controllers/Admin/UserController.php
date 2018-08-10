@@ -43,4 +43,17 @@ class UserController extends Controller
         return $users;
     }
 
+    public function editRole(Request $request)
+    {
+        $user = User::find(request('data')['id']);
+
+        $user->update([
+            'name' => request('data')['name'],
+            'email' => request('data')['email'],
+            'role' => request('data')['role'],
+        ]);
+
+        return $user;
+    }
+
 }

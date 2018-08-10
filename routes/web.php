@@ -25,6 +25,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('get-users', 'UserController@getUsers');
     Route::get('get-roles', 'UserController@getRoles');
 
+    Route::post('edit-roles', 'UserController@editRole');
+
     Route::get('/bids', 'BidsController@index');
 
     Route::get('lines', 'BidsController@show');

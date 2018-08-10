@@ -47,10 +47,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-    {{--<script--}}
-            {{--src="https://code.jquery.com/jquery-3.3.1.min.js"--}}
-            {{--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="--}}
-            {{--crossorigin="anonymous"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

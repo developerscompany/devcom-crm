@@ -452,7 +452,8 @@
                     if (this.editedIndex > -1) {
 
                         app.lines[app.editedIndex][10] = app.editedItem.status;
-                        // Object.assign(app.lines[app.editedIndex][10], app.editedItem.status)
+                        // Object.assign(this.users[this.editedIndex], this.editedItem)
+
                     }
 
                     axios.post('/user/edit-google-line', {data, index})
