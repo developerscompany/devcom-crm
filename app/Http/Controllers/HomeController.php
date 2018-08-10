@@ -26,7 +26,7 @@ class HomeController extends Controller
         {
             return redirect('/admin');
         } else {
-            return redirect('/user');
+            return redirect('/sale');
         }
     }
 

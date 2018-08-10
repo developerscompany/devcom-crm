@@ -330,16 +330,16 @@
 
             mounted() {
 
-                axios.get('/user/lines')
+                axios.get('/sale/lines')
                     .then(response => this.lines = response.data);
 
-                axios.get('/user/agents')
+                axios.get('/sale/agents')
                     .then(response => this.agents = response.data);
 
-                axios.get('/user/sources')
+                axios.get('/sale/sources')
                     .then(response => this.sources = response.data);
 
-                axios.get('/user/statuss')
+                axios.get('/sale/statuss')
                     .then(response => this.statuss = response.data);
 
 
@@ -349,7 +349,7 @@
                     let data = $(this).serialize();
                     $('#line-form')[0].reset();
 
-                    axios.post('/user/add-google-line', data)
+                    axios.post('/sale/add-google-line', data)
                         .then(response => {
                             app.newLine = response.data[0];
                             app.lines.unshift(app.newLine)
@@ -461,7 +461,7 @@
                         // app.lines[app.editedIndex][10] = app.editedItem.status;
                         // Object.assign(this.paginatedData[this.editedIndex], data)
 
-                        axios.post('/user/edit-google-line', {data, index})
+                        axios.post('/sale/edit-google-line', {data, index})
                             .then(
                                 // this.lines[this.editedIndex][10] = this.editedItem.status
                             );

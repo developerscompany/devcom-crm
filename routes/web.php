@@ -36,7 +36,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 
 });
 
-Route::prefix('user')->namespace('User')->middleware('auth')->group(function () {
+Route::prefix('sale')->namespace('Sale')->middleware('auth')->group(function () {
 
     Route::get('/', 'HomeController@index');
 
