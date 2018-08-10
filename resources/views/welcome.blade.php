@@ -235,7 +235,7 @@
                                 <v-flex xs12 sm6 md4>
 
                                     <v-select
-                                            v-model="editedItem.status"
+                                            v-model="editedItem[10]"
                                             :items="statuss"
                                             label="Status"
                                             item-text="title"
@@ -295,10 +295,10 @@
                 dialog: false,
                 editedIndex: -1,
                 editedItem: {
-                    status: '',
+                    10: '',
                 },
                 defaultItem: {
-                    status: '',
+                    10: '',
                 },
 
                 value6: '',
@@ -368,6 +368,10 @@
                     val || this.close()
                 },
 
+                dat(val) {
+
+                }
+
             },
 
             computed: {
@@ -433,7 +437,6 @@
                 editItem (item) {
                     this.editedIndex = this.lines.indexOf(item);
                     this.editedItem = Object.assign({}, item);
-
                     this.dialog = true;
                 },
                 close () {
@@ -449,22 +452,24 @@
                     let data = this.editedItem;
                     let index = this.editedIndex;
 
+                    console.log(data[10]);
+
                     if (this.editedIndex > -1) {
 
-                        app.lines[app.editedIndex][10] = app.editedItem.status;
-                        // Object.assign(this.users[this.editedIndex], this.editedItem)
+                        this.paginatedData[this.editedIndex][10] = data[10];
 
+                        // app.lines[app.editedIndex][10] = app.editedItem.status;
+                        // Object.assign(this.paginatedData[this.editedIndex], data)
+
+                        axios.post('/user/edit-google-line', {data, index})
+                            .then(
+                                // this.lines[this.editedIndex][10] = this.editedItem.status
+                            );
+
+                    } else {
+                        this.lines.push(this.editedItem)
                     }
-
-                    axios.post('/user/edit-google-line', {data, index})
-                        .then(
-                            // this.lines[this.editedIndex][10] = this.editedItem.status
-                        );
-
-                    // else {
-                    //     this.desserts.push(this.editedItem)
-                    // }
-                    // this.close()
+                    this.close()
                 },
 
                 formatDate (date) {

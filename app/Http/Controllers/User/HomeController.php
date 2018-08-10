@@ -254,7 +254,7 @@ class HomeController extends Controller
 
         }
 
-        $sheets->sheet($sheet)->range('K'.$c)->update([[request('data')['status']]]);
+        $sheets->sheet($sheet)->range('K'.$c)->update([[request('data')['10']]]);
 
     }
 }
