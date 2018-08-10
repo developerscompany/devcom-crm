@@ -19,12 +19,18 @@ Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
 
-    Route::get('/bids', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 
-    Route::get('lines', 'HomeController@show');
-    Route::get('agents', 'HomeController@getAgent');
-    Route::get('sources', 'HomeController@getSource');
-    Route::get('statuss', 'HomeController@getStatus');
+    Route::get('/users', 'UserController@index');
+    Route::get('get-users', 'UserController@getUsers');
+    Route::get('get-roles', 'UserController@getRoles');
+
+    Route::get('/bids', 'BidsController@index');
+
+    Route::get('lines', 'BidsController@show');
+    Route::get('agents', 'BidsController@getAgent');
+    Route::get('sources', 'BidsController@getSource');
+    Route::get('statuss', 'BidsController@getStatus');
 
 });
 

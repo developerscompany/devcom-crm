@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         if (auth()->user()->role == 'admin')
         {
-            return redirect('/admin/bids');
+            return redirect('/admin');
         } else {
             return redirect('/user');
         }
