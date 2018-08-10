@@ -94,38 +94,6 @@
                         <tr>
                             <td class="filter-cell date">
                                 Date
-                                {{--<template>--}}
-                                    {{--<v-layout>--}}
-                                        {{--<v-flex>--}}
-                                            {{--<v-menu--}}
-                                                    {{--ref="menu2"--}}
-                                                    {{--:close-on-content-click="false"--}}
-                                                    {{--v-model="menu2"--}}
-                                                    {{--:nudge-right="40"--}}
-                                                    {{--:return-value.sync="date"--}}
-                                                    {{--lazy--}}
-                                                    {{--transition="scale-transition"--}}
-                                                    {{--offset-y--}}
-                                                    {{--full-width--}}
-                                                    {{--min-width="290px"--}}
-                                            {{-->--}}
-                                                {{--<v-text-field--}}
-                                                        {{--slot="activator"--}}
-                                                        {{--v-model="dateFormatted"--}}
-                                                        {{--placeholder="Date"--}}
-                                                        {{--clearable--}}
-                                                {{--></v-text-field>--}}
-                                                {{--<v-date-picker--}}
-                                                        {{--v-model="date"--}}
-                                                        {{--locale="ru-ru"--}}
-                                                        {{--color="blue lighten-1"--}}
-                                                        {{--header-color="primary"--}}
-                                                        {{--@input="$refs.menu2.save(date)"></v-date-picker>--}}
-
-                                            {{--</v-menu>--}}
-                                        {{--</v-flex>--}}
-                                    {{--</v-layout>--}}
-                                {{--</template>--}}
                                 <template>
                                     <div class="mt-1">
                                         <el-date-picker
@@ -447,23 +415,15 @@
                     }, 300)
                 },
                 save () {
-                    console.log('save');
 
                     let data = this.editedItem;
                     let index = this.editedIndex;
 
-                    console.log(data[10]);
-
                     if (this.editedIndex > -1) {
-
-                        this.paginatedData[this.editedIndex][10] = data[10];
-
-                        // app.lines[app.editedIndex][10] = app.editedItem.status;
-                        // Object.assign(this.paginatedData[this.editedIndex], data)
 
                         axios.post('/sale/edit-google-line', {data, index})
                             .then(
-                                // this.lines[this.editedIndex][10] = this.editedItem.status
+                                this.paginatedData[this.editedIndex][10] = data[10]
                             );
 
                     } else {
