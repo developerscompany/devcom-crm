@@ -11,13 +11,15 @@
 |
 */
 
+require("admin/web.php");
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
-Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
+/*Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
 
     Route::get('/', 'HomeController@index');
 
@@ -34,7 +36,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('sources', 'BidsController@getSource');
     Route::get('statuss', 'BidsController@getStatus');
 
-});
+});*/
 
 Route::prefix('sale')->namespace('Sale')->middleware('sale')->group(function () {
 
