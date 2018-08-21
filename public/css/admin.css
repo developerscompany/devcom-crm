@@ -137,3 +137,18 @@ input.el-range-input::placeholder {
 .elevation-1 {
     width: 100%;
 }
+
+
+
+
+
+
+
+/*hosting*/
+
+.hosting-table-column td{
+    padding: 5px 10px;
+}
+.hosting-table-column input{
+    background: white;
+}

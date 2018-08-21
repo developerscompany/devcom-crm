@@ -20,6 +20,12 @@
                     <span>Біди</span>
                 </a>
             </li>
+            <li class="{{ is_active('admin/hosting') }}">
+                <a href="{{ url('admin/hostings') }}">
+                    <i class="icon-home4"></i>
+                    <span>Хостинг</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
