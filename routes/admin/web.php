@@ -22,6 +22,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 
             Route::get('/', 'HostingController@index');
             Route::get('/account/{hosting}', 'HostingController@show');
+            Route::post('/account/{hosting}/comment', 'HostingController@getComment');
             Route::get('/add', 'HostingController@add');
             Route::post('/create', 'HostingController@create');
 

@@ -1,6 +1,9 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// Open Sans
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=cyrillic');
+
 
 // Variables
 @import "variables";
@@ -8,7 +11,329 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+// Vars
+$primary-color: #1763ff;
+$red-color: #ee2a82;
+$green-color: #0ec99b;
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+
+.hosting-list {
+
+  &{
+    background-color: white;
+    padding: 20px 10px;
+    border-radius: 8px;
+  }
+
+
+  .div-btn-add{
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    font-family: "Open Sans", sans-serif;
+
+
+    button.btn-add{
+      border-radius: 18px;
+      background-color: $primary-color;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 8px 12px;
+
+    }
+  }
+
+  .container-fluid{
+    .table-head{
+      color: #000000;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: "Open Sans", sans-serif;
+
+
+      div{
+        padding-left: 35px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid #b2b9c6;
+      }
+    }
+    .table-content{
+      color: #000000;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: "Open Sans", sans-serif;
+
+
+      .col-md-3{
+        padding-left: 30px;
+        padding-bottom: 6px;
+        padding-top: 6px;
+      }
+      .mark-all{
+        display: flex;
+        position: relative;
+      }
+    }
+  }
+  .showing-elements{
+
+    &{
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: "Open Sans", sans-serif;
+      margin-top: 10px;
+
+
+    }
+    .showing-text{
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+
+
+
+    }
+
+    .showing-number{
+      &{
+        display: inline-block;
+        color: grey;
+      }
+
+      .number-column{
+        cursor: pointer;
+        padding: 0.3rem 0.5rem;
+        display: inline-block;
+
+      }
+
+      .active{
+        color: $primary-color;
+      }
+
+    }
+  }
+  .paginate-right{
+    &{
+      margin-top: 10px;
+    }
+    .pagination{
+      float: right;
+
+
+
+      .page-item{
+
+        .page-link{
+          color: grey;
+          font-size: 14px;
+          font-weight: 400;
+          background: none;
+          border: none;
+        }
+        .page-link:hover{
+          color: #000000;
+        }
+        .page-link:focus{
+          border: none;
+          outline: none !important;
+          box-shadow: none;
+        }
+        .active{
+          color: #1763ff;
+        }
+      }
+
+
+    }
+
+
+  }
+
+
+}
+
+.hosting-add{
+  &{
+    background-color: white;
+    padding: 20px 10px;
+    border-radius: 8px;
+  }
+
+  .label-column {
+    & {
+      margin-top: 20px;
+      display: block;
+      color: $primary-color;
+      opacity: 0.5;
+      font-weight: 400;
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    b{
+      color: red;
+    }
+  }
+
+  .btn-add{
+     margin-top: 5px;
+     border-radius: 18px;
+     background-color: $primary-color;
+     color: #ffffff;
+     font-size: 30px;
+     font-weight: 400;
+     line-height: normal;
+     padding: 2px 13px;
+
+   }
+
+  .btn-del{
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 18px;
+    background-color: $red-color;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 2px 13px;
+  }
+
+  .btn-create{
+    display: block;
+    margin-top: 10px;
+    border-radius: 18px;
+    background-color: $green-color;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px 13px;
+
+  }
+}
+.hosting-card{
+  &{
+    background-color: white;
+    padding: 20px 10px;
+    border-radius: 8px;
+  }
+
+  .acc-data{
+    &{
+
+      padding-left: 20px;
+      margin-top: 40px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+    }
+    .label{
+      display: block;
+      font-weight: 600;
+
+    }
+    .pib, .phone, .conditions{
+      &{
+        display: block;
+        font-weight: 400;
+      }
+
+      .mark{
+        margin-top: 3px;
+      }
+
+
+    }
+  }
+
+  .message-box{
+    &{
+      padding-top: 20px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    .writing-block{
+      &{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      textarea{
+        resize: vertical;
+        border-radius: 6px;
+        border: 1px solid #b5b5b5;
+
+        color: #000000;
+      }
+
+      .btn-create{
+        border-radius: 18px;
+        background-color: $green-color;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        padding: 8px 13px;
+
+      }
+    }
+
+
+  }
+}
+.mark-red{
+  box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
+  border-radius: 11px;
+  background-color: #ee2a82;
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  margin-right: 2px;
+  padding: 2px 5px;
+
+}
+.mark-primary{
+  padding: 2px 5px;
+  box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
+  border-radius: 11px;
+  background-color: #1763ff;
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  margin-right: 2px;
+}
+.mark-orange{
+  padding: 2px 5px;
+  box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
+  border-radius: 11px;
+  background-color: #ff7200;
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  margin-right: 2px;
+
+}
+
+
+

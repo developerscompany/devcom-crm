@@ -1,64 +1,55 @@
 <template>
-    <div>
+    <div class="hosting-add">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <label class="label-column">Прізвище <b>*</b></label>
+                    <span class="error" v-if="errors.last_name">{{errors.last_name[0]}}</span>
+                    <input type="text" class="form-control" v-model="data.last_name">
 
-        <h2>{{title}}</h2>
+                    <label class="label-column">Ім'я <b>*</b></label>
+                    <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
+                    <input type="text" class="form-control" v-model="data.name">
 
-        <table class="hosting-table-column">
-            <tr>
-                <th>Прізвище</th>
-                <td><input type="text" v-model="data.last_name"></td>
-                <td class="error" v-if="errors.last_name">{{errors.last_name}}</td>
-            </tr>
-            <tr>
-                <th>Ім'я</th>
-                <td><input type="text" v-model="data.name"></td>
-                <td class="error" v-if="errors.name">{{errors.name}}</td>
+                    <label class="label-column">По батькові <b>*</b></label>
+                    <span class="error" v-if="errors.second_name">{{errors.second_name[0]}}</span>
+                    <input type="text" class="form-control" v-model="data.second_name">
 
-            </tr>
-            <tr>
-                <th>По батькові</th>
-                <td><input type="text" v-model="data.second_name"></td>
-                <td class="error" v-if="errors.second_name">{{errors.second_name}}</td>
+                    <label class="label-column">Телефон <b>*</b></label>
+                    <span class="error" v-if="errors.phone">{{errors.phone[0]}}</span>
+                    <input type="text" class="form-control" v-model="data.phone">
 
-            </tr>
-            <tr>
-                <th>Телефон</th>
-                <td><input type="text" v-model="data.phone"></td>
-                <td class="error" v-if="errors.phone">{{errors.phone}}</td>
+                    <div v-for="(cond, index) in data.conditions">
+                        <span class="error" v-if="errors.conditions">Не вірно введені дані про Послуги.</span>
+                            <label class="label-column">Послуга <b>*</b></label>
 
-            </tr>
-            <div v-for="(cond, index) in data.conditions">
-                <td class="error" v-if="errors.conditions">Не вірно введені дані про Послуги.</td>
-                <tr>
-                    <th>Послуга</th>
-                    <td>
-                        <select name="" v-model="cond.condition" id="">
-                            <option value="hosting">Хостинг</option>
-                            <option value="cert">Сертифікат</option>
-                            <option value="support">Підтримка</option>
-                        </select>
-                    </td>
+                                <select name="" class="form-control" v-model="cond.condition" id="">
+                                    <option value="hosting">Хостинг</option>
+                                    <option value="cert">Сертифікат</option>
+                                    <option value="support">Підтримка</option>
+                                </select>
 
 
 
-                </tr>
-                <tr>
-                    <th>Сумма</th>
-                    <td><input type="number" v-model="cond.amount"></td>
-                    <!--<td class="error">{{errors.conditions.[index].amount}}</td>-->
 
-                </tr>
+                            <label class="label-column">Сумма</label>
+                        <br>
 
+                        <input  type="number" class="form-control" v-model="cond.amount">
+
+                    </div>
+                    <span class="error" v-show="condError == true">Виберіть послугу або видаліть поле! <br></span>
+
+                    <button @click="addCondition()" class="btn-add">+</button>
+                    <button @click="remCondition()" class="btn-del"><div>-</div></button>
+                    <button @click="add()" class="btn-create">Додати</button>
+
+                </div>
+                <div class="col-md-4"></div>
             </div>
-            <td>
-                <button @click="addCondition()">+</button>
-            </td>
-            <td>
-                <button @click="remCondition()">-</button>
-            </td>
-        </table>
-        <button @click="add()">Додати</button>
-        <!--<p>{{data}}</p>-->
+        </div>
+
 
     </div>
 </template>
@@ -83,6 +74,7 @@
                         ]
                 },
                 errors: {},
+                condError: false,
             }
         },
 
@@ -98,20 +90,32 @@
                 this.$delete(this.data.conditions, number);
             },
             add(){
-
-                this.$http.post('/admin/hostings/create', this.data).then(res => {
-                    if (res.status === 201) {
-                        console.log(res.data)
-                        location.href = '/admin/hostings'
+                let valid = true
+                $.each(this.data.conditions, function (key, value) {
+                    if(value.condition === ""){
+                        valid = false
                     }
-                    else {
-                        console.log('err')
-
-                    }
-                }, err => {
-                    console.log(err.data)
-                    this.errors = err.data.errors
                 })
+
+                if(valid === true){
+                    this.condError = false
+                    this.$http.post('/admin/hostings/create', this.data).then(res => {
+                        if (res.status === 201) {
+                            location.href = '/admin/hostings'
+                        }
+                        else {
+
+                        }
+                    }, err => {
+                        this.errors = err.data.errors
+                    })
+
+                }
+                else {
+                    this.condError = true
+                }
+
+
 
             }
 

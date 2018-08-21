@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\HostingsCreate;
+use App\Http\Requests\Admin\{HostingsCreate, HostingsMessage};
 use App\Model\Admin\Hosting\Hosting;
+use App\Model\Admin\Hosting\HostingsComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\{Auth, DB};
 
 class HostingController extends Controller
 {
@@ -45,6 +46,19 @@ class HostingController extends Controller
     public function show(Hosting $hosting){
 
         return view('admin.hosting.card')->with(['hosting' => $hosting->load('conditions')]);
+    }
+
+    public function getComment(HostingsMessage $comment, $hosting){
+        $data = [
+            'message' => $comment->get('comment'),
+            'user_id' => Auth::id(),
+            'hosting_id' => $hosting
+
+        ];
+        HostingsComment::create($data);
+
+        return response()->json([], 201);
+
     }
 
 }

@@ -1,33 +1,267 @@
 <template>
-    <div>
+    <div class="hosting-list">
 
-        <h2>{{title}}</h2>
-        <div align="right">
-            <a href="/admin/hostings/add"><button >Add</button></a>
+        <div class="div-btn-add">
+            <button class="btn-add" @click="openAdd">Додати</button>
         </div>
 
-        <table class="hosting-table-column">
-            <b>
-                <tr>
-                    <td class="filter-cell">ПІБ</td>
-                    <td class="filter-cell">Телефон</td>
-                    <td>Послуги</td>
-                    <td>Сумма</td>
-                </tr>
-                <tr v-for="list in lists">
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- number item on page -->
+                <div class="col-md-8 showing-elements">
+                    <div class="showing-text">
+                        Показати:
+                    </div>
+                    <div class="showing-number">
+                        <div :class="[{active: itemsPerPage === 3}, 'number-column']" @click="itemsPerPage = 3">3</div>
+                        <div :class="[{active: itemsPerPage === 5}, 'number-column']" @click="itemsPerPage = 5">5</div>
+                        <div :class="[{active: itemsPerPage === 8}, 'number-column']" @click="itemsPerPage = 8">8</div>
+                        <div :class="[{active: itemsPerPage === 10}, 'number-column']" @click="itemsPerPage = 10">10</div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 paginate-right">
+                    <!-- pagination -->
+                    <ul class="pagination" v-if="itemsPerPage < resultCount && totalPages >4">
+                        <!-- prev -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage-1)" v-if="currentPage > 1">Назад</a>
+                            <div :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Назад</div>
+                        </li>
+                        <!--first page-->
+                        <div class="page-item">
+                            <li v-if="currentPage !== 1 && currentPage !== 2 && currentPage !== 3">
+                                <a :class="[{active: currentPage === 1}, 'page-link']" href="#" v-bind:key="1"
+                                   @click="setPage(1)">1  ...</a>
+                            </li>
+                            <li  v-else>
+                                <a :class="[{active: currentPage === 1}, 'page-link']" href="#" v-bind:key="1"
+                                   @click="setPage(1)">1 </a>
+                            </li>
+                        </div>
+                        <!-- other pages -->
+                        <div v-if="currentPage == 1 || currentPage == 2 " class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == 2 || pageNumber == 3" @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+
+                        <div v-else-if="currentPage == (totalPages-1) || currentPage == totalPages" class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == (totalPages-1) || pageNumber == (totalPages-2)"
+                                   @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+                        <div v-else class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == currentPage || pageNumber == (currentPage-1) || pageNumber == (currentPage+1)"
+                                   @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+
+                        <!-- last page-->
+
+                        <div class="page-item">
+                            <li  v-if="currentPage !== totalPages-1 && currentPage !== totalPages && currentPage !== (totalPages-2)">
+
+                                <a :class="[{active: currentPage === totalPages}, 'page-link']" href="#" v-bind:key="totalPages"
+                                   @click="setPage(totalPages)">...  {{totalPages}}</a>
+                            </li>
+                            <li  v-else>
+                                <a :class="[{active: currentPage === totalPages}, 'page-link']" href="#" v-bind:key="totalPages"
+                                   @click="setPage(totalPages)">{{totalPages}}</a>
+                            </li>
+                        </div>
+
+                        <!-- next -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage+1)" v-if="currentPage < totalPages">Вперед</a>
+                            <div :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Вперед</div>
+                        </li>
 
 
-                        <td><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></td>
-                        <td>{{list.phone}}</td>
-                        <td><i v-for="condition in list.conditions">{{condition.condition}},</i>
+                    </ul>
 
-                        </td>
-                        <td>{{list.amount_all}}</td>
+                    <ul class="pagination" v-else-if="itemsPerPage < resultCount && totalPages <= 4">
+                        <!-- prev -->
+
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage-1)" v-if="currentPage > 1">Назад</a>
+                            <div :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Назад</div>
+                        </li>
+                        <!-- all -->
+                        <li class="page-item"
+                            v-for="pageNumber in totalPages">
+                            <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                               @click="setPage(pageNumber)"
+                            >{{pageNumber}}</a>
+                        </li>
+                        <!-- next -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage+1)" v-if="currentPage < totalPages">Вперед</a>
+                            <div :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Вперед</div>
+                        </li>
+                    </ul>
+
+                    <!-- /pagination -->
+                </div>
+            </div>
+            <div class="row table-head">
+                <div class="col-md-3 col-sm-12">ПІБ</div>
+                <div class="col-md-3 col-sm-12">Телефон</div>
+                <div class="col-md-3 col-sm-12">Послуги</div>
+                <div class="col-md-3 col-sm-12">Сумма</div>
+            </div>
+            <div class="row table-content" v-for="list in paginate">
+                <div class="col-md-3 col-sm-12"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
+                <div class="col-md-3 col-sm-12">{{list.phone}}</div>
+                <div class="col-md-3 col-sm-12 mark-all"><div v-for="condition in list.conditions" >
+                    <div v-if="condition.condition == 'hosting'" class="mark-primary">Хостинг</div>
+                    <div v-else-if="condition.condition == 'cert'" class="mark-orange">Сертифікат</div>
+                    <div v-else-if="condition.condition == 'support'" class="mark-red">Підтримка</div>
+                    <div v-else></div>
+                </div>
+                </div>
+                <div class="col-md-3 col-sm-12">{{list.amount_all}}</div>
+            </div>
+            <div class="row">
+                <!-- number item on page -->
+                <div class="col-md-8 showing-elements">
+                    <div class="showing-text">
+                        Показати:
+                    </div>
+                    <div class="showing-number">
+                        <div :class="[{active: itemsPerPage === 3}, 'number-column']" @click="itemsPerPage = 3">3</div>
+                        <div :class="[{active: itemsPerPage === 5}, 'number-column']" @click="itemsPerPage = 5">5</div>
+                        <div :class="[{active: itemsPerPage === 8}, 'number-column']" @click="itemsPerPage = 8">8</div>
+                        <div :class="[{active: itemsPerPage === 10}, 'number-column']" @click="itemsPerPage = 10">10</div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 paginate-right">
+                    <!-- pagination -->
+                    <ul class="pagination" v-if="itemsPerPage < resultCount && totalPages >4">
+                        <!-- prev -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage-1)" v-if="currentPage > 1">Назад</a>
+                            <div :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                                v-else>Назад</div>
+                        </li>
+                        <!--first page-->
+                        <div class="page-item">
+                            <li v-if="currentPage !== 1 && currentPage !== 2 && currentPage !== 3">
+                                <a :class="[{active: currentPage === 1}, 'page-link']" href="#" v-bind:key="1"
+                                   @click="setPage(1)">1  ...</a>
+                            </li>
+                            <li  v-else>
+                                <a :class="[{active: currentPage === 1}, 'page-link']" href="#" v-bind:key="1"
+                                   @click="setPage(1)">1 </a>
+                            </li>
+                        </div>
+                        <!-- other pages -->
+                        <div v-if="currentPage == 1 || currentPage == 2 " class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == 2 || pageNumber == 3" @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+
+                        <div v-else-if="currentPage == (totalPages-1) || currentPage == totalPages" class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == (totalPages-1) || pageNumber == (totalPages-2)"
+                                   @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+                        <div v-else class="pagination">
+                            <li class="page-item"
+                                v-for="pageNumber in totalPages">
+                                <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                                   v-if="pageNumber == currentPage || pageNumber == (currentPage-1) || pageNumber == (currentPage+1)"
+                                   @click="setPage(pageNumber)"
+                                >{{pageNumber}}</a>
+                            </li>
+                        </div>
+
+                        <!-- last page-->
+
+                        <div class="page-item">
+                            <li  v-if="currentPage !== totalPages-1 && currentPage !== totalPages && currentPage !== (totalPages-2)">
+
+                                 <a :class="[{active: currentPage === totalPages}, 'page-link']" href="#" v-bind:key="totalPages"
+                                   @click="setPage(totalPages)">...  {{totalPages}}</a>
+                            </li>
+                            <li  v-else>
+                                <a :class="[{active: currentPage === totalPages}, 'page-link']" href="#" v-bind:key="totalPages"
+                                   @click="setPage(totalPages)">{{totalPages}}</a>
+                            </li>
+                        </div>
+
+                        <!-- next -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage+1)" v-if="currentPage < totalPages">Вперед</a>
+                            <div :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Вперед</div>
+                        </li>
 
 
-                </tr>
-            </b>
-        </table>
+                    </ul>
+
+                    <ul class="pagination" v-else-if="itemsPerPage < resultCount && totalPages <= 4">
+                        <!-- prev -->
+
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage-1)" v-if="currentPage > 1">Назад</a>
+                            <div :class="[{active: currentPage !== 1}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Назад</div>
+                        </li>
+                        <!-- all -->
+                        <li class="page-item"
+                            v-for="pageNumber in totalPages">
+                            <a :class="[{active: currentPage === pageNumber}, 'page-link']" href="#" v-bind:key="pageNumber"
+                               @click="setPage(pageNumber)"
+                            >{{pageNumber}}</a>
+                        </li>
+                        <!-- next -->
+                        <li class="page-item">
+                            <a :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                               @click="setPage(currentPage+1)" v-if="currentPage < totalPages">Вперед</a>
+                            <div :class="[{active: currentPage !== totalPages}, 'page-link']" href="#" v-bind:key="1"
+                                 v-else>Вперед</div>
+                        </li>
+                    </ul>
+
+
+                    <!-- /pagination -->
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </template>
@@ -38,9 +272,37 @@
         data(){
             return {
                 title: "Hostings",
+                currentPage: 1,
+                itemsPerPage: 5,
+                resultCount: 0,
+
+            }
+        },
+        computed: {
+            totalPages: function () {
+                return Math.ceil(this.resultCount / this.itemsPerPage)
+            },
+            paginate: function () {
+                if (!this.lists || this.lists.length != this.lists.length) {
+                    return
+                }
+                this.resultCount = this.lists.length
+                if (this.currentPage >= this.totalPages) {
+                    this.currentPage = this.totalPages
+                }
+                let index = this.currentPage * this.itemsPerPage - this.itemsPerPage
+                return this.lists.slice(index, index + this.itemsPerPage)
             }
         },
         props: ['lists'],
+        methods: {
+            setPage(pageNumber) {
+                this.currentPage = pageNumber
+            },
+            openAdd(){
+                return location.href = "/admin/hostings/add";
+            }
+        },
 
     };
 </script>
