@@ -24,6 +24,7 @@ class HostingsCreate extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'nullable',
             'name' => 'min:2|max:25|required|string',
             'last_name' => 'min:2|max:25|required|string',
             'second_name' => 'min:2|max:25|required|string',

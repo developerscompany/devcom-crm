@@ -3,9 +3,9 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 acc-data">
+                <div class=" col-sm-12 col-md-5 col-lg-4 acc-data">
 
-                    <p class="label">ПІБ:</p>
+                    <p class="label">Особиста інформація:</p>
                     <p class="pib">{{hosting.last_name}} {{hosting.name}} {{hosting.second_name}}</p>
 
                     <p class="label">Телефон:</p>
@@ -13,19 +13,90 @@
 
                     <p class="label">Послуги:</p>
                     <div class="conditions" v-for="condition in hosting.conditions">
-                        <div v-if="condition.condition == 'hosting'" class="mark-primary mark">Хостинг - {{condition.amount}} UAH</div>
-                        <div v-else-if="condition.condition == 'cert'" class="mark-orange mark">Сертифікат - {{condition.amount}} UAH</div>
-                        <div v-else-if="condition.condition == 'support'" class="mark-red mark" >Підтримка - {{condition.amount}} UAH</div>
+                        <div v-if="condition.condition == 'hosting'" class="condition-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mark-primary mark">Хостинг</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="condition.condition == 'cert'" class="condition-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mark-orange mark">Сертифікат</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="condition.condition == 'support'" class="condition-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mark-red mark">Підтримка</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="condition.condition == 'domen'" class="condition-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mark-green mark">Домен</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                    <br>
+                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
                         <div v-else></div>
 
                     </div>
 
                     <br>
+                    <button class="btn-edit" @click="openEdit">Змінити</button>
+                    <button class="btn-edit" @click="openStore">Оплатити</button>
 
 
                 </div>
 
-                <div class="col-md-8 message-box">
+                <div class="col-sm-12 col-md-7 col-lg-8 message-box">
                     <div class="message-list" id="block-scroll">
                         <div class="message-item" v-for="comment in hosting.comments">
                             <div class="message-image">
@@ -45,13 +116,24 @@
                     </div>
                     <div class="writing-block">
                         <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
-                        <textarea name="comment" v-model="data.comment"  class="form-control"></textarea>
+                        <textarea name="comment" v-model="data.comment" class="form-control"></textarea>
                         <br>
 
                         <button class="btn-create" @click="comment">Відправити</button>
                     </div>
 
 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="finance-content">
+                        <div class="finance-list">
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,10 +151,11 @@
                     hosting_id: this.hosting.id,
                 },
                 errors: {},
+                storeStatus: false,
             }
         },
         props: ['hosting'],
-        mounted () {
+        mounted() {
             this.scrollToEnd();
         },
         updated() {
@@ -81,11 +164,11 @@
         },
         methods: {
 
-            comment(){
-                this.$http.post('/admin/hostings/account/'+this.hosting.id+'/comment', this.data).then(res => {
+            comment() {
+                this.$http.post('/admin/hostings/account/' + this.hosting.id + '/comment', this.data).then(res => {
                     if (res.status === 201) {
                         // console.log(res.data)
-                        location.href = '/admin/hostings/account/'+this.hosting.id
+                        location.href = '/admin/hostings/account/' + this.hosting.id
                     }
                     else {
 
@@ -95,8 +178,8 @@
                 })
             },
 
-            editDate(date){
-                if(date){
+            editDate(date) {
+                if (date) {
                     var dateT = date.split(' ')['0']
                     var timeT = date.split(' ')['1']
                     var dateTemp = dateT.split('-')
@@ -110,10 +193,26 @@
                 }
 
             },
-            scrollToEnd(){
+            editShortDate(date){
+                if (date) {
+                    var dateT = date.split(' ')['0']
+                    var dateTemp = dateT.split('-')
+                    date = dateTemp['2'] + '.' + dateTemp['1'] + '.' + dateTemp['0']
+                    return date
+                }
+                else {
+                    return date
+                }
+            },
+            scrollToEnd() {
                 let block = document.querySelector("#block-scroll");
                 block.scrollTop = block.scrollHeight;
             },
+            openEdit() {
+                return location.href = "/admin/hostings/account/" + this.hosting.id + "/edit";
+            },
+            openStore() {
+            }
 
         }
 
@@ -121,7 +220,7 @@
 </script>
 
 <style>
-    .error{
+    .error {
         color: red;
     }
 </style>

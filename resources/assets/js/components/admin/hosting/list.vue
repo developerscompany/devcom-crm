@@ -137,6 +137,7 @@
                     <div v-if="condition.condition == 'hosting'" class="mark-primary">Хостинг</div>
                     <div v-else-if="condition.condition == 'cert'" class="mark-orange">Сертифікат</div>
                     <div v-else-if="condition.condition == 'support'" class="mark-red">Підтримка</div>
+                    <div v-else-if="condition.condition == 'domen'" class="mark-green">Домен</div>
                     <div v-else></div>
                 </div>
                 </div>
