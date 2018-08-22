@@ -3,6 +3,7 @@
 namespace App\Model\Admin\Hosting;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Hosting extends Model
 {
@@ -38,5 +39,10 @@ class Hosting extends Model
     public function conditions(){
 
         return $this->hasMany(HostingsCondition::class, 'hosting_id', 'id');
+    }
+
+    public function comments(){
+
+        return $this->hasMany(HostingsComment::class, 'hosting_id', 'id')->where('user_id', Auth::id());
     }
 }

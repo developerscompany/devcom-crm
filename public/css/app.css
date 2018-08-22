@@ -10532,6 +10532,10 @@ a.text-dark:focus {
   position: relative;
 }
 
+.hosting-list .container-fluid .greyLine {
+  background-color: #f2f2f2;
+}
+
 .hosting-list .showing-elements {
   display: inline-block;
   font-size: 13px;
@@ -10681,6 +10685,51 @@ a.text-dark:focus {
   padding-top: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.hosting-card .message-box .message-list {
+  margin-bottom: 125px;
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.hosting-card .message-box .message-list .message-item {
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  background-color: #e2e8f1;
+  border-radius: 8px;
+}
+
+.hosting-card .message-box .message-list .message-item .message-image {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: url("/img/multimedia-8.svg");
+  vertical-align: top;
+  margin-top: 5px;
+  margin-right: 5px;
+  opacity: 0.5;
+}
+
+.hosting-card .message-box .message-list .message-item .message-content {
+  display: inline-block;
+}
+
+.hosting-card .message-box .message-list .message-item .message-content .message-time {
+  display: inline-block;
+  color: grey;
+}
+
+.hosting-card .message-box .message-list .message-item .message-content .message-email {
+  display: inline-block;
+  color: grey;
+}
+
+.hosting-card .message-box .message-list .message-item .message-content .message-text {
+  margin-top: 3px;
+  display: block;
+  font-weight: 500;
 }
 
 .hosting-card .message-box .writing-block {
@@ -10689,6 +10738,8 @@ a.text-dark:focus {
   left: 0;
   width: 100%;
   text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .hosting-card .message-box .writing-block textarea {

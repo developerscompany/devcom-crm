@@ -45,7 +45,7 @@ class HostingController extends Controller
 
     public function show(Hosting $hosting){
 
-        return view('admin.hosting.card')->with(['hosting' => $hosting->load('conditions')]);
+        return view('admin.hosting.card')->with(['hosting' => $hosting->load('conditions')->load('comments.user')]);
     }
 
     public function getComment(HostingsMessage $comment, $hosting){
@@ -57,7 +57,7 @@ class HostingController extends Controller
         ];
         HostingsComment::create($data);
 
-        return response()->json([], 201);
+        return response()->json(['data' => $data/*$comment->get('comment')*/], 201);
 
     }
 

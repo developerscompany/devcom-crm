@@ -26,6 +26,23 @@
                 </div>
 
                 <div class="col-md-8 message-box">
+                    <div class="message-list" id="block-scroll">
+                        <div class="message-item" v-for="comment in hosting.comments">
+                            <div class="message-image">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-time">
+                                    {{editDate(comment.created_at)}}
+                                </div>
+                                <div class="message-email">
+                                    {{comment.user.email}}
+                                </div>
+                                <div class="message-text">
+                                    {{comment.message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="writing-block">
                         <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
                         <textarea name="comment" v-model="data.comment"  class="form-control"></textarea>
@@ -55,12 +72,19 @@
             }
         },
         props: ['hosting'],
+        mounted () {
+            this.scrollToEnd();
+        },
+        updated() {
+            this.scrollToEnd();
+
+        },
         methods: {
 
             comment(){
-                console.log(this.data)
                 this.$http.post('/admin/hostings/account/'+this.hosting.id+'/comment', this.data).then(res => {
                     if (res.status === 201) {
+                        // console.log(res.data)
                         location.href = '/admin/hostings/account/'+this.hosting.id
                     }
                     else {
@@ -69,7 +93,27 @@
                 }, err => {
                     this.errors = err.data.errors
                 })
-            }
+            },
+
+            editDate(date){
+                if(date){
+                    var dateT = date.split(' ')['0']
+                    var timeT = date.split(' ')['1']
+                    var dateTemp = dateT.split('-')
+                    var timeTemp = timeT.split(':')
+                    date = dateTemp['2'] + '.' + dateTemp['1'] + '.' + dateTemp['0'] + ' ' + timeTemp['0'] + ':' + timeTemp['1']
+
+                    return date
+                }
+                else {
+                    return date
+                }
+
+            },
+            scrollToEnd(){
+                let block = document.querySelector("#block-scroll");
+                block.scrollTop = block.scrollHeight;
+            },
 
         }
 

@@ -130,7 +130,7 @@
                 <div class="col-md-3 col-sm-12">Послуги</div>
                 <div class="col-md-3 col-sm-12">Сумма</div>
             </div>
-            <div class="row table-content" v-for="list in paginate">
+            <div :class="[{greyLine: index % 2 == 0 } ,'row' ,'table-content']" v-for="(list, index) in paginate">
                 <div class="col-md-3 col-sm-12"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
                 <div class="col-md-3 col-sm-12">{{list.phone}}</div>
                 <div class="col-md-3 col-sm-12 mark-all"><div v-for="condition in list.conditions" >
