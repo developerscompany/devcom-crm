@@ -45,7 +45,11 @@ class HostingController extends Controller
 
     public function show(Hosting $hosting){
 
-        return view('admin.hosting.card')->with(['hosting' => $hosting->load('conditions.finance')->load('comments.user')]);
+        return view('admin.hosting.card')->with(['hosting' => $hosting
+            ->load(['conditions.finance' => function($query) use($hosting) {
+                $query->where('hosting_id', $hosting->id );
+            }])
+            ->load('comments.user')]);
     }
 
     public function getComment(HostingsMessage $comment, $hosting){
@@ -112,7 +116,11 @@ class HostingController extends Controller
 
     public function getSale(Hosting $hosting){
 
-        return view('admin.hosting.sale')->with(['hosting' => $hosting->load('conditions.finance')]);
+        return view('admin.hosting.sale')->with(['hosting' => $hosting
+            ->load(['conditions.finance' => function($query) use($hosting) {
+            $query->where('hosting_id', $hosting->id );
+            }])
+        ]);
     }
 
     public function sale(Hosting $hosting, HostingSale $sale){

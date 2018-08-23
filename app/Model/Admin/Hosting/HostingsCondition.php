@@ -24,8 +24,9 @@ class HostingsCondition extends Model
     // Relations
 
     public function finance(){
-
-        return $this->belongsTo(HostingsFinance::class, 'condition', 'condition')->orderBy('really_to', 'asc');
+        $cond = $this->getAttribute('condition');
+        return $this->belongsTo(HostingsFinance::class, 'condition', 'condition')
+            ->orderBy('really_to', 'asc');
     }
 
 
