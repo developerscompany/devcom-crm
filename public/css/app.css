@@ -10791,6 +10791,11 @@ a.text-dark:focus {
   padding: 8px 13px;
 }
 
+.hosting-card .message-box .finance-content .finance-list {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
 .mark-red {
   -webkit-box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
           box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);

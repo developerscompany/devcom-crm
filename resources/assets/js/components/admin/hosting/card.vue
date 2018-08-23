@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-else-if="condition.condition == 'domen'" class="condition-item">
+                        <div v-else-if="condition.condition == 'domain'" class="condition-item">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="mark-green mark">Домен</div>
@@ -212,6 +212,9 @@
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/edit";
             },
             openStore() {
+
+                return location.href = "/admin/hostings/account/" + this.hosting.id + "/sale";
+
             }
 
         }

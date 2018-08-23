@@ -128,7 +128,7 @@
                 <div class="col-md-3 col-sm-12">ПІБ</div>
                 <div class="col-md-3 col-sm-12">Телефон</div>
                 <div class="col-md-3 col-sm-12">Послуги</div>
-                <div class="col-md-3 col-sm-12">Сумма</div>
+                <div class="col-md-3 col-sm-12">Сума</div>
             </div>
             <div :class="[{greyLine: index % 2 == 0 } ,'row' ,'table-content']" v-for="(list, index) in paginate">
                 <div class="col-md-3 col-sm-12"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
@@ -137,7 +137,7 @@
                     <div v-if="condition.condition == 'hosting'" class="mark-primary">Хостинг</div>
                     <div v-else-if="condition.condition == 'cert'" class="mark-orange">Сертифікат</div>
                     <div v-else-if="condition.condition == 'support'" class="mark-red">Підтримка</div>
-                    <div v-else-if="condition.condition == 'domen'" class="mark-green">Домен</div>
+                    <div v-else-if="condition.condition == 'domain'" class="mark-green">Домен</div>
                     <div v-else></div>
                 </div>
                 </div>

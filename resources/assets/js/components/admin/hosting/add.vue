@@ -28,7 +28,7 @@
                                     <option value="hosting">Хостинг</option>
                                     <option value="cert">Сертифікат</option>
                                     <option value="support">Підтримка</option>
-                                    <option value="domen">Домен</option>
+                                    <option value="domain">Домен</option>
                                 </select>
 
 

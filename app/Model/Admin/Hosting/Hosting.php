@@ -45,4 +45,10 @@ class Hosting extends Model
 
         return $this->hasMany(HostingsComment::class, 'hosting_id', 'id')->where('user_id', Auth::id());
     }
+
+    public function finances(){
+
+        return $this->hasMany(HostingsFinance::class, 'hosting_id', 'id');
+
+    }
 }

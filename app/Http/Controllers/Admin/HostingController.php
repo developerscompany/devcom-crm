@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\{HostingsCreate, HostingsMessage};
+use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage};
 use App\Model\Admin\Hosting\Hosting;
 use App\Model\Admin\Hosting\HostingsComment;
 use Illuminate\Http\Request;
@@ -109,5 +109,19 @@ class HostingController extends Controller
         return response()->json([ 'data' => $conditions], 201);
 
     }
+
+    public function getSale(Hosting $hosting){
+
+        return view('admin.hosting.sale')->with(['hosting' => $hosting->load('conditions.finance')]);
+    }
+
+    public function sale(Hosting $hosting, HostingSale $sale){
+
+        $hosting->finances()->create($sale->all());
+
+        return response()->json([], 201);
+
+    }
+
 
 }
