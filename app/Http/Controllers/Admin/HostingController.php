@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage};
 use App\Model\Admin\Hosting\Hosting;
 use App\Model\Admin\Hosting\HostingsComment;
+use App\Model\Admin\Hosting\HostingsFinance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -131,5 +132,22 @@ class HostingController extends Controller
 
     }
 
+    public function archive(Hosting $hosting){
+        $finances = $hosting->finances()->with('hosting')->orderBy('created_at', 'desc')->get();
+//        dd($finances);
 
+        return view('admin.hosting.archive')->with(['finances' => $finances]);
+    }
+
+
+
+
+    // Calendar
+
+    public function getCalendar(){
+
+        $finances = HostingsFinance::all()->load('hosting');
+
+        return view('admin.hosting.calendar')->with(['finances' => $finances]);
+    }
 }

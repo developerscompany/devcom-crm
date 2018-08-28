@@ -91,7 +91,8 @@
 
                     <br>
                     <button class="btn-edit" @click="openEdit">Змінити</button>
-                    <button class="btn-edit" @click="openStore">Оплатити</button>
+                    <button class="btn-edit" @click="openSale">Оплатити</button>
+                    <button class="btn-edit" @click="openArchive">Архів</button>
 
 
                 </div>
@@ -211,9 +212,14 @@
             openEdit() {
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/edit";
             },
-            openStore() {
+            openSale() {
 
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/sale";
+
+            },
+            openArchive () {
+
+                return location.href = "/admin/hostings/account/" + this.hosting.id + "/archive";
 
             }
 

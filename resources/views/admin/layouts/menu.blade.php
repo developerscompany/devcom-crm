@@ -21,11 +21,26 @@
                 </a>
             </li>
             <li class="{{ is_active('admin/hosting') }}">
-                <a href="{{ url('admin/hostings') }}">
+                <a href="#" onclick="showSub()">
                     <i class="icon-home4"></i>
                     <span>Хостинг</span>
                 </a>
+                    <ul class="sub-menu">
+                        <li><a href="{{ url('admin/hostings') }}">Список аккаунтів</a></li>
+                        <li><a href="{{ url('admin/hostings/calendar') }}">Календар</a></li>
+                    </ul>
+
             </li>
         </ul>
     </div>
 </div>
+<style>
+    .sub-menu{
+        display: none;
+    }
+</style>
+<script>
+    function showSub() {
+        this.$(".sub-menu").toggle()
+    }
+</script>

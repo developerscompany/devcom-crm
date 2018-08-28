@@ -17,7 +17,7 @@
                         <option v-for="condition in hosting.conditions" :value="condition" selected>
                             <div v-if=" condition.condition == 'hosting'">Хостинг</div>
                             <div v-else-if="condition.condition == 'cert'">Сертифікат</div>
-                            <div v-else-if="condition.condition == 'support'">Пдтримка</div>
+                            <div v-else-if="condition.condition == 'support'">Підтримка</div>
                             <div v-else-if="condition.condition == 'domain'">Домен</div>
                         </option>
                     </select>
