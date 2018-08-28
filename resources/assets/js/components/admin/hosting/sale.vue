@@ -70,6 +70,7 @@
                     really_to: "",
                     type: "m",
                     created_at: "",
+                    hosting_id: this.hosting.id,
                 },
                 errors: {},
                 condError: false,
@@ -131,6 +132,7 @@
             selectCreated(date){
                 if(date){
                     this.data.created_at = date.getFullYear()+'-'+(date.getMonth()+ parseInt(1))+'-'+date.getDate()
+
 
                 }
             },
@@ -232,7 +234,7 @@
                 if(!this.data.really_to && this.really_to){
                     this.data.really_to = this.really_to
                 }
-                console.log(this.data)
+                // console.log(this.data)
                 this.$http.post('/admin/hostings/account/' + this.hosting.id + '/sale', this.data).then(res => {
                     if (res.status === 201) {
                         // console.log(res.data)
@@ -242,7 +244,7 @@
 
                     }
                 }, err => {
-                    console.log(err.data)
+                    // console.log(err.data)
                     this.errors = err.data.errors
                 })
             }

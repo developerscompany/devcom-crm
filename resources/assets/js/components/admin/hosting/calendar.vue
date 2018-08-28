@@ -1,98 +1,91 @@
 <template>
     <div class="calendar">
         <div class="container-fluid">
-            <div class="row">
-
-
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-
-                    <v-calendar v-model="selectedValue"  :attributes='attrs' @dayclick="getAlert()"
-                    >
-                    </v-calendar>
-
-                </div>
-                <div class="col-md-4"></div>
-
+            <div id="message" v-if="message" >
+                <a  v-if="message.url" :href="message.url"> {{message.title}}</a>
+                <div v-else> {{message.title}}</div>
             </div>
-
-
+            <calendar-view
+                    :events="events"
+                    :show-date="showDate"
+                    @click-event="onClickEvent"
+                    class="theme-default holiday-us-traditional holiday-us-official">
+                <calendar-view-header
+                        slot="header"
+                        slot-scope="t"
+                        :header-props="t.headerProps"
+                        @input="setShowDate" />
+            </calendar-view>
 
         </div>
 
-
     </div>
+
+
+
+
+
 </template>
 
 <script>
+    import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
+
+    require("vue-simple-calendar/static/css/default.css")
+    require("vue-simple-calendar/static/css/holidays-us.css")
 
     export default {
+        data: () => ({
 
-        data() {
-            return {
-                title: "Hostings",
-                selectedValue: new Date(),
-                condition: {
-                    'hosting': "Хостинг",
-                    'cert': "Сертифікат",
-                    'support': "Підтримку",
-                    'domain': "Домен",
-                },
-                data: {
+            showDate: new Date(),
+            events: [],
+            message: {
+                title: "",
+                url: "",
+            },
+            condition: {
+                'hosting': "хостинг",
+                'cert': "сертифікат",
+                'support': "підтримку",
+                'domain': "домен",
+            },
+        }),
 
-                },
-
-            }
+        components: {
+            CalendarView,
+            CalendarViewHeader,
         },
         props: ['finances'],
-        computed: {
-            attrs: function () {
-                let dates = []
-                let cond = this.condition
-                this.finances.forEach(
-                    function (elem) {
-                        let mas = {
-                            key: elem.id,
-                            dates: new Date(elem.really_to),
-                            highlight: {
-                                backgroundColor: '#ee2a82',
-                            },
-                            // Just use a normal style
-                            contentStyle: {
-                                color: '#fafafa',
-                            },
-                            // Our new popover here
-                            popover: {
-                                label: 'Виплата за '+ cond[elem.condition] + " - " + elem.hosting.last_name + ' ' + elem.hosting.name + ' ' + elem.hosting.second_name + "",
-                                visibility: 'focus',
-                                isInteractive: true
-                            }
-                        }
-
-                        dates[elem.id] = mas
+        mounted: function(){
+            let events = []
+            let condition =this.condition
+            this.finances.forEach(
+                function (finance) {
+                    let event = {
+                        id: finance.id,
+                        startDate: finance.really_to,
+                        title: "Оплата  за " +condition[finance.condition]+ " - "+finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
+                        url: "/admin/hostings/account/"+ finance.hosting.id,
                     }
-                )
-                return dates
+                    events.push(event)
+                }
+            );
 
-
-
-
-            }
+            this.events = events
         },
-        components: {
-        },
+
         methods: {
-
-            getAlert(day){
-                console.log(this)
-            }
-        },
+            setShowDate(d) {
+                this.showDate = d;
+            },
+            onClickEvent(e) {
+                this.message.title = `${e.title}`
+                this.message.url = `${e.originalEvent.url}`
+            },
+        }
 
     };
     
-    $(".c-title-popover").onclick(function () {
-        console.log("true")
-    });
+
 </script>
 
 <style>
@@ -103,9 +96,17 @@
     .calendar {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         color: #2c3e50;
-        height: 67vh;
-        width: 90vw;
         margin-left: auto;
         margin-right: auto;
+    }
+    .cv-week {
+        min-height: 10em;
+    }
+
+    .cv-event {
+        cursor: pointer;
+    }
+    .cv-day-number::before{
+        content: none !important;
     }
 </style>

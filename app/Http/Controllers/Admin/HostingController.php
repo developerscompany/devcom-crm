@@ -126,7 +126,7 @@ class HostingController extends Controller
 
     public function sale(Hosting $hosting, HostingSale $sale){
 
-        $hosting->finances()->create($sale->all());
+        $hosting->finances()->insert($sale->all());
 
         return response()->json([], 201);
 

@@ -10530,6 +10530,8 @@ a.text-dark:focus {
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .hosting-list .container-fluid .greyLine {
@@ -10794,6 +10796,17 @@ a.text-dark:focus {
 .hosting-card .message-box .finance-content .finance-list {
   height: 50vh;
   overflow-y: scroll;
+}
+
+.calendar #message {
+  padding: 5px 5px;
+  background-color: #f5f8fa;
+  border: 1px solid #f5f8fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .mark-red {

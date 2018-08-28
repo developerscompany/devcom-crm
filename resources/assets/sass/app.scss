@@ -81,6 +81,7 @@ $green-color: #0ec99b;
       .mark-all{
         display: flex;
         position: relative;
+        flex-wrap: wrap;
       }
     }
 
@@ -396,6 +397,18 @@ $green-color: #0ec99b;
       }
 
     }
+  }
+}
+
+.calendar{
+
+  #message{
+    padding: 5px 5px;
+    background-color: #f5f8fa;
+    border: 1px solid #f5f8fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: max-content;
   }
 }
 .mark-red{
