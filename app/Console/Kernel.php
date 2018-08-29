@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->exec('git pull https://djkey245:meyson1998@github.com/developerscompany/devcom-crm.git master --force')->everyMinute();
-         $schedule->exec('php artisan migrate')->daily()->fridays();
+         $schedule->exec('/usr/local/php71/bin/php /usr/local/bin/composer install')->daily()->fridays();
+         $schedule->exec('/usr/local/php71/bin/php artisan migrate')->daily()->fridays();
     }
 
     /**
