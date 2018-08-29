@@ -36385,9 +36385,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    _vm._s(list.amount_all) +
-                      "/" +
-                      _vm._s(list / _vm.amount_all_year)
+                    _vm._s(list.amount_all) + "/" + _vm._s(list.amount_all_year)
                   )
                 ]
               )

@@ -143,7 +143,7 @@
                     <div v-else></div>
                 </div>
                 </div>
-                <div class="col-md-2 col-sm-12" style="padding-left: 35px">{{list.amount_all}}/{{list/amount_all_year}}</div>
+                <div class="col-md-2 col-sm-12" style="padding-left: 35px">{{list.amount_all}}/{{list.amount_all_year}}</div>
             </div>
             <div class="row">
                 <!-- number item on page -->
