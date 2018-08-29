@@ -8,6 +8,9 @@
                     <p class="label">Особиста інформація:</p>
                     <p class="pib">{{hosting.last_name}} {{hosting.name}} {{hosting.second_name}}</p>
 
+                    <p class="label">Домен:</p>
+                    <p class="phone">{{hosting.site}}</p>
+
                     <p class="label">Телефон:</p>
                     <p class="phone">{{hosting.phone}}</p>
 

@@ -35848,6 +35848,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36341,7 +36343,11 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-3 col-sm-12" }, [
+              _c("div", { staticClass: "col-md-2 col-sm-12" }, [
+                _vm._v(_vm._s(list.site))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 col-sm-12" }, [
                 _vm._v(_vm._s(list.phone))
               ]),
               _vm._v(" "),
@@ -36371,9 +36377,14 @@ var render = function() {
                 })
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-3 col-sm-12" }, [
-                _vm._v(_vm._s(list.amount_all))
-              ])
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-2 col-sm-12",
+                  staticStyle: { "padding-left": "35px" }
+                },
+                [_vm._v(_vm._s(list.amount_all))]
+              )
             ]
           )
         }),
@@ -36805,11 +36816,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row table-head" }, [
       _c("div", { staticClass: "col-md-3 col-sm-12" }, [_vm._v("ПІБ")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 col-sm-12" }, [_vm._v("Телефон")]),
+      _c("div", { staticClass: "col-md-2 col-sm-12" }, [_vm._v("Домен")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 col-sm-12" }, [_vm._v("Телефон")]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 col-sm-12" }, [_vm._v("Послуги")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 col-sm-12" }, [_vm._v("Сума")])
+      _c("div", { staticClass: "col-md-2 col-sm-12" }, [_vm._v("Сума")])
     ])
   }
 ]
@@ -38279,6 +38292,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -38381,6 +38397,12 @@ var render = function() {
                   " " +
                   _vm._s(_vm.hosting.second_name)
               )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "label" }, [_vm._v("Домен:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "phone" }, [
+              _vm._v(_vm._s(_vm.hosting.site))
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "label" }, [_vm._v("Телефон:")]),
