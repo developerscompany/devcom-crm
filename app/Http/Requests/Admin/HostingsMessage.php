@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HostingsCreate extends FormRequest
+class HostingsMessage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class HostingsCreate extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'nullable',
-            'name' => 'min:2|max:25|required|string',
-            'last_name' => 'min:2|max:25|required|string',
-            'second_name' => 'min:2|max:25|required|string',
-            'phone' => 'min:6|max:15|required',
-            'conditions' => 'array',
+
+            'comment' => 'required|min:10',
+            'hosting_id' => 'nullable',
         ];
     }
 }

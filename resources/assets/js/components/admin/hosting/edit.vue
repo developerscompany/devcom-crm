@@ -29,12 +29,13 @@
                                     <option value="cert">Сертифікат</option>
                                     <option value="support">Підтримка</option>
                                     <option value="domain">Домен</option>
+
                                 </select>
 
 
 
 
-                        <label class="label-column">Сумма за місяць</label>
+                            <label class="label-column">Сумма за місяць</label>
 
                         <input  type="number" class="form-control" v-model="cond.amount">
 
@@ -47,7 +48,7 @@
 
                     <button @click="addCondition()" class="btn-add">+</button>
                     <button @click="remCondition()" class="btn-del"><div>-</div></button>
-                    <button @click="add()" class="btn-create">Додати</button>
+                    <button @click="edit()" class="btn-create">Змінити</button>
 
                 </div>
                 <div class="col-md-4"></div>
@@ -72,6 +73,7 @@
                     conditions:
                         [
                             {
+                                id: '',
                                 condition: '',
                                 amount: 0,
                                 amount_year: 0,
@@ -82,7 +84,10 @@
                 condError: false,
             }
         },
-
+        props: ['hosting'],
+        mounted () {
+          this.data = this.hosting
+        },
         methods: {
             addCondition() {
                 this.data.conditions.push({
@@ -94,7 +99,7 @@
                 let number = this.data.conditions.length--;
                 this.$delete(this.data.conditions, number);
             },
-            add(){
+            edit(){
                 let valid = true
                 $.each(this.data.conditions, function (key, value) {
                     if(value.condition === ""){
@@ -104,9 +109,9 @@
 
                 if(valid === true){
                     this.condError = false
-                    this.$http.post('/admin/hostings/create', this.data).then(res => {
+                    this.$http.post('/admin/hostings/account/' + this.hosting.id + '/update', this.data).then(res => {
                         if (res.status === 201) {
-                            location.href = '/admin/hostings'
+                            location.href = '/admin/hostings/account/' + this.hosting.id
                         }
                         else {
 

@@ -20,6 +20,11 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "vue-resource": "^1.5.1"
+        "v-calendar": "^0.9.7",
+        "vue-resource": "^1.5.1",
+        "vue-simple-calendar": "^4.0.2",
+        "vue2-event-calendar": "^0.4.4",
+        "vuejs-datepicker": "^1.5.3",
+        "vuetify": "^1.1.14"
     }
 }

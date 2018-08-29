@@ -3,19 +3,23 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class HomePageTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testLoginPage()
     {
-        $response = $this->get('/');
+
+        $response = $this->get('/login');
 
         $response->assertStatus(200);
+
+
     }
 }
