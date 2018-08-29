@@ -39780,7 +39780,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.error{\n    color: red;\n}\n.calendar {\n    font-family: 'Avenir', Helvetica, Arial, sans-serif;\n    color: #2c3e50;\n    margin-left: auto;\n    margin-right: auto;\n}\n.cv-week {\n    min-height: 10em;\n}\n.cv-event {\n    cursor: pointer;\n}\n.cv-day-number::before{\n    content: none !important;\n}\n", ""]);
+exports.push([module.i, "\n.error{\n    color: red;\n}\n.calendar {\n    font-family: 'Avenir', Helvetica, Arial, sans-serif;\n    color: #2c3e50;\n    margin-left: auto;\n    margin-right: auto;\n}\n.cv-week {\n    min-height: 10em;\n}\n.cv-event {\n    cursor: pointer;\n}\n.cv-day-number::before{\n    content: none !important;\n}\n.cv-day {\n    background-color: white;\n}\n.theme-default .cv-day.outsideOfMonth{\n    background-color: #b9b9b91a;\n}\n.outsideOfMonth>.cv-day-number{\n    color: #8080809c;\n}\n", ""]);
 
 // exports
 

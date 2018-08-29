@@ -109,4 +109,13 @@
     .cv-day-number::before{
         content: none !important;
     }
+    .cv-day {
+        background-color: white;
+    }
+    .theme-default .cv-day.outsideOfMonth{
+        background-color: #b9b9b91a;
+    }
+    .outsideOfMonth>.cv-day-number{
+        color: #8080809c;
+    }
 </style>
