@@ -36383,7 +36383,13 @@ var render = function() {
                   staticClass: "col-md-2 col-sm-12",
                   staticStyle: { "padding-left": "35px" }
                 },
-                [_vm._v(_vm._s(list.amount_all))]
+                [
+                  _vm._v(
+                    _vm._s(list.amount_all) +
+                      "/" +
+                      _vm._s(list / _vm.amount_all_year)
+                  )
+                ]
               )
             ]
           )
@@ -36822,7 +36828,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 col-sm-12" }, [_vm._v("Послуги")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 col-sm-12" }, [_vm._v("Сума")])
+      _c("div", { staticClass: "col-md-2 col-sm-12" }, [
+        _vm._v("Сума (місяць/рік)")
+      ])
     ])
   }
 ]

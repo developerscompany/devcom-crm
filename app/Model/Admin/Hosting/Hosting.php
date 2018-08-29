@@ -19,6 +19,7 @@ class Hosting extends Model
 
     protected $appends = [
         'amount_all',
+        'amount_all_year',
     ];
 
 
@@ -32,7 +33,12 @@ class Hosting extends Model
 
         return $this->conditions()->sum('amount');
     }
+    public function getAmountAllYearAttribute()
+    {
 
+
+        return $this->conditions()->sum('amount_year');
+    }
 
 
 
