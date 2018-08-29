@@ -14,6 +14,7 @@ class Hosting extends Model
         'last_name',
         'second_name',
         'phone',
+        'site',
     ];
 
     protected $appends = [

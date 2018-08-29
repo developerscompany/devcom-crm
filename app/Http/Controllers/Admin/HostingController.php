@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HostingsExport;
 use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage};
 use App\Model\Admin\Hosting\Hosting;
 use App\Model\Admin\Hosting\HostingsComment;
+use App\Model\Admin\Hosting\HostingsCondition;
 use App\Model\Admin\Hosting\HostingsFinance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\{Auth, DB};
+use Illuminate\Support\Facades\{Auth, DB, Session};
+use Maatwebsite\Excel\Facades\Excel;
 
 class HostingController extends Controller
 {
@@ -149,5 +153,195 @@ class HostingController extends Controller
         $finances = HostingsFinance::all()->load('hosting');
 
         return view('admin.hosting.calendar')->with(['finances' => $finances]);
+    }
+
+
+
+    // Export
+    public function getExport(){
+        return view('admin.hosting.export');
+    }
+
+    public function export(Request $request)
+    {
+        if($request->hasFile('import_file')){
+            Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
+
+                foreach ($reader->toArray() as $key=>$item) {
+                    $mas = [];
+                    $condition = [];
+                    $date = [];
+                    if(!empty($item['imya'])){
+                        $mas['name'] = "import";
+                        $mas['last_name'] = "i";
+                        $mas['second_name'] = "i";
+                        $mas['site'] = $item['imya'];
+                        $mas['phone'] = "123456789";
+
+
+                        if(!empty($item['khosting']) ){
+
+                            $condition['hosting']['amount'] = 0;
+                            $condition['hosting']['amount_year'] = $item['khosting'];
+                            $condition['hosting']['condition'] = "hosting";
+
+                            if (!empty($item['data'])){
+                                $month = 0;
+                                $month_val = trim(mb_strtolower($item['data']));
+                                switch ($month_val){
+                                    case "январь":
+                                        $month = 1;
+                                        break;
+                                    case "февраль":
+                                        $month = 2;
+                                        break;
+                                    case "март":
+                                        $month = 3;
+                                        break;
+                                    case "апрель":
+                                        $month = 4;
+                                        break;
+                                    case "май":
+                                        $month = 5;
+                                        break;
+                                    case "июнь":
+                                        $month = 6;
+                                        break;
+                                    case "июль":
+                                        $month = 7;
+                                        break;
+                                    case "август":
+                                        $month = 8;
+                                        break;
+                                    case "сентябрь":
+                                        $month = 9;
+                                        break;
+                                    case "октябрь":
+                                        $month = 10;
+                                        break;
+                                    case "ноябрь":
+                                        $month = 11;
+                                        break;
+                                    case "декабрь":
+                                        $month = 12;
+                                        break;
+                                }
+                                if(!empty($item["2018"])){
+                                    $date['hosting']["created_at"] = "2018-".$month."-7";
+                                    $date['hosting']["really_to"] = "2019-".$month."-7";
+                                    $date['hosting']["condition"] = "hosting";
+                                    $date['hosting']["type"] = "y";
+                                    $date['hosting']["amount"] = $item['khosting'];
+                                }
+                                else{
+                                    $date['hosting']["created_at"] = Carbon::now()->format("Y-m-d");
+                                    $date['hosting']["really_to"] = "2018-".$month."-7";
+                                    $date['hosting']["condition"] = "hosting";
+                                    $date['hosting']["type"] = "y";
+                                    $date['hosting']["amount"] = $item['khosting'];
+
+                                }
+
+                            }
+
+                        }
+                        if (!empty($item['domen'])){
+                            $condition['domain']['amount'] = 0;
+                            $condition['domain']['amount_year'] = $item['domen'];
+                            $condition['domain']['condition'] = "domain";
+                            if (!empty($item['data'])){
+                                $month = 0;
+                                $month_val = trim(mb_strtolower($item['data']));
+                                switch ($month_val){
+                                    case "январь":
+                                        $month = 1;
+                                        break;
+                                    case "февраль":
+                                        $month = 2;
+                                        break;
+                                    case "март":
+                                        $month = 3;
+                                        break;
+                                    case "апрель":
+                                        $month = 4;
+                                        break;
+                                    case "май":
+                                        $month = 5;
+                                        break;
+                                    case "июнь":
+                                        $month = 6;
+                                        break;
+                                    case "июль":
+                                        $month = 7;
+                                        break;
+                                    case "август":
+                                        $month = 8;
+                                        break;
+                                    case "сентябрь":
+                                        $month = 9;
+                                        break;
+                                    case "октябрь":
+                                        $month = 10;
+                                        break;
+                                    case "ноябрь":
+                                        $month = 11;
+                                        break;
+                                    case "декабрь":
+                                        $month = 12;
+                                        break;
+                                }
+                                if(!empty($item["2018"])){
+                                    $date['domain']["created_at"] = "2018-".$month."-7";
+                                    $date['domain']["really_to"] = "2019-".$month."-7";
+                                    $date['domain']["condition"] = "domain";
+                                    $date['domain']["type"] = "y";
+                                    $date['domain']["amount"] = $item['domen'];
+                                }
+                                else{
+                                    $date['domain']["created_at"] = Carbon::now()->format("Y-m-d");
+                                    $date['domain']["really_to"] = "2018-".$month."-7";
+                                    $date['domain']["condition"] = "domain";
+                                    $date['domain']["type"] = "y";
+                                    $date['domain']["amount"] = $item['domen'];
+
+                                }
+
+                            }
+                        }
+
+                            DB::transaction(function () use ($mas, $condition, $date) {
+                                $hosting = Hosting::create($mas);
+
+                                foreach ($condition as $cond){
+                                    $cond['hosting_id'] = $hosting->id;
+                                    HostingsCondition::create($cond);
+                                }
+                                foreach ($date as $finance){
+                                    if(!empty($finance['really_to'])){
+                                        $finance['hosting_id'] = $hosting->id;
+                                        HostingsFinance::create($finance);
+                                    }
+                                    else{
+                                        dd($finance);
+                                    }
+
+
+
+                                }
+
+                            });
+
+                        }
+
+
+                }
+            });
+        }
+
+        Session::put('success', 'You file successfully import in database!!!');
+
+        return back();
+
+
     }
 }

@@ -38,6 +38,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
             Route::get('/calendar', 'HostingController@getCalendar');
 
 
+            Route::get('/export', 'HostingController@getExport');
+            Route::post('/export', 'HostingController@export');
+
 
 
 

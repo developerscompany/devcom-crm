@@ -13,12 +13,12 @@ class HostingsFinance extends Model
         'condition',
         'amount',
         'really_to',
-    ];
+        'hosting_id',
+        ];
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'really_to'
     ];
 
 
