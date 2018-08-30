@@ -239,28 +239,10 @@
 
                         var st = new Date(this.value6[0].split('.').reverse());
                         var en = new Date(this.value6[1].split('.').reverse());
-                        // var current = new Date();
-
-                        // console.log(start);
-                        // console.log(end);
-                        // console.log(current);
-                        //
-                        // function inRange(value)
-                        // {
-                        //     if (value >= start && value <= end)
-                        //     {
-                        //         return value;
-                        //     }
-                        // }
 
                         return self.lines.filter(function(item) {
 
                             var current = new Date(item[0].split('.').reverse());
-                            // console.log(current);
-                            // console.log(start);
-                            // console.log(end);
-                            // console.log(current);
-                            // console.log('       ');
 
                             if (current >= st && current <= en)
                             {
@@ -273,7 +255,6 @@
                     if (self.ssource.length > 0) {
 
                         return self.lines.filter(function(item) {
-                            // console.log(self.ssource.indexOf(item[2]));
                             return self.ssource.indexOf(item[2]) > -1;
                         }).slice(start, end);
 
