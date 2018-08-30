@@ -151,37 +151,37 @@
                         </thead>
                         <tbody>
                         <tr v-for="line in paginatedData">
-                            <td>@{{ line[0] }}</td>
-                            <td>@{{ line[2] }}</td>
+                            <td>@{{ line.date }}</td>
+                            <td>@{{ line.source }}</td>
                             <td class="link-lead">
 
-                            <v-tooltip top>
+                                <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
                                     <a target="_blank" :href=line[3]>
-                                        @{{ line[3].substr(0, 30) }}
+                                        @{{ line.link.substr(0, 30) }}
                                     </a>
                                 </span>
-                                @{{ line[3] }}
-                            </v-tooltip>
+                                    @{{ line.link }}
+                                </v-tooltip>
 
                             </td>
-                            <td>@{{ line[4] }}</td>
+                            <td>@{{ line.niche }}</td>
                             <td class="link-current">
                                 <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
                                     <a target="_blank" :href=line[3]>
-                                        @{{ line[5].substr(0, 30) }}
+                                        @{{ line.current.substr(0, 30) }}
                                     </a>
                                 </span>
-                                    @{{ line[5] }}
+                                    @{{ line.current }}
                                 </v-tooltip>
                             </td>
-                            <td>@{{ line[6] }}</td>
-                            <td>@{{ line[7] }}</td>
-                            <td>@{{ line[8] }}</td>
-                            <td>@{{ line[9] }}</td>
+                            <td>@{{ line.description }}</td>
+                            <td>@{{ line.timing }}</td>
+                            <td>@{{ line.budget }}</td>
+                            <td>@{{ line.response }}</td>
                             <td>
-                                @{{ line[10] }}
+                                @{{ line.status }}
                                 <v-icon
                                         small
                                         class=""
@@ -189,14 +189,13 @@
                                     edit
                                 </v-icon>
                             </td>
-                            <td>@{{ line[11] }}</td>
+                            <td>@{{ line.comment }}</td>
                         </tr>
                         </tbody>
                     </table>
 
                 </div>
                 <v-dialog v-model="dialog" max-width="500px">
-                    {{--<v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>--}}
                     <v-card>
                         <v-card-text>
                             <v-layout wrap>
@@ -319,7 +318,7 @@
 
                     axios.post('/sale/add-google-line', data)
                         .then(response => {
-                            app.newLine = response.data[0];
+                            app.newLine = response.data;
                             app.lines.unshift(app.newLine)
                         });
                 });
@@ -423,7 +422,7 @@
 
                         axios.post('/sale/edit-google-line', {data, index})
                             .then(
-                                this.paginatedData[this.editedIndex][10] = data[10]
+                                this.paginatedData[this.editedIndex].status = data[10]
                             );
 
                     } else {

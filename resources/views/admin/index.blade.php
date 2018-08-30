@@ -30,38 +30,6 @@
                             <tr>
                                 <td class="filter-cell date">
                                     Date
-                                    {{--<template>--}}
-                                        {{--<v-layout>--}}
-                                            {{--<v-flex>--}}
-                                                {{--<v-menu--}}
-                                                        {{--ref="menu2"--}}
-                                                        {{--:close-on-content-click="false"--}}
-                                                        {{--v-model="menu2"--}}
-                                                        {{--:nudge-right="40"--}}
-                                                        {{--:return-value.sync="date"--}}
-                                                        {{--lazy--}}
-                                                        {{--transition="scale-transition"--}}
-                                                        {{--offset-y--}}
-                                                        {{--full-width--}}
-                                                        {{--min-width="290px"--}}
-                                                {{-->--}}
-                                                    {{--<v-text-field--}}
-                                                            {{--slot="activator"--}}
-                                                            {{--v-model="dateFormatted"--}}
-                                                            {{--placeholder="Date"--}}
-                                                            {{--clearable--}}
-                                                    {{--></v-text-field>--}}
-                                                    {{--<v-date-picker--}}
-                                                            {{--v-model="date"--}}
-                                                            {{--locale="ru-ru"--}}
-                                                            {{--color="blue lighten-1"--}}
-                                                            {{--header-color="primary"--}}
-                                                            {{--@input="$refs.menu2.save(date)"></v-date-picker>--}}
-
-                                                {{--</v-menu>--}}
-                                            {{--</v-flex>--}}
-                                        {{--</v-layout>--}}
-                                    {{--</template>--}}
                                     <template>
                                         <div class="mt-1">
                                             <el-date-picker
@@ -126,38 +94,38 @@
                             </thead>
                             <tbody>
                             <tr v-for="line in paginatedData">
-                                <td>@{{ line[0] }}</td>
-                                <td>@{{ line[1] }}</td>
-                                <td>@{{ line[2] }}</td>
+                                <td>@{{ line.date }}</td>
+                                <td>@{{ line.agent }}</td>
+                                <td>@{{ line.source }}</td>
                                 <td class="link-lead">
 
                                     <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
                                     <a target="_blank" :href=line[3]>
-                                        @{{ line[3].substr(0, 30) }}
+                                        @{{ line.link.substr(0, 30) }}
                                     </a>
                                 </span>
-                                        @{{ line[3] }}
+                                        @{{ line.link }}
                                     </v-tooltip>
 
                                 </td>
-                                <td>@{{ line[4] }}</td>
+                                <td>@{{ line.niche }}</td>
                                 <td class="link-current">
                                     <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
                                     <a target="_blank" :href=line[3]>
-                                        @{{ line[5].substr(0, 30) }}
+                                        @{{ line.current.substr(0, 30) }}
                                     </a>
                                 </span>
-                                        @{{ line[5] }}
+                                        @{{ line.current }}
                                     </v-tooltip>
                                 </td>
-                                <td>@{{ line[6] }}</td>
-                                <td>@{{ line[7] }}</td>
-                                <td>@{{ line[8] }}</td>
-                                <td>@{{ line[9] }}</td>
-                                <td>@{{ line[10] }}</td>
-                                <td>@{{ line[11] }}</td>
+                                <td>@{{ line.description }}</td>
+                                <td>@{{ line.timing }}</td>
+                                <td>@{{ line.budget }}</td>
+                                <td>@{{ line.responce }}</td>
+                                <td>@{{ line.status }}</td>
+                                <td>@{{ line.comment }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -271,28 +239,10 @@
 
                         var st = new Date(this.value6[0].split('.').reverse());
                         var en = new Date(this.value6[1].split('.').reverse());
-                        // var current = new Date();
-
-                        // console.log(start);
-                        // console.log(end);
-                        // console.log(current);
-                        //
-                        // function inRange(value)
-                        // {
-                        //     if (value >= start && value <= end)
-                        //     {
-                        //         return value;
-                        //     }
-                        // }
 
                         return self.lines.filter(function(item) {
 
                             var current = new Date(item[0].split('.').reverse());
-                            // console.log(current);
-                            // console.log(start);
-                            // console.log(end);
-                            // console.log(current);
-                            // console.log('       ');
 
                             if (current >= st && current <= en)
                             {
@@ -305,7 +255,6 @@
                     if (self.ssource.length > 0) {
 
                         return self.lines.filter(function(item) {
-                            // console.log(self.ssource.indexOf(item[2]));
                             return self.ssource.indexOf(item[2]) > -1;
                         }).slice(start, end);
 
