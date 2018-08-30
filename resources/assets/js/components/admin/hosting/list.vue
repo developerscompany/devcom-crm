@@ -129,7 +129,7 @@
                 <div class="col-md-2 col-sm-12">Домен</div>
                 <div class="col-md-2 col-sm-12">Телефон</div>
                 <div class="col-md-3 col-sm-12">Послуги</div>
-                <div class="col-md-2 col-sm-12">Сума</div>
+                <div class="col-md-2 col-sm-12">Сума (місяць/рік)</div>
             </div>
             <div :class="[{greyLine: index % 2 == 0 } ,'row' ,'table-content']" v-for="(list, index) in paginate">
                 <div class="col-md-3 col-sm-12"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
@@ -143,7 +143,7 @@
                     <div v-else></div>
                 </div>
                 </div>
-                <div class="col-md-2 col-sm-12" style="padding-left: 35px">{{list.amount_all}}</div>
+                <div class="col-md-2 col-sm-12" style="padding-left: 35px">{{list.amount_all}}/{{list.amount_all_year}}</div>
             </div>
             <div class="row">
                 <!-- number item on page -->
