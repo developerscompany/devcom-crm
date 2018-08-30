@@ -19,7 +19,7 @@ class HostingController extends Controller
 {
     public function index(){
 
-        $lists = Hosting::all()->load('conditions');
+        $lists = Hosting::orderBy("updated_at","desc")->with('conditions')->get();
 
         return view('admin.hosting.list')->with(['lists' => $lists]);
 
@@ -32,7 +32,7 @@ class HostingController extends Controller
 
     public function create(HostingsCreate $request){
 
-        $hosting = $request->only('name','last_name','second_name', 'phone');
+        $hosting = $request->only('name','last_name','second_name', 'phone', 'site');
         $conditions = $request->get('conditions');
 
         DB::transaction(function () use ($hosting, $conditions) {
@@ -79,7 +79,7 @@ class HostingController extends Controller
 
     public function update(HostingsCreate $request, Hosting $hosting){
 
-        $data = $request->only('name','last_name','second_name', 'phone');
+        $data = $request->only('name','last_name','second_name', 'phone', 'site');
         $conditions = $request->get('conditions');
         $conditions_id = $hosting->conditions()->select('id')->get()->toArray();
         DB::transaction(function () use ($hosting, $conditions, $data, $conditions_id) {

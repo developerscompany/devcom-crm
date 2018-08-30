@@ -28,6 +28,7 @@ class HostingsCreate extends FormRequest
             'name' => 'min:2|max:25|required|string',
             'last_name' => 'min:2|max:25|required|string',
             'second_name' => 'min:2|max:25|required|string',
+            'site' => 'min:2|max:50|required|string',
             'phone' => 'min:6|max:15|required',
             'conditions' => 'array',
         ];

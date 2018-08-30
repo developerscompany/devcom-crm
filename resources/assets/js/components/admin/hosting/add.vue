@@ -20,6 +20,10 @@
                     <span class="error" v-if="errors.phone">{{errors.phone[0]}}</span>
                     <input type="text" class="form-control" v-model="data.phone">
 
+                    <label class="label-column">Домен <b>*</b></label>
+                    <span class="error" v-if="errors.site">{{errors.site[0]}}</span>
+                    <input type="text" class="form-control" v-model="data.site">
+
                     <div v-for="(cond, index) in data.conditions" class="conditions-block">
                         <span class="error" v-if="errors.conditions">Не вірно введені дані про Послуги.</span>
                             <label class="label-column">Послуга <b>*</b></label>
@@ -69,6 +73,7 @@
                     last_name: '',
                     second_name: '',
                     phone: '',
+                    site: '',
                     conditions:
                         [
                             {

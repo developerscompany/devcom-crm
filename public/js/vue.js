@@ -37031,6 +37031,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -37041,6 +37045,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 last_name: '',
                 second_name: '',
                 phone: '',
+                site: '',
                 conditions: [{
                     condition: '',
                     amount: 0,
@@ -37228,6 +37233,36 @@ var render = function() {
               }
             }),
             _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm.errors.site
+              ? _c("span", { staticClass: "error" }, [
+                  _vm._v(_vm._s(_vm.errors.site[0]))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.data.site,
+                  expression: "data.site"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.data.site },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.data, "site", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
             _vm._l(_vm.data.conditions, function(cond, index) {
               return _c("div", { staticClass: "conditions-block" }, [
                 _vm.errors.conditions
@@ -37236,7 +37271,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(4, true),
+                _vm._m(5, true),
                 _vm._v(" "),
                 _c(
                   "select",
@@ -37449,6 +37484,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "label-column" }, [
+      _vm._v("Домен "),
+      _c("b", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label-column" }, [
       _vm._v("Послуга "),
       _c("b", [_vm._v("*")])
     ])
@@ -37560,6 +37604,11 @@ exports.push([module.i, "\n.error{\n    color: red;\n}\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37823,6 +37872,36 @@ var render = function() {
               }
             }),
             _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm.errors.site
+              ? _c("span", { staticClass: "error" }, [
+                  _vm._v(_vm._s(_vm.errors.site[0]))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.data.site,
+                  expression: "data.site"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.data.site },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.data, "site", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
             _vm._l(_vm.data.conditions, function(cond, index) {
               return _c("div", { staticClass: "conditions-block" }, [
                 _vm.errors.conditions
@@ -37831,7 +37910,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(4, true),
+                _vm._m(5, true),
                 _vm._v(" "),
                 _c(
                   "select",
@@ -38036,6 +38115,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "label-column" }, [
       _vm._v("Телефон "),
+      _c("b", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label-column" }, [
+      _vm._v("Домен "),
       _c("b", [_vm._v("*")])
     ])
   },
