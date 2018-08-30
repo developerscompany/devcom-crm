@@ -39896,7 +39896,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.error{\n    color: red;\n}\n.calendar {\n    font-family: 'Avenir', Helvetica, Arial, sans-serif;\n    color: #2c3e50;\n    margin-left: auto;\n    margin-right: auto;\n}\n.cv-week {\n    min-height: 10em;\n}\n.cv-event {\n    cursor: pointer;\n}\n.cv-day-number::before{\n    content: none !important;\n}\n.cv-day {\n    background-color: white;\n}\n.theme-default .cv-day.outsideOfMonth{\n    background-color: #b9b9b91a;\n}\n.outsideOfMonth>.cv-day-number{\n    color: #8080809c;\n}\n", ""]);
+exports.push([module.i, "\n.error{\n    color: red;\n}\n.calendar {\n    font-family: 'Avenir', Helvetica, Arial, sans-serif;\n    color: #2c3e50;\n    margin-left: auto;\n    margin-right: auto;\n}\n.cv-week {\n    min-height: 10em;\n}\n.cv-event {\n    cursor: pointer;\n}\n.cv-day-number::before{\n    content: none !important;\n}\n.cv-day {\n    background-color: white;\n}\n.theme-default .cv-day.outsideOfMonth{\n    background-color: #b9b9b91a;\n}\n.outsideOfMonth>.cv-day-number{\n    color: #8080809c;\n}\n.create{\n    background-color: #ffe7d0 !important;\n    border-color: #f7e0c7 !important;\n}\n", ""]);
 
 // exports
 
@@ -39909,6 +39909,29 @@ exports.push([module.i, "\n.error{\n    color: red;\n}\n.calendar {\n    font-fa
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_simple_calendar__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_simple_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_simple_calendar__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39954,6 +39977,7 @@ __webpack_require__(52);
                 title: "",
                 url: ""
             },
+            month_now: "",
             condition: {
                 'hosting': "хостинг",
                 'cert': "сертифікат",
@@ -39979,6 +40003,14 @@ __webpack_require__(52);
                 url: "/admin/hostings/account/" + finance.hosting.id
             };
             events.push(event);
+            event = {
+                id: finance.id,
+                startDate: finance.created_at,
+                title: "Оплата  за " + condition[finance.condition] + " - " + finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
+                url: "/admin/hostings/account/" + finance.hosting.id,
+                classes: "create"
+            };
+            events.push(event);
         });
 
         this.events = events;
@@ -39991,6 +40023,27 @@ __webpack_require__(52);
         onClickEvent: function onClickEvent(e) {
             this.message.title = "" + e.title;
             this.message.url = "" + e.originalEvent.url;
+            this.message.classes = "" + e.originalEvent.classes;
+        },
+        periodChanged: function periodChanged(range) {
+            var date = new Date(range.periodStart);
+
+            this.month_now = date.getMonth() + 1;
+        },
+        transformDate: function transformDate(date) {
+            var transform = new Date(date);
+            var month = transform.getMonth() + 1;
+            return month;
+        },
+        editShortDate: function editShortDate(date) {
+            if (date) {
+                var dateT = date.split(' ')['0'];
+                var dateTemp = dateT.split('-');
+                date = dateTemp['2'] + '.' + dateTemp['1'] + '.' + dateTemp['0'];
+                return date;
+            } else {
+                return date;
+            }
         }
     }
 
@@ -43406,19 +43459,30 @@ var render = function() {
       { staticClass: "container-fluid" },
       [
         _vm.message
-          ? _c("div", { attrs: { id: "message" } }, [
-              _vm.message.url
-                ? _c("a", { attrs: { href: _vm.message.url } }, [
-                    _vm._v(" " + _vm._s(_vm.message.title))
-                  ])
-                : _c("div", [_vm._v(" " + _vm._s(_vm.message.title))])
-            ])
+          ? _c(
+              "div",
+              {
+                class: { create: _vm.message.classes == "create" },
+                attrs: { id: "message" }
+              },
+              [
+                _vm.message.url
+                  ? _c("a", { attrs: { href: _vm.message.url } }, [
+                      _vm._v(" " + _vm._s(_vm.message.title))
+                    ])
+                  : _c("div", [_vm._v(" " + _vm._s(_vm.message.title))])
+              ]
+            )
           : _vm._e(),
         _vm._v(" "),
         _c("calendar-view", {
           staticClass:
             "theme-default holiday-us-traditional holiday-us-official",
-          attrs: { events: _vm.events, "show-date": _vm.showDate },
+          attrs: {
+            events: _vm.events,
+            "show-date": _vm.showDate,
+            "on-period-change": _vm.periodChanged
+          },
           on: { "click-event": _vm.onClickEvent },
           scopedSlots: _vm._u([
             {
@@ -43431,13 +43495,86 @@ var render = function() {
               }
             }
           ])
+        }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.finances, function(finance) {
+          return _vm.transformDate(finance.created_at) == _vm.month_now
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "/admin/hostings/account/" + finance.hosting.id
+                      }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(
+                          finance.hosting.last_name +
+                            "  " +
+                            finance.hosting.name
+                        )
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _vm._v(_vm._s(finance.hosting.site))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _vm._v(_vm._s(_vm.condition[finance.condition]))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1" }, [
+                  _vm._v(_vm._s(finance.amount))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _vm._v(_vm._s(_vm.editShortDate(finance.really_to)))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _vm._v(_vm._s(_vm.editShortDate(finance.created_at)))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1" }, [
+                  _vm._v(_vm._s(finance.type == "m" ? "Місяць" : "Рік"))
+                ])
+              ])
+            : _vm._e()
         })
       ],
-      1
+      2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-2" }, [_vm._v("Аккаунт")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [_vm._v("Домен")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [_vm._v("Тип")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-1" }, [_vm._v("Сума")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [_vm._v("Оплачено до")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [_vm._v("Дата оплати")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-1" }, [_vm._v("Місяць/Рік")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
