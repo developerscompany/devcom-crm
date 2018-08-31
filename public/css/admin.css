@@ -130,11 +130,6 @@ input.el-range-input::placeholder {
 .v-menu__content {
     background: #fff;
 }
-/*.v-dialog {*/
-    /*background: #fff;*/
-    /*max-height: initial !important;*/
-    /*overflow: unset;*/
-/*}*/
 .elevation-1 {
     width: 100%;
 }
