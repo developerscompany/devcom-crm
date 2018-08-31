@@ -54,7 +54,7 @@
                 <br>
 
             </div>
-            <div class="row" style="width: 100%; margin-right: 0; margin-left: 0;">
+            <div class="row" style="width: 100%; margin-right: 0; margin-left: 0; margin-bottom: 20px">
                 <div class="col-md-3 " v-for="server in servers">
                     <div class="label-server">
                         <div class="server-name">{{server.name}}</div>
@@ -64,9 +64,22 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid">
+            <div class="block-name">Статистика виплат</div>
+            <div class="row grafic">
+                <div class="col-md-1 col-xs-1"></div>
+                <div class="col-md-11 col-xs-11">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 grafic-block"  v-for="month in monthsList">
+                            <div class="month">{{month.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-    </div>
+        </div>
 </template>
 
 <script>
@@ -87,7 +100,66 @@
                     id: '',
                 },
                 errors: {},
+
+                monthsList: [
+                    {
+                        name: "Січень",
+                        number: 1,
+                    },
+                    {
+                        name: "Лютий",
+                        number: 2,
+                    },
+                    {
+                        name: "Березень",
+                        number: 3,
+                    },
+                    {
+                        name: "Квітень",
+                        number: 4,
+                    },
+                    {
+                        name: "Травень",
+                        number: 5,
+                    },
+                    {
+                        name: "Червень",
+                        number: 6,
+                    },
+                    {
+                        name: "Липень",
+                        number: 7,
+                    },
+                    {
+                        name: "Серпень",
+                        number: 8,
+                    },
+                    {
+                        name: "Вересень",
+                        number: 9,
+                    },
+                    {
+                        name: "Жовтень",
+                        number: 10,
+                    },
+                    {
+                        name: "Листопад",
+                        number: 11,
+                    },
+                    {
+                        name: "Грудень",
+                        number: 12,
+                    },
+
+                ],
+
             }
+        },
+        mounted: function(){
+
+
+
+
         },
         props: ['servers'],
         methods: {

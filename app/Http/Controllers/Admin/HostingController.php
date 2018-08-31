@@ -159,10 +159,29 @@ class HostingController extends Controller
     // Servers
 
 
-    public function getServers(Server $server){
+
+
+
+    public function getServers(Server $server, HostingsFinance $finance){
+
+        $month = Carbon::now();
+        $now = Carbon::parse($month);
+
+        $last = $now->subMonth(5);
+
+        dd($last);
+
+//        $now = Carbon::parse($month);
+        $final = $now->addMonth() ;
+
+//        dd($months_prev);
+        dd($finance->get()->groupBy('really_to'));
 
         return view("admin.hosting.servers",['servers' => $server->get()]);
     }
+
+
+
 
     public function addServer(ServerCreate $create, Server $server){
 

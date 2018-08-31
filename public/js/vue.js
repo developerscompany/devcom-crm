@@ -43756,6 +43756,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -43772,7 +43785,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 amount_year: '',
                 id: ''
             },
-            errors: {}
+            errors: {},
+
+            monthsList: [{
+                name: "Січень",
+                number: 1
+            }, {
+                name: "Лютий",
+                number: 2
+            }, {
+                name: "Березень",
+                number: 3
+            }, {
+                name: "Квітень",
+                number: 4
+            }, {
+                name: "Травень",
+                number: 5
+            }, {
+                name: "Червень",
+                number: 6
+            }, {
+                name: "Липень",
+                number: 7
+            }, {
+                name: "Серпень",
+                number: 8
+            }, {
+                name: "Вересень",
+                number: 9
+            }, {
+                name: "Жовтень",
+                number: 10
+            }, {
+                name: "Листопад",
+                number: 11
+            }, {
+                name: "Грудень",
+                number: 12
+            }]
+
         };
     },
 
@@ -44084,7 +44136,8 @@ var render = function() {
           staticStyle: {
             width: "100%",
             "margin-right": "0",
-            "margin-left": "0"
+            "margin-left": "0",
+            "margin-bottom": "20px"
           }
         },
         _vm._l(_vm.servers, function(server) {
@@ -44118,6 +44171,32 @@ var render = function() {
           ])
         })
       )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "block-name" }, [_vm._v("Статистика виплат")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row grafic" }, [
+        _c("div", { staticClass: "col-md-1 col-xs-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-11 col-xs-11" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.monthsList, function(month) {
+              return _c(
+                "div",
+                { staticClass: "col-lg-2 col-md-2 col-sm-2 grafic-block" },
+                [
+                  _c("div", { staticClass: "month" }, [
+                    _vm._v(_vm._s(month.name))
+                  ])
+                ]
+              )
+            })
+          )
+        ])
+      ])
     ])
   ])
 }

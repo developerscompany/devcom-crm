@@ -10957,3 +10957,14 @@ a.text-dark:focus {
   font-weight: 400;
 }
 
+.servers-list .grafic .grafic-block .month {
+  width: 100%;
+  text-align: center;
+  opacity: 0.5;
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
