@@ -110,4 +110,26 @@ class RegisterController extends Controller
             return view('emailconfirm', ['user' => $user]);
         }
     }
+
+    public function verifyCust($token)
+    {
+        $user = User::where('email_token', $token)->first();
+        $user->verified = 1;
+
+        if($user->save()){
+            return view('savepassword', ['user' => $user]);
+        }
+    }
+    public function save(Request $request, $id)
+    {
+//        dd($request, $id);
+
+        $user = User::find($id);
+
+        $user->update([
+            'password' => bcrypt($request['password'])
+        ]);
+
+        return redirect()->home();
+    }
 }
