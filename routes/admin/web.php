@@ -38,6 +38,15 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
             Route::get('/calendar', 'HostingController@getCalendar');
 
 
+            // Servers
+
+            Route::get('/servers', 'HostingController@getServers');
+            Route::post('/server/add', 'HostingController@addServer');
+            Route::post('/server/edit', 'HostingController@editServer');
+
+
+            // Export xls
+
             Route::get('/export', 'HostingController@getExport');
             Route::post('/export', 'HostingController@export');
 

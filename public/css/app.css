@@ -10869,3 +10869,91 @@ a.text-dark:focus {
   margin-right: 2px;
 }
 
+.servers-list {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.servers-list .btn-edit {
+  border-radius: 18px;
+  background-color: #1763ff;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 2px 13px;
+  position: absolute;
+  top: 35px;
+  right: 20px;
+}
+
+.servers-list .btn-del {
+  display: inline-block;
+  margin: auto;
+  border-radius: 18px;
+  background-color: #ee2a82;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 8px 13px;
+}
+
+.servers-list .btn-add {
+  display: inline-block;
+  margin: auto;
+  border-radius: 18px;
+  background-color: #0ec99b;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 8px 13px;
+}
+
+.servers-list .block-name {
+  color: #1763ff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.servers-list .label-server {
+  width: 100%;
+  -webkit-box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
+          box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
+  margin-top: 30px;
+  padding: 25px 15px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  background-image: linear-gradient(60deg, #009a9c 0%, #49cde4 100%);
+  opacity: 0.7;
+  text-align: center;
+}
+
+.servers-list .label-server .server-name,
+.servers-list .label-server .server-amount {
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+
+.servers-list .label-server .server-name {
+  font-size: 16px;
+}
+
+.servers-list .label-server .server-amount {
+  font-size: 24px;
+}
+
+.servers-list .label-server .btn-green {
+  font-size: 13px;
+  font-weight: 400;
+}
+
