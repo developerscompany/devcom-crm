@@ -48,7 +48,7 @@
 
                 <div class="col-md-3" style="text-align: center">
                     <button class="btn btn-add" @click="editServer">Зберегти</button>
-                    <button class="btn btn-del" @click="returnAdd">Новий</button>
+                    <button class="btn btn-new" @click="returnAdd">Новий</button>
 
                 </div>
                 <br>
@@ -59,7 +59,8 @@
                     <div class="label-server">
                         <div class="server-name">{{server.name}}</div>
                         <div class="server-amount">{{server.amount_month}} / {{server.amount_year}}</div>
-                        <button class="btn btn-edit" @click="editForm(server)">Змінити</button>
+                        <button class="btn btn-edit" @click="editForm(server)" ><img src="/icons/012-pencil.svg" alt="" id="edit-server"></button>
+                        <button class="btn btn-del" @click="delServer(server)" ><img src="/icons/112-garbage.svg" alt="" id="del-server"></button>
                     </div>
                 </div>
             </div>
@@ -190,6 +191,16 @@
                     this.errors = err.data.errors
                 })
             },
+
+            delServer(server){
+                if(confirm("Видалити сервер "+ server.name +" ?")){
+
+                    this.$http.post('/admin/hostings/server/del/'+ server.id).then(res => {
+                        location.href = '/admin/hostings/servers'
+                    }, err => {
+                    })
+                }
+            }
 
 
 

@@ -478,23 +478,35 @@ $green-color: #0ec99b;
   }
   .btn-edit{
     border-radius: 18px;
-    background-color: $primary-color;
+    background-color: #1763ffa6;
     color: #ffffff;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
-    padding: 2px 13px;
+    padding: 2px 8px;
     position: absolute;
     top: 35px;
-    right: 20px;
+    right: 55px;
 
   }
-
   .btn-del{
+       border-radius: 18px;
+       background-color: $red-color;
+       color: #ffffff;
+       font-size: 14px;
+       font-weight: 400;
+       line-height: normal;
+       padding: 2px 8px;
+       position: absolute;
+       top: 35px;
+       right: 20px;
+     }
+
+  .btn-new{
     display: inline-block;
     margin: auto;
     border-radius: 18px;
-    background-color: $red-color ;
+    background-color: #1763ffa6 ;
     color: #ffffff;
     font-size: 14px;
     font-weight: 400;
@@ -533,7 +545,7 @@ $green-color: #0ec99b;
 
       box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
       margin-top: 30px;
-      padding:  25px 15px;
+      padding:  35px 15px;
       border-radius: 15px;
       background-color: #ffffff;
       background-image: linear-gradient(60deg, #009a9c 0%, #49cde4 100%);
@@ -559,6 +571,13 @@ $green-color: #0ec99b;
       font-weight: 400;
     }
 
+    #edit-server{
+      width: 16px;
+    }
+
+    #del-server{
+      width: 16px;
+    }
   }
 
   .grafic {

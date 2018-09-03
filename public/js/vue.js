@@ -43769,6 +43769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -43828,6 +43829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    mounted: function mounted() {},
     props: ['servers'],
     methods: {
         add: function add() {
@@ -43856,6 +43858,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, function (err) {
                 _this2.errors = err.data.errors;
             });
+        },
+        delServer: function delServer(server) {
+            if (confirm("Видалити сервер " + server.name + " ?")) {
+
+                this.$http.post('/admin/hostings/server/del/' + server.id).then(function (res) {
+                    location.href = '/admin/hostings/servers';
+                }, function (err) {});
+            }
         }
     }
 
@@ -44116,7 +44126,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-del",
+                      staticClass: "btn btn-new",
                       on: { click: _vm.returnAdd }
                     },
                     [_vm._v("Новий")]
@@ -44165,7 +44175,36 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Змінити")]
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/icons/012-pencil.svg",
+                      alt: "",
+                      id: "edit-server"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-del",
+                  on: {
+                    click: function($event) {
+                      _vm.delServer(server)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/icons/112-garbage.svg",
+                      alt: "",
+                      id: "del-server"
+                    }
+                  })
+                ]
               )
             ])
           ])

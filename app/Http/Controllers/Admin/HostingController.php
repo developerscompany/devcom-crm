@@ -169,13 +169,13 @@ class HostingController extends Controller
 
         $last = $now->subMonth(5);
 
-        dd($last);
+//        dd($last);
 
 //        $now = Carbon::parse($month);
-        $final = $now->addMonth() ;
+//        $final = $now->addMonth() ;
 
 //        dd($months_prev);
-        dd($finance->get()->groupBy('really_to'));
+//        dd($finance->get()->groupBy('really_to'));
 
         return view("admin.hosting.servers",['servers' => $server->get()]);
     }
@@ -195,6 +195,15 @@ class HostingController extends Controller
         $server->where('id', $update->get('id'))->update($update->all());
 
         return response()->json();
+    }
+
+    public function deleteServer(Server $server){
+
+        $server->delete();
+
+        return response()->json();
+
+
     }
 
 

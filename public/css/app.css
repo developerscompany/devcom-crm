@@ -10878,22 +10878,35 @@ a.text-dark:focus {
 
 .servers-list .btn-edit {
   border-radius: 18px;
-  background-color: #1763ff;
+  background-color: #1763ffa6;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-  padding: 2px 13px;
+  padding: 2px 8px;
+  position: absolute;
+  top: 35px;
+  right: 55px;
+}
+
+.servers-list .btn-del {
+  border-radius: 18px;
+  background-color: #ee2a82;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 2px 8px;
   position: absolute;
   top: 35px;
   right: 20px;
 }
 
-.servers-list .btn-del {
+.servers-list .btn-new {
   display: inline-block;
   margin: auto;
   border-radius: 18px;
-  background-color: #ee2a82;
+  background-color: #1763ffa6;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
@@ -10929,7 +10942,7 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
           box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
   margin-top: 30px;
-  padding: 25px 15px;
+  padding: 35px 15px;
   border-radius: 15px;
   background-color: #ffffff;
   background-image: linear-gradient(60deg, #009a9c 0%, #49cde4 100%);
@@ -10955,6 +10968,14 @@ a.text-dark:focus {
 .servers-list .label-server .btn-green {
   font-size: 13px;
   font-weight: 400;
+}
+
+.servers-list .label-server #edit-server {
+  width: 16px;
+}
+
+.servers-list .label-server #del-server {
+  width: 16px;
 }
 
 .servers-list .grafic .grafic-block .month {
