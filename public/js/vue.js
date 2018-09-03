@@ -13323,7 +13323,7 @@ function updateLink (link, options, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
-module.exports = __webpack_require__(55);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
@@ -13352,6 +13352,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_admin_hosting_archive___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_admin_hosting_archive__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_admin_hosting_calendar__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_admin_hosting_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_admin_hosting_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_admin_hosting_servers__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_admin_hosting_servers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_admin_hosting_servers__);
+
 
 
 
@@ -13380,7 +13383,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     HostingCard: __WEBPACK_IMPORTED_MODULE_7__components_admin_hosting_card___default.a,
     HostingSale: __WEBPACK_IMPORTED_MODULE_8__components_admin_hosting_sale___default.a,
     HostingArchive: __WEBPACK_IMPORTED_MODULE_9__components_admin_hosting_archive___default.a,
-    HostingCalendar: __WEBPACK_IMPORTED_MODULE_10__components_admin_hosting_calendar___default.a
+    HostingCalendar: __WEBPACK_IMPORTED_MODULE_10__components_admin_hosting_calendar___default.a,
+    HostingServers: __WEBPACK_IMPORTED_MODULE_11__components_admin_hosting_servers___default.a
   }
 });
 
@@ -43586,6 +43590,667 @@ if (false) {
 
 /***/ }),
 /* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(56)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/hosting/servers.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-084c6018", Component.options)
+  } else {
+    hotAPI.reload("data-v-084c6018", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(57);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("8a3e270c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-084c6018\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./servers.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-084c6018\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./servers.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.error{\n    color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            statusForm: true,
+            data: {
+                name: '',
+                amount_month: '',
+                amount_year: ''
+            },
+            edit: {
+                name: '',
+                amount_month: '',
+                amount_year: '',
+                id: ''
+            },
+            errors: {},
+
+            monthsList: [{
+                name: "Січень",
+                number: 1
+            }, {
+                name: "Лютий",
+                number: 2
+            }, {
+                name: "Березень",
+                number: 3
+            }, {
+                name: "Квітень",
+                number: 4
+            }, {
+                name: "Травень",
+                number: 5
+            }, {
+                name: "Червень",
+                number: 6
+            }, {
+                name: "Липень",
+                number: 7
+            }, {
+                name: "Серпень",
+                number: 8
+            }, {
+                name: "Вересень",
+                number: 9
+            }, {
+                name: "Жовтень",
+                number: 10
+            }, {
+                name: "Листопад",
+                number: 11
+            }, {
+                name: "Грудень",
+                number: 12
+            }]
+
+        };
+    },
+
+    mounted: function mounted() {},
+    props: ['servers'],
+    methods: {
+        add: function add() {
+            var _this = this;
+
+            this.$http.post('/admin/hostings/server/add', this.data).then(function (res) {
+                location.href = '/admin/hostings/servers';
+            }, function (err) {
+                _this.errors = err.data.errors;
+            });
+        },
+        editForm: function editForm(server) {
+
+            this.edit = server;
+
+            this.statusForm = false;
+        },
+        returnAdd: function returnAdd() {
+            this.statusForm = true;
+        },
+        editServer: function editServer() {
+            var _this2 = this;
+
+            this.$http.post('/admin/hostings/server/edit', this.edit).then(function (res) {
+                location.href = '/admin/hostings/servers';
+            }, function (err) {
+                _this2.errors = err.data.errors;
+            });
+        },
+        delServer: function delServer(server) {
+            if (confirm("Видалити сервер " + server.name + " ?")) {
+
+                this.$http.post('/admin/hostings/server/del/' + server.id).then(function (res) {
+                    location.href = '/admin/hostings/servers';
+                }, function (err) {});
+            }
+        }
+    }
+
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "servers-list" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "block-name" }, [_vm._v("Сервери")]),
+      _vm._v(" "),
+      _vm.statusForm
+        ? _c(
+            "div",
+            {
+              staticClass: "row",
+              staticStyle: {
+                width: "100%",
+                "margin-right": "0",
+                "margin-left": "0"
+              }
+            },
+            [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.name,
+                      expression: "data.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Name" },
+                  domProps: { value: _vm.data.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.name
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.name[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.amount_month,
+                      expression: "data.amount_month"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", placeholder: "Amount month" },
+                  domProps: { value: _vm.data.amount_month },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "amount_month", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.amount_month
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.amount_month[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.amount_year,
+                      expression: "data.amount_year"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", placeholder: "Amount year" },
+                  domProps: { value: _vm.data.amount_year },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "amount_year", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.amount_year
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.amount_year[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-3",
+                  staticStyle: { "text-align": "center" }
+                },
+                [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-add", on: { click: _vm.add } },
+                    [_vm._v("Зберегти")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("br")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.statusForm
+        ? _c(
+            "div",
+            {
+              staticClass: "row",
+              staticStyle: {
+                width: "100%",
+                "margin-right": "0",
+                "margin-left": "0"
+              }
+            },
+            [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.edit.name,
+                      expression: "edit.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Name" },
+                  domProps: { value: _vm.edit.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.edit, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.name
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.name[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.edit.amount_month,
+                      expression: "edit.amount_month"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", placeholder: "Amount month" },
+                  domProps: { value: _vm.edit.amount_month },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.edit, "amount_month", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.amount_month
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.amount_month[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.edit.amount_year,
+                      expression: "edit.amount_year"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", placeholder: "Amount year" },
+                  domProps: { value: _vm.edit.amount_year },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.edit, "amount_year", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.amount_year
+                  ? _c("span", { staticClass: "error" }, [
+                      _vm._v(_vm._s(_vm.errors.amount_year[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-3",
+                  staticStyle: { "text-align": "center" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-add",
+                      on: { click: _vm.editServer }
+                    },
+                    [_vm._v("Зберегти")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-new",
+                      on: { click: _vm.returnAdd }
+                    },
+                    [_vm._v("Новий")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("br")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "row",
+          staticStyle: {
+            width: "100%",
+            "margin-right": "0",
+            "margin-left": "0",
+            "margin-bottom": "20px"
+          }
+        },
+        _vm._l(_vm.servers, function(server) {
+          return _c("div", { staticClass: "col-md-3 " }, [
+            _c("div", { staticClass: "label-server" }, [
+              _c("div", { staticClass: "server-name" }, [
+                _vm._v(_vm._s(server.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "server-amount" }, [
+                _vm._v(
+                  _vm._s(server.amount_month) +
+                    " / " +
+                    _vm._s(server.amount_year)
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-edit",
+                  on: {
+                    click: function($event) {
+                      _vm.editForm(server)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/icons/012-pencil.svg",
+                      alt: "",
+                      id: "edit-server"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-del",
+                  on: {
+                    click: function($event) {
+                      _vm.delServer(server)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/icons/112-garbage.svg",
+                      alt: "",
+                      id: "del-server"
+                    }
+                  })
+                ]
+              )
+            ])
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "block-name" }, [_vm._v("Статистика виплат")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row grafic" }, [
+        _c("div", { staticClass: "col-md-1 col-xs-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-11 col-xs-11" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.monthsList, function(month) {
+              return _c(
+                "div",
+                { staticClass: "col-lg-2 col-md-2 col-sm-2 grafic-block" },
+                [
+                  _c("div", { staticClass: "month" }, [
+                    _vm._v(_vm._s(month.name))
+                  ])
+                ]
+              )
+            })
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-084c6018", module.exports)
+  }
+}
+
+/***/ }),
+/* 60 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

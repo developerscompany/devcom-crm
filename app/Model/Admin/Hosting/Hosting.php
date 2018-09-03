@@ -58,4 +58,5 @@ class Hosting extends Model
         return $this->hasMany(HostingsFinance::class, 'hosting_id', 'id');
 
     }
+
 }

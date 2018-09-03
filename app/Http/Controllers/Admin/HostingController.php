@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\HostingsExport;
-use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage};
+use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage, ServerCreate};
 use App\Model\Admin\Hosting\Hosting;
 use App\Model\Admin\Hosting\HostingsComment;
 use App\Model\Admin\Hosting\HostingsCondition;
 use App\Model\Admin\Hosting\HostingsFinance;
+use App\Model\Admin\Hosting\Server;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -154,6 +155,57 @@ class HostingController extends Controller
 
         return view('admin.hosting.calendar')->with(['finances' => $finances]);
     }
+
+    // Servers
+
+
+
+
+
+    public function getServers(Server $server, HostingsFinance $finance){
+
+        $month = Carbon::now();
+        $now = Carbon::parse($month);
+
+        $last = $now->subMonth(5);
+
+//        dd($last);
+
+//        $now = Carbon::parse($month);
+//        $final = $now->addMonth() ;
+
+//        dd($months_prev);
+//        dd($finance->get()->groupBy('really_to'));
+
+        return view("admin.hosting.servers",['servers' => $server->get()]);
+    }
+
+
+
+
+    public function addServer(ServerCreate $create, Server $server){
+
+        $server->create($create->all());
+
+        return response()->json();
+    }
+
+    public function editServer(ServerCreate $update, Server $server){
+
+        $server->where('id', $update->get('id'))->update($update->all());
+
+        return response()->json();
+    }
+
+    public function deleteServer(Server $server){
+
+        $server->delete();
+
+        return response()->json();
+
+
+    }
+
 
 
 
@@ -344,4 +396,7 @@ class HostingController extends Controller
 
 
     }
+
+
+
 }

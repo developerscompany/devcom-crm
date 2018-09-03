@@ -28,6 +28,7 @@
                     <ul class="sub-menu">
                         <li><a href="{{ url('admin/hostings') }}">Список аккаунтів</a></li>
                         <li><a href="{{ url('admin/hostings/calendar') }}">Календар</a></li>
+                        <li><a href="{{ url('admin/hostings/servers') }}">Сервери</a></li>
                     </ul>
 
             </li>
