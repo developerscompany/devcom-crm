@@ -169,15 +169,23 @@ class HostingController extends Controller
 
         $last = $now->subMonth(5);
 
-//        dd($last);
+        $pays = $finance->get()->groupBy(function($date) {
+            return Carbon::parse($date->really_to)->format('Y-m');
+        })->map(function ($item, $key){
+            return $item->count();
+        });
+        $paids = $finance->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('Y-m');
+        })->map(function ($item, $key){
+            return $item->count();
+        });
 
-//        $now = Carbon::parse($month);
-//        $final = $now->addMonth() ;
-
-//        dd($months_prev);
-//        dd($finance->get()->groupBy('really_to'));
-
-        return view("admin.hosting.servers",['servers' => $server->get()]);
+        $amounts = $finance->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('Y-m');
+        })->map(function ($item, $key){
+            return $item->sum('amount');
+        });
+        return view("admin.hosting.servers",['servers' => $server->get(), 'pays' => $pays, 'paids' => $paids, 'amounts' => $amounts]);
     }
 
 
