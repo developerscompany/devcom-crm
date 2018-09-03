@@ -44111,6 +44111,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -44123,15 +44125,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         email: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"], email: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["email"] },
         select: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] }
     },
+    props: ['roles'],
     data: function data() {
         return {
 
-            // editedItem: {
             name: '',
             email: '',
             select: null,
-            // },
-            items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
+
+            newUser: {
+                name: '',
+                email: '',
+                select: ''
+            },
+
             dialog: false
         };
     },
@@ -44160,8 +44167,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        submit: function submit() {
+        submit: function submit(name, email, role) {
             this.$v.$touch();
+
+            this.newUser.name = this.name;
+            this.newUser.email = this.email;
+            this.newUser.select = this.select;
+
+            var data = this.newUser;
+            axios.post('/admin/invite', { data: data }).then();
+
             this.dialog = false;
         },
         clear: function clear() {
@@ -45881,7 +45896,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-select", {
                         attrs: {
-                          items: _vm.items,
+                          items: _vm.roles,
+                          "item-text": "name",
+                          "item-value": "name",
                           "error-messages": _vm.selectErrors,
                           label: "Item",
                           required: ""
@@ -45903,9 +45920,17 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-btn", { on: { click: _vm.submit } }, [
-                        _vm._v("Відправити")
-                      ]),
+                      _c(
+                        "v-btn",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.submit(_vm.name, _vm.email, _vm.select)
+                            }
+                          }
+                        },
+                        [_vm._v("Відправити")]
+                      ),
                       _vm._v(" "),
                       _c("v-btn", { on: { click: _vm.clear } }, [
                         _vm._v("Очистити")

@@ -9,6 +9,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('get-roles', 'UserController@getRoles');
 
     Route::post('edit-roles', 'UserController@editRole');
+    Route::post('invite', 'UserController@inviteUser');
 
     Route::get('/bids', 'BidsController@index');
 

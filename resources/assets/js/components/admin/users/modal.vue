@@ -33,7 +33,9 @@
                             ></v-text-field>
                             <v-select
                                     v-model="select"
-                                    :items="items"
+                                    :items="roles"
+                                    item-text="name"
+                                    item-value="name"
                                     :error-messages="selectErrors"
                                     label="Item"
                                     required
@@ -41,7 +43,7 @@
                                     @blur="$v.select.$touch()"
                             ></v-select>
 
-                            <v-btn @click="submit">Відправити</v-btn>
+                            <v-btn @click="submit(name, email, select)">Відправити</v-btn>
                             <v-btn @click="clear">Очистити</v-btn>
                         </form>
 
@@ -73,20 +75,20 @@
             email: { required, email },
             select: { required },
         },
+        props: ['roles'],
         data() {
             return {
 
-                // editedItem: {
+                name: '',
+                email: '',
+                select: null,
+
+                newUser: {
                     name: '',
                     email: '',
-                    select: null,
-                // },
-                items: [
-                    'Item 1',
-                    'Item 2',
-                    'Item 3',
-                    'Item 4'
-                ],
+                    select: '',
+                },
+
                 dialog: false,
             }
         },
@@ -114,8 +116,17 @@
             }
         },
         methods: {
-            submit () {
+            submit (name, email, role) {
                 this.$v.$touch();
+
+                this.newUser.name = this.name;
+                this.newUser.email = this.email;
+                this.newUser.select = this.select;
+
+                let data = this.newUser;
+                axios.post('/admin/invite', {data})
+                    .then();
+
                 this.dialog = false;
             },
             clear () {

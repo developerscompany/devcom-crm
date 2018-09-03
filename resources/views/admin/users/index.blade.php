@@ -4,7 +4,7 @@
     <div class="home-page page">
         <div id="app-vue" class="wrapper p-3">
 
-            <add-user></add-user>
+            <add-user :roles="{{json_encode($roles)}}"></add-user>
 
             <users :users="{{json_encode($users)}}" :roles="{{json_encode($roles)}}"></users>
 
