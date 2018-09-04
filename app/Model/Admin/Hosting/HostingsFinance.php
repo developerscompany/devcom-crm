@@ -14,12 +14,9 @@ class HostingsFinance extends Model
         'amount',
         'really_to',
         'hosting_id',
+        'created_at',
         ];
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
 
 
     // Relations
