@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+Route::get('/invite/{token}', 'Auth\RegisterController@verifyCust');
+Route::post('/savepassword/{id}', 'Auth\RegisterController@save');
 
 /*Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
 

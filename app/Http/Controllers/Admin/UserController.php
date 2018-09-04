@@ -70,7 +70,9 @@ class UserController extends Controller
             'email_token' => base64_encode(request('data')['email'])
         ]);
 
-        Mail::to(request('data')['email'])->send(new InvatetionEmail($user));
+        $mail = new InvatetionEmail($user);
+
+        Mail::to(request('data')['email'])->send($mail);
     }
 
 }

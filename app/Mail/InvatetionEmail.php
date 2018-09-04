@@ -33,3 +33,4 @@ class InvatetionEmail extends Mailable
         return $this->markdown('emails.invite');
     }
 }
+
