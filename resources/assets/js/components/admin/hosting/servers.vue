@@ -82,6 +82,11 @@
 
                 <canvas ref="chart"></canvas>
 
+            </div>
+            <br><br>
+            <div class="row">
+
+                <canvas ref="chResult"></canvas>
 
             </div>
         </div>
@@ -111,52 +116,18 @@
                 errors: {},
                 monthsList: [
                     {
-                        name: "Січень",
-                        number: 1,
-                    },
-                    {
-                        name: "Лютий",
-                        number: 2,
-                    },
-                    {
-                        name: "Березень",
-                        number: 3,
-                    },
-                    {
-                        name: "Квітень",
-                        number: 4,
-                    },
-                    {
-                        name: "Травень",
-                        number: 5,
-                    },
-                    {
-                        name: "Червень",
-                        number: 6,
-                    },
-                    {
-                        name: "Липень",
-                        number: 7,
-                    },
-                    {
-                        name: "Серпень",
-                        number: 8,
-                    },
-                    {
-                        name: "Вересень",
-                        number: 9,
-                    },
-                    {
-                        name: "Жовтень",
-                        number: 10,
-                    },
-                    {
-                        name: "Листопад",
-                        number: 11,
-                    },
-                    {
-                        name: "Грудень",
-                        number: 12,
+                        1: "Січень",
+                        2: "Лютий",
+                        3: "Березень",
+                        4: "Квітень",
+                        5: "Травень",
+                        6: "Червень",
+                        7: "Липень",
+                        8: "Серпень",
+                        9: "Вересень",
+                        10: "Жовтень",
+                        11: "Листопад",
+                        12: "Грудень",
                     },
 
                 ],
@@ -164,20 +135,40 @@
             }
         },
         mounted: function(){
-            // let data = this.retData(this.amounts)
-            let chart = this.$refs.chart;
-            let ctx = chart.getContext("2d");
+            let dataAmount = this.retData(this.amounts);
+            let labelsAmount = this.retLabels(this.amounts);
+
+            let chartAmount = this.$refs.chart;
+            let ctx = chartAmount.getContext("2d");
             let gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
             gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
             gradientFill.addColorStop(1, "rgba(24, 206, 15, 0.4)");
+
+            // Chart2 options
+
+            let chartNumber = this.$refs.chResult;
+            let ctx1 = chartNumber.getContext("2d");
+
+            let labelsNumber = this.retLabels(this.pay);
+            let dataPaid = this.getPaid(Object.values(this.pay))
+            let dataPay = this.getPay(Object.values(this.pay))
+
+            let gradientFill2 = ctx1.createLinearGradient(0, 170, 0, 50);
+            gradientFill2.addColorStop(0, "rgba(128, 182, 244, 0)");
+            gradientFill2.addColorStop(1, "rgba(249, 99, 59, 0.40)");
+
+            let gradientFill3 = ctx1.createLinearGradient(0, 170, 0, 50);
+            gradientFill3.addColorStop(0, "rgba(128, 182, 244, 0)");
+            gradientFill3.addColorStop(1, "rgba(249, 247, 97, 0.40)");
+
 
             let myChart = new Chart(ctx, {
                 type: 'line',
                 responsive: true,
                 data: {
-                    labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+                    labels: labelsAmount,
                     datasets: [{
-                        label: "Email Stats",
+                        label: "Сума",
                         borderColor: "#18ce0f",
                         pointBorderColor: "#FFF",
                         pointBackgroundColor: "#18ce0f",
@@ -188,7 +179,7 @@
                         fill: true,
                         backgroundColor: gradientFill,
                         borderWidth: 2,
-                        data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+                        data: dataAmount
                     }]
                 },
                 options: {
@@ -229,13 +220,90 @@
                         }]
                     },
                     layout:{
-                        padding:{left:0,right:0,top:15,bottom:15}
+                        padding:{left:0,right:25,top:15,bottom:15}
+                    }
+                }
+            });
+
+            let myChart2 = new Chart(ctx1, {
+                type: 'line',
+                responsive: true,
+                data: {
+                    labels: labelsNumber,
+                    datasets: [{
+                        label: "Оплатило",
+                        borderColor: "#f96332",
+                        pointBorderColor: "#FFF",
+                        pointBackgroundColor: "#f96332",
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 4,
+                        pointHoverBorderWidth: 1,
+                        pointRadius: 4,
+                        fill: true,
+                        backgroundColor: gradientFill2,
+                        borderWidth: 2,
+                        data: dataPaid
+                    },
+                        {
+                            label: "Очікується",
+                            borderColor: "#f9f761",
+                            pointBorderColor: "#FFF",
+                            pointBackgroundColor: "#f9f761",
+                            pointBorderWidth: 2,
+                            pointHoverRadius: 4,
+                            pointHoverBorderWidth: 1,
+                            pointRadius: 4,
+                            fill: true,
+                            backgroundColor: gradientFill3,
+                            borderWidth: 2,
+                            data: dataPay
+                        }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        bodySpacing: 4,
+                        mode:"nearest",
+                        intersect: 0,
+                        position:"nearest",
+                        xPadding:10,
+                        yPadding:10,
+                        caretPadding:10
+                    },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            gridLines:0,
+                            gridLines: {
+                                zeroLineColor: "transparent",
+                                drawBorder: false
+                            }
+                        }],
+                        xAxes: [{
+                            display:0,
+                            gridLines:0,
+                            ticks: {
+                                display: false
+                            },
+                            gridLines: {
+                                zeroLineColor: "transparent",
+                                drawTicks: false,
+                                display: false,
+                                drawBorder: false
+                            }
+                        }]
+                    },
+                    layout:{
+                        padding:{left:0,right:25,top:15,bottom:15}
                     }
                 }
             });
 
         },
-        props: ['servers', 'pays', 'paids', 'amounts'],
+        props: ['servers', 'pay',  'amounts'],
         methods: {
             add(){
                 this.$http.post('/admin/hostings/server/add', this.data).then(res => {
@@ -276,12 +344,38 @@
             },
 
             retData(finances){
-                this.amounts.forEach(
-                    function (finance) {
-                        console.log(finance)
+                return Object.values(finances)
+            },
 
-                    }
-                )
+            retLabels(finances){
+                let keys = Object.keys(finances)
+
+                for(let i = 0; i< keys.length; i++){
+                    let key = keys[i].split('-')
+                    keys[i] = this.monthsList[0][parseInt(key[1])]+" "+key[0]
+
+                }
+
+                return keys
+
+            },
+
+            getPaid(finances){
+                let result = []
+                for(let i = 0; i< finances.length; i++){
+                    result.push(finances[i]['paid'])
+                }
+                return result
+
+            },
+
+            getPay(finances){
+                let result = []
+                for(let i = 0; i< finances.length; i++){
+                    result.push(finances[i]['pay'])
+                }
+                return result
+
             },
 
 

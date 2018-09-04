@@ -168,24 +168,38 @@ class HostingController extends Controller
         $now = Carbon::parse($month);
 
         $last = $now->subMonth(5);
-
-        $pays = $finance->get()->groupBy(function($date) {
+        // TODO: server chart - years
+        $pays = $finance->whereYear('really_to', '=', [2018,2019])->get()->groupBy(function($date) {
             return Carbon::parse($date->really_to)->format('Y-m');
         })->map(function ($item, $key){
             return $item->count();
-        });
-        $paids = $finance->get()->groupBy(function($date) {
+        })->toArray();
+        $paids = $finance->whereYear('created_at', '=', [2018,2019])->get()->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('Y-m');
         })->map(function ($item, $key){
-            return $item->count();
-        });
+            return $item->count() ;
+        })->toArray();
 
         $amounts = $finance->get()->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('Y-m');
         })->map(function ($item, $key){
             return $item->sum('amount');
         });
-        return view("admin.hosting.servers",['servers' => $server->get(), 'pays' => $pays, 'paids' => $paids, 'amounts' => $amounts]);
+        $result = [];
+        foreach ($paids as $key1=>$paid){
+            foreach ($pays as $key2=>$pay){
+                if(empty($result[$key2])){
+                    $result[$key2]['pay'] = $pay;
+                    $result[$key2]['paid'] = 0;
+                }
+            }
+            $result[$key1]['paid'] = $paid;
+            if(empty($result[$key1]['pay'])){
+                $result[$key1]['pay'] = 0;
+            }
+        }
+        ksort($result);
+        return view("admin.hosting.servers",['servers' => $server->get(), 'pay' => $result,  'amounts' => $amounts]);
     }
 
 
