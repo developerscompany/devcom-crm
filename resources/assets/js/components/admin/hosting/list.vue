@@ -14,10 +14,10 @@
                         Показати:
                     </div>
                     <div class="showing-number">
-                        <div :class="[{active: itemsPerPage === 3}, 'number-column']" @click="itemsPerPage = 3">3</div>
                         <div :class="[{active: itemsPerPage === 5}, 'number-column']" @click="itemsPerPage = 5">5</div>
-                        <div :class="[{active: itemsPerPage === 8}, 'number-column']" @click="itemsPerPage = 8">8</div>
                         <div :class="[{active: itemsPerPage === 10}, 'number-column']" @click="itemsPerPage = 10">10</div>
+                        <div :class="[{active: itemsPerPage === 20}, 'number-column']" @click="itemsPerPage = 20">20</div>
+                        <div :class="[{active: itemsPerPage === 50}, 'number-column']" @click="itemsPerPage = 50">50</div>
                     </div>
 
                 </div>
@@ -125,17 +125,18 @@
                 </div>
             </div>
             <div class="row table-head">
-                <div class="col-md-3 col-sm-12">ПІБ</div>
+                <div class="col-md-2 col-sm-12">ПІБ</div>
                 <div class="col-md-2 col-sm-12">Домен</div>
                 <div class="col-md-2 col-sm-12">Телефон</div>
-                <div class="col-md-3 col-sm-12">Послуги</div>
+                <div class="col-md-2 col-sm-12">Послуги</div>
                 <div class="col-md-2 col-sm-12">Сума (місяць/рік)</div>
+                <div class="col-md-2 col-sm-12">Дійсний до</div>
             </div>
             <div :class="[{greyLine: index % 2 == 0 } ,'row' ,'table-content']" v-for="(list, index) in paginate">
-                <div class="col-md-3 col-sm-12"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
-                <div class="col-md-2 col-sm-12">{{list.site}}</div>
-                <div class="col-md-2 col-sm-12">{{list.phone}}</div>
-                <div class="col-md-3 col-sm-12 mark-all"><div v-for="condition in list.conditions" >
+                <div class="col-md-2 col-sm-12 list-column"><a :href="'hostings/account/'+ list.id">{{list.last_name}} {{list.name}} {{list.second_name}}</a></div>
+                <div class="col-md-2 col-sm-12 list-column">{{list.site}}</div>
+                <div class="col-md-2 col-sm-12 list-column">{{list.phone}}</div>
+                <div class="col-md-2 col-sm-12 mark-all"><div v-for="condition in list.conditions" >
                     <div v-if="condition.condition == 'hosting'" class="mark-primary">Хостинг</div>
                     <div v-else-if="condition.condition == 'cert'" class="mark-orange">Сертифікат</div>
                     <div v-else-if="condition.condition == 'support'" class="mark-red">Підтримка</div>
@@ -143,7 +144,8 @@
                     <div v-else></div>
                 </div>
                 </div>
-                <div class="col-md-2 col-sm-12" style="padding-left: 35px">{{list.amount_all}}/{{list.amount_all_year}}</div>
+                <div class="col-md-2 col-sm-12 list-column" >{{list.amount_all}}/{{list.amount_all_year}}</div>
+                <div class="col-md-2 col-sm-12 list-column" >{{editShortDate(list.really_to)}}</div>
             </div>
             <div class="row">
                 <!-- number item on page -->
@@ -152,10 +154,10 @@
                         Показати:
                     </div>
                     <div class="showing-number">
-                        <div :class="[{active: itemsPerPage === 3}, 'number-column']" @click="itemsPerPage = 3">3</div>
                         <div :class="[{active: itemsPerPage === 5}, 'number-column']" @click="itemsPerPage = 5">5</div>
-                        <div :class="[{active: itemsPerPage === 8}, 'number-column']" @click="itemsPerPage = 8">8</div>
                         <div :class="[{active: itemsPerPage === 10}, 'number-column']" @click="itemsPerPage = 10">10</div>
+                        <div :class="[{active: itemsPerPage === 20}, 'number-column']" @click="itemsPerPage = 20">20</div>
+                        <div :class="[{active: itemsPerPage === 50}, 'number-column']" @click="itemsPerPage = 50">50</div>
                     </div>
 
                 </div>
@@ -304,7 +306,18 @@
             },
             openAdd(){
                 return location.href = "/admin/hostings/add";
-            }
+            },
+            editShortDate(date){
+                if (date) {
+                    let dateT = date.split(' ')['0']
+                    let dateTemp = dateT.split('-')
+                    date = dateTemp['2'] + '.' + dateTemp['1'] + '.' + dateTemp['0']
+                    return date
+                }
+                else {
+                    return date
+                }
+            },
         },
 
     };

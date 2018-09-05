@@ -10519,6 +10519,12 @@ a.text-dark:focus {
   font-family: "Open Sans", sans-serif;
 }
 
+.hosting-list .container-fluid .table-content .list-column {
+  padding-left: 35px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
 .hosting-list .container-fluid .table-content .col-md-3 {
   padding-left: 30px;
   padding-bottom: 6px;
@@ -10526,6 +10532,9 @@ a.text-dark:focus {
 }
 
 .hosting-list .container-fluid .table-content .mark-all {
+  padding-left: 30px;
+  padding-bottom: 6px;
+  padding-top: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

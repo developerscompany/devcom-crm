@@ -72,13 +72,21 @@ $green-color: #0ec99b;
         font-weight: 400;
         font-family: "Open Sans", sans-serif;
       }
-
+      .list-column{
+        padding-left: 35px;
+        padding-bottom: 6px;
+        padding-top: 6px;
+      }
       .col-md-3{
         padding-left: 30px;
         padding-bottom: 6px;
         padding-top: 6px;
       }
       .mark-all{
+        padding-left: 30px;
+
+        padding-bottom: 6px;
+        padding-top: 6px;
         display: flex;
         position: relative;
         flex-wrap: wrap;
