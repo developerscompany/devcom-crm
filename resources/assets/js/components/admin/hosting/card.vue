@@ -1,8 +1,15 @@
 <template>
-    <div class="hosting-card">
+    <div class="hosting-card" >
 
         <div class="container-fluid">
             <div class="row">
+                <div id="modal-sale" v-show="showSale">
+
+                    <div class="x-block" @click="showSale = false">X</div>
+
+                    <hosting-sale :hosting="hosting"></hosting-sale>
+
+                </div>
                 <div class=" col-sm-12 col-md-5 col-lg-4 acc-data">
 
                     <p class="label">Особиста інформація:</p>
@@ -94,7 +101,7 @@
 
                     <br>
                     <button class="btn-edit" @click="openEdit">Змінити</button>
-                    <button class="btn-edit" @click="openSale">Оплатити</button>
+                    <button class="btn-edit" @click="showSale = !showSale">Оплатити</button>
                     <button class="btn-edit" @click="openArchive">Архів</button>
 
 
@@ -145,6 +152,8 @@
 </template>
 
 <script>
+
+    import HostingSale from './sale'
     export default {
 
         data() {
@@ -156,9 +165,13 @@
                 },
                 errors: {},
                 storeStatus: false,
+                showSale: false,
             }
         },
         props: ['hosting'],
+        components: {
+            HostingSale,
+        },
         mounted() {
             this.scrollToEnd();
         },

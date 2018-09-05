@@ -247,7 +247,35 @@ $green-color: #0ec99b;
     padding: 20px 10px;
     border-radius: 8px;
   }
+  #modal-sale{
+    position: absolute;
+    width: 60%;
+    height: 40vh;
+    top: 100px;
+    left: 32%;
+    z-index: 2;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+    margin: 24px;
+    pointer-events: auto;
+    transition: .3s cubic-bezier(.25,.8,.25,1);
 
+    .x-block{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      width: 25px;
+      color: red;
+      text-align: center;
+      height: 25px;
+      padding: 2px;
+      border: 1px solid red;
+      border-radius: 18px;
+      z-index: 3;
+    }
+  }
   .acc-data{
     &{
 

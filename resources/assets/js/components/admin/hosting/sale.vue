@@ -56,6 +56,8 @@
 
 <script>
     import Datepicker from "vuejs-datepicker"
+
+
     export default {
 
         data() {
@@ -136,7 +138,6 @@
 
                 }
             },
-
             change(){
                 if(this.condition){
                     if(this.condition.finance){
