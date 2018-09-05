@@ -114,7 +114,7 @@ class RegisterController extends Controller
     public function verifyCust($token)
     {
         $user = User::where('email_token', $token)->first();
-        $user->verified = 1;
+//        $user->verified = 1;
 
         if($user->save()){
             return view('savepassword', ['user' => $user]);
@@ -127,7 +127,8 @@ class RegisterController extends Controller
         $user = User::find($id);
 
         $user->update([
-            'password' => bcrypt($request['password'])
+            'password' => bcrypt($request['password']),
+            'verified' => 1,
         ]);
 
         return redirect()->home();
