@@ -10519,6 +10519,12 @@ a.text-dark:focus {
   font-family: "Open Sans", sans-serif;
 }
 
+.hosting-list .container-fluid .table-content .list-column {
+  padding-left: 35px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
 .hosting-list .container-fluid .table-content .col-md-3 {
   padding-left: 30px;
   padding-bottom: 6px;
@@ -10526,6 +10532,9 @@ a.text-dark:focus {
 }
 
 .hosting-list .container-fluid .table-content .mark-all {
+  padding-left: 30px;
+  padding-bottom: 6px;
+  padding-top: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10664,6 +10673,38 @@ a.text-dark:focus {
   background-color: white;
   padding: 20px 10px;
   border-radius: 8px;
+}
+
+.hosting-card #modal-sale {
+  position: absolute;
+  width: 60%;
+  height: 40vh;
+  top: 100px;
+  left: 32%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  margin: 24px;
+  pointer-events: auto;
+  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hosting-card #modal-sale .x-block {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 25px;
+  color: red;
+  text-align: center;
+  height: 25px;
+  padding: 2px;
+  border: 1px solid red;
+  border-radius: 18px;
+  z-index: 3;
 }
 
 .hosting-card .acc-data {

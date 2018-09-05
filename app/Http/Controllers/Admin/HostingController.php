@@ -20,7 +20,26 @@ class HostingController extends Controller
 {
     public function index(){
 
-        $lists = Hosting::orderBy("updated_at","desc")->with('conditions')->get();
+        /*$lists = Hosting::orderBy("updated_at","desc")->with('conditions')->with(['finances' => function($query) {
+            return $query->where('condition', 'hosting' )->orderBy("really_to", "desc")->first();
+        }])->get();*/
+//        $lists = Hosting::with('conditions')->join('hostings_finances', 'hostings.id', '=', 'hostings_finances.hosting_id')->get();
+        /*$lists = Hosting::rightJoin('hostings_finances', 'hostings_finances.hosting_id','=','hostings.id')
+            ->orderBy('really_to','desc')
+            ->get()->groupBy('hosting_id');*/
+
+        $lists = Hosting::with('conditions','finances')->get();
+
+        foreach ($lists as $list){
+
+            $really_to = $list->finances()->where('condition', '=' ,'hosting')->orderBy('really_to', 'desc')->first();
+
+            if(!empty($really_to->really_to)){
+                $list->really_to = $really_to->really_to;
+            }
+        }
+
+        $lists = $lists->sortBy("really_to")->values()->all();
 
         return view('admin.hosting.list')->with(['lists' => $lists]);
 
