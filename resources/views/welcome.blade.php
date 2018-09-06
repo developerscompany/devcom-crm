@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
     <div class="user">
@@ -285,7 +285,7 @@
                 sstatus: [],
                 stech: [],
 
-                number: 5,
+                number: 15,
                 pageNumber: 0,
 
                 active: false,
@@ -297,16 +297,16 @@
 
             mounted() {
 
-                axios.get('/sale/lines')
+                axios.get('/user/lines')
                     .then(response => this.lines = response.data);
 
-                axios.get('/sale/agents')
+                axios.get('/user/agents')
                     .then(response => this.agents = response.data);
 
-                axios.get('/sale/sources')
+                axios.get('/user/sources')
                     .then(response => this.sources = response.data);
 
-                axios.get('/sale/statuss')
+                axios.get('/user/statuss')
                     .then(response => this.statuss = response.data);
 
 
@@ -316,7 +316,7 @@
                     let data = $(this).serialize();
                     $('#line-form')[0].reset();
 
-                    axios.post('/sale/add-google-line', data)
+                    axios.post('/user/add-google-line', data)
                         .then(response => {
                             app.newLine = response.data;
                             app.lines.unshift(app.newLine)
@@ -420,7 +420,7 @@
 
                     if (this.editedIndex > -1) {
 
-                        axios.post('/sale/edit-google-line', {data, index})
+                        axios.post('/user/edit-google-line', {data, index})
                             .then(
                                 this.paginatedData[this.editedIndex].status = data[10]
                             );

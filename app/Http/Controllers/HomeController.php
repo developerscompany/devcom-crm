@@ -27,8 +27,8 @@ class HomeController extends Controller
         if (auth()->user()->role == 'admin')
         {
             return redirect('/admin');
-        } elseif (auth()->user()->role == 'sale') {
-            return redirect('/sale');
+        } elseif (auth()->user()->role != 'admin') {
+            return redirect('/user');
         }
 //        else {
 //            return redirect('/');

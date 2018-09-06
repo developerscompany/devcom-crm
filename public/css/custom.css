@@ -67,6 +67,9 @@ input::placeholder {
     /*color: #a1a1a1;*/
     /*font-weight: lighter;*/
 }
+input:focus::placeholder {
+    color: transparent
+}
 .user .btn {
     font-size: 13px;
     padding: 0.02rem 0.3rem;
