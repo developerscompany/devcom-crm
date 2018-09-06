@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sale;
+namespace App\Http\Controllers\User;
 
 use App\Bid;
 use App\Source;
@@ -99,7 +99,6 @@ class HomeController extends Controller
         $bid->update([
             'status' => request('data')['10']
         ]);
-
 
     }
 }

@@ -32,7 +32,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
-                @include('layouts.menu')
+                @include('user.layouts.menu')
             </div>
         </nav>
 
