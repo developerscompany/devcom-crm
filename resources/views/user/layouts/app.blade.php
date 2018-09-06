@@ -26,19 +26,32 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
 
-                @include('user.layouts.menu')
+        @include('user.layouts.header')
+
+        <div class="page-container">
+
+            <!-- Page content -->
+            <div class="page-content">
+
+                @if(auth()->check())
+                    @include('user.layouts.menu')
+                @endif
+
+                <div class="content-wrapper">
+
+                    <!-- Content area -->
+                    <div class="content">
+
+{{--                        @include('user.layouts.status')--}}
+
+                        @yield('content')
+
+                    </div>
+                </div>
+
             </div>
-        </nav>
-
-        <main class="p-4">
-            @yield('content')
-        </main>
+        </div>
     </div>
 
 
