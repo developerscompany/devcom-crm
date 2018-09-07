@@ -5,6 +5,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('/', 'HomeController@index');
 
     Route::get('/users', 'UserController@index');
+    Route::get('/user/{user}', 'UserController@show');
     Route::get('get-users', 'UserController@getUsers');
     Route::get('get-roles', 'UserController@getRoles');
 
@@ -53,7 +54,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
             Route::post('/export', 'HostingController@export');
 
 
+            // WS api
 
+            Route::get('/api', 'HostingController@api');
 
         }
     );
