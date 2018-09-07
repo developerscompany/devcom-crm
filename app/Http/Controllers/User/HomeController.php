@@ -40,13 +40,14 @@ class HomeController extends Controller
             return redirect('/admin/bids');
         }
 
-        $array = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+
 
         $sourses = Source::all();
         $statuses = Status::all();
         $timings = Timing::all();
 
-        return view('welcome', compact('array', 'sourses', 'statuses', 'timings'));
+        return view('user.welcome', compact('lines', 'sourses', 'statuses', 'timings'));
     }
 
     public function show()
