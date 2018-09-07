@@ -57,13 +57,14 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
+    {{--<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>--}}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="//unpkg.com/element-ui@2.4.5/lib/index.js"></script>
+    {{--<script src="//unpkg.com/element-ui@2.4.5/lib/index.js"></script>--}}
+    <script src="{{ asset('js/vue.js') }}"></script>
     @yield('script')
 </body>
 </html>
