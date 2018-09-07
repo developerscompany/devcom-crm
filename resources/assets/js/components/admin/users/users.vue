@@ -41,7 +41,7 @@
                     hide-actions
                     class="elevation-1">
                 <template slot="items" slot-scope="props">
-                    <td>{{ props.item.name }}</td>
+                    <td><a :href="'/admin/user/'+props.item.id">{{ props.item.name }}</a></td>
                     <td>{{ props.item.email }}</td>
                     <td>{{ props.item.role }}</td>
                     <td class="justify-center layout px-0">

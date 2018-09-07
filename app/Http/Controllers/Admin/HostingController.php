@@ -438,6 +438,36 @@ class HostingController extends Controller
 
     }
 
+    public function api(){
+        $action = "get_users";
+        $page = "/project/226389/";
+        $code = "ce8cbc2b6ec6b3f3e8640d31e61bfaad";
+        $hash = md5 ($action.$code);
 
+
+        $ch = curl_init('https://devcom.worksection.com/api/admin/?action='.$action.'&hash='.$hash);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+        ));
+
+        $list_project = json_decode(curl_exec($ch));
+        dd($list_project);
+
+        $action1 = "get_users";
+        $hash1 = md5($action1.$code);
+
+
+        $ch = curl_init('https://devcom.worksection.com/api/admin/?action='.$action1.'&show_subtasks=1&hash='.$hash1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+        ));
+
+        dd(json_decode(curl_exec($ch)));
+
+    }
 
 }
