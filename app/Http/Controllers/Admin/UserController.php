@@ -85,7 +85,7 @@ class UserController extends Controller
         $hash = md5($action . $code);
 
 
-        $ch = curl_init('https://devcom.worksection.com/api/admin/?action=' . $action . '&hash=' . $hash.'&show_subtasks=1');
+        $ch = curl_init('https://devcom.worksection.com/api/admin/?action=' . $action . '&hash=' . $hash . '&show_subtasks=1');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         $projects = json_decode(curl_exec($ch), true)['data'];
 
-        foreach ($projects as $key=>$project){
+        foreach ($projects as $key => $project) {
 
             $actionTemp = "get_tasks";
             $pageTemp = $project['page'];
@@ -103,7 +103,7 @@ class UserController extends Controller
             $codeTemp = "ce8cbc2b6ec6b3f3e8640d31e61bfaad";
             $hashTemp = md5($pageTemp . $actionTemp . $codeTemp);
 
-            $ch = curl_init('https://devcom.worksection.com/api/admin/?action=' . $actionTemp . '&page='.$pageTemp.'&hash=' . $hashTemp.'&show_subtasks=1');
+            $ch = curl_init('https://devcom.worksection.com/api/admin/?action=' . $actionTemp . '&page=' . $pageTemp . '&hash=' . $hashTemp . '&show_subtasks=1');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -112,35 +112,109 @@ class UserController extends Controller
 
             $projects[$key]['tasks'] = json_decode(curl_exec($ch), true)['data'];
 
-//            $project[$key]['task'] = json_decode(curl_exec($ch), true)['data'];
 
         }
 
-        dd($projects);
+        $users_projects = [];
+        $childs = [];
+        $tasks = [];
 
-        /*$users_project = array_values(array_filter(array_map(
+        foreach ($projects as $key=>$users_project){
+
+            foreach ($users_project['tasks'] as $key1=>$task){
+
+
+                if(!empty($task['child'])){
+
+                    foreach ($task['child'] as $key2=>$child){
+                        if ($child['user_to']['email'] == $user['email'] or $child['user_from']['email'] == $user['email']) {
+
+                            $childs[$key2] = $child;
+
+
+                        }
+
+
+                    }
+
+                    if(!empty($childs)){
+                        $task['child'] = $childs;
+                        array_push($tasks, $task);
+
+                    }
+                    else{
+                        $task['child'] = null;
+
+                    }
+                    $childs = [];
+
+//                    dd($childs);
+                }
+
+
+                if($task['user_to']['email'] == $user['email'] or $task['user_from']['email'] == $user['email']){
+                    array_push($tasks, $task);
+                }
+
+
+
+
+
+            }
+
+//            dd($tasks);
+
+            if(!empty($tasks)){
+                $users_project['tasks'] = $tasks;
+                array_push($users_projects, $users_project);
+            }
+            $tasks = [];
+        }
+
+        /*$users_projects = array_values(array_filter(array_map(
             function ($project) use ($user) {
-                if(!empty($project['child'])){
-                    $childs = $project['child'];
-                    $childs_task =  array_values(array_filter(array_map(
-                        function ($child) use($user) {
-                            if($child['user_to']['email'] == $user['email'] or $child['user_from']['email'] == $user['email']){
-                                return $child;
+                if (!empty($project['tasks'])) {
+                    $tasks = $project['tasks'];
+                    $users_tasks = array_values(array_filter(array_map(
+                        function ($task) use ($user) {
+                            if ($task['user_to']['email'] == $user['email'] or $task['user_from']['email'] == $user['email']) {
+                                return $task;
+                            } else {
+                                if(!empty($task['child'])){
+
+                                    $childs = $task['child'];
+                                    $users_childs = array_values(array_filter(array_map(
+                                            function ($child) use ($user) {
+                                                if ($child['user_to']['email'] == $user['email'] or $child['user_from']['email'] == $user['email']) {
+                                                    return $child;
+                                                }
+                                                else return null;
+
+                                            }, $childs)
+
+                                        , function ($item) {
+                                            return !empty($item);
+                                        }));
+                                    return !empty($users_childs)? $task : null;
+
+                                }
+
+                                else return false;
+
+
                             }
                         },
-                        $childs),
+                        $tasks),
                         function ($item) {
                             return !empty($item);
                         }
                     ));
 
-                    return $childs_task;
-                }
-                else {
-                    if($project['user_to']['email'] == $user['email'] or $project['user_from']['email'] == $user['email']){
+                    return !empty($users_tasks)? $project : null;
+                } else {
+                    if ($project['user_to']['email'] == $user['email'] or $project['user_from']['email'] == $user['email']) {
                         return $project;
-                    }
-                    else{
+                    } else {
                         return null;
                     }
                 }
@@ -152,6 +226,7 @@ class UserController extends Controller
             }));*/
 
 
+        return view('admin.users.card', compact('users_projects'));
 
     }
 
