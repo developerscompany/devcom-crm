@@ -45,7 +45,7 @@
                         <li class="col-md-1">
                             <select name="status" id="status" class="form-control" required>
                                 <option value="">Status...</option>
-                                <option v-for="source in sources"> {{ source.title }}</option>
+                                <option v-for="status in statuss"> {{ status.title }}</option>
                             </select>
                         </li>
 
@@ -287,19 +287,6 @@
 
         mounted() {
 
-            // axios.get('/user/lines')
-            //     .then(response => this.lines = response.data);
-            //
-            // axios.get('/user/agents')
-            //     .then(response => this.agents = response.data);
-            //
-            // axios.get('/user/sources')
-            //     .then(response => this.sources = response.data);
-            //
-            // axios.get('/user/statuss')
-            //     .then(response => this.statuss = response.data);
-
-
             $('#line-form').submit(function (event) {
                 event.preventDefault();
 
@@ -308,8 +295,7 @@
 
                 axios.post('/user/add-google-line', data)
                     .then(response => {
-                        this.newLine = response.data;
-                        this.lines.unshift(this.newLine)
+                        this.lines.unshift(response.data);
                     });
             });
 
@@ -339,7 +325,7 @@
                 return Math.floor(l/s);
             },
             paginatedData(){
-                let self = this;
+                var self = this;
 
                 const start = self.pageNumber * self.number,
                     end = start + self.number;
@@ -438,5 +424,65 @@
 </script>
 
 <style>
-
+    #line-form ul {
+        justify-content: center;
+    }
+    select.form-control {
+        height: 22px !important;
+    }
+    .col-md-1 {
+        margin: 0;
+        text-align: center;
+        position: relative;
+    }
+    .col-md-1:after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 1px;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: #e5e5e5;
+    }
+    .col-md-1:last-child:after {
+        display: none;
+    }
+    .form-control {
+        border-color: #e5e5e5;
+        padding: 0.02rem 0.1rem;
+        height: auto !important;
+        font-size: 13px;
+        text-align: center;
+        border: none;
+        color: #000000;
+        font-weight: bold;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+    .form-control:focus {
+        box-shadow: none;
+    }
+    .btn {
+        font-size: 13px;
+        padding: 0.02rem 0.3rem;
+    }
+    .content {
+        padding: 0;
+    }
+    tbody {
+        border-top: 1px solid #f4f5f5;
+        border-bottom: 1px solid #f4f5f5;
+    }
+    td {
+        border: none;
+    }
+    td.filter-cell select.form-control,
+    td.filter-cell input.form-control {
+        padding: 0.02rem 0.3rem;
+        border: 1px solid #a1a1a1;
+        font-size: 13px;
+        height: auto !important;
+        text-align: left;
+    }
 </style>
