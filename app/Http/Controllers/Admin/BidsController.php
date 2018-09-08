@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Bid;
 use App\Source;
 use App\Status;
+use App\Timing;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,18 @@ class BidsController extends Controller
 {
     public function index()
     {
-        $rows = array_reverse(Bid::all()->toArray());
+        $sourses = Source::all();
+        $statuses = Status::all();
+        $timings = Timing::all();
+        $agents = User::where('role','!=','admin')->get();
 
-        return view('admin.index', compact('rows'));
+        $lines = array_reverse(Bid::all()->toArray());
+
+        return view('admin.index', compact('lines',
+            'sourses',
+            'statuses',
+            'timings',
+            'agents'));
     }
 
     public function show()
