@@ -125566,7 +125566,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 13px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -125824,8 +125824,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 
-__WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en__["en"].locale(ELEMENT.lang.en);
-
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     props: ['lines', 'sources', 'statuss', 'timing'],
@@ -125871,19 +125869,6 @@ __WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en__["en"].locale(ELEMENT.
     },
     mounted: function mounted() {
 
-        // axios.get('/user/lines')
-        //     .then(response => this.lines = response.data);
-        //
-        // axios.get('/user/agents')
-        //     .then(response => this.agents = response.data);
-        //
-        // axios.get('/user/sources')
-        //     .then(response => this.sources = response.data);
-        //
-        // axios.get('/user/statuss')
-        //     .then(response => this.statuss = response.data);
-
-
         $('#line-form').submit(function (event) {
             var _this = this;
 
@@ -125893,8 +125878,7 @@ __WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en__["en"].locale(ELEMENT.
             $('#line-form')[0].reset();
 
             axios.post('/user/add-google-line', data).then(function (response) {
-                _this.newLine = response.data;
-                _this.lines.unshift(_this.newLine);
+                _this.lines.unshift(response.data);
             });
         });
     },
@@ -126225,8 +126209,8 @@ var render = function() {
                 [
                   _c("option", { attrs: { value: "" } }, [_vm._v("Status...")]),
                   _vm._v(" "),
-                  _vm._l(_vm.sources, function(source) {
-                    return _c("option", [_vm._v(" " + _vm._s(source.title))])
+                  _vm._l(_vm.statuss, function(status) {
+                    return _c("option", [_vm._v(" " + _vm._s(status.title))])
                   })
                 ],
                 2

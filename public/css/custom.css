@@ -5,6 +5,11 @@
 a {
     cursor: pointer;
 }
+header .dropdown-menu.show {
+    position: absolute;
+    right: 0;
+    left: inherit;
+}
 label.required {
     position: relative;
 }
@@ -17,12 +22,6 @@ label.required:after {
     font-size: 10px;
     color: red;
 }
-.user #line-form ul {
-    justify-content: center;
-}
-.user select.form-control {
-    height: 22px !important;
-}
 select {
     background: url('/img/drop.svg') no-repeat right center / auto 10px;
 }
@@ -30,59 +29,12 @@ table select {
     background-position: 95% 50%;
     background-size: auto 7px;
 }
-.user .col-md-1 {
-    margin: 0;
-    text-align: center;
-    position: relative;
-}
-.user .col-md-1:after {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 1px;
-    top: 0;
-    height: 100%;
-    width: 1px;
-    background: #e5e5e5;
-}
-.user .col-md-1:last-child:after {
-    display: none;
-}
-.user .form-control {
-    border-color: #e5e5e5;
-    padding: 0.02rem 0.1rem;
-    height: auto !important;
-    font-size: 13px;
-    text-align: center;
-    border: none;
-    color: #000000;
-    font-weight: bold;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-.user .form-control:focus {
-    box-shadow: none;
-}
 input::placeholder {
     /*color: #a1a1a1;*/
     /*font-weight: lighter;*/
 }
 input:focus::placeholder {
     color: transparent
-}
-.user .btn {
-    font-size: 13px;
-    padding: 0.02rem 0.3rem;
-}
-.user .content {
-    padding: 0;
-}
-.user tbody {
-    border-top: 1px solid #f4f5f5;
-    border-bottom: 1px solid #f4f5f5;
-}
-.user td {
-    border: none;
 }
 .budget-td {
     min-width: 95px;
@@ -107,21 +59,6 @@ input:focus::placeholder {
 .pager-view {
     padding: 0.75rem;
 }
-.user td.filter-cell select.form-control,
-.user td.filter-cell input.form-control {
-    padding: 0.02rem 0.3rem;
-    border: 1px solid #a1a1a1;
-    font-size: 13px;
-    height: auto !important;
-    text-align: left;
-}
-    /*.user td.filter-cell select,*/
-/*.user td.filter-cell input {*/
-    /*padding: 0.02rem 0.3rem;*/
-    /*border: 1px solid #a1a1a1;*/
-    /*font-size: 13px;*/
-    /*height: auto !important;*/
-/*}*/
 
 
 .filter-cell.date .layout {
