@@ -119,14 +119,14 @@ class UserController extends Controller
         $childs = [];
         $tasks = [];
 
-        foreach ($projects as $key=>$users_project){
+        foreach ($projects as $key => $users_project) {
 
-            foreach ($users_project['tasks'] as $key1=>$task){
+            foreach ($users_project['tasks'] as $key1 => $task) {
 
 
-                if(!empty($task['child'])){
+                if (!empty($task['child'])) {
 
-                    foreach ($task['child'] as $key2=>$child){
+                    foreach ($task['child'] as $key2 => $child) {
                         if ($child['user_to']['email'] == $user['email'] or $child['user_from']['email'] == $user['email']) {
 
                             $childs[$key2] = $child;
@@ -137,34 +137,30 @@ class UserController extends Controller
 
                     }
 
-                    if(!empty($childs)){
+                    if (!empty($childs)) {
                         $task['child'] = $childs;
                         array_push($tasks, $task);
 
-                    }
-                    else{
-                        $task['child'] = null;
-
+                    } else {
+                        if ($task['user_to']['email'] == $user['email'] or $task['user_from']['email'] == $user['email']) {
+                            array_push($tasks, $task);
+                        }
                     }
                     $childs = [];
 
 //                    dd($childs);
+                } else {
+                    if ($task['user_to']['email'] == $user['email'] or $task['user_from']['email'] == $user['email']) {
+                        array_push($tasks, $task);
+                    }
                 }
-
-
-                if($task['user_to']['email'] == $user['email'] or $task['user_from']['email'] == $user['email']){
-                    array_push($tasks, $task);
-                }
-
-
-
 
 
             }
 
 //            dd($tasks);
 
-            if(!empty($tasks)){
+            if (!empty($tasks)) {
                 $users_project['tasks'] = $tasks;
                 array_push($users_projects, $users_project);
             }
