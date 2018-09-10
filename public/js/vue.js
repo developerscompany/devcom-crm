@@ -115576,6 +115576,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
+    created: function created() {
+        console.log(this.lists[0]);
+    },
 
     computed: {
         totalPages: function totalPages() {
@@ -116109,7 +116112,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                _vm._v(_vm._s(_vm.editShortDate(list.really_to)))
+                _vm._v(_vm._s(_vm.editShortDate(list.latest_finance.really_to)))
               ])
             ]
           )

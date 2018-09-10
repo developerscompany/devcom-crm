@@ -145,7 +145,7 @@
                 </div>
                 </div>
                 <div class="col-md-2 col-sm-12 list-column" >{{list.amount_all}}/{{list.amount_all_year}}</div>
-                <div class="col-md-2 col-sm-12 list-column" >{{editShortDate(list.really_to)}}</div>
+                <div class="col-md-2 col-sm-12 list-column" >{{editShortDate(list.latest_finance.really_to)}}</div>
             </div>
             <div class="row">
                 <!-- number item on page -->
@@ -282,6 +282,9 @@
                 resultCount: 0,
 
             }
+        },
+        created(){
+            console.log(this.lists[0])
         },
         computed: {
             totalPages: function () {
