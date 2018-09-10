@@ -191,19 +191,6 @@
 
         mounted() {
 
-            // axios.get('/admin/lines')
-            //     .then(response => this.lines = response.data);
-            //
-            // axios.get('/admin/agents')
-            //     .then(response => this.agents = response.data);
-            //
-            // axios.get('/admin/sources')
-            //     .then(response => this.sources = response.data);
-            //
-            // axios.get('/admin/statuss')
-            //     .then(response => this.statuss = response.data);
-
-
         },
 
         watch: {
@@ -237,7 +224,7 @@
 
                     return self.lines.filter(function(item) {
 
-                        var current = new Date(item[0].split('.').reverse());
+                        var current = new Date(item.date.split('.').reverse());
 
                         if (current >= st && current <= en)
                         {
@@ -252,14 +239,14 @@
                     console.log(self.ssource);
 
                     return self.lines.filter(function(item) {
-                        return self.ssource.indexOf(item[2]) > -1;
+                        return self.ssource.indexOf(item.source) > -1;
                     }).slice(start, end);
 
                 }
                 if (self.sagent.length > 0) {
 
                     return self.lines.filter(function(item) {
-                        return self.sagent.indexOf(item[1]) > -1;
+                        return self.sagent.indexOf(item.agent) > -1;
                     }).slice(start, end);
 
                 }
@@ -267,14 +254,14 @@
 
                     return self.lines.filter(function (item) {
                         return Object.keys(item).some(function (key) {
-                            return String(item[4]).toLowerCase().indexOf(self.stech) > -1
+                            return String(item.niche).toLowerCase().indexOf(self.stech) > -1
                         });
                     }).slice(start, end);
                 }
                 if (self.sstatus.length > 0) {
 
                     return self.lines.filter(function(item) {
-                        return self.sstatus.indexOf(item[10]) > -1;
+                        return self.sstatus.indexOf(item.status) > -1;
                     }).slice(start, end);
 
                 }

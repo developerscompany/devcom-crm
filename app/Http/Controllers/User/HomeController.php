@@ -40,7 +40,7 @@ class HomeController extends Controller
             return redirect('/admin/bids');
         }
 
-        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+        $lines = Bid::where('user_id', auth()->user()->id)->get()->toArray();
 
 
         $sourses = Source::all();

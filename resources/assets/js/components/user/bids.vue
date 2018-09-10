@@ -2,55 +2,55 @@
     <!--<div class="">-->
         <div class="bids">
             <div class="form-wrapper mb-4 p-3">
-                <form id="line-form" method="post" action="/" enctype="multipart/form-data" style="width: 100%;">
+                <form id="line-form"  method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
                     <ul class="row nav">
                         <li class="col-md-1">
-                            <select name="source" id="source" class="form-control" required>
+                            <select name="source" id="source" class="form-control" required v-model="formSource">
                                 <option value="">Source...</option>
                                 <option v-for="source in sources"> {{ source.name }}</option>
                             </select>
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
+                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="formLink">
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
+                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="formNiche">
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required>
+                            <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="formSite">
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required>
+                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required  v-model="formDesc">
                         </li>
 
                         <li class="col-md-1">
-                            <select name="timing" id="timing" class="form-control" required>
+                            <select name="timing" id="timing" class="form-control" required  v-model="formTim">
                                 <option value="">Timing...</option>
                                 <option v-for="time in timing"> {{ time.title }}</option>
                             </select>
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required>
+                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required  v-model="formBudg">
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required>
+                            <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required  v-model="formResp">
                         </li>
 
                         <li class="col-md-1">
-                            <select name="status" id="status" class="form-control" required>
+                            <select name="status" id="status" class="form-control" required  v-model="formStat">
                                 <option value="">Status...</option>
                                 <option v-for="status in statuss"> {{ status.title }}</option>
                             </select>
                         </li>
 
                         <li class="col-md-1">
-                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment...">
+                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..."  v-model="formComm">
                         </li>
 
                         <li class="col-md-1 align-self-end">
@@ -239,7 +239,7 @@
 
 <script>
 
-    import {en} from "element-ui/lib/umd/locale/en"
+    // import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 
@@ -247,6 +247,19 @@
 
         data(){
             return {
+
+                form: new Form({
+                    formSource: '',
+                    formLink: '',
+                    formNiche: '',
+                    formSite: '',
+                    formDesc: '',
+                    formTim: '',
+                    formBudg: '',
+                    formResp: '',
+                    formStat: '',
+                    formComm: '',
+                }),
 
                 dialog: false,
                 editedIndex: -1,
@@ -287,17 +300,17 @@
 
         mounted() {
 
-            $('#line-form').submit(function (event) {
-                event.preventDefault();
-
-                let data = $(this).serialize();
-                $('#line-form')[0].reset();
-
-                axios.post('/user/add-google-line', data)
-                    .then(response => {
-                        this.lines.unshift(response.data);
-                    });
-            });
+            // $('#line-form').submit(function (event) {
+            //     event.preventDefault();
+            //
+            //     let data = $(this).serialize();
+            //     $('#line-form')[0].reset();
+            //
+            //     axios.post('/user/add-google-line', data)
+            //         .then(response => {
+            //             lines.unshift(response.data);
+            //         });
+            // });
 
         },
 
@@ -369,6 +382,16 @@
         },
 
         methods: {
+
+            onSubmit() {
+
+                let data = this.$data;
+
+                axios.post('/user/add-google-line', data)
+                    .then(response => {
+                        this.lines.unshift(response.data);
+                    });
+            },
 
             editItem (item) {
                 this.editedIndex = this.lines.indexOf(item);
