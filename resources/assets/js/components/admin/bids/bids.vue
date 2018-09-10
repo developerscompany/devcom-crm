@@ -249,6 +249,8 @@
                 }
                 if (self.ssource.length > 0) {
 
+                    console.log(self.ssource);
+
                     return self.lines.filter(function(item) {
                         return self.ssource.indexOf(item[2]) > -1;
                     }).slice(start, end);
