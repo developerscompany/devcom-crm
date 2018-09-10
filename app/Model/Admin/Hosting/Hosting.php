@@ -59,4 +59,9 @@ class Hosting extends Model
 
     }
 
+    public function latestFinance(){
+
+        return $this->hasOne(HostingsFinance::class, 'hosting_id', 'id')->where('condition','=','hosting')->latest('really_to');
+    }
+
 }
