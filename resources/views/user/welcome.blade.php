@@ -3,6 +3,74 @@
 @section('content')
 
     <div id="app-vue" class="wrapper p-3">
+        <div class="form-wrapper mb-4 p-3">
+            <!--<form id="line-form"  method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">-->
+            <form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">
+                {{ csrf_field() }}
+
+                <ul class="row nav">
+                    <li class="col-md-1">
+                        <select name="source" id="source" class="form-control" required>
+                            <option value="">Source...</option>
+                            @foreach($sourses as $source)
+                                <option> {{ $source->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required >
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required >
+                    </li>
+
+                    <li class="col-md-1">
+                        <select name="timing" id="timing" class="form-control" required >
+                            <option value="">Timing...</option>
+                            @foreach($timings as $time)
+                                <option> {{ $time->title }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required >
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required >
+                    </li>
+
+                    <li class="col-md-1">
+                        <select name="status" id="status" class="form-control" required >
+                            <option value="">Status...</option>
+                            @foreach($statuses as $status)
+                                <option> {{ $status->title }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+
+                    <li class="col-md-1">
+                        <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." >
+                    </li>
+
+                    <li class="col-md-1 align-self-end">
+                        <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
         <bids
                 :lines="{{json_encode($lines)}}"
                 {{--:roles="{{json_encode($agents)}}"--}}

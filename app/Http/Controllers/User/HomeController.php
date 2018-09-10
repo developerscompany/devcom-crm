@@ -189,7 +189,7 @@ class HomeController extends Controller
             return redirect('/admin/bids');
         }
 
-        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+        $lines = Bid::where('user_id', auth()->user()->id)->get()->toArray();
 
 
         $sourses = Source::all();
@@ -226,8 +226,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-
-        $arr = Bid::create([
+        Bid::create([
             'user_id' => auth()->user()->id,
             'date' => date("d.m.Y"),
             'agent' => auth()->user()->name,
@@ -243,7 +242,7 @@ class HomeController extends Controller
             'comment' => request('comment')
         ]);
 
-        return $arr;
+        return redirect('/user');
     }
 
     public function update(Request $request)

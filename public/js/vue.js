@@ -36047,7 +36047,7 @@ function withParams(paramsOrClosure, maybeValidator) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(210);
-module.exports = __webpack_require__(440);
+module.exports = __webpack_require__(439);
 
 
 /***/ }),
@@ -36088,9 +36088,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_admin_users_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_admin_users_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_bids__ = __webpack_require__(424);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_bids___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_user_bids__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_admin_bids_bids__ = __webpack_require__(430);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_admin_bids_bids__ = __webpack_require__(429);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_admin_bids_bids___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_admin_bids_bids__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_admin_users_card__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_admin_users_card__ = __webpack_require__(434);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_admin_users_card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_admin_users_card__);
 
 
@@ -125574,7 +125574,7 @@ var normalizeComponent = __webpack_require__(7)
 /* script */
 var __vue_script__ = __webpack_require__(427)
 /* template */
-var __vue_template__ = __webpack_require__(429)
+var __vue_template__ = __webpack_require__(428)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -125658,8 +125658,6 @@ exports.push([module.i, "\n#line-form ul {\n    -webkit-box-pack: center;\n     
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en__ = __webpack_require__(428);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui_lib_umd_locale_en__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 //
@@ -125842,68 +125840,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
-
+// import {en} from "element-ui/lib/umd/locale/en"
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -125929,10 +125868,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             dateFormatted: '',
             menu2: false,
 
-            // agents: [],
-            // sources: [],
-            // statuss: [],
-            // lines: [],
             ssource: [],
             sagent: [],
             sstatus: [],
@@ -125948,21 +125883,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         };
     },
-    mounted: function mounted() {
-
-        $('#line-form').submit(function (event) {
-            var _this = this;
-
-            event.preventDefault();
-
-            var data = $(this).serialize();
-            $('#line-form')[0].reset();
-
-            axios.post('/user/add-google-line', data).then(function (response) {
-                _this.lines.unshift(response.data);
-            });
-        });
-    },
+    mounted: function mounted() {},
 
 
     watch: {
@@ -125987,33 +125908,41 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             var start = self.pageNumber * self.number,
                 end = start + self.number;
 
-            if (self.dateFormatted == null) {
-                self.dateFormatted = '';
+            if (self.value6 == null) {
+                self.value6 = '';
             }
-            if (self.dateFormatted.length > 0) {
+            if (self.value6.length > 0) {
+
+                var st = new Date(this.value6[0].split('.').reverse());
+                var en = new Date(this.value6[1].split('.').reverse());
 
                 return self.lines.filter(function (item) {
-                    return self.dateFormatted.indexOf(item[0]) > -1;
+
+                    var current = new Date(item.date.split('.').reverse());
+
+                    if (current >= st && current <= en) {
+                        return true;
+                    }
                 }).slice(start, end);
             }
             if (self.ssource.length > 0) {
 
                 return self.lines.filter(function (item) {
-                    return self.ssource.indexOf(item[2]) > -1;
+                    return self.ssource.indexOf(item.source) > -1;
                 }).slice(start, end);
             }
             if (self.stech.length > 0) {
 
                 return self.lines.filter(function (item) {
                     return Object.keys(item).some(function (key) {
-                        return String(item[4]).toLowerCase().indexOf(self.stech) > -1;
+                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
                 }).slice(start, end);
             }
             if (self.sstatus.length > 0) {
 
                 return self.lines.filter(function (item) {
-                    return self.sstatus.indexOf(item[10]) > -1;
+                    return self.sstatus.indexOf(item.status) > -1;
                 }).slice(start, end);
             }
 
@@ -126022,6 +125951,15 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     },
 
     methods: {
+        onSubmit: function onSubmit() {
+            var _this = this;
+
+            var data = this.$data;
+
+            axios.post('/user/add-google-line', data).then(function (response) {
+                _this.lines.unshift(response.data);
+            });
+        },
         editItem: function editItem(item) {
             this.editedIndex = this.lines.indexOf(item);
             this.editedItem = Object.assign({}, item);
@@ -126077,235 +126015,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 /* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(module, exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod, mod.exports);
-    global.ELEMENT.lang = global.ELEMENT.lang || {}; 
-    global.ELEMENT.lang.en = mod.exports;
-  }
-})(this, function (module, exports) {
-  'use strict';
-
-  exports.__esModule = true;
-  exports.default = {
-    el: {
-      colorpicker: {
-        confirm: 'OK',
-        clear: 'Clear'
-      },
-      datepicker: {
-        now: 'Now',
-        today: 'Today',
-        cancel: 'Cancel',
-        clear: 'Clear',
-        confirm: 'OK',
-        selectDate: 'Select date',
-        selectTime: 'Select time',
-        startDate: 'Start Date',
-        startTime: 'Start Time',
-        endDate: 'End Date',
-        endTime: 'End Time',
-        prevYear: 'Previous Year',
-        nextYear: 'Next Year',
-        prevMonth: 'Previous Month',
-        nextMonth: 'Next Month',
-        year: '',
-        month1: 'January',
-        month2: 'February',
-        month3: 'March',
-        month4: 'April',
-        month5: 'May',
-        month6: 'June',
-        month7: 'July',
-        month8: 'August',
-        month9: 'September',
-        month10: 'October',
-        month11: 'November',
-        month12: 'December',
-        // week: 'week',
-        weeks: {
-          sun: 'Sun',
-          mon: 'Mon',
-          tue: 'Tue',
-          wed: 'Wed',
-          thu: 'Thu',
-          fri: 'Fri',
-          sat: 'Sat'
-        },
-        months: {
-          jan: 'Jan',
-          feb: 'Feb',
-          mar: 'Mar',
-          apr: 'Apr',
-          may: 'May',
-          jun: 'Jun',
-          jul: 'Jul',
-          aug: 'Aug',
-          sep: 'Sep',
-          oct: 'Oct',
-          nov: 'Nov',
-          dec: 'Dec'
-        }
-      },
-      select: {
-        loading: 'Loading',
-        noMatch: 'No matching data',
-        noData: 'No data',
-        placeholder: 'Select'
-      },
-      cascader: {
-        noMatch: 'No matching data',
-        loading: 'Loading',
-        placeholder: 'Select'
-      },
-      pagination: {
-        goto: 'Go to',
-        pagesize: '/page',
-        total: 'Total {total}',
-        pageClassifier: ''
-      },
-      messagebox: {
-        title: 'Message',
-        confirm: 'OK',
-        cancel: 'Cancel',
-        error: 'Illegal input'
-      },
-      upload: {
-        deleteTip: 'press delete to remove',
-        delete: 'Delete',
-        preview: 'Preview',
-        continue: 'Continue'
-      },
-      table: {
-        emptyText: 'No Data',
-        confirmFilter: 'Confirm',
-        resetFilter: 'Reset',
-        clearFilter: 'All',
-        sumText: 'Sum'
-      },
-      tree: {
-        emptyText: 'No Data'
-      },
-      transfer: {
-        noMatch: 'No matching data',
-        noData: 'No data',
-        titles: ['List 1', 'List 2'], // to be translated
-        filterPlaceholder: 'Enter keyword', // to be translated
-        noCheckedFormat: '{total} items', // to be translated
-        hasCheckedFormat: '{checked}/{total} checked' // to be translated
-      }
-    }
-  };
-  module.exports = exports['default'];
-});
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "bids" }, [
-    _c("div", { staticClass: "form-wrapper mb-4 p-3" }, [
-      _c(
-        "form",
-        {
-          staticStyle: { width: "100%" },
-          attrs: {
-            id: "line-form",
-            method: "post",
-            action: "/",
-            enctype: "multipart/form-data"
-          }
-        },
-        [
-          _c("ul", { staticClass: "row nav" }, [
-            _c("li", { staticClass: "col-md-1" }, [
-              _c(
-                "select",
-                {
-                  staticClass: "form-control",
-                  attrs: { name: "source", id: "source", required: "" }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Source...")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.sources, function(source) {
-                    return _c("option", [_vm._v(" " + _vm._s(source.name))])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _c("li", { staticClass: "col-md-1" }, [
-              _c(
-                "select",
-                {
-                  staticClass: "form-control",
-                  attrs: { name: "timing", id: "timing", required: "" }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Timing...")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.timing, function(time) {
-                    return _c("option", [_vm._v(" " + _vm._s(time.title))])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
-            _c("li", { staticClass: "col-md-1" }, [
-              _c(
-                "select",
-                {
-                  staticClass: "form-control",
-                  attrs: { name: "status", id: "status", required: "" }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Status...")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.statuss, function(status) {
-                    return _c("option", [_vm._v(" " + _vm._s(status.title))])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(6),
-            _vm._v(" "),
-            _vm._m(7)
-          ])
-        ]
-      )
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "content-wrap p-3" }, [
       _c(
         "div",
@@ -126850,141 +126564,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "link",
-          name: "link",
-          placeholder: "Link...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "niche",
-          name: "niche",
-          placeholder: "Niche...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "site",
-          name: "site",
-          placeholder: "Site...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "desc",
-          name: "desc",
-          placeholder: "Description...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "budget",
-          name: "budget",
-          placeholder: "Budget...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "resp",
-          name: "resp",
-          placeholder: "Response...",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "comment",
-          name: "comment",
-          placeholder: "Comment..."
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "col-md-1 align-self-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { id: "btn-save", type: "submit" }
-        },
-        [_vm._v("Зберегти")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -126995,19 +126575,19 @@ if (false) {
 }
 
 /***/ }),
-/* 430 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(431)
+  __webpack_require__(430)
 }
 var normalizeComponent = __webpack_require__(7)
 /* script */
-var __vue_script__ = __webpack_require__(433)
+var __vue_script__ = __webpack_require__(432)
 /* template */
-var __vue_template__ = __webpack_require__(434)
+var __vue_template__ = __webpack_require__(433)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -127046,13 +126626,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 431 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(432);
+var content = __webpack_require__(431);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -127072,7 +126652,7 @@ if(false) {
 }
 
 /***/ }),
-/* 432 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)(false);
@@ -127080,13 +126660,13 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 433 */
+/* 432 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -127283,22 +126863,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             nums: [5, 10, 15, 20, 50, 100]
         };
     },
-    mounted: function mounted() {
-
-        // axios.get('/admin/lines')
-        //     .then(response => this.lines = response.data);
-        //
-        // axios.get('/admin/agents')
-        //     .then(response => this.agents = response.data);
-        //
-        // axios.get('/admin/sources')
-        //     .then(response => this.sources = response.data);
-        //
-        // axios.get('/admin/statuss')
-        //     .then(response => this.statuss = response.data);
-
-
-    },
+    mounted: function mounted() {},
 
 
     watch: {
@@ -127329,7 +126894,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
                 return self.lines.filter(function (item) {
 
-                    var current = new Date(item[0].split('.').reverse());
+                    var current = new Date(item.date.split('.').reverse());
 
                     if (current >= st && current <= en) {
                         return true;
@@ -127341,27 +126906,27 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 console.log(self.ssource);
 
                 return self.lines.filter(function (item) {
-                    return self.ssource.indexOf(item[2]) > -1;
+                    return self.ssource.indexOf(item.source) > -1;
                 }).slice(start, end);
             }
             if (self.sagent.length > 0) {
 
                 return self.lines.filter(function (item) {
-                    return self.sagent.indexOf(item[1]) > -1;
+                    return self.sagent.indexOf(item.agent) > -1;
                 }).slice(start, end);
             }
             if (self.stech.length > 0) {
 
                 return self.lines.filter(function (item) {
                     return Object.keys(item).some(function (key) {
-                        return String(item[4]).toLowerCase().indexOf(self.stech) > -1;
+                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
                 }).slice(start, end);
             }
             if (self.sstatus.length > 0) {
 
                 return self.lines.filter(function (item) {
-                    return self.sstatus.indexOf(item[10]) > -1;
+                    return self.sstatus.indexOf(item.status) > -1;
                 }).slice(start, end);
             }
 
@@ -127394,7 +126959,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 });
 
 /***/ }),
-/* 434 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -127885,19 +127450,19 @@ if (false) {
 }
 
 /***/ }),
-/* 435 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(436)
+  __webpack_require__(435)
 }
 var normalizeComponent = __webpack_require__(7)
 /* script */
-var __vue_script__ = __webpack_require__(438)
+var __vue_script__ = __webpack_require__(437)
 /* template */
-var __vue_template__ = __webpack_require__(439)
+var __vue_template__ = __webpack_require__(438)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -127936,13 +127501,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 436 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(437);
+var content = __webpack_require__(436);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -127962,7 +127527,7 @@ if(false) {
 }
 
 /***/ }),
-/* 437 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)(false);
@@ -127976,7 +127541,7 @@ exports.push([module.i, "\n.active{\n    color: green;\n}\n", ""]);
 
 
 /***/ }),
-/* 438 */
+/* 437 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -128037,7 +127602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 439 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -128118,7 +127683,7 @@ if (false) {
 }
 
 /***/ }),
-/* 440 */
+/* 439 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

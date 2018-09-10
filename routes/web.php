@@ -43,6 +43,7 @@ Route::post('/savepassword/{id}', 'Auth\RegisterController@save');
 Route::prefix('user')->namespace('User')->middleware('sale')->group(function () {
 
     Route::get('/', 'HomeController@bids');
+    Route::post('/bid/add', 'HomeController@store');
     Route::get('/cab', 'HomeController@index');
 
     Route::get('lines', 'HomeController@show');

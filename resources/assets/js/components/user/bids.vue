@@ -1,65 +1,6 @@
 <template>
     <!--<div class="">-->
         <div class="bids">
-            <div class="form-wrapper mb-4 p-3">
-                <form id="line-form" method="post" action="/" enctype="multipart/form-data" style="width: 100%;">
-                    <ul class="row nav">
-                        <li class="col-md-1">
-                            <select name="source" id="source" class="form-control" required>
-                                <option value="">Source...</option>
-                                <option v-for="source in sources"> {{ source.name }}</option>
-                            </select>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <select name="timing" id="timing" class="form-control" required>
-                                <option value="">Timing...</option>
-                                <option v-for="time in timing"> {{ time.title }}</option>
-                            </select>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required>
-                        </li>
-
-                        <li class="col-md-1">
-                            <select name="status" id="status" class="form-control" required>
-                                <option value="">Status...</option>
-                                <option v-for="status in statuss"> {{ status.title }}</option>
-                            </select>
-                        </li>
-
-                        <li class="col-md-1">
-                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment...">
-                        </li>
-
-                        <li class="col-md-1 align-self-end">
-                            <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-
             <div class="content-wrap p-3">
                 <div id="root" class="content">
                     <div class="pager-view clearfix">
@@ -239,7 +180,7 @@
 
 <script>
 
-    import {en} from "element-ui/lib/umd/locale/en"
+    // import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 
@@ -265,10 +206,6 @@
                 dateFormatted: '',
                 menu2: false,
 
-                // agents: [],
-                // sources: [],
-                // statuss: [],
-                // lines: [],
                 ssource: [],
                 sagent: [],
                 sstatus: [],
@@ -286,18 +223,6 @@
         },
 
         mounted() {
-
-            $('#line-form').submit(function (event) {
-                event.preventDefault();
-
-                let data = $(this).serialize();
-                $('#line-form')[0].reset();
-
-                axios.post('/user/add-google-line', data)
-                    .then(response => {
-                        this.lines.unshift(response.data);
-                    });
-            });
 
         },
 
@@ -331,20 +256,30 @@
                     end = start + self.number;
 
 
-                if (self.dateFormatted == null) {
-                    self.dateFormatted = '';
+                if (self.value6 == null) {
+                    self.value6 = '';
                 }
-                if (self.dateFormatted.length > 0) {
+                if (self.value6.length > 0) {
+
+                    var st = new Date(this.value6[0].split('.').reverse());
+                    var en = new Date(this.value6[1].split('.').reverse());
 
                     return self.lines.filter(function(item) {
-                        return self.dateFormatted.indexOf(item[0]) > -1;
+
+                        var current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en)
+                        {
+                            return true;
+                        }
+
                     }).slice(start, end);
 
                 }
                 if (self.ssource.length > 0) {
 
                     return self.lines.filter(function(item) {
-                        return self.ssource.indexOf(item[2]) > -1;
+                        return self.ssource.indexOf(item.source) > -1;
                     }).slice(start, end);
 
                 }
@@ -352,14 +287,14 @@
 
                     return self.lines.filter(function (item) {
                         return Object.keys(item).some(function (key) {
-                            return String(item[4]).toLowerCase().indexOf(self.stech) > -1
+                            return String(item.niche).toLowerCase().indexOf(self.stech) > -1
                         });
                     }).slice(start, end);
                 }
                 if (self.sstatus.length > 0) {
 
                     return self.lines.filter(function(item) {
-                        return self.sstatus.indexOf(item[10]) > -1;
+                        return self.sstatus.indexOf(item.status) > -1;
                     }).slice(start, end);
 
                 }
@@ -369,6 +304,16 @@
         },
 
         methods: {
+
+            onSubmit() {
+
+                let data = this.$data;
+
+                axios.post('/user/add-google-line', data)
+                    .then(response => {
+                        this.lines.unshift(response.data);
+                    });
+            },
 
             editItem (item) {
                 this.editedIndex = this.lines.indexOf(item);
