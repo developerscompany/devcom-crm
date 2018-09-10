@@ -226,8 +226,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-
-        $arr = Bid::create([
+        Bid::create([
             'user_id' => auth()->user()->id,
             'date' => date("d.m.Y"),
             'agent' => auth()->user()->name,
@@ -243,7 +242,7 @@ class HomeController extends Controller
             'comment' => request('comment')
         ]);
 
-        return $arr;
+        return redirect('/user');
     }
 
     public function update(Request $request)
