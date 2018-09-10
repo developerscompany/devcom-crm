@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sale;
+namespace App\Http\Controllers\User;
 
 use App\Bid;
 use App\Source;
@@ -29,19 +29,25 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('user.index');
+    }
+
+    public function bids()
+    {
 
         if (auth()->user()->role == 'admin')
         {
             return redirect('/admin/bids');
         }
 
-        $array = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+
 
         $sourses = Source::all();
         $statuses = Status::all();
         $timings = Timing::all();
 
-        return view('welcome', compact('array', 'sourses', 'statuses', 'timings'));
+        return view('user.welcome', compact('lines', 'sourses', 'statuses', 'timings'));
     }
 
     public function show()
@@ -99,7 +105,6 @@ class HomeController extends Controller
         $bid->update([
             'status' => request('data')['10']
         ]);
-
 
     }
 }

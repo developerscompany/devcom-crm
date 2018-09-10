@@ -28,7 +28,7 @@
     <body class="">
         <div id="app">
 
-            @include('layouts.header')
+            @include('user.layouts.header')
 
             <div class="page-container">
 

@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "chart.js": "^2.7.2",
+        "element-ui": "^2.4.6",
         "v-calendar": "^0.9.7",
         "vue-resource": "^1.5.1",
         "vue-simple-calendar": "^4.0.2",

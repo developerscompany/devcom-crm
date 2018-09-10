@@ -40,9 +40,10 @@ Route::post('/savepassword/{id}', 'Auth\RegisterController@save');
 
 });*/
 
-Route::prefix('sale')->namespace('Sale')->middleware('sale')->group(function () {
+Route::prefix('user')->namespace('User')->middleware('sale')->group(function () {
 
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@bids');
+    Route::get('/cab', 'HomeController@index');
 
     Route::get('lines', 'HomeController@show');
     Route::get('agents', 'HomeController@getAgent');
