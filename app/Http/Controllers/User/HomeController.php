@@ -45,7 +45,9 @@ class HomeController extends Controller
 
         $sourses = Source::all();
         $statuses = Status::all();
-        $timings = Timing::all();
+        $timings = Timing::orderBy('id', 'asc')->get();
+
+//        dd($timings);
 
         return view('user.welcome', compact('lines', 'sourses', 'statuses', 'timings'));
     }
