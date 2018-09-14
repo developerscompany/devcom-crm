@@ -125844,6 +125844,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
 
 
 // import {en} from "element-ui/lib/umd/locale/en"
@@ -126088,6 +126090,8 @@ var render = function() {
             _c("table", { staticClass: "table table-striped" }, [
               _c("thead", [
                 _c("tr", [
+                  _c("td"),
+                  _vm._v(" "),
                   _c("td", { staticClass: "filter-cell date" }, [
                     _vm._v(
                       "\n                                Date\n                                "
@@ -126288,6 +126292,10 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.paginatedData, function(line) {
                   return _c("tr", [
+                    _c("td", { staticClass: "border-right" }, [
+                      _vm._v(_vm._s(line.id))
+                    ]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.date))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.source))]),

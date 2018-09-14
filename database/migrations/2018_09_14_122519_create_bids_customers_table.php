@@ -17,6 +17,7 @@ class CreateBidsCustomersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('country');
+            $table->string('status');
             $table->longText('info');
             $table->timestamps();
         });
