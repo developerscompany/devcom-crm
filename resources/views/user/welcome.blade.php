@@ -10,6 +10,7 @@
 
                 <ul class="row nav">
                     <li class="col-md-1">
+                        <label for="source" class="label">Source</label>
                         <select name="source" id="source" class="form-control" required>
                             <option value="">Source...</option>
                             @foreach($sourses as $source)
@@ -19,22 +20,27 @@
                     </li>
 
                     <li class="col-md-1">
+                        <label for="link" class="label">Link</label>
                         <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required>
                     </li>
 
                     <li class="col-md-1">
+                        <label for="niche" class="label">Niche</label>
                         <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required>
                     </li>
 
                     <li class="col-md-1">
+                        <label for="site" class="label">Site</label>
                         <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required >
                     </li>
 
                     <li class="col-md-1">
+                        <label for="desc" class="label">Description</label>
                         <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required >
                     </li>
 
                     <li class="col-md-1">
+                        <label for="timing" class="label">Timing</label>
                         <select name="timing" id="timing" class="form-control" required >
                             <option value="">Timing...</option>
                             @foreach($timings as $time)
@@ -44,14 +50,22 @@
                     </li>
 
                     <li class="col-md-1">
+                        <label for="budget" class="label">Budget</label>
                         <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required >
                     </li>
 
                     <li class="col-md-1">
-                        <input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required >
+                        <label for="resp" class="label">Response</label>
+                        <select name="resp" id="resp" class="form-control" required>
+                            <option value="">Yes/No...</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        {{--<input type="text" id="resp" name="resp" class="form-control" placeholder="Response..." required >--}}
                     </li>
 
                     <li class="col-md-1">
+                        <label for="status" class="label">Status</label>
                         <select name="status" id="status" class="form-control" required >
                             <option value="">Status...</option>
                             @foreach($statuses as $status)
@@ -61,6 +75,12 @@
                     </li>
 
                     <li class="col-md-1">
+                        <label for="execut" class="label">Executive</label>
+                        <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." >
+                    </li>
+
+                    <li class="col-md-1">
+                        <label for="comment" class="label">Comment</label>
                         <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." >
                     </li>
 
