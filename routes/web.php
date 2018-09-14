@@ -51,6 +51,7 @@ Route::prefix('user')->namespace('User')->middleware('sale')->group(function () 
     Route::get('sources', 'HomeController@getSource');
     Route::get('statuss', 'HomeController@getStatus');
 
+    Route::post('add-customer', 'BidsCustomersController@store');
     Route::post('add-google-line', 'HomeController@store');
 
     Route::post('edit-google-line', 'HomeController@update');

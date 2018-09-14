@@ -4,6 +4,9 @@
 
     <div id="app-vue" class="wrapper p-3">
         <div class="form-wrapper mb-4 p-3">
+
+            <add-customer></add-customer>
+
             <!--<form id="line-form"  method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">-->
             <form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">
                 {{ csrf_field() }}

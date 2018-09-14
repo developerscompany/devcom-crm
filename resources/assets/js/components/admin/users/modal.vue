@@ -37,7 +37,7 @@
                                     item-text="name"
                                     item-value="name"
                                     :error-messages="selectErrors"
-                                    label="Item"
+                                    label="Roles"
                                     required
                                     @change="$v.select.$touch()"
                                     @blur="$v.select.$touch()"
