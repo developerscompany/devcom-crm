@@ -25,6 +25,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
+                                <td></td>
                                 <td class="filter-cell date">
                                     Date
                                     <!--<template>-->
@@ -84,6 +85,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="line in paginatedData">
+                                <td class="border-right text-center">{{ line.id }}</td>
                                 <td>{{ line.date }}</td>
                                 <td>{{ line.source }}</td>
                                 <td class="link-lead">

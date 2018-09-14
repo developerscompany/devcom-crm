@@ -28,6 +28,14 @@
                                     @input="$v.country.$touch()"
                                     @blur="$v.country.$touch()"
                             ></v-text-field>
+                            <v-select
+                                    v-model="status"
+                                    :items="select"
+                                    label="Status"
+                                    required
+                                    @change="$v.status.$touch()"
+                                    @blur="$v.status.$touch()"
+                            ></v-select>
                             <v-textarea
                                     v-model="info"
                                     auto-grow
@@ -69,6 +77,7 @@
             name: { required },
             country: { required },
             info: { required },
+            select: { required },
         },
         data() {
             return {
@@ -76,11 +85,14 @@
                 name: '',
                 country: '',
                 info: '',
+                status: '',
+                select: ['First time', 'Regular', 'Problematic'],
 
                 customer: {
                     name: '',
                     country: '',
                     info: '',
+                    status: '',
                 },
 
                 dialog: false,
@@ -116,6 +128,7 @@
                 this.customer.name = this.name;
                 this.customer.country = this.country;
                 this.customer.info = this.info;
+                this.customer.status = this.status;
 
                 let data = this.customer;
                 axios.post('/user/add-customer', {data})
@@ -128,6 +141,7 @@
                 this.name = '';
                 this.country = '';
                 this.info = '';
+                this.select = '';
             }
         }
     };
