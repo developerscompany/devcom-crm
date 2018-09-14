@@ -66,8 +66,8 @@ class UserController extends Controller
             'name' => request('data')['name'],
             'email' => request('data')['email'],
             'role' => request('data')['select'],
-            'password' => bcrypt('secret'),
-            'email_token' => base64_encode(request('data')['email'])
+            'password' => bcrypt(date('Y-m-d')),
+            'email_token' => base64_encode(date('Y-m-d'))
         ]);
 
         $mail = new InvatetionEmail($user);
