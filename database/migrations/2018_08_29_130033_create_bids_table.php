@@ -27,6 +27,7 @@ class CreateBidsTable extends Migration
             $table->string('budget');
             $table->string('response')->nullable();
             $table->string('status');
+            $table->string('execut')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
         });

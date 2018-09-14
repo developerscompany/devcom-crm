@@ -241,6 +241,7 @@ class HomeController extends Controller
             'budget' => request('budget'),
             'response' => request('resp'),
             'status' => request('status'),
+            'execut' => request('execut'),
             'comment' => request('comment')
         ]);
 
