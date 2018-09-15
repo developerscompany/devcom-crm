@@ -8,6 +8,7 @@ class Bid extends Model
 {
     protected $fillable = [
         'user_id',
+        'customer',
         'date',
         'agent',
         'source',
@@ -19,6 +20,7 @@ class Bid extends Model
         'budget',
         'response',
         'status',
+        'execut',
         'comment'
     ];
 

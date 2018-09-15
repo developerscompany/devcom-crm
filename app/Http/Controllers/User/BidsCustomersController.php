@@ -36,10 +36,13 @@ class BidsCustomersController extends Controller
      */
     public function store(Request $request)
     {
+//        return request('data')['name'];
+
         $customer = BidsCustomers::create([
             'name' => request('data')['name'],
             'country' => request('data')['country'],
-            'info' => request('data')['info']
+            'info' => request('data')['info'],
+            'status' => request('data')['status']
         ]);
 
         return $customer;

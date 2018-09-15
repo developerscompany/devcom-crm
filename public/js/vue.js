@@ -125846,13 +125846,25 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import {en} from "element-ui/lib/umd/locale/en"
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['lines', 'sources', 'statuss', 'timing'],
+    props: ['lines', 'sources', 'statuss', 'timing', 'customers'],
 
     data: function data() {
         return {
@@ -126092,6 +126104,12 @@ var render = function() {
                 _c("tr", [
                   _c("td"),
                   _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                                Customer\n                            "
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c("td", { staticClass: "filter-cell date" }, [
                     _vm._v(
                       "\n                                Date\n                                "
@@ -126282,6 +126300,12 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
+                      "\n                                Executive\n                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
                       "\n                                Comments\n                            "
                     )
                   ])
@@ -126292,8 +126316,16 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.paginatedData, function(line) {
                   return _c("tr", [
-                    _c("td", { staticClass: "border-right" }, [
+                    _c("td", { staticClass: "border-right text-center" }, [
                       _vm._v(_vm._s(line.id))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(line.customer) +
+                          "\n                            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.date))]),
@@ -126415,6 +126447,14 @@ var render = function() {
                       ],
                       1
                     ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(line.execut) +
+                          "\n                            "
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.comment))])
                   ])
@@ -126747,6 +126787,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -126757,7 +126805,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     validations: {
         name: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] },
         country: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] },
-        info: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] }
+        info: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] },
+        select: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] }
     },
     data: function data() {
         return {
@@ -126765,11 +126814,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: '',
             country: '',
             info: '',
+            status: '',
+            select: ['First time', 'Regular', 'Problematic'],
 
             customer: {
                 name: '',
                 country: '',
-                info: ''
+                info: '',
+                status: ''
             },
 
             dialog: false
@@ -126806,6 +126858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.customer.name = this.name;
             this.customer.country = this.country;
             this.customer.info = this.info;
+            this.customer.status = this.status;
 
             var data = this.customer;
             axios.post('/user/add-customer', { data: data }).then();
@@ -126817,6 +126870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.name = '';
             this.country = '';
             this.info = '';
+            this.select = '';
         }
     }
 });
@@ -126917,6 +126971,29 @@ var render = function() {
                             _vm.country = $$v
                           },
                           expression: "country"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.select,
+                          label: "Status",
+                          required: ""
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$v.status.$touch()
+                          },
+                          blur: function($event) {
+                            _vm.$v.status.$touch()
+                          }
+                        },
+                        model: {
+                          value: _vm.status,
+                          callback: function($$v) {
+                            _vm.status = $$v
+                          },
+                          expression: "status"
                         }
                       }),
                       _vm._v(" "),
