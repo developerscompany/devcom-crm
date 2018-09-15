@@ -26,6 +26,9 @@
                             <thead>
                             <tr>
                                 <td></td>
+                                <td>
+                                    Customer
+                                </td>
                                 <td class="filter-cell date">
                                     Date
                                     <!--<template>-->
@@ -79,6 +82,9 @@
                                     </select>
                                 </td>
                                 <td>
+                                    Executive
+                                </td>
+                                <td>
                                     Comments
                                 </td>
                             </tr>
@@ -86,6 +92,9 @@
                             <tbody>
                             <tr v-for="line in paginatedData">
                                 <td class="border-right text-center">{{ line.id }}</td>
+                                <td>
+                                    {{ line.customer }}
+                                </td>
                                 <td>{{ line.date }}</td>
                                 <td>{{ line.source }}</td>
                                 <td class="link-lead">
@@ -123,6 +132,9 @@
                                             @click="editItem(line)">
                                         edit
                                     </v-icon>
+                                </td>
+                                <td>
+                                    {{ line.execut }}
                                 </td>
                                 <td>{{ line.comment }}</td>
                             </tr>
@@ -186,7 +198,7 @@
 
     export default {
 
-        props: ['lines', 'sources', 'statuss', 'timing'],
+        props: ['lines', 'sources', 'statuss', 'timing', 'customers'],
 
         data(){
             return {

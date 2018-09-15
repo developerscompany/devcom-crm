@@ -13,6 +13,16 @@
 
                 <ul class="row nav">
                     <li class="col-md-1">
+                        <label for="customer" class="label">Customer</label>
+                        <select name="customer" id="customer" class="form-control" required>
+                            <option value="">Customer...</option>
+                            @foreach($customers as $customer)
+                                <option> {{ $customer->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+
+                    <li class="col-md-1">
                         <label for="source" class="label">Source</label>
                         <select name="source" id="source" class="form-control" required>
                             <option value="">Source...</option>
