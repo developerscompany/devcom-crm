@@ -125858,6 +125858,16 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import {en} from "element-ui/lib/umd/locale/en"
@@ -125890,6 +125900,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             sagent: [],
             sstatus: [],
             stech: [],
+            sresp: [],
 
             number: 15,
             pageNumber: 0,
@@ -125941,6 +125952,12 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     if (current >= st && current <= en) {
                         return true;
                     }
+                }).slice(start, end);
+            }
+            if (self.sresp.length > 0) {
+
+                return self.lines.filter(function (item) {
+                    return self.sresp.indexOf(item.response) > -1;
                 }).slice(start, end);
             }
             if (self.ssource.length > 0) {
@@ -126043,7 +126060,7 @@ var render = function() {
         "div",
         { staticClass: "content", attrs: { id: "root" } },
         [
-          _c("div", { staticClass: "pager-view clearfix" }, [
+          _c("div", { staticClass: "pager-view clearfix text-center" }, [
             _c(
               "div",
               { staticClass: "pull-left text-left viewNumber" },
@@ -126068,6 +126085,11 @@ var render = function() {
               ],
               2
             ),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "font-weight-bold",
+              domProps: { textContent: _vm._s(_vm.paginatedData.length) }
+            }),
             _vm._v(" "),
             _c("div", { staticClass: "pull-right text-right viewPager" }, [
               _c(
@@ -126174,7 +126196,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
                           _vm._v("Source...")
                         ]),
                         _vm._v(" "),
@@ -126229,6 +126251,12 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
+                      "\n                                Segment\n                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
                       "\n                                Description\n                            "
                     )
                   ]),
@@ -126245,9 +126273,49 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [
+                  _c("td", { staticClass: "filter-cell response" }, [
                     _vm._v(
-                      "\n                                Responce\n                            "
+                      "\n                                Responce\n                                "
+                    ),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sresp,
+                            expression: "sresp"
+                          }
+                        ],
+                        staticClass: "form-control mt-1",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.sresp = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
+                          _vm._v("Resp...")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Yes" } }, [
+                          _vm._v("Yes")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "No" } }, [_vm._v("No")])
+                      ]
                     )
                   ]),
                   _vm._v(" "),
@@ -126284,7 +126352,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { value: "" } }, [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
                           _vm._v("Status...")
                         ]),
                         _vm._v(" "),
@@ -126350,12 +126418,14 @@ var render = function() {
                             [
                               _c(
                                 "a",
-                                { attrs: { target: "_blank", href: line[3] } },
+                                {
+                                  attrs: { target: "_blank", href: line.link }
+                                },
                                 [
                                   _vm._v(
-                                    "\n                                    " +
+                                    "\n                                            " +
                                       _vm._s(line.link.substr(0, 30)) +
-                                      "\n                                "
+                                      "\n                                        "
                                   )
                                 ]
                               )
@@ -126391,12 +126461,17 @@ var render = function() {
                             [
                               _c(
                                 "a",
-                                { attrs: { target: "_blank", href: line[3] } },
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: line.current
+                                  }
+                                },
                                 [
                                   _vm._v(
-                                    "\n                                    " +
+                                    "\n                                            " +
                                       _vm._s(line.current.substr(0, 30)) +
-                                      "\n                                "
+                                      "\n                                        "
                                   )
                                 ]
                               )
@@ -126411,6 +126486,8 @@ var render = function() {
                       ],
                       1
                     ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(line.segment))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.description))]),
                     _vm._v(" "),
