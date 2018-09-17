@@ -21,8 +21,10 @@ class CreateBidsTable extends Migration
             $table->string('agent');
             $table->string('source');
             $table->string('link');
+            $table->string('timing');
             $table->string('niche');
             $table->string('current')->nullable();
+            $table->string('segment')->nullable();
             $table->string('description')->nullable();
             $table->string('timing');
             $table->string('budget');

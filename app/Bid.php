@@ -15,6 +15,7 @@ class Bid extends Model
         'link',
         'niche',
         'current',
+        'segment',
         'description',
         'timing',
         'budget',

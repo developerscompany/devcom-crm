@@ -46,6 +46,8 @@ Route::prefix('user')->namespace('User')->middleware('sale')->group(function () 
     Route::post('/bid/add', 'HomeController@store');
     Route::get('/cab', 'HomeController@index');
 
+    Route::get('/bids-stat', 'HomeController@stat');
+
     Route::get('lines', 'HomeController@show');
     Route::get('agents', 'HomeController@getAgent');
     Route::get('sources', 'HomeController@getSource');

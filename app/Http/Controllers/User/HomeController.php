@@ -43,7 +43,6 @@ class HomeController extends Controller
 
         $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
 
-
         $sourses = Source::all();
         $statuses = Status::all();
         $timings = Timing::orderBy('id', 'asc')->get();
@@ -91,6 +90,7 @@ class HomeController extends Controller
             'link' => request('link'),
             'niche' => request('niche'),
             'current' => request('site'),
+            'segment' => request('segment'),
             'description' => request('desc'),
             'timing' => request('timing'),
             'budget' => request('budget'),
@@ -112,5 +112,17 @@ class HomeController extends Controller
             'status' => request('data')['10']
         ]);
 
+    }
+
+    public function stat()
+    {
+
+        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+
+        $sourses = Source::all();
+        $statuses = Status::all();
+        $timings = Timing::orderBy('id', 'asc')->get();
+
+        return view('user.stat', compact('lines', 'sourses', 'statuses', 'timings'));
     }
 }

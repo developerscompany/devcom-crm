@@ -43,8 +43,16 @@
                     </li>
 
                     <li class="col-md-1">
-                        <label for="site" class="label">Site</label>
-                        <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required >
+                        <div class="row">
+                            <div class="col-4 text-left border-right px-1">
+                                <label for="site" class="label">Site</label>
+                                <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required>
+                            </div>
+                            <div class="col-6">
+                                <label for="segment" class="label">Segment</label>
+                                <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment...">
+                            </div>
+                        </div>
                     </li>
 
                     <li class="col-md-1">
@@ -96,11 +104,10 @@
                         <label for="comment" class="label">Comment</label>
                         <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." >
                     </li>
-
-                    <li class="col-md-1 align-self-end">
-                        <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
-                    </li>
                 </ul>
+                <div class="my-2 text-center">
+                    <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                </div>
             </form>
         </div>
 

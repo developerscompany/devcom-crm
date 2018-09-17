@@ -12,6 +12,9 @@
                     <i class="icon-home4"></i>
                     <span>Біди</span>
                 </a>
+                {{--<ul class="sub-menu">--}}
+                    {{--<li><a href="{{ url('user/bids-stat') }}">Статистика</a></li>--}}
+                {{--</ul>--}}
             </li>
         </ul>
     </div>
