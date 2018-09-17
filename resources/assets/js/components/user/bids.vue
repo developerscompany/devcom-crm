@@ -3,11 +3,14 @@
         <div class="bids">
             <div class="content-wrap p-3">
                 <div id="root" class="content">
-                    <div class="pager-view clearfix">
+                    <div class="pager-view clearfix text-center">
                         <div class="pull-left text-left viewNumber">
                             <span>Show: </span>
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
+
+                        <span class="font-weight-bold" v-text="paginatedData.length"></span>
+
                         <div class="pull-right text-right viewPager">
                             <button
                                     :disabled="pageNumber === 0"
@@ -25,6 +28,10 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
+                                <td></td>
+                                <td>
+                                    Customer
+                                </td>
                                 <td class="filter-cell date">
                                     Date
                                     <!--<template>-->
@@ -44,7 +51,7 @@
                                 <td class="filter-cell sourse">
                                     Source
                                     <select v-model="ssource" class="form-control mt-1">
-                                        <option value="">Source...</option>
+                                        <option selected value="">Source...</option>
                                         <option v-for="source in sources"> {{ source.name }}</option>
                                     </select>
                                 </td>
@@ -59,6 +66,9 @@
                                     Current site
                                 </td>
                                 <td>
+                                    Segment
+                                </td>
+                                <td>
                                     Description
                                 </td>
                                 <td>
@@ -67,15 +77,23 @@
                                 <td class="budget-td">
                                     Budget $
                                 </td>
-                                <td>
+                                <td class="filter-cell response">
                                     Responce
+                                    <select v-model="sresp" class="form-control mt-1">
+                                        <option selected value="">Resp...</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </td>
                                 <td class="filter-cell status">
                                     Status
                                     <select v-model="sstatus" class="form-control mt-1">
-                                        <option value="">Status...</option>
+                                        <option selected value="">Status...</option>
                                         <option v-for="status in statuss"> {{ status.title }}</option>
                                     </select>
+                                </td>
+                                <td>
+                                    Executive
                                 </td>
                                 <td>
                                     Comments
@@ -84,31 +102,34 @@
                             </thead>
                             <tbody>
                             <tr v-for="line in paginatedData">
+                                <td class="border-right text-center">{{ line.id }}</td>
+                                <td>
+                                    {{ line.customer }}
+                                </td>
                                 <td>{{ line.date }}</td>
                                 <td>{{ line.source }}</td>
                                 <td class="link-lead">
-
                                     <v-tooltip top>
-                                <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line[3]>
-                                        {{ line.link.substr(0, 30) }}
-                                    </a>
-                                </span>
+                                        <span slot="activator" color="primary" dark>
+                                            <a target="_blank" :href="line.link">
+                                                {{ line.link.substr(0, 30) }}
+                                            </a>
+                                        </span>
                                         {{ line.link }}
                                     </v-tooltip>
-
                                 </td>
                                 <td>{{ line.niche }}</td>
                                 <td class="link-current">
                                     <v-tooltip top>
-                                <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line[3]>
-                                        {{ line.current.substr(0, 30) }}
-                                    </a>
-                                </span>
+                                        <span slot="activator" color="primary" dark>
+                                            <a target="_blank" :href="line.current">
+                                                {{ line.current.substr(0, 30) }}
+                                            </a>
+                                        </span>
                                         {{ line.current }}
                                     </v-tooltip>
                                 </td>
+                                <td>{{ line.segment }}</td>
                                 <td>{{ line.description }}</td>
                                 <td>{{ line.timing }}</td>
                                 <td>{{ line.budget }}</td>
@@ -121,6 +142,9 @@
                                             @click="editItem(line)">
                                         edit
                                     </v-icon>
+                                </td>
+                                <td>
+                                    {{ line.execut }}
                                 </td>
                                 <td>{{ line.comment }}</td>
                             </tr>
@@ -184,7 +208,7 @@
 
     export default {
 
-        props: ['lines', 'sources', 'statuss', 'timing'],
+        props: ['lines', 'sources', 'statuss', 'timing', 'customers'],
 
         data(){
             return {
@@ -210,6 +234,7 @@
                 sagent: [],
                 sstatus: [],
                 stech: [],
+                sresp: [],
 
                 number: 15,
                 pageNumber: 0,
@@ -273,6 +298,13 @@
                             return true;
                         }
 
+                    }).slice(start, end);
+
+                }
+                if (self.sresp.length > 0) {
+
+                    return self.lines.filter(function(item) {
+                        return self.sresp.indexOf(item.response) > -1;
                     }).slice(start, end);
 
                 }

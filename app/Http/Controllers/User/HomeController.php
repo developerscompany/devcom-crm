@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Bid;
+use App\BidsCustomers;
 use App\Source;
 use App\Status;
 use App\Timing;
@@ -189,16 +190,17 @@ class HomeController extends Controller
             return redirect('/admin/bids');
         }
 
-        $lines = Bid::where('user_id', auth()->user()->id)->get()->toArray();
-
+        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
 
         $sourses = Source::all();
         $statuses = Status::all();
         $timings = Timing::orderBy('id', 'asc')->get();
+        $customers = BidsCustomers::all();
 
 //        dd($timings);
 
-        return view('user.welcome', compact('lines', 'sourses', 'statuses', 'timings'));
+        return view('user.welcome',
+            compact('lines', 'sourses', 'statuses', 'timings', 'customers'));
     }
 
     public function show()
@@ -231,16 +233,19 @@ class HomeController extends Controller
         Bid::create([
             'user_id' => auth()->user()->id,
             'date' => date("d.m.Y"),
+            'customer' => request('customer'),
             'agent' => auth()->user()->name,
             'source' => request('source'),
             'link' => request('link'),
             'niche' => request('niche'),
             'current' => request('site'),
+            'segment' => request('segment'),
             'description' => request('desc'),
             'timing' => request('timing'),
             'budget' => request('budget'),
             'response' => request('resp'),
             'status' => request('status'),
+            'execut' => request('execut'),
             'comment' => request('comment')
         ]);
 
@@ -256,5 +261,17 @@ class HomeController extends Controller
             'status' => request('data')['10']
         ]);
 
+    }
+
+    public function stat()
+    {
+
+        $lines = array_reverse(Bid::where('user_id', auth()->user()->id)->get()->toArray());
+
+        $sourses = Source::all();
+        $statuses = Status::all();
+        $timings = Timing::orderBy('id', 'asc')->get();
+
+        return view('user.stat', compact('lines', 'sourses', 'statuses', 'timings'));
     }
 }
