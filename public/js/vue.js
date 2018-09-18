@@ -125996,7 +125996,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             });
         },
         editItem: function editItem(item) {
-            this.editedIndex = this.lines.indexOf(item);
+            this.editedIndex = this.paginatedData.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
         },
