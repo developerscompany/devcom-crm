@@ -133,7 +133,15 @@
                                 <td>{{ line.description }}</td>
                                 <td>{{ line.timing }}</td>
                                 <td>{{ line.budget }}</td>
-                                <td>{{ line.response }}</td>
+                                <td>
+                                    {{ line.response }}
+                                    <v-icon
+                                            small
+                                            class=""
+                                            @click="editItem2(line)">
+                                        edit
+                                    </v-icon>
+                                </td>
                                 <td>
                                     {{ line.status }}
                                     <v-icon
@@ -157,7 +165,6 @@
                             <v-card-text>
                                 <v-layout wrap>
                                     <v-flex xs12 sm6 md4>
-
                                         <v-select
                                                 v-model="editedItem[10]"
                                                 :items="statuss"
@@ -166,7 +173,6 @@
                                                 item-value="title"
                                                 required
                                         ></v-select>
-
                                     </v-flex>
                                 </v-layout>
                             </v-card-text>
@@ -175,6 +181,30 @@
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
                                 <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog v-model="dialog2" max-width="500px">
+                        <v-card>
+                            <v-card-text>
+                                <v-layout wrap>
+                                    <v-flex xs12 sm6 md4>
+                                        <v-select
+                                                v-model="editedItem.res"
+                                                :items="responses"
+                                                label="Response"
+                                                item-text="title"
+                                                item-value="title"
+                                                required
+                                        ></v-select>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" flat @click.native="close2">Cancel</v-btn>
+                                <v-btn color="blue darken-1" flat @click.native="save2">Save</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
@@ -214,12 +244,15 @@
             return {
 
                 dialog: false,
+                dialog2: false,
                 editedIndex: -1,
                 editedItem: {
                     10: '',
+                    res: '',
                 },
                 defaultItem: {
                     10: '',
+                    res: '',
                 },
 
                 value6: '',
@@ -229,6 +262,8 @@
                 date: null,
                 dateFormatted: '',
                 menu2: false,
+
+                responses: ['Yes', 'No'],
 
                 ssource: [],
                 sagent: [],
@@ -352,8 +387,20 @@
                 this.editedItem = Object.assign({}, item);
                 this.dialog = true;
             },
+            editItem2 (item) {
+                this.editedIndex = this.paginatedData.indexOf(item);
+                this.editedItem = Object.assign({}, item);
+                this.dialog2 = true;
+            },
             close () {
                 this.dialog = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
+                }, 300)
+            },
+            close2 () {
+                this.dialog2 = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem);
                     this.editedIndex = -1;
@@ -369,6 +416,23 @@
                     axios.post('/user/edit-google-line', {data, index})
                         .then(
                             this.paginatedData[this.editedIndex].status = data[10]
+                        );
+
+                } else {
+                    this.lines.push(this.editedItem)
+                }
+                this.close()
+            },
+            save2 () {
+
+                let data = this.editedItem;
+                let index = this.editedIndex;
+
+                if (this.editedIndex > -1) {
+
+                    axios.post('/user/edit-bid-response', {data, index})
+                        .then(
+                            this.paginatedData[this.editedIndex].response = data[10]
                         );
 
                 } else {
