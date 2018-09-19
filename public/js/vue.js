@@ -126078,7 +126078,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             if (this.editedIndex > -1) {
 
-                axios.post('/user/edit-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data[10]);
+                axios.post('/user/edit-bid-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data[10]);
             } else {
                 this.lines.push(this.editedItem);
             }
@@ -128135,7 +128135,7 @@ var render = function() {
                                 _c(
                                   "a",
                                   {
-                                    attrs: { target: "_blank", href: line[3] }
+                                    attrs: { target: "_blank", href: line.link }
                                   },
                                   [
                                     _vm._v(
@@ -128178,7 +128178,10 @@ var render = function() {
                                 _c(
                                   "a",
                                   {
-                                    attrs: { target: "_blank", href: line[3] }
+                                    attrs: {
+                                      target: "_blank",
+                                      href: line.current
+                                    }
                                   },
                                   [
                                     _vm._v(
