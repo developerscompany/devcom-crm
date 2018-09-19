@@ -2,11 +2,14 @@
     <div class="admin-bids">
         <div class="form-wrapper mb-4 p-3">
 
-            <div class="pager-view clearfix">
+            <div class="pager-view clearfix text-center">
                 <div class="pull-left text-left viewNumber">
                     <span>Show: </span>
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
+
+                <span class="font-weight-bold" v-text="paginatedData.length"></span>
+
                 <div class="pull-right text-right viewPager">
                     <button
                             :disabled="pageNumber === 0"
@@ -76,8 +79,13 @@
                                 <td class="budget-td">
                                     Budget $
                                 </td>
-                                <td>
+                                <td class="filter-cell response">
                                     Responce
+                                    <select v-model="sresp" class="form-control mt-1">
+                                        <option selected value="">Resp...</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </td>
                                 <td class="filter-cell status">
                                     Status
@@ -100,7 +108,7 @@
 
                                     <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line[3]>
+                                    <a target="_blank" :href=line.link>
                                         {{ line.link.substr(0, 30) }}
                                     </a>
                                 </span>
@@ -112,7 +120,7 @@
                                 <td class="link-current">
                                     <v-tooltip top>
                                 <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line[3]>
+                                    <a target="_blank" :href=line.current>
                                         {{ line.current.substr(0, 30) }}
                                     </a>
                                 </span>
@@ -122,7 +130,7 @@
                                 <td>{{ line.description }}</td>
                                 <td>{{ line.timing }}</td>
                                 <td>{{ line.budget }}</td>
-                                <td>{{ line.responce }}</td>
+                                <td>{{ line.response }}</td>
                                 <td>{{ line.status }}</td>
                                 <td>{{ line.comment }}</td>
                             </tr>
@@ -178,6 +186,7 @@
                 sagent: [],
                 sstatus: [],
                 stech: [],
+                sresp: [],
 
                 number: 15,
                 pageNumber: 0,
@@ -231,6 +240,13 @@
                             return true;
                         }
 
+                    }).slice(start, end);
+
+                }
+                if (self.sresp.length > 0) {
+
+                    return self.lines.filter(function(item) {
+                        return self.sresp.indexOf(item.response) > -1;
                     }).slice(start, end);
 
                 }
