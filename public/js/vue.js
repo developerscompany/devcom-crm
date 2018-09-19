@@ -125868,6 +125868,36 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import {en} from "element-ui/lib/umd/locale/en"
@@ -125880,12 +125910,15 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         return {
 
             dialog: false,
+            dialog2: false,
             editedIndex: -1,
             editedItem: {
-                10: ''
+                10: '',
+                res: ''
             },
             defaultItem: {
-                10: ''
+                10: '',
+                res: ''
             },
 
             value6: '',
@@ -125895,6 +125928,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             date: null,
             dateFormatted: '',
             menu2: false,
+
+            responses: ['Yes', 'No'],
 
             ssource: [],
             sagent: [],
@@ -126000,6 +126035,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
         },
+        editItem2: function editItem2(item) {
+            this.editedIndex = this.paginatedData.indexOf(item);
+            this.editedItem = Object.assign({}, item);
+            this.dialog2 = true;
+        },
         close: function close() {
             var _this2 = this;
 
@@ -126007,6 +126047,15 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             setTimeout(function () {
                 _this2.editedItem = Object.assign({}, _this2.defaultItem);
                 _this2.editedIndex = -1;
+            }, 300);
+        },
+        close2: function close2() {
+            var _this3 = this;
+
+            this.dialog2 = false;
+            setTimeout(function () {
+                _this3.editedItem = Object.assign({}, _this3.defaultItem);
+                _this3.editedIndex = -1;
             }, 300);
         },
         save: function save() {
@@ -126017,6 +126066,19 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             if (this.editedIndex > -1) {
 
                 axios.post('/user/edit-google-line', { data: data, index: index }).then(this.paginatedData[this.editedIndex].status = data[10]);
+            } else {
+                this.lines.push(this.editedItem);
+            }
+            this.close();
+        },
+        save2: function save2() {
+
+            var data = this.editedItem;
+            var index = this.editedIndex;
+
+            if (this.editedIndex > -1) {
+
+                axios.post('/user/edit-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data[10]);
             } else {
                 this.lines.push(this.editedItem);
             }
@@ -126495,7 +126557,33 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.budget))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(line.response))]),
+                    _c(
+                      "td",
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(line.response) +
+                            "\n                                "
+                        ),
+                        _c(
+                          "v-icon",
+                          {
+                            attrs: { small: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.editItem2(line)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    edit\n                                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c(
                       "td",
@@ -126618,6 +126706,99 @@ var render = function() {
                           nativeOn: {
                             click: function($event) {
                               return _vm.save($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Save")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { "max-width": "500px" },
+              model: {
+                value: _vm.dialog2,
+                callback: function($$v) {
+                  _vm.dialog2 = $$v
+                },
+                expression: "dialog2"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md4: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.responses,
+                                  label: "Response",
+                                  "item-text": "title",
+                                  "item-value": "title",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.editedItem.res,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.editedItem, "res", $$v)
+                                  },
+                                  expression: "editedItem.res"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", flat: "" },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.close2($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", flat: "" },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.save2($event)
                             }
                           }
                         },
@@ -127247,7 +127428,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -127260,6 +127441,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -127440,6 +127629,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             sagent: [],
             sstatus: [],
             stech: [],
+            sresp: [],
 
             number: 15,
             pageNumber: 0,
@@ -127486,6 +127676,12 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     if (current >= st && current <= en) {
                         return true;
                     }
+                }).slice(start, end);
+            }
+            if (self.sresp.length > 0) {
+
+                return self.lines.filter(function (item) {
+                    return self.sresp.indexOf(item.response) > -1;
                 }).slice(start, end);
             }
             if (self.ssource.length > 0) {
@@ -127555,7 +127751,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "admin-bids" }, [
     _c("div", { staticClass: "form-wrapper mb-4 p-3" }, [
-      _c("div", { staticClass: "pager-view clearfix" }, [
+      _c("div", { staticClass: "pager-view clearfix text-center" }, [
         _c(
           "div",
           { staticClass: "pull-left text-left viewNumber" },
@@ -127580,6 +127776,11 @@ var render = function() {
           ],
           2
         ),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "font-weight-bold",
+          domProps: { textContent: _vm._s(_vm.paginatedData.length) }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "pull-right text-right viewPager" }, [
           _c(
@@ -127802,9 +128003,51 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "filter-cell response" }, [
                       _vm._v(
-                        "\n                                Responce\n                            "
+                        "\n                                Responce\n                                "
+                      ),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sresp,
+                              expression: "sresp"
+                            }
+                          ],
+                          staticClass: "form-control mt-1",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.sresp = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { selected: "", value: "" } }, [
+                            _vm._v("Resp...")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Yes" } }, [
+                            _vm._v("Yes")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "No" } }, [
+                            _vm._v("No")
+                          ])
+                        ]
                       )
                     ]),
                     _vm._v(" "),
@@ -127963,7 +128206,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(line.budget))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(line.responce))]),
+                      _c("td", [_vm._v(_vm._s(line.response))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(line.status))]),
                       _vm._v(" "),

@@ -254,13 +254,19 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
-
         $bid = Bid::where('user_id', auth()->user()->id)->where('id', request('data')['id'])->first();
 
         $bid->update([
             'status' => request('data')['10']
         ]);
+    }
+    public function bidResp()
+    {
+        $bid = Bid::where('user_id', auth()->user()->id)->where('id', request('data')['id'])->first();
 
+        $bid->update([
+            'response' => request('data')['10']
+        ]);
     }
 
     public function stat()
