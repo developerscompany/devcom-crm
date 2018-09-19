@@ -432,13 +432,13 @@
 
                     axios.post('/user/edit-bid-response', {data, index})
                         .then(
-                            this.paginatedData[this.editedIndex].response = data[10]
+                            this.paginatedData[this.editedIndex].response = data['res']
                         );
 
                 } else {
                     this.lines.push(this.editedItem)
                 }
-                this.close()
+                this.dialog2 = false;
             },
 
             formatDate (date) {

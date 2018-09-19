@@ -126078,11 +126078,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             if (this.editedIndex > -1) {
 
-                axios.post('/user/edit-bid-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data[10]);
+                axios.post('/user/edit-bid-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data['res']);
             } else {
                 this.lines.push(this.editedItem);
             }
-            this.close();
+            this.dialog2 = false;
         },
         formatDate: function formatDate(date) {
             if (!date) return null;
