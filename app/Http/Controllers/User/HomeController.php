@@ -116,7 +116,7 @@ class HomeController extends Controller
         $bid = Bid::where('user_id', auth()->user()->id)->where('id', request('data')['id'])->first();
 
         $bid->update([
-            'response' => request('data')['10']
+            'response' => request('data')['res']
         ]);
     }
 
