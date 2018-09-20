@@ -81,7 +81,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        Bid::create([
+        $newBid = Bid::create([
             'user_id' => auth()->user()->id,
             'date' => date("d.m.Y"),
             'customer' => request('customer'),
@@ -91,16 +91,16 @@ class HomeController extends Controller
             'niche' => request('niche'),
             'current' => request('site'),
             'segment' => request('segment'),
-            'description' => request('desc'),
+            'description' => request('descr'),
             'timing' => request('timing'),
             'budget' => request('budget'),
-            'response' => request('resp'),
+            'response' => request('response'),
             'status' => request('status'),
             'execut' => request('execut'),
             'comment' => request('comment')
         ]);
 
-        return redirect('/user');
+        return $newBid;
     }
 
     public function update(Request $request)

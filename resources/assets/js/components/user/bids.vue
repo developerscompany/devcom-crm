@@ -2,6 +2,106 @@
     <!--<div class="">-->
         <div class="bids">
             <div class="content-wrap p-3">
+                <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
+                <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
+
+                    <ul class="row nav">
+                        <li class="col-md-1">
+                            <label for="customer" class="label">Customer</label>
+                            <select name="customer" id="customer" class="form-control" required v-model="form.customer">
+                                <option value="">Customer...</option>
+                                <option v-for="customer in customers">
+                                    {{ customer.name }}
+                                </option>
+                            </select>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="source" class="label">Source</label>
+                            <select name="source" id="source" class="form-control" required v-model="form.source">
+                                <option value="">Source...</option>
+                                <option v-for="source in sources">
+                                    {{ source.name }}
+                                </option>
+                            </select>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="link" class="label">Link</label>
+                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="niche" class="label">Niche</label>
+                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">
+                        </li>
+
+                        <li class="col-md-1">
+                            <div class="row">
+                                <div class="col-4 text-left border-right px-1">
+                                    <label for="site" class="label">Site</label>
+                                    <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
+                                </div>
+                                <div class="col-6">
+                                    <label for="segment" class="label">Segment</label>
+                                    <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="desc" class="label">Description</label>
+                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="timing" class="label">Timing</label>
+                            <select name="timing" id="timing" class="form-control" required v-model="form.timing">
+                                <option value="">Timing...</option>
+                                <option v-for="time in timing">
+                                    {{ time.title }}
+                                </option>
+                            </select>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="budget" class="label">Budget</label>
+                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="resp" class="label">Response</label>
+                            <select name="resp" id="resp" class="form-control" required v-model="form.response">
+                                <option value="">Yes/No...</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="status" class="label">Status</label>
+                            <select name="status" id="status" class="form-control" required v-model="form.status">
+                                <option value="">Status...</option>
+                                <option v-for="status in statuss">
+                                    {{ status.title }}
+                                </option>
+                            </select>
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="execut" class="label">Executive</label>
+                            <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">
+                        </li>
+
+                        <li class="col-md-1">
+                            <label for="comment" class="label">Comment</label>
+                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
+                        </li>
+                    </ul>
+                    <div class="my-2 text-center">
+                        <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                    </div>
+                </form>
                 <div id="root" class="content">
                     <div class="pager-view clearfix text-center">
                         <div class="pull-left text-left viewNumber">
@@ -243,6 +343,24 @@
         data(){
             return {
 
+                form: {
+                    customer: '',
+                    source: '',
+                    link: '',
+                    niche: '',
+                    site: '',
+                    segment: '',
+                    descr: '',
+                    timing: '',
+                    budget: '',
+                        response: '',
+                    status: '',
+                    execut: '',
+                    comment: '',
+                },
+
+                lines1: this.$props.lines,
+
                 dialog: false,
                 dialog2: false,
                 editedIndex: -1,
@@ -305,7 +423,7 @@
         computed: {
 
             pageCount(){
-                let l = this.lines.length,
+                let l = this.lines1.length,
                     s = this.number;
                 return Math.floor(l/s);
             },
@@ -324,7 +442,7 @@
                     var st = new Date(this.value6[0].split('.').reverse());
                     var en = new Date(this.value6[1].split('.').reverse());
 
-                    return self.lines.filter(function(item) {
+                    return self.lines1.filter(function(item) {
 
                         var current = new Date(item.date.split('.').reverse());
 
@@ -338,21 +456,21 @@
                 }
                 if (self.sresp.length > 0) {
 
-                    return self.lines.filter(function(item) {
+                    return self.lines1.filter(function(item) {
                         return self.sresp.indexOf(item.response) > -1;
                     }).slice(start, end);
 
                 }
                 if (self.ssource.length > 0) {
 
-                    return self.lines.filter(function(item) {
+                    return self.lines1.filter(function(item) {
                         return self.ssource.indexOf(item.source) > -1;
                     }).slice(start, end);
 
                 }
                 if (self.stech.length > 0) {
 
-                    return self.lines.filter(function (item) {
+                    return self.lines1.filter(function (item) {
                         return Object.keys(item).some(function (key) {
                             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
                         });
@@ -360,13 +478,13 @@
                 }
                 if (self.sstatus.length > 0) {
 
-                    return self.lines.filter(function(item) {
+                    return self.lines1.filter(function(item) {
                         return self.sstatus.indexOf(item.status) > -1;
                     }).slice(start, end);
 
                 }
 
-                return this.lines.slice(start, end);
+                return this.lines1.slice(start, end);
             }
         },
 
@@ -374,11 +492,12 @@
 
             onSubmit() {
 
-                let data = this.$data;
+                let dataForm = this.form;
 
-                axios.post('/user/add-google-line', data)
+                axios.post('/user/add-google-line', dataForm)
                     .then(response => {
-                        this.lines.unshift(response.data);
+                        this.lines1.unshift(response.data);
+                        // this.paginatedData.unshift(response.data);
                     });
             },
 
@@ -419,7 +538,7 @@
                         );
 
                 } else {
-                    this.lines.push(this.editedItem)
+                    this.lines1.push(this.editedItem)
                 }
                 this.close()
             },
@@ -436,7 +555,7 @@
                         );
 
                 } else {
-                    this.lines.push(this.editedItem)
+                    this.lines1.push(this.editedItem)
                 }
                 this.dialog2 = false;
             },
