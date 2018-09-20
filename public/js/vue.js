@@ -125898,6 +125898,106 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import {en} from "element-ui/lib/umd/locale/en"
@@ -125908,6 +126008,24 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
     data: function data() {
         return {
+
+            form: {
+                customer: '',
+                source: '',
+                link: '',
+                niche: '',
+                site: '',
+                segment: '',
+                descr: '',
+                timing: '',
+                budget: '',
+                response: '',
+                status: '',
+                execut: '',
+                comment: ''
+            },
+
+            lines1: this.$props.lines,
 
             dialog: false,
             dialog2: false,
@@ -125962,7 +126080,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
     computed: {
         pageCount: function pageCount() {
-            var l = this.lines.length,
+            var l = this.lines1.length,
                 s = this.number;
             return Math.floor(l / s);
         },
@@ -125980,7 +126098,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 var st = new Date(this.value6[0].split('.').reverse());
                 var en = new Date(this.value6[1].split('.').reverse());
 
-                return self.lines.filter(function (item) {
+                return self.lines1.filter(function (item) {
 
                     var current = new Date(item.date.split('.').reverse());
 
@@ -125991,19 +126109,19 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             }
             if (self.sresp.length > 0) {
 
-                return self.lines.filter(function (item) {
+                return self.lines1.filter(function (item) {
                     return self.sresp.indexOf(item.response) > -1;
                 }).slice(start, end);
             }
             if (self.ssource.length > 0) {
 
-                return self.lines.filter(function (item) {
+                return self.lines1.filter(function (item) {
                     return self.ssource.indexOf(item.source) > -1;
                 }).slice(start, end);
             }
             if (self.stech.length > 0) {
 
-                return self.lines.filter(function (item) {
+                return self.lines1.filter(function (item) {
                     return Object.keys(item).some(function (key) {
                         return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
@@ -126011,12 +126129,12 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             }
             if (self.sstatus.length > 0) {
 
-                return self.lines.filter(function (item) {
+                return self.lines1.filter(function (item) {
                     return self.sstatus.indexOf(item.status) > -1;
                 }).slice(start, end);
             }
 
-            return this.lines.slice(start, end);
+            return this.lines1.slice(start, end);
         }
     },
 
@@ -126024,10 +126142,14 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         onSubmit: function onSubmit() {
             var _this = this;
 
-            var data = this.$data;
+            var dataForm = this.form;
 
-            axios.post('/user/add-google-line', data).then(function (response) {
-                _this.lines.unshift(response.data);
+            console.log(dataForm);
+
+            axios.post('/user/add-google-line', dataForm).then(function (response) {
+                console.log(response.data);
+                _this.lines1.unshift(response.data);
+                // this.paginatedData.unshift(response.data);
             });
         },
         editItem: function editItem(item) {
@@ -126067,7 +126189,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
                 axios.post('/user/edit-google-line', { data: data, index: index }).then(this.paginatedData[this.editedIndex].status = data[10]);
             } else {
-                this.lines.push(this.editedItem);
+                this.lines1.push(this.editedItem);
             }
             this.close();
         },
@@ -126080,7 +126202,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
                 axios.post('/user/edit-bid-response', { data: data, index: index }).then(this.paginatedData[this.editedIndex].response = data['res']);
             } else {
-                this.lines.push(this.editedItem);
+                this.lines1.push(this.editedItem);
             }
             this.dialog2 = false;
         },
@@ -126118,6 +126240,590 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "bids" }, [
     _c("div", { staticClass: "content-wrap p-3" }, [
+      _c(
+        "form",
+        {
+          staticStyle: { width: "100%" },
+          attrs: {
+            id: "line-form",
+            method: "post",
+            action: "/",
+            enctype: "multipart/form-data"
+          },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          },
+          model: {
+            value: _vm.form,
+            callback: function($$v) {
+              _vm.form = $$v
+            },
+            expression: "form"
+          }
+        },
+        [
+          _c("ul", { staticClass: "row nav" }, [
+            _c("li", { staticClass: "col-md-1" }, [
+              _c(
+                "label",
+                { staticClass: "label", attrs: { for: "customer" } },
+                [_vm._v("Customer")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.customer,
+                      expression: "form.customer"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "customer", id: "customer", required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "customer",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Customer...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.customers, function(customer) {
+                    return _c("option", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(customer.name) +
+                          "\n                            "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "source" } }, [
+                _vm._v("Source")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.source,
+                      expression: "form.source"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "source", id: "source", required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "source",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Source...")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.sources, function(source) {
+                    return _c("option", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(source.name) +
+                          "\n                            "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "link" } }, [
+                _vm._v("Link")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.link,
+                    expression: "form.link"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "link",
+                  name: "link",
+                  placeholder: "Link...",
+                  required: ""
+                },
+                domProps: { value: _vm.form.link },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "link", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "niche" } }, [
+                _vm._v("Niche")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.niche,
+                    expression: "form.niche"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "niche",
+                  name: "niche",
+                  placeholder: "Niche...",
+                  required: ""
+                },
+                domProps: { value: _vm.form.niche },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "niche", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-4 text-left border-right px-1" },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "label", attrs: { for: "site" } },
+                      [_vm._v("Site")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.site,
+                          expression: "form.site"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "site",
+                        name: "site",
+                        placeholder: "Site...",
+                        required: ""
+                      },
+                      domProps: { value: _vm.form.site },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "site", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c(
+                    "label",
+                    { staticClass: "label", attrs: { for: "segment" } },
+                    [_vm._v("Segment")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.segment,
+                        expression: "form.segment"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "segment",
+                      name: "segment",
+                      placeholder: "Segment..."
+                    },
+                    domProps: { value: _vm.form.segment },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "segment", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "desc" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.descr,
+                    expression: "form.descr"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "desc",
+                  name: "desc",
+                  placeholder: "Description...",
+                  required: ""
+                },
+                domProps: { value: _vm.form.descr },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "descr", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "timing" } }, [
+                _vm._v("Timing")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.timing,
+                      expression: "form.timing"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "timing", id: "timing", required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "timing",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Timing...")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.timing, function(time) {
+                    return _c("option", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(time.title) +
+                          "\n                            "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "budget" } }, [
+                _vm._v("Budget")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.budget,
+                    expression: "form.budget"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "budget",
+                  name: "budget",
+                  placeholder: "Budget...",
+                  required: ""
+                },
+                domProps: { value: _vm.form.budget },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "budget", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "resp" } }, [
+                _vm._v("Response")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.response,
+                      expression: "form.response"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "resp", id: "resp", required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "response",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Yes/No...")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Yes" } }, [_vm._v("Yes")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "No" } }, [_vm._v("No")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "status" } }, [
+                _vm._v("Status")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.status,
+                      expression: "form.status"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "status", id: "status", required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "status",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Status...")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.statuss, function(status) {
+                    return _c("option", [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(status.title) +
+                          "\n                            "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "execut" } }, [
+                _vm._v("Executive")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.execut,
+                    expression: "form.execut"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "execut",
+                  name: "execut",
+                  placeholder: "Executive..."
+                },
+                domProps: { value: _vm.form.execut },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "execut", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "col-md-1" }, [
+              _c("label", { staticClass: "label", attrs: { for: "comment" } }, [
+                _vm._v("Comment")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.comment,
+                    expression: "form.comment"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "comment",
+                  name: "comment",
+                  placeholder: "Comment..."
+                },
+                domProps: { value: _vm.form.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "comment", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "content", attrs: { id: "root" } },
@@ -126874,7 +127580,23 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "my-2 text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { id: "btn-save", type: "submit" }
+        },
+        [_vm._v("Зберегти")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
