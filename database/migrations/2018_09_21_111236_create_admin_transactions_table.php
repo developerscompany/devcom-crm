@@ -31,7 +31,7 @@ class CreateAdminTransactionsTable extends Migration
      * @return void
      */
     public function down()
-    {git
+    {
         Schema::dropIfExists('admin_transactions');
     }
 }
