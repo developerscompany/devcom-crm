@@ -14,6 +14,12 @@
                     <span>Users</span>
                 </a>
             </li>
+            <li class="{{ is_active('admin/transactions') }}">
+                <a href="{{ url('admin/transactions') }}">
+                    <i class="icon-home4"></i>
+                    <span>Транзакції</span>
+                </a>
+            </li>
             <li class="{{ is_active('admin/bids') }}">
                 <a href="{{ url('admin/bids') }}">
                     <i class="icon-home4"></i>
