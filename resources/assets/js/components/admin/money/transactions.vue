@@ -1,20 +1,19 @@
 <template>
     <div class="transactions">
         <v-dialog v-model="dialog" persistent max-width="500px">
-            <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
+            <v-btn slot="activator" color="primary" dark>- Витрати</v-btn>
             <v-card>
-                <v-card-title>
-                    <span class="headline">User Profile</span>
-                </v-card-title>
+                <!--<v-card-title>-->
+                    <!--<span class="headline">User Profile</span>-->
+                <!--</v-card-title>-->
                 <v-card-text>
-                    <v-container grid-list-md>
-                        <v-layout wrap>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field label="Legal first name" required></v-text-field>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                    <small>*indicates required field</small>
+                    <v-form lazy-validation>
+                        <v-select
+                                v-model="bankAcc"
+                                label="Рахунок"
+                                required
+                        ></v-select>
+                    </v-form>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -31,9 +30,14 @@
 <script>
     export default {
 
+        props: ['bank'],
+
         data(){
             return {
                 dialog: false,
+
+                bankAcc: [],
+                bankAccounts: this.$props.bank,
             }
         },
 
