@@ -126828,7 +126828,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -126868,12 +126868,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['bank'],
+
     data: function data() {
         return {
-            dialog: false
+            dialog: false,
+
+            bankAcc: [],
+            bankAccounts: this.$props.bank
         };
     },
     mounted: function mounted() {},
@@ -126915,50 +126920,32 @@ var render = function() {
               attrs: { slot: "activator", color: "primary", dark: "" },
               slot: "activator"
             },
-            [_vm._v("Open Dialog")]
+            [_vm._v("- Витрати")]
           ),
           _vm._v(" "),
           _c(
             "v-card",
             [
-              _c("v-card-title", [
-                _c("span", { staticClass: "headline" }, [
-                  _vm._v("User Profile")
-                ])
-              ]),
-              _vm._v(" "),
               _c(
                 "v-card-text",
                 [
                   _c(
-                    "v-container",
-                    { attrs: { "grid-list-md": "" } },
+                    "v-form",
+                    { attrs: { "lazy-validation": "" } },
                     [
-                      _c(
-                        "v-layout",
-                        { attrs: { wrap: "" } },
-                        [
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md4: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  label: "Legal first name",
-                                  required: ""
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
+                      _c("v-select", {
+                        attrs: { label: "Рахунок", required: "" },
+                        model: {
+                          value: _vm.bankAcc,
+                          callback: function($$v) {
+                            _vm.bankAcc = $$v
+                          },
+                          expression: "bankAcc"
+                        }
+                      })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("small", [_vm._v("*indicates required field")])
+                  )
                 ],
                 1
               ),
