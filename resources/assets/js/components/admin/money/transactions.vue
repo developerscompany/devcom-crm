@@ -10,7 +10,18 @@
                     <v-form lazy-validation>
                         <v-select
                                 v-model="bankAcc"
+                                :items="bank"
+                                item-text="title"
+                                item-value="title"
                                 label="Рахунок"
+                                required
+                        ></v-select>
+                        <v-select
+                                v-model="costType"
+                                :items="type"
+                                item-text="title"
+                                item-value="title"
+                                label="Стаття"
                                 required
                         ></v-select>
                     </v-form>
@@ -30,14 +41,19 @@
 <script>
     export default {
 
-        props: ['bank'],
+        props: ['bank', 'type'],
 
         data(){
             return {
                 dialog: false,
 
                 bankAcc: [],
-                bankAccounts: this.$props.bank,
+
+                // costType: this.$props.type,
+                // bankAccounts: this.$props.bank,
+
+
+
             }
         },
 
@@ -56,5 +72,7 @@
 </script>
 
 <style>
-
+    .v-dialog {
+        overflow: initial;
+    }
 </style>

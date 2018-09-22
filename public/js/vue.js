@@ -126828,7 +126828,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.v-dialog {\n    overflow: initial;\n}\n", ""]);
 
 // exports
 
@@ -126868,17 +126868,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['bank'],
+    props: ['bank', 'type'],
 
     data: function data() {
         return {
             dialog: false,
 
-            bankAcc: [],
-            bankAccounts: this.$props.bank
+            bankAcc: []
+
+            // costType: this.$props.type,
+            // bankAccounts: this.$props.bank,
+
+
         };
     },
     mounted: function mounted() {},
@@ -126934,13 +126949,36 @@ var render = function() {
                     { attrs: { "lazy-validation": "" } },
                     [
                       _c("v-select", {
-                        attrs: { label: "Рахунок", required: "" },
+                        attrs: {
+                          items: _vm.bank,
+                          "item-text": "title",
+                          "item-value": "title",
+                          label: "Рахунок",
+                          required: ""
+                        },
                         model: {
                           value: _vm.bankAcc,
                           callback: function($$v) {
                             _vm.bankAcc = $$v
                           },
                           expression: "bankAcc"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.type,
+                          "item-text": "title",
+                          "item-value": "title",
+                          label: "Стаття",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.costType,
+                          callback: function($$v) {
+                            _vm.costType = $$v
+                          },
+                          expression: "costType"
                         }
                       })
                     ],

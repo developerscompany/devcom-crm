@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\AdminTransaction;
-use App\BankAccount;
 use App\CostsType;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class AdminTransactionsController extends Controller
+class CostsTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,7 @@ class AdminTransactionsController extends Controller
      */
     public function index()
     {
-        $bankAccs = BankAccount::select('title')->get()->toArray();
-        $costTypes = CostsType::select('title')->get()->toArray();
-
-        return view('admin.transactions.index', compact('bankAccs', 'costTypes'));
+        //
     }
 
     /**
@@ -47,10 +41,10 @@ class AdminTransactionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AdminTransaction  $adminTransactions
+     * @param  \App\CostsType  $costsType
      * @return \Illuminate\Http\Response
      */
-    public function show(AdminTransaction $adminTransactions)
+    public function show(CostsType $costsType)
     {
         //
     }
@@ -58,10 +52,10 @@ class AdminTransactionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdminTransaction  $adminTransactions
+     * @param  \App\CostsType  $costsType
      * @return \Illuminate\Http\Response
      */
-    public function edit(AdminTransaction $adminTransactions)
+    public function edit(CostsType $costsType)
     {
         //
     }
@@ -70,10 +64,10 @@ class AdminTransactionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdminTransaction  $adminTransactions
+     * @param  \App\CostsType  $costsType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminTransaction $adminTransactions)
+    public function update(Request $request, CostsType $costsType)
     {
         //
     }
@@ -81,10 +75,10 @@ class AdminTransactionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AdminTransaction  $adminTransactions
+     * @param  \App\CostsType  $costsType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminTransaction $adminTransactions)
+    public function destroy(CostsType $costsType)
     {
         //
     }
