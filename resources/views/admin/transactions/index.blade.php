@@ -5,7 +5,11 @@
 
         {{--{{ dd($bankAccs) }}--}}
 
-        <transactions :bank="{{json_encode($bankAccs)}}"></transactions>
+        <transactions
+                :bank="{{json_encode($bankAccs)}}"
+                :type="{{json_encode($costTypes)}}"
+
+        ></transactions>
 
     </div>
 @endsection
