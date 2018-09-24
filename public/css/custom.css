@@ -120,3 +120,10 @@ input.el-range-input::placeholder {
 .v-dialog .v-card {
     background: #ffffff;
 }
+.user-pan {
+    padding: 12px 20px;
+    padding-left: 35px;
+}
+.user-pan img {
+    max-width: 40px;
+}
