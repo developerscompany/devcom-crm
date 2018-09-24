@@ -126879,16 +126879,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['bank', 'type'],
+    props: ['bank', 'type', 'users'],
 
     data: function data() {
         return {
             dialog: false,
 
-            bankAcc: []
+            bankAcc: [],
+            costType: [],
+            user: []
 
             // costType: this.$props.type,
             // bankAccounts: this.$props.bank,
@@ -126980,7 +126992,26 @@ var render = function() {
                           },
                           expression: "costType"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.costType === "зарплата"
+                        ? _c("v-select", {
+                            attrs: {
+                              items: _vm.users,
+                              "item-text": "name",
+                              "item-value": "name",
+                              label: "Робітник",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.user,
+                              callback: function($$v) {
+                                _vm.user = $$v
+                              },
+                              expression: "user"
+                            }
+                          })
+                        : _vm._e()
                     ],
                     1
                   )

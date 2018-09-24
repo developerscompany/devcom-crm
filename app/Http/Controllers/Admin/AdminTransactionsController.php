@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\AdminTransaction;
 use App\BankAccount;
 use App\CostsType;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,10 +18,12 @@ class AdminTransactionsController extends Controller
      */
     public function index()
     {
-        $bankAccs = BankAccount::select('title')->get()->toArray();
-        $costTypes = CostsType::select('title')->get()->toArray();
+        $bankAccs = BankAccount::select('title')->get();
+        $costTypes = CostsType::select('title')->get();
 
-        return view('admin.transactions.index', compact('bankAccs', 'costTypes'));
+        $users = User::select('name')->where('name', '!=', 'admin')->get();
+
+        return view('admin.transactions.index', compact('bankAccs', 'costTypes', 'users'));
     }
 
     /**
