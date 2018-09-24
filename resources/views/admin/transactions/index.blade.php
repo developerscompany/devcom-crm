@@ -8,7 +8,7 @@
         <transactions
                 :bank="{{json_encode($bankAccs)}}"
                 :type="{{json_encode($costTypes)}}"
-
+                :users="{{json_encode($users)}}"
         ></transactions>
 
     </div>

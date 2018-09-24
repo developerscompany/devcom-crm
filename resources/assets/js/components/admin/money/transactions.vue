@@ -24,6 +24,16 @@
                                 label="Стаття"
                                 required
                         ></v-select>
+
+                        <v-select
+                                v-if="costType === 'зарплата'"
+                                v-model="user"
+                                :items="users"
+                                item-text="name"
+                                item-value="name"
+                                label="Робітник"
+                                required
+                        ></v-select>
                     </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -41,13 +51,16 @@
 <script>
     export default {
 
-        props: ['bank', 'type'],
+        props: ['bank', 'type', 'users'],
 
         data(){
             return {
                 dialog: false,
 
                 bankAcc: [],
+                costType: [],
+                user: [],
+
 
                 // costType: this.$props.type,
                 // bankAccounts: this.$props.bank,
