@@ -334,7 +334,7 @@
 
 <script>
 
-    // import {en} from "element-ui/lib/umd/locale/en"
+    import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 
