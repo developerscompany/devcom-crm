@@ -1,108 +1,110 @@
 <template>
     <!--<div class="">-->
         <div class="bids">
-            <div class="content-wrap p-3">
-                <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
-                <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
+            <div class="content-wrap px-4 py-5">
+                <div class="form-wrap py-3">
+                    <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
+                        <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
 
-                    <ul class="row nav">
-                        <li class="col-md-1">
-                            <label for="customer" class="label">Customer</label>
-                            <select name="customer" id="customer" class="form-control" required v-model="form.customer">
-                                <option value="">Customer...</option>
-                                <option v-for="customer in customers">
-                                    {{ customer.name }}
-                                </option>
-                            </select>
-                        </li>
+                        <ul class="row nav">
+                            <li class="col-md-1">
+                                <label for="customer" class="label">Customer</label>
+                                <select name="customer" id="customer" class="form-control" required v-model="form.customer">
+                                    <option value="">Customer...</option>
+                                    <option v-for="customer in customers">
+                                        {{ customer.name }}
+                                    </option>
+                                </select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="source" class="label">Source</label>
-                            <select name="source" id="source" class="form-control" required v-model="form.source">
-                                <option value="">Source...</option>
-                                <option v-for="source in sources">
-                                    {{ source.name }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <label for="source" class="label">Source</label>
+                                <select name="source" id="source" class="form-control" required v-model="form.source">
+                                    <option value="">Source...</option>
+                                    <option v-for="source in sources">
+                                        {{ source.name }}
+                                    </option>
+                                </select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="link" class="label">Link</label>
-                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">
-                        </li>
+                            <li class="col-md-1">
+                                <label for="link" class="label">Link</label>
+                                <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="niche" class="label">Niche</label>
-                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">
-                        </li>
+                            <li class="col-md-1">
+                                <label for="niche" class="label">Niche</label>
+                                <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">
+                            </li>
 
-                        <li class="col-md-1">
-                            <div class="row">
-                                <div class="col-4 text-left border-right px-1">
-                                    <label for="site" class="label">Site</label>
-                                    <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
+                            <li class="col-md-1">
+                                <div class="row">
+                                    <div class="col-4 text-left border-right px-1">
+                                        <label for="site" class="label">Site</label>
+                                        <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="segment" class="label">Segment</label>
+                                        <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="segment" class="label">Segment</label>
-                                    <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
-                                </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="desc" class="label">Description</label>
-                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">
-                        </li>
+                            <li class="col-md-1">
+                                <label for="desc" class="label">Description</label>
+                                <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="timing" class="label">Timing</label>
-                            <select name="timing" id="timing" class="form-control" required v-model="form.timing">
-                                <option value="">Timing...</option>
-                                <option v-for="time in timing">
-                                    {{ time.title }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <label for="timing" class="label">Timing</label>
+                                <select name="timing" id="timing" class="form-control" required v-model="form.timing">
+                                    <option value="">Timing...</option>
+                                    <option v-for="time in timing">
+                                        {{ time.title }}
+                                    </option>
+                                </select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="budget" class="label">Budget</label>
-                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">
-                        </li>
+                            <li class="col-md-1">
+                                <label for="budget" class="label">Budget</label>
+                                <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="resp" class="label">Response</label>
-                            <select name="resp" id="resp" class="form-control" required v-model="form.response">
-                                <option value="">Yes/No...</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <label for="resp" class="label">Response</label>
+                                <select name="resp" id="resp" class="form-control" required v-model="form.response">
+                                    <option value="">Yes/No...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="status" class="label">Status</label>
-                            <select name="status" id="status" class="form-control" required v-model="form.status">
-                                <option value="">Status...</option>
-                                <option v-for="status in statuss">
-                                    {{ status.title }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <label for="status" class="label">Status</label>
+                                <select name="status" id="status" class="form-control" required v-model="form.status">
+                                    <option value="">Status...</option>
+                                    <option v-for="status in statuss">
+                                        {{ status.title }}
+                                    </option>
+                                </select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="execut" class="label">Executive</label>
-                            <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">
-                        </li>
+                            <li class="col-md-1">
+                                <label for="execut" class="label">Executive</label>
+                                <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="comment" class="label">Comment</label>
-                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
-                        </li>
-                    </ul>
-                    <div class="my-2 text-center">
-                        <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
-                    </div>
-                </form>
-                <div id="root" class="content">
+                            <li class="col-md-1">
+                                <label for="comment" class="label">Comment</label>
+                                <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
+                            </li>
+                        </ul>
+                        <div class="my-2 text-center">
+                            <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="root" class="content mt-4 py-3">
                     <div class="pager-view clearfix text-center">
                         <div class="pull-left text-left viewNumber">
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
@@ -594,6 +596,9 @@
 </script>
 
 <style>
+    .content-wrapper {
+        background: #f0f0f1;
+    }
     #line-form ul {
         justify-content: center;
     }
