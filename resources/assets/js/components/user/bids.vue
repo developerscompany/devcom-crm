@@ -334,7 +334,7 @@
 
 <script>
 
-    // import {en} from "element-ui/lib/umd/locale/en"
+    import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 
@@ -353,7 +353,7 @@
                     descr: '',
                     timing: '',
                     budget: '',
-                        response: '',
+                    response: '',
                     status: '',
                     execut: '',
                     comment: '',
@@ -497,8 +497,22 @@
                 axios.post('/user/add-google-line', dataForm)
                     .then(response => {
                         this.lines1.unshift(response.data);
-                        // this.paginatedData.unshift(response.data);
+
+                        this.form.comment = '';
+                        this.form.execut = '';
+                        this.form.status = '';
+                        this.form.response = '';
+                        this.form.budget = '';
+                        this.form.descr = '';
+                        this.form.segment = '';
+                        this.form.site = '';
+                        this.form.niche = '';
+                        this.form.link = '';
+                        this.form.source = '';
+                        this.form.customer = '';
+                        this.form.timing = '';
                     });
+
             },
 
             editItem (item) {

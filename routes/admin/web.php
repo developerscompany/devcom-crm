@@ -19,6 +19,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::get('sources', 'BidsController@getSource');
     Route::get('statuss', 'BidsController@getStatus');
 
+    Route::get('/transactions', 'AdminTransactionsController@index');
+
     Route::prefix('hostings')->group(
         function () {
 
