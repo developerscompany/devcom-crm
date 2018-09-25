@@ -105,11 +105,10 @@
                 <div id="root" class="content">
                     <div class="pager-view clearfix text-center">
                         <div class="pull-left text-left viewNumber">
-                            <span>Show: </span>
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
 
-                        <span class="font-weight-bold" v-text="paginatedData.length"></span>
+                        <span class="font-weight-bold" v-text="lines1.length"></span>
 
                         <div class="pull-right text-right viewPager">
                             <button
@@ -310,7 +309,6 @@
                     </v-dialog>
                     <div class="pager-view clearfix">
                         <div class="pull-left text-left viewNumber">
-                            <span>Show: </span>
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
                         <div class="pull-right text-right viewPager">
@@ -333,8 +331,6 @@
 </template>
 
 <script>
-
-    import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 

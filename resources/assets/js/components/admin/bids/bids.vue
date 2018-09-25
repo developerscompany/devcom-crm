@@ -4,7 +4,6 @@
 
             <div class="pager-view clearfix text-center">
                 <div class="pull-left text-left viewNumber">
-                    <span>Show: </span>
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
 
@@ -24,124 +23,122 @@
                 </div>
             </div>
 
-            <div class="">
-                <div class="">
-                    <div class="table-responsive">
-                        <table class="table table-striped" style="font-size: 14px; line-height: 15px">
-                            <thead>
-                            <tr>
-                                <td class="filter-cell date">
-                                    Date
-                                    <template>
-                                        <div class="mt-1">
-                                            <el-date-picker
-                                                    v-model="value6"
-                                                    format="dd.MM"
-                                                    value-format="dd.MM.yyyy"
-                                                    type="daterange"
-                                                    range-separator="-"
-                                                    start-placeholder="From"
-                                                    end-placeholder="To">
-                                            </el-date-picker>
-                                        </div>
-                                    </template>
-                                </td>
-                                <td class="filter-cell agent">
-                                    Agent
-                                    <select v-model="sagent" class="form-control mt-1">
-                                        <option value="">Agent...</option>
-                                        <option v-for="agent in agents"> {{ agent.name }}</option>
-                                    </select>
-                                </td>
-                                <td class="filter-cell sourse">
-                                    Source
-                                    <select v-model="ssource" class="form-control mt-1">
-                                        <option value="">Source...</option>
-                                        <option v-for="source in sources"> {{ source.name }}</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    Link to lead
-                                </td>
-                                <td class="filter-cell niche">
-                                    Niche
-                                    <input v-model="stech" class="form-control mt-1" placeholder="Filter">
-                                </td>
-                                <td class="curr-site-cell">
-                                    Current site
-                                </td>
-                                <td>
-                                    Description
-                                </td>
-                                <td>
-                                    Timing
-                                </td>
-                                <td class="budget-td">
-                                    Budget $
-                                </td>
-                                <td class="filter-cell response">
-                                    Responce
-                                    <select v-model="sresp" class="form-control mt-1">
-                                        <option selected value="">Resp...</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </td>
-                                <td class="filter-cell status">
-                                    Status
-                                    <select v-model="sstatus" class="form-control mt-1">
-                                        <option value="">Status...</option>
-                                        <option v-for="status in statuss"> {{ status.title }}</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    Comments
-                                </td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="line in paginatedData">
-                                <td>{{ line.date }}</td>
-                                <td>{{ line.agent }}</td>
-                                <td>{{ line.source }}</td>
-                                <td class="link-lead">
+            <div class="mt-2">
+                <div class="table-responsive">
+                    <table class="table table-striped" style="font-size: 14px; line-height: 15px">
+                        <thead>
+                        <tr>
+                            <td class="filter-cell date">
+                                Date
+                                <template>
+                                    <div class="mt-1">
+                                        <el-date-picker
+                                                v-model="value6"
+                                                format="dd.MM"
+                                                value-format="dd.MM.yyyy"
+                                                type="daterange"
+                                                range-separator="-"
+                                                start-placeholder="From"
+                                                end-placeholder="To">
+                                        </el-date-picker>
+                                    </div>
+                                </template>
+                            </td>
+                            <td class="filter-cell agent">
+                                Agent
+                                <select v-model="sagent" class="form-control mt-1">
+                                    <option value="">Agent...</option>
+                                    <option v-for="agent in agents"> {{ agent.name }}</option>
+                                </select>
+                            </td>
+                            <td class="filter-cell sourse">
+                                Source
+                                <select v-model="ssource" class="form-control mt-1">
+                                    <option value="">Source...</option>
+                                    <option v-for="source in sources"> {{ source.name }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                Link to lead
+                            </td>
+                            <td class="filter-cell niche">
+                                Niche
+                                <input v-model="stech" class="form-control mt-1" placeholder="Filter">
+                            </td>
+                            <td class="curr-site-cell">
+                                Current site
+                            </td>
+                            <td>
+                                Description
+                            </td>
+                            <td>
+                                Timing
+                            </td>
+                            <td class="budget-td">
+                                Budget $
+                            </td>
+                            <td class="filter-cell response">
+                                Responce
+                                <select v-model="sresp" class="form-control mt-1">
+                                    <option selected value="">Resp...</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </td>
+                            <td class="filter-cell status">
+                                Status
+                                <select v-model="sstatus" class="form-control mt-1">
+                                    <option value="">Status...</option>
+                                    <option v-for="status in statuss"> {{ status.title }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                Comments
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="line in paginatedData">
+                            <td>{{ line.date }}</td>
+                            <td>{{ line.agent }}</td>
+                            <td>{{ line.source }}</td>
+                            <td class="link-lead">
 
-                                    <v-tooltip top>
-                                <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line.link>
-                                        {{ line.link.substr(0, 30) }}
-                                    </a>
-                                </span>
-                                        {{ line.link }}
-                                    </v-tooltip>
+                                <v-tooltip top>
+                            <span slot="activator" color="primary" dark>
+                                <a target="_blank" :href=line.link>
+                                    {{ line.link.substr(0, 30) }}
+                                </a>
+                            </span>
+                                    {{ line.link }}
+                                </v-tooltip>
 
-                                </td>
-                                <td>{{ line.niche }}</td>
-                                <td class="link-current">
-                                    <v-tooltip top>
-                                <span slot="activator" color="primary" dark>
-                                    <a target="_blank" :href=line.current>
-                                        {{ line.current.substr(0, 30) }}
-                                    </a>
-                                </span>
-                                        {{ line.current }}
-                                    </v-tooltip>
-                                </td>
-                                <td>{{ line.description }}</td>
-                                <td>{{ line.timing }}</td>
-                                <td>{{ line.budget }}</td>
-                                <td>{{ line.response }}</td>
-                                <td>{{ line.status }}</td>
-                                <td>{{ line.comment }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            </td>
+                            <td>{{ line.niche }}</td>
+                            <td class="link-current">
+                                <v-tooltip top>
+                            <span slot="activator" color="primary" dark>
+                                <a target="_blank" :href=line.current>
+                                    {{ line.current.substr(0, 30) }}
+                                </a>
+                            </span>
+                                    {{ line.current }}
+                                </v-tooltip>
+                            </td>
+                            <td>{{ line.description }}</td>
+                            <td>{{ line.timing }}</td>
+                            <td>{{ line.budget }}</td>
+                            <td>{{ line.response }}</td>
+                            <td>{{ line.status }}</td>
+                            <td>{{ line.comment }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
             <div class="pager-view clearfix">
                 <div class="pull-left text-left viewNumber">
-                    <span>Show: </span>
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
                 <div class="pull-right text-right viewPager">

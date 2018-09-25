@@ -1,0 +1,32 @@
+#app div,
+#app a {
+    color: #404447;
+}
+header {
+    background: #ffffff;
+}
+.page-container {
+    background: #ffffff;
+}
+.navbar {
+    background: none;
+}
+.sidebar {
+    background: none;
+}
+.sidebar .active a {
+    background: none !important;
+    color: #ffd134 !important;
+}
+.viewNumber a {
+    padding: 5px;
+    border: 1px solid #ebebeb;
+}
+.viewNumber a.active {
+    color: #ffffff !important;
+    background: #f8dd3f;
+}
+.table thead td {
+    border-top: none;
+    font-weight: bold;
+}
