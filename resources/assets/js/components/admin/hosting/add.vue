@@ -1,141 +1,221 @@
 <template>
-    <div class="hosting-add">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <label class="label-column">Прізвище <b>*</b></label>
-                    <span class="error" v-if="errors.last_name">{{errors.last_name[0]}}</span>
-                    <input type="text" class="form-control" v-model="data.last_name">
-
-                    <label class="label-column">Ім'я <b>*</b></label>
-                    <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
-                    <input type="text" class="form-control" v-model="data.name">
-
-                    <label class="label-column">По батькові <b>*</b></label>
-                    <span class="error" v-if="errors.second_name">{{errors.second_name[0]}}</span>
-                    <input type="text" class="form-control" v-model="data.second_name">
-
-                    <label class="label-column">Телефон <b>*</b></label>
-                    <span class="error" v-if="errors.phone">{{errors.phone[0]}}</span>
-                    <input type="text" class="form-control" v-model="data.phone">
-
-                    <label class="label-column">Домен <b>*</b></label>
-                    <span class="error" v-if="errors.site">{{errors.site[0]}}</span>
-                    <input type="text" class="form-control" v-model="data.site">
-
-                    <div v-for="(cond, index) in data.conditions" class="conditions-block">
-                        <span class="error" v-if="errors.conditions">Не вірно введені дані про Послуги.</span>
-                            <label class="label-column">Послуга <b>*</b></label>
-
-                                <select name="" class="form-control" v-model="cond.condition" id="">
-                                    <option value="hosting">Хостинг</option>
-                                    <option value="cert">Сертифікат</option>
-                                    <option value="support">Підтримка</option>
-                                    <option value="domain">Домен</option>
-                                </select>
+    <div class="hosting-list">
 
 
+        <div class="text-xs-left">
+            <v-dialog v-model="dialog" width="500">
+                <v-btn slot="activator" color="red lighten-2" dark>
+                    Додати
+                </v-btn>
 
+                <v-card>
+                    <v-card-title class="headline grey lighten-2" primary-title>
+                        Додати новий аккаунт
+                    </v-card-title>
 
-                        <label class="label-column">Сумма за місяць</label>
+                    <v-card-text>
 
-                        <input  type="number" class="form-control" v-model="cond.amount">
+                        <form>
+                            <v-text-field
+                                    v-model="last_name"
+                                    :error-messages="lastNameErrors"
+                                    label="Прізвище"
+                                    required
+                                    @input="$v.last_name.$touch()"
+                                    @blur="$v.last_name.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="name"
+                                    :error-messages="nameErrors"
+                                    label="Ім'я"
+                                    required
+                                    @input="$v.name.$touch()"
+                                    @blur="$v.name.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="second_name"
+                                    :error-messages="secondNameErrors"
+                                    label="По батькові"
+                                    required
+                                    @input="$v.second_name.$touch()"
+                                    @blur="$v.second_name.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="phone"
+                                    :error-messages="phoneErrors"
+                                    label="Номер телефону"
+                                    required
+                                    @input="$v.phone.$touch()"
+                                    @blur="$v.phone.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="site"
+                                    :error-messages="siteErrors"
+                                    label="Домен"
+                                    required
+                                    @input="$v.site.$touch()"
+                                    @blur="$v.site.$touch()"
+                            ></v-text-field>
+                            <!--<v-select
+                                    v-model="select"
+                                    :items="roles"
+                                    item-text="name"
+                                    item-value="name"
+                                    :error-messages="selectErrors"
+                                    label="Item"
+                                    required
+                                    @change="$v.select.$touch()"
+                                    @blur="$v.select.$touch()"
+                            ></v-select>-->
 
-                        <label class="label-column">Сумма за рік</label>
+                            <v-btn @click="submit()">Відправити</v-btn>
+                            <v-btn @click="clear">Очистити</v-btn>
+                        </form>
 
-                        <input  type="number" class="form-control" v-model="cond.amount_year">
+                    </v-card-text>
 
-                    </div>
-                    <span class="error" v-show="condError == true">Виберіть послугу або видаліть поле! <br></span>
+                    <v-divider></v-divider>
 
-                    <button @click="addCondition()" class="btn-add">+</button>
-                    <button @click="remCondition()" class="btn-del"><div>-</div></button>
-                    <button @click="add()" class="btn-create">Додати</button>
-
-                </div>
-                <div class="col-md-4"></div>
-            </div>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" flat @click="dialog = false">
+                            Закрити
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </div>
-
-
     </div>
 </template>
 
 <script>
+    import { validationMixin } from 'vuelidate'
+    import { required, maxLength, minLength, numeric } from 'vuelidate/lib/validators'
+    import {Events} from '../../../vue'
+
     export default {
+        mixins: [validationMixin],
+
+        validations: {
+            name: { required },
+            last_name: { required },
+            second_name: { required },
+            phone: { required, numeric },
+            site: { required },
+        },
 
         data() {
             return {
-                title: "Hostings",
-                data: {
+
+                name: '',
+                last_name: '',
+                second_name: '',
+                phone: '',
+                site: '',
+
+                newAcc: {
                     name: '',
                     last_name: '',
                     second_name: '',
                     phone: '',
                     site: '',
-                    conditions:
-                        [
-                            {
-                                condition: '',
-                                amount: 0,
-                                amount_year: 0,
-                            },
-                        ]
                 },
-                errors: {},
-                condError: false,
+
+                dialog: false,
+                errors: '',
             }
         },
-
-        methods: {
-            addCondition() {
-                this.data.conditions.push({
-                    condition: '',
-                    amount: 0
-                })
+        computed: {
+            /*selectErrors () {
+                const errors = [];
+                // this.$v.editedItem.select
+                if (!this.$v.select.$dirty) return errors;
+                !this.$v.select.required && errors.push('Item is required');
+                return errors;
+            },*/
+            lastNameErrors () {
+                const errors = [];
+                if (!this.$v.last_name.$dirty) return errors;
+                !this.$v.last_name.required && errors.push("Прізвище - обов'язково.");
+                this.errors.last_name && errors.push(this.errors.last_name[0])
+                return errors;
             },
-            remCondition(){
-                let number = this.data.conditions.length--;
-                this.$delete(this.data.conditions, number);
+            secondNameErrors () {
+                const errors = [];
+                if (!this.$v.second_name.$dirty) return errors;
+                !this.$v.second_name.required && errors.push("По батькові - обов'язково.");
+                this.errors.second_name && errors.push(this.errors.second_name[0])
+                return errors;
             },
-            add(){
-                let valid = true
-                $.each(this.data.conditions, function (key, value) {
-                    if(value.condition === ""){
-                        valid = false
-                    }
-                })
+            nameErrors () {
+                const errors = [];
+                if (!this.$v.name.$dirty) return errors;
+                !this.$v.name.required && errors.push("Ім'я - обов'язково.");
+                this.errors.name && errors.push(this.errors.name[0])
+                return errors;
+            },
+            phoneErrors () {
+                const errors = [];
+                if (!this.$v.phone.$dirty) return errors;
+                !this.$v.phone.numeric && errors.push('Мають бути цифри або спецзнаки.');
+                !this.$v.phone.required && errors.push("Телефон - обов'язково.");
+                this.errors.phone && errors.push(this.errors.phone[0])
 
-                if(valid === true){
-                    this.condError = false
-                    this.$http.post('/admin/hostings/create', this.data).then(res => {
-                        if (res.status === 201) {
-                            location.href = '/admin/hostings'
-                        }
-                        else {
-
-                        }
-                    }, err => {
-                        this.errors = err.data.errors
-                    })
-
-                }
-                else {
-                    this.condError = true
-                }
-
-
-
+                return errors;
+            },
+            siteErrors () {
+                const errors = [];
+                if (!this.$v.site.$dirty) return errors;
+                !this.$v.site.required && errors.push("Домен - обов'язково.");
+                this.errors.site && errors.push(this.errors.site[0])
+                return errors;
             }
+        },
+        methods: {
+            submit () {
+                this.$v.$touch();
 
+                this.newAcc.name = this.name;
+                this.newAcc.last_name = this.last_name;
+                this.newAcc.second_name = this.second_name;
+                this.newAcc.phone = this.phone;
+                this.newAcc.site = this.site;
+                let data = this.newAcc;
+
+                // console.log(this.newAcc)
+                this.$http.post('/admin/hostings/create', data).then(res => {
+                    if (res.status === 201) {
+                        this.dialog = false;
+                        let account = res.data.data
+                        Events.$emit('getListNewAcc', account);
+                    }
+                    else {
+                        this.dialog = false;
+
+                    }
+                }, err => {
+                    this.errors = err.data.errors
+                })
+
+
+            },
+            clear () {
+                this.$v.$reset();
+                this.name = '';
+                this.last_name = '';
+                this.second_name = '';
+                this.phone = '';
+                this.site = '';
+            }
         }
-
     };
 </script>
 
 <style>
-    .error{
+    .v-dialog.v-dialog--active{
+        background-color: white;
+    }
+    .v-messages__message {
         color: red;
     }
 </style>

@@ -49,19 +49,18 @@ class HostingController extends Controller
     public function create(HostingsCreate $request){
 
         $hosting = $request->only('name','last_name','second_name', 'phone', 'site');
-        $conditions = $request->get('conditions');
-
-        DB::transaction(function () use ($hosting, $conditions) {
+//        $conditions = $request->get('conditions');
+//        DB::transaction(function () use ($hosting, $acc) {
             $acc = Hosting::create($hosting);
-            foreach ($conditions as $condition){
+            /*foreach ($conditions as $condition){
 
                 if(!empty($condition['condition'])){
                     $acc->conditions()->create($condition);
                 }
-            }
-        });
+            }*/
+//        });
 
-        return response()->json([ 'data' => $conditions], 201);
+        return response()->json([ 'data' => $acc], 201);
     }
 
     public function show(Hosting $hosting){
@@ -213,6 +212,7 @@ class HostingController extends Controller
                 $result[$key1]['pay'] = 0;
             }
         }
+
         ksort($result);
         return view("admin.hosting.servers",['servers' => $server->get(), 'pay' => $result,  'amounts' => $amounts]);
     }
