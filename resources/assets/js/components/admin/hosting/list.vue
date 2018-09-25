@@ -1,10 +1,7 @@
 <template>
     <div class="hosting-list">
 
-        <div class="div-btn-add">
-            <button class="btn-add" @click="openAdd">Додати</button>
-        </div>
-
+        <hosting-add></hosting-add>
 
         <div class="container-fluid">
             <div class="row">
@@ -145,7 +142,7 @@
                 </div>
                 </div>
                 <div class="col-md-2 col-sm-12 list-column" >{{list.amount_all}}/{{list.amount_all_year}}</div>
-                <div class="col-md-2 col-sm-12 list-column" >{{editShortDate(list.latest_finance.really_to)}}</div>
+                <div class="col-md-2 col-sm-12 list-column" v-if="list.latest_finance">{{editShortDate(list.latest_finance.really_to)}}</div>
             </div>
             <div class="row">
                 <!-- number item on page -->
@@ -272,19 +269,28 @@
 </template>
 
 <script>
+    import {Events} from '../../../vue'
+    import HostingAdd from './add'
     export default {
 
         data(){
             return {
                 title: "Hostings",
                 currentPage: 1,
-                itemsPerPage: 5,
+                itemsPerPage: 20,
                 resultCount: 0,
+                lists: this.$props.listsAll
 
             }
         },
+        components:{
+          HostingAdd,
+        },
         created(){
-            console.log(this.lists[0])
+            let uplists = this.updateLists
+            Events.$on('getListNewAcc', function (data) {
+                uplists(data)
+            });
         },
         computed: {
             totalPages: function () {
@@ -302,13 +308,14 @@
                 return this.lists.slice(index, index + this.itemsPerPage)
             }
         },
-        props: ['lists'],
+        props: ['listsAll'],
         methods: {
+            updateLists(data){
+                this.lists.unshift(data.valueOf())
+                this.$forceUpdate();
+            },
             setPage(pageNumber) {
                 this.currentPage = pageNumber
-            },
-            openAdd(){
-                return location.href = "/admin/hostings/add";
             },
             editShortDate(date){
                 if (date) {
