@@ -127655,7 +127655,20 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             axios.post('/user/add-google-line', dataForm).then(function (response) {
                 _this.lines1.unshift(response.data);
-                // this.paginatedData.unshift(response.data);
+
+                _this.form.comment = '';
+                _this.form.execut = '';
+                _this.form.status = '';
+                _this.form.response = '';
+                _this.form.budget = '';
+                _this.form.descr = '';
+                _this.form.segment = '';
+                _this.form.site = '';
+                _this.form.niche = '';
+                _this.form.link = '';
+                _this.form.source = '';
+                _this.form.customer = '';
+                _this.form.timing = '';
             });
         },
         editItem: function editItem(item) {
