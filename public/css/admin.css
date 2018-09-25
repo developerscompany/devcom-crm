@@ -62,10 +62,7 @@ header > .navbar {
 .viewNumber a{
     color: #a1a1a1 !important;
 }
-.viewNumber a.active {
-    color: #1763ff !important;
-    font-weight: bold;
-}
+
 
 .viewPager button {
     background: none;
