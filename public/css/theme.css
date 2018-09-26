@@ -30,3 +30,15 @@ header {
     border-top: none;
     font-weight: bold;
 }
+button.sbm-button {
+    background: #f8dd3f;
+    color: #fff;
+    border: none;
+    box-shadow: none !important;
+    padding: 5px 20px;
+    font-size: 14px;
+    border-radius: 15px;
+}
+.sbm-button div.v-btn__content {
+    color: #fff !important;
+}

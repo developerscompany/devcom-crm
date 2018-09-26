@@ -2,13 +2,13 @@
     <div class="bids">
         <div class="text-xs-left">
             <v-dialog v-model="dialog" width="500">
-                <v-btn small slot="activator" color="red lighten-2" dark>
-                    Customer Add
+                <v-btn class="sbm-button" small slot="activator">
+                    Добавити клієнта
                 </v-btn>
 
                 <v-card>
                     <v-card-title class="headline grey lighten-2" primary-title>
-                        Customer Add
+                        Клієнт
                     </v-card-title>
 
                     <v-card-text>
@@ -99,27 +99,7 @@
             }
         },
         computed: {
-            // infoErrors () {
-            //     const errors = [];
-            //     // this.$v.editedItem.select
-            //     if (!this.$v.select.$dirty) return errors;
-            //     !this.$v.select.required && errors.push('Item is required');
-            //     return errors;
-            // },
-            // nameErrors () {
-            //     const errors = [];
-            //     if (!this.$v.name.$dirty) return errors;
-            //     !this.$v.name.maxLength && errors.push('Name must be at most 1 characters long');
-            //     !this.$v.name.required && errors.push('Name is required.');
-            //     return errors;
-            // },
-            // countryErrors () {
-            //     const errors = [];
-            //     if (!this.$v.email.$dirty) return errors;
-            //     !this.$v.email.email && errors.push('Must be valid e-mail');
-            //     !this.$v.email.required && errors.push('E-mail is required');
-            //     return errors;
-            // }
+
         },
         methods: {
             submit (name, country, info) {

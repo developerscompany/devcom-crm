@@ -1,6 +1,6 @@
 <div class="sidebar sidebar-main">
     <div class="user-pan">
-        <span class="pull-left mr-2">
+        <span class="pull-left mr-3">
             @if ($avatar = auth()->user()->avatar)
                 @if (is_role('admin'))
                     <a href="/admin"><img src="{{ asset('storage/' . $avatar) }}" class="img-rounded"></a>

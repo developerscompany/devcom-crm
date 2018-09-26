@@ -127284,7 +127284,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#btn-save {\n    background: #f8dd3f;\n    border: none;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n}\n#line-form label {\n    font-weight: bold;\n    font-size: 15px;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 12px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
+exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#line-form label {\n    font-weight: bold;\n    font-size: 15px;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 12px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -128136,7 +128136,7 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "col-8" }, [
                     _c(
                       "label",
                       { staticClass: "label", attrs: { for: "segment" } },
@@ -129242,7 +129242,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn btn-primary sbm-button",
           attrs: { id: "btn-save", type: "submit" }
         },
         [_vm._v("Зберегти")]
@@ -129461,29 +129461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    computed: {
-        // infoErrors () {
-        //     const errors = [];
-        //     // this.$v.editedItem.select
-        //     if (!this.$v.select.$dirty) return errors;
-        //     !this.$v.select.required && errors.push('Item is required');
-        //     return errors;
-        // },
-        // nameErrors () {
-        //     const errors = [];
-        //     if (!this.$v.name.$dirty) return errors;
-        //     !this.$v.name.maxLength && errors.push('Name must be at most 1 characters long');
-        //     !this.$v.name.required && errors.push('Name is required.');
-        //     return errors;
-        // },
-        // countryErrors () {
-        //     const errors = [];
-        //     if (!this.$v.email.$dirty) return errors;
-        //     !this.$v.email.email && errors.push('Must be valid e-mail');
-        //     !this.$v.email.required && errors.push('E-mail is required');
-        //     return errors;
-        // }
-    },
+    computed: {},
     methods: {
         submit: function submit(name, country, info) {
             this.$v.$touch();
@@ -129537,15 +129515,11 @@ var render = function() {
             _c(
               "v-btn",
               {
-                attrs: {
-                  slot: "activator",
-                  small: "",
-                  color: "red lighten-2",
-                  dark: ""
-                },
+                staticClass: "sbm-button",
+                attrs: { slot: "activator", small: "" },
                 slot: "activator"
               },
-              [_vm._v("\n                Customer Add\n            ")]
+              [_vm._v("\n                Добавити клієнта\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -129557,11 +129531,7 @@ var render = function() {
                     staticClass: "headline grey lighten-2",
                     attrs: { "primary-title": "" }
                   },
-                  [
-                    _vm._v(
-                      "\n                    Customer Add\n                "
-                    )
-                  ]
+                  [_vm._v("\n                    Клієнт\n                ")]
                 ),
                 _vm._v(" "),
                 _c("v-card-text", [
