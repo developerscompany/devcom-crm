@@ -51,7 +51,7 @@ input:focus::placeholder {
     border: none;
     cursor: pointer;
 }
-.content-wrap,
+.content-wrap > *,
 .form-wrapper {
     background: #fff;
     border-radius: 5px;

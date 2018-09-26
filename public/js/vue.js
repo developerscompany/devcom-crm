@@ -127284,7 +127284,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 13px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
+exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#btn-save {\n    background: #f8dd3f;\n    border: none;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n}\n#line-form label {\n    font-weight: bold;\n    font-size: 15px;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 12px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -127880,7 +127880,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "bids" }, [
-    _c("div", { staticClass: "content-wrap px-4 py-5" }, [
+    _c("div", { staticClass: "content-wrap pb-4" }, [
       _c("div", { staticClass: "form-wrap py-3" }, [
         _c(
           "form",
@@ -129238,7 +129238,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-2 text-center" }, [
+    return _c("div", { staticClass: "mt-3 text-center" }, [
       _c(
         "button",
         {

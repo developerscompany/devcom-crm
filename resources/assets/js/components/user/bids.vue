@@ -1,7 +1,7 @@
 <template>
     <!--<div class="">-->
         <div class="bids">
-            <div class="content-wrap px-4 py-5">
+            <div class="content-wrap pb-4">
                 <div class="form-wrap py-3">
                     <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
                         <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
@@ -43,7 +43,7 @@
                                         <label for="site" class="label">Site</label>
                                         <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8">
                                         <label for="segment" class="label">Segment</label>
                                         <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
                                     </div>
@@ -99,7 +99,7 @@
                                 <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
                             </li>
                         </ul>
-                        <div class="my-2 text-center">
+                        <div class="mt-3 text-center">
                             <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
                         </div>
                     </form>
@@ -599,6 +599,17 @@
     .content-wrapper {
         background: #f0f0f1;
     }
+    #btn-save {
+        background: #f8dd3f;
+        border: none;
+        padding: 5px 20px;
+        font-size: 14px;
+        border-radius: 15px;
+    }
+    #line-form label {
+        font-weight: bold;
+        font-size: 15px;
+    }
     #line-form ul {
         justify-content: center;
     }
@@ -627,7 +638,7 @@
         border-color: #e5e5e5;
         padding: 0.02rem 0.1rem;
         height: auto !important;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
         border: none;
         color: #000000;
