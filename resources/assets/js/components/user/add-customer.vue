@@ -17,24 +17,23 @@
                             <v-text-field
                                     v-model="name"
                                     label="Name"
+                                    data-vv-name="name"
                                     required
-                                    @input="$v.name.$touch()"
-                                    @blur="$v.name.$touch()"
+                                    v-validate="'required|max:10'"
+                                    :counter="10"
+                                    :error-messages="errors.collect('name')"
                             ></v-text-field>
                             <v-text-field
                                     v-model="country"
                                     label="Country"
                                     required
-                                    @input="$v.country.$touch()"
-                                    @blur="$v.country.$touch()"
                             ></v-text-field>
                             <v-select
                                     v-model="status"
                                     :items="select"
                                     label="Status"
                                     required
-                                    @change="$v.status.$touch()"
-                                    @blur="$v.status.$touch()"
+                                    :error-messages="errors.collect('status')"
                             ></v-select>
                             <v-textarea
                                     v-model="info"
@@ -42,8 +41,6 @@
                                     label="Info"
                                     required
                                     rows="2"
-                                    @change="$v.info.$touch()"
-                                    @blur="$v.info.$touch()"
                             ></v-textarea>
 
                             <v-btn @click="submit(name, country, info)">Відправити</v-btn>
@@ -67,17 +64,9 @@
 </template>
 
 <script>
-    import { validationMixin } from 'vuelidate'
-    import { required } from 'vuelidate/lib/validators'
-
     export default {
-        mixins: [validationMixin],
-
-        validations: {
-            name: { required },
-            country: { required },
-            info: { required },
-            select: { required },
+        $_veeValidate: {
+            validator: 'new'
         },
         data() {
             return {
@@ -96,14 +85,36 @@
                 },
 
                 dialog: false,
+
+                dictionary: {
+                    attributes: {
+                        email: 'E-mail Address'
+                        // custom attributes
+                    },
+                    custom: {
+                        name: {
+                            required: () => 'Name can not be empty',
+                            max: 'The name field may not be greater than 10 characters'
+                            // custom messages
+                        },
+                        status: {
+                            required: 'Select field is required'
+                        }
+                    }
+                }
             }
+        },
+        mounted() {
+            this.$validator.localize('en', this.dictionary)
         },
         computed: {
 
         },
         methods: {
             submit (name, country, info) {
-                this.$v.$touch();
+                // this.$v.$touch();
+                this.$validator.validateAll();
+
 
                 this.customer.name = this.name;
                 this.customer.country = this.country;
@@ -117,7 +128,7 @@
                 this.dialog = false;
             },
             clear () {
-                this.$v.$reset();
+                // this.$v.$reset();
                 this.name = '';
                 this.country = '';
                 this.info = '';

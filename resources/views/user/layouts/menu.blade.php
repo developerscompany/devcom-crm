@@ -1,5 +1,5 @@
 <div class="sidebar sidebar-main">
-    <div class="user-pan">
+    <div class="user-pan my-4">
         <span class="pull-left mr-3">
             @if ($avatar = auth()->user()->avatar)
                 @if (is_role('admin'))

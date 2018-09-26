@@ -5,6 +5,14 @@
 header {
     background: #ffffff;
 }
+#app {
+    min-height: 100vh;
+    max-height: 100vh;
+}
+.page-container,
+.page-content {
+    height: 100%;
+}
 .page-container {
     background: #ffffff;
 }
