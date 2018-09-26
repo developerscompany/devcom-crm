@@ -25,6 +25,7 @@ header {
     background: none !important;
     color: #ffd134 !important;
 }
+.viewPager a,
 .viewNumber a {
     padding: 5px;
     border: 1px solid #ebebeb;

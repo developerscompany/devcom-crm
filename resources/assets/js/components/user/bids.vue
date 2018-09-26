@@ -113,16 +113,16 @@
                         <span class="font-weight-bold" v-text="lines1.length"></span>
 
                         <div class="pull-right text-right viewPager">
-                            <button
+                            <a
                                     :disabled="pageNumber === 0"
                                     @click="prevPage">
-                                prev
-                            </button>
-                            <button
+                                <
+                            </a>
+                            <a
                                     :disabled="pageNumber >= pageCount"
                                     @click="nextPage">
-                                next
-                            </button>
+                                >
+                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -314,16 +314,16 @@
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
                         <div class="pull-right text-right viewPager">
-                            <button
+                            <a
                                     :disabled="pageNumber === 0"
                                     @click="prevPage">
-                                prev
-                            </button>
-                            <button
+                                <
+                            </a>
+                            <a
                                     :disabled="pageNumber >= pageCount"
                                     @click="nextPage">
-                                next
-                            </button>
+                                >
+                            </a>
                         </div>
                     </div>
                 </div>
