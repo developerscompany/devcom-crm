@@ -6,12 +6,11 @@ header {
     background: #ffffff;
 }
 #app {
-    min-height: 100vh;
     max-height: 100vh;
+    overflow: hidden;
 }
-.page-container,
 .page-content {
-    height: 100%;
+    height: calc(100vh - 50px);
 }
 .page-container {
     background: #ffffff;
@@ -20,7 +19,7 @@ header {
     background: none;
 }
 .sidebar {
-    background: none;
+    background: url('../img/stars.png') no-repeat 0 95%;
 }
 .sidebar .active a {
     background: none !important;
