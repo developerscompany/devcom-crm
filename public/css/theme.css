@@ -46,7 +46,11 @@ button.sbm-button {
     padding: 5px 20px;
     font-size: 14px;
     border-radius: 15px;
+    text-transform: none;
 }
 .sbm-button div.v-btn__content {
     color: #fff !important;
+}
+button.sbm-button:hover {
+    background: #000;
 }
