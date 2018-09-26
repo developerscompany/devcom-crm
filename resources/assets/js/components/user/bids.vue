@@ -100,7 +100,7 @@
                             </li>
                         </ul>
                         <div class="mt-3 text-center">
-                            <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
+                            <button id="btn-save" type="submit" class="btn btn-primary sbm-button">Зберегти</button>
                         </div>
                     </form>
                 </div>
@@ -598,13 +598,6 @@
 <style>
     .content-wrapper {
         background: #f0f0f1;
-    }
-    #btn-save {
-        background: #f8dd3f;
-        border: none;
-        padding: 5px 20px;
-        font-size: 14px;
-        border-radius: 15px;
     }
     #line-form label {
         font-weight: bold;
