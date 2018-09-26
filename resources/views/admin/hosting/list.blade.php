@@ -5,7 +5,7 @@
 
         {{--    {{dd($lists[0]['amount_all_year'])}}--}}
         {{--<hosting-add></hosting-add>--}}
-        <hosting-list :lists-all="{{json_encode($lists)}}"></hosting-list>
+        <hosting-list :lists-all="{{json_encode($lists)}}" :conds="{{json_encode($conds)}}"></hosting-list>
 
     </div>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ConditionType;
 use App\Exports\HostingsExport;
 use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage, ServerCreate};
 use App\Model\Admin\Hosting\Hosting;
@@ -22,22 +23,11 @@ class HostingController extends Controller
 
 
 
-        /*$lists = Hosting::with('conditions','finances')->get();
-
-        foreach ($lists as $list){
-
-            $really_to = $list->finances()->where('condition', '=' ,'hosting')->orderBy('really_to', 'desc')->first();
-
-            if(!empty($really_to->really_to)){
-                $list->really_to = $really_to->really_to;
-            }
-        }
-
-        $lists = $lists->sortBy("really_to")->values()->all();*/
-
         $lists = Hosting::with('conditions','latestFinance')->get()->sortBy('latestFinance.really_to')->values();
-//        dd($lists);
-        return view('admin.hosting.list')->with(['lists' => $lists]);
+
+        $conds = ConditionType::all()->toArray();
+
+        return view('admin.hosting.list')->with(['lists' => $lists, 'conds' => $conds]);
 
     }
 
@@ -46,19 +36,18 @@ class HostingController extends Controller
         return view('admin.hosting.add');
     }
 
+    public function conditionAdd(HostingsCondition $condition, Request $request){
+
+        $cond = $condition->create($request->all());
+        return response()->json(['data' => $cond], 200);
+
+
+    }
+
     public function create(HostingsCreate $request){
 
         $hosting = $request->only('name','last_name','second_name', 'phone', 'site');
-//        $conditions = $request->get('conditions');
-//        DB::transaction(function () use ($hosting, $acc) {
-            $acc = Hosting::create($hosting);
-            /*foreach ($conditions as $condition){
-
-                if(!empty($condition['condition'])){
-                    $acc->conditions()->create($condition);
-                }
-            }*/
-//        });
+        $acc = Hosting::create($hosting);
 
         return response()->json([ 'data' => $acc], 201);
     }
