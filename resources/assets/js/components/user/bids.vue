@@ -8,23 +8,41 @@
 
                         <ul class="row nav">
                             <li class="col-md-1">
-                                <label for="customer" class="label">Customer</label>
-                                <select name="customer" id="customer" class="form-control" required v-model="form.customer">
-                                    <option value="">Customer...</option>
-                                    <option v-for="customer in customers">
-                                        {{ customer.name }}
-                                    </option>
-                                </select>
+                                <v-select
+                                    name="customer" id="customer"
+                                    v-model="form.customer"
+                                    :items="customers"
+                                    item-text="name"
+                                    item-value="name"
+                                    label="Customer"
+                                    required
+                                ></v-select>
+                                <!--<label for="customer" class="label">Customer</label>-->
+                                <!--<select name="customer" id="customer" class="form-control" required v-model="form.customer">-->
+                                    <!--<option value="">Customer...</option>-->
+                                    <!--<option v-for="customer in customers">-->
+                                        <!--{{ customer.name }}-->
+                                    <!--</option>-->
+                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="source" class="label">Source</label>
-                                <select name="source" id="source" class="form-control" required v-model="form.source">
-                                    <option value="">Source...</option>
-                                    <option v-for="source in sources">
-                                        {{ source.name }}
-                                    </option>
-                                </select>
+                                <v-select
+                                        name="source" id="source"
+                                        v-model="form.source"
+                                        :items="sources"
+                                        item-text="name"
+                                        item-value="name"
+                                        label="Source"
+                                        required
+                                ></v-select>
+                                <!--<label for="source" class="label">Source</label>-->
+                                <!--<select name="source" id="source" class="form-control" required v-model="form.source">-->
+                                    <!--<option value="">Source...</option>-->
+                                    <!--<option v-for="source in sources">-->
+                                        <!--{{ source.name }}-->
+                                    <!--</option>-->
+                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
@@ -596,6 +614,9 @@
 </script>
 
 <style>
+    .menuable__content__active {
+        background: #fff;
+    }
     .content-wrapper {
         background: #f0f0f1;
     }

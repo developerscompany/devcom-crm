@@ -127284,7 +127284,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#line-form label {\n    font-weight: bold;\n    font-size: 15px;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 12px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
+exports.push([module.i, "\n.menuable__content__active {\n    background: #fff;\n}\n.content-wrapper {\n    background: #f0f0f1;\n}\n#line-form label {\n    font-weight: bold;\n    font-size: 15px;\n}\n#line-form ul {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\nselect.form-control {\n    height: 22px !important;\n}\n.col-md-1 {\n    margin: 0;\n    text-align: center;\n    position: relative;\n}\n.col-md-1:after {\n    content: '';\n    display: block;\n    position: absolute;\n    right: 1px;\n    top: 0;\n    height: 100%;\n    width: 1px;\n    background: #e5e5e5;\n}\n.col-md-1:last-child:after {\n    display: none;\n}\n.form-control {\n    border-color: #e5e5e5;\n    padding: 0.02rem 0.1rem;\n    height: auto !important;\n    font-size: 12px;\n    text-align: center;\n    border: none;\n    color: #000000;\n    font-weight: bold;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n}\n.form-control:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.btn {\n    font-size: 13px;\n    padding: 0.02rem 0.3rem;\n}\n.content {\n    padding: 0;\n}\ntbody {\n    border-top: 1px solid #f4f5f5;\n    border-bottom: 1px solid #f4f5f5;\n}\ntd {\n    border: none;\n}\ntd.filter-cell select.form-control,\ntd.filter-cell input.form-control {\n    padding: 0.02rem 0.3rem;\n    border: 1px solid #a1a1a1;\n    font-size: 13px;\n    height: auto !important;\n    text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -127297,6 +127297,24 @@ exports.push([module.i, "\n.content-wrapper {\n    background: #f0f0f1;\n}\n#lin
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -127908,123 +127926,57 @@ var render = function() {
           },
           [
             _c("ul", { staticClass: "row nav" }, [
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "customer" } },
-                  [_vm._v("Customer")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.customer,
-                        expression: "form.customer"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "customer", id: "customer", required: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "customer",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      name: "customer",
+                      id: "customer",
+                      items: _vm.customers,
+                      "item-text": "name",
+                      "item-value": "name",
+                      label: "Customer",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.form.customer,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "customer", $$v)
+                      },
+                      expression: "form.customer"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Customer...")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.customers, function(customer) {
-                      return _c("option", [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(customer.name) +
-                            "\n                                "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "source" } },
-                  [_vm._v("Source")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.source,
-                        expression: "form.source"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "source", id: "source", required: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "source",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      name: "source",
+                      id: "source",
+                      items: _vm.sources,
+                      "item-text": "name",
+                      "item-value": "name",
+                      label: "Source",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.form.source,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "source", $$v)
+                      },
+                      expression: "form.source"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Source...")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.sources, function(source) {
-                      return _c("option", [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(source.name) +
-                            "\n                                "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("li", { staticClass: "col-md-1" }, [
                 _c("label", { staticClass: "label", attrs: { for: "link" } }, [
