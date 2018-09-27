@@ -127649,6 +127649,79 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127978,73 +128051,51 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c("label", { staticClass: "label", attrs: { for: "link" } }, [
-                  _vm._v("Link")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "link",
+                      name: "link",
+                      label: "Link",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.link,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "link", $$v)
+                      },
                       expression: "form.link"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "link",
-                    name: "link",
-                    placeholder: "Link...",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.link },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "link", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c("label", { staticClass: "label", attrs: { for: "niche" } }, [
-                  _vm._v("Niche")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "niche",
+                      name: "niche",
+                      label: "Niche",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.niche,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "niche", $$v)
+                      },
                       expression: "form.niche"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "niche",
-                    name: "niche",
-                    placeholder: "Niche...",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.niche },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "niche", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("li", { staticClass: "col-md-1" }, [
                 _c("div", { staticClass: "row" }, [
@@ -128052,386 +128103,217 @@ var render = function() {
                     "div",
                     { staticClass: "col-4 text-left border-right px-1" },
                     [
-                      _c(
-                        "label",
-                        { staticClass: "label", attrs: { for: "site" } },
-                        [_vm._v("Site")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.site,
-                            expression: "form.site"
-                          }
-                        ],
-                        staticClass: "form-control",
+                      _c("v-text-field", {
                         attrs: {
-                          type: "text",
                           id: "site",
                           name: "site",
-                          placeholder: "Site...",
+                          label: "Site",
                           required: ""
                         },
-                        domProps: { value: _vm.form.site },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "site", $event.target.value)
-                          }
+                        model: {
+                          value: _vm.form.site,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "site", $$v)
+                          },
+                          expression: "form.site"
                         }
                       })
-                    ]
+                    ],
+                    1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-8" }, [
-                    _c(
-                      "label",
-                      { staticClass: "label", attrs: { for: "segment" } },
-                      [_vm._v("Segment")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
+                  _c(
+                    "div",
+                    { staticClass: "col-8" },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          id: "segment",
+                          name: "segment",
+                          label: "Segment",
+                          required: ""
+                        },
+                        model: {
                           value: _vm.form.segment,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "segment", $$v)
+                          },
                           expression: "form.segment"
                         }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "segment",
-                        name: "segment",
-                        placeholder: "Segment..."
-                      },
-                      domProps: { value: _vm.form.segment },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "segment", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
+                      })
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c("label", { staticClass: "label", attrs: { for: "desc" } }, [
-                  _vm._v("Description")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "desc",
+                      name: "desc",
+                      label: "Description",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.descr,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "descr", $$v)
+                      },
                       expression: "form.descr"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "desc",
-                    name: "desc",
-                    placeholder: "Description...",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.descr },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "descr", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "timing" } },
-                  [_vm._v("Timing")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.timing,
-                        expression: "form.timing"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "timing", id: "timing", required: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "timing",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      name: "timing",
+                      id: "timing",
+                      items: _vm.timing,
+                      "item-text": "title",
+                      "item-value": "title",
+                      label: "Timing",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.form.timing,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "timing", $$v)
+                      },
+                      expression: "form.timing"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Timing...")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.timing, function(time) {
-                      return _c("option", [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(time.title) +
-                            "\n                                "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "budget" } },
-                  [_vm._v("Budget")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "budget",
+                      name: "budget",
+                      label: "Budget",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.budget,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "budget", $$v)
+                      },
                       expression: "form.budget"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "budget",
-                    name: "budget",
-                    placeholder: "Budget...",
-                    required: ""
-                  },
-                  domProps: { value: _vm.form.budget },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "budget", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c("label", { staticClass: "label", attrs: { for: "resp" } }, [
-                  _vm._v("Response")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.response,
-                        expression: "form.response"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "resp", id: "resp", required: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "response",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      name: "resp",
+                      id: "resp",
+                      items: _vm.responses,
+                      label: "Response",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.form.response,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "response", $$v)
+                      },
+                      expression: "form.response"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Yes/No...")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Yes" } }, [_vm._v("Yes")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "No" } }, [_vm._v("No")])
-                  ]
-                )
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "status" } },
-                  [_vm._v("Status")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.status,
-                        expression: "form.status"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "status", id: "status", required: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "status",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      name: "status",
+                      id: "status",
+                      items: _vm.statuss,
+                      "item-text": "title",
+                      "item-value": "title",
+                      label: "Status",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.form.status,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "status", $$v)
+                      },
+                      expression: "form.status"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Status...")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.statuss, function(status) {
-                      return _c("option", [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(status.title) +
-                            "\n                                "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "execut" } },
-                  [_vm._v("Executive")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "execut",
+                      name: "execut",
+                      label: "Executive",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.execut,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "execut", $$v)
+                      },
                       expression: "form.execut"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "execut",
-                    name: "execut",
-                    placeholder: "Executive..."
-                  },
-                  domProps: { value: _vm.form.execut },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "execut", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "col-md-1" }, [
-                _c(
-                  "label",
-                  { staticClass: "label", attrs: { for: "comment" } },
-                  [_vm._v("Comment")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+              _c(
+                "li",
+                { staticClass: "col-md-1" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "comment",
+                      name: "comment",
+                      label: "Comment",
+                      required: ""
+                    },
+                    model: {
                       value: _vm.form.comment,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "comment", $$v)
+                      },
                       expression: "form.comment"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "comment",
-                    name: "comment",
-                    placeholder: "Comment..."
-                  },
-                  domProps: { value: _vm.form.comment },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "comment", $event.target.value)
-                    }
-                  }
-                })
-              ])
+                  })
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _vm._m(0)

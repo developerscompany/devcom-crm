@@ -85,10 +85,10 @@ input:focus::placeholder {
     top: 0 !important;
     left: 100% !important;
 }
-.v-text-field__slot input {
-    font-size: 13px;
-    padding: 0.02rem 0.3rem;
-}
+/*.v-text-field__slot input {*/
+    /*font-size: 13px;*/
+    /*padding: 0.02rem 0.3rem;*/
+/*}*/
 
 input.el-range-input::placeholder {
     color: #a1a1a1 !important;
