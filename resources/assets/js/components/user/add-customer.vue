@@ -17,23 +17,25 @@
                             <v-text-field
                                     v-model="name"
                                     label="Name"
-                                    data-vv-name="name"
                                     required
-                                    v-validate="'required|max:10'"
-                                    :counter="10"
-                                    :error-messages="errors.collect('name')"
+                                    @input="$v.name.$touch()"
+                                    @blur="$v.name.$touch()"
                             ></v-text-field>
                             <v-text-field
                                     v-model="country"
                                     label="Country"
                                     required
+                                    @input="$v.country.$touch()"
+                                    @blur="$v.country.$touch()"
                             ></v-text-field>
                             <v-select
-                                    v-model="status"
-                                    :items="select"
+                                    v-model="select"
+                                    :items="status"
                                     label="Status"
                                     required
-                                    :error-messages="errors.collect('status')"
+                                    :error-messages="selectErrors"
+                                    @change="$v.select.$touch()"
+                                    @blur="$v.select.$touch()"
                             ></v-select>
                             <v-textarea
                                     v-model="info"
@@ -41,10 +43,12 @@
                                     label="Info"
                                     required
                                     rows="2"
+                                    @input="$v.info.$touch()"
+                                    @blur="$v.info.$touch()"
                             ></v-textarea>
 
                             <v-btn @click="submit(name, country, info)">Відправити</v-btn>
-                            <!--<v-btn @click="clear">Очистити</v-btn>-->
+                            <v-btn @click="clear">Очистити</v-btn>
                         </form>
 
                     </v-card-text>
@@ -64,9 +68,17 @@
 </template>
 
 <script>
+    import { validationMixin } from 'vuelidate'
+    import { required } from 'vuelidate/lib/validators'
+
     export default {
-        $_veeValidate: {
-            validator: 'new'
+        mixins: [validationMixin],
+
+        validations: {
+            name: { required },
+            country: { required },
+            info: { required },
+            select: { required },
         },
         data() {
             return {
@@ -74,8 +86,8 @@
                 name: '',
                 country: '',
                 info: '',
-                status: '',
-                select: ['First time', 'Regular', 'Problematic'],
+                status: ['First time', 'Regular', 'Problematic'],
+                select: '',
 
                 customer: {
                     name: '',
@@ -85,50 +97,33 @@
                 },
 
                 dialog: false,
-
-                dictionary: {
-                    attributes: {
-                        email: 'E-mail Address'
-                        // custom attributes
-                    },
-                    custom: {
-                        name: {
-                            required: () => 'Name can not be empty',
-                            max: 'The name field may not be greater than 10 characters'
-                            // custom messages
-                        },
-                        status: {
-                            required: 'Select field is required'
-                        }
-                    }
-                }
             }
         },
-        mounted() {
-            this.$validator.localize('en', this.dictionary)
-        },
         computed: {
-
+            selectErrors () {
+                const errors = [];
+                if (!this.select.$dirty) return errors;
+                !this.select.required && errors.push('Item is required');
+                return errors;
+            },
         },
         methods: {
             submit (name, country, info) {
-                // this.$v.$touch();
-                this.$validator.validateAll();
-
+                this.$v.$touch();
 
                 this.customer.name = this.name;
                 this.customer.country = this.country;
                 this.customer.info = this.info;
-                this.customer.status = this.status;
+                this.customer.status = this.select;
 
                 let data = this.customer;
                 axios.post('/user/add-customer', {data})
-                    .then();
-
-                this.dialog = false;
+                    .then(
+                        this.dialog = false,
+                    );
             },
             clear () {
-                // this.$v.$reset();
+                this.$v.$reset();
                 this.name = '';
                 this.country = '';
                 this.info = '';
