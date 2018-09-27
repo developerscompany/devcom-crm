@@ -46,75 +46,148 @@
                             </li>
 
                             <li class="col-md-1">
-                                <label for="link" class="label">Link</label>
-                                <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">
+                                <v-text-field
+                                    id="link" name="link"
+                                    v-model="form.link"
+                                    label="Link"
+                                    required
+                                ></v-text-field>
+                                <!--<label for="link" class="label">Link</label>-->
+                                <!--<input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="niche" class="label">Niche</label>
-                                <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">
+                                <v-text-field
+                                        id="niche" name="niche"
+                                        v-model="form.niche"
+                                        label="Niche"
+                                        required
+                                ></v-text-field>
+                                <!--<label for="niche" class="label">Niche</label>-->
+                                <!--<input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">-->
                             </li>
 
                             <li class="col-md-1">
                                 <div class="row">
                                     <div class="col-4 text-left border-right px-1">
-                                        <label for="site" class="label">Site</label>
-                                        <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
+                                        <v-text-field
+                                                id="site" name="site"
+                                                v-model="form.site"
+                                                label="Site"
+                                                required
+                                        ></v-text-field>
+                                        <!--<label for="site" class="label">Site</label>-->
+                                        <!--<input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">-->
                                     </div>
                                     <div class="col-8">
-                                        <label for="segment" class="label">Segment</label>
-                                        <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
+                                        <v-text-field
+                                                id="segment" name="segment"
+                                                v-model="form.segment"
+                                                label="Segment"
+                                                required
+                                        ></v-text-field>
+                                        <!--<label for="segment" class="label">Segment</label>-->
+                                        <!--<input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">-->
                                     </div>
                                 </div>
                             </li>
 
                             <li class="col-md-1">
-                                <label for="desc" class="label">Description</label>
-                                <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">
+                                <v-text-field
+                                        id="desc" name="desc"
+                                        v-model="form.descr"
+                                        label="Description"
+                                        required
+                                ></v-text-field>
+                                <!--<label for="desc" class="label">Description</label>-->
+                                <!--<input type="text" id="Description" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="timing" class="label">Timing</label>
-                                <select name="timing" id="timing" class="form-control" required v-model="form.timing">
-                                    <option value="">Timing...</option>
-                                    <option v-for="time in timing">
-                                        {{ time.title }}
-                                    </option>
-                                </select>
+                                <v-select
+                                        name="timing" id="timing"
+                                        v-model="form.timing"
+                                        :items="timing"
+                                        item-text="title"
+                                        item-value="title"
+                                        label="Timing"
+                                        required
+                                ></v-select>
+                                <!--<label for="timing" class="label">Timing</label>-->
+                                <!--<select name="timing" id="timing" class="form-control" required v-model="form.timing">-->
+                                    <!--<option value="">Timing...</option>-->
+                                    <!--<option v-for="time in timing">-->
+                                        <!--{{ time.title }}-->
+                                    <!--</option>-->
+                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="budget" class="label">Budget</label>
-                                <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">
+                                <v-text-field
+                                        id="budget" name="budget"
+                                        v-model="form.budget"
+                                        label="Budget"
+                                        required
+                                ></v-text-field>
+                                <!--<label for="budget" class="label">Budget</label>-->
+                                <!--<input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="resp" class="label">Response</label>
-                                <select name="resp" id="resp" class="form-control" required v-model="form.response">
-                                    <option value="">Yes/No...</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
+                                <v-select
+                                        name="resp" id="resp"
+                                        v-model="form.response"
+                                        :items="responses"
+                                        label="Response"
+                                        required
+                                ></v-select>
+                                <!--<label for="resp" class="label">Response</label>-->
+                                <!--<select name="resp" id="resp" class="form-control" required v-model="form.response">-->
+                                    <!--<option value="">Yes/No...</option>-->
+                                    <!--<option value="Yes">Yes</option>-->
+                                    <!--<option value="No">No</option>-->
+                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="status" class="label">Status</label>
-                                <select name="status" id="status" class="form-control" required v-model="form.status">
-                                    <option value="">Status...</option>
-                                    <option v-for="status in statuss">
-                                        {{ status.title }}
-                                    </option>
-                                </select>
+                                <v-select
+                                        name="status" id="status"
+                                        v-model="form.status"
+                                        :items="statuss"
+                                        item-text="title"
+                                        item-value="title"
+                                        label="Status"
+                                        required
+                                ></v-select>
+                                <!--<label for="status" class="label">Status</label>-->
+                                <!--<select name="status" id="status" class="form-control" required v-model="form.status">-->
+                                    <!--<option value="">Status...</option>-->
+                                    <!--<option v-for="status in statuss">-->
+                                        <!--{{ status.title }}-->
+                                    <!--</option>-->
+                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="execut" class="label">Executive</label>
-                                <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">
+                                <v-text-field
+                                        id="execut" name="execut"
+                                        v-model="form.execut"
+                                        label="Executive"
+                                        required
+                                ></v-text-field>
+                                <!--<label for="execut" class="label">Executive</label>-->
+                                <!--<input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">-->
                             </li>
 
                             <li class="col-md-1">
-                                <label for="comment" class="label">Comment</label>
-                                <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
+                                <v-text-field
+                                        id="comment" name="comment"
+                                        v-model="form.comment"
+                                        label="Comment"
+                                        required
+                                ></v-text-field>
+                                <!--<label for="comment" class="label">Comment</label>-->
+                                <!--<input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">-->
                             </li>
                         </ul>
                         <div class="mt-3 text-center">

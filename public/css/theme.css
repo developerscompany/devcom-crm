@@ -30,6 +30,10 @@ header {
     padding: 5px;
     border: 1px solid #ebebeb;
 }
+.viewNumber a:hover {
+    background: #000;
+    color: #ffffff;
+}
 .viewNumber a.active {
     color: #ffffff !important;
     background: #f8dd3f;
