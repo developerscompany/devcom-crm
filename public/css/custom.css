@@ -56,61 +56,6 @@ input:focus::placeholder {
 .pager-view {
     padding: 0.75rem;
 }
-
-
-.filter-cell.date .layout {
-    width: 80%;
-}
-.filter-cell.date .layout div {
-    margin: 0;
-}
-.table-responsive {
-    overflow-x: unset;
-}
-.v-menu__content {
-    top: 0 !important;
-    left: 0 !important;
-}
-.v-picker__title.primary {
-    background: blue;
-}
-.v-picker__body {
-    background: white;
-    overflow-y: unset;
-}
-.v-tooltip__content {
-    top: 0 !important;
-    left: 100% !important;
-}
-/*.v-text-field__slot input {*/
-    /*font-size: 13px;*/
-    /*padding: 0.02rem 0.3rem;*/
-/*}*/
-
-input.el-range-input::placeholder {
-    color: #a1a1a1 !important;
-}
-.el-range-editor {
-    max-width: 120px;
-    padding: 0 !important;
-    padding-left: 5px !important;
-    border: none;
-    border-bottom: 1px solid #404447;
-    border-radius: 0;
-    height: 30px;
-}
-.el-date-editor .el-range-input {
-    width: 30%;
-}
-.el-date-editor .el-range__icon {
-    line-height: 27px;
-}
-.v-dialog {
-    overflow: initial;
-}
-.v-dialog .v-card {
-    background: #ffffff;
-}
 .user-pan {
     padding: 12px 20px;
     padding-left: 35px;
