@@ -127738,6 +127738,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127748,17 +127749,17 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         return {
 
             form: {
-                customer: '',
-                source: '',
+                customer: null,
+                source: null,
                 link: '',
                 niche: '',
                 site: '',
                 segment: '',
                 descr: '',
-                timing: '',
+                timing: null,
                 budget: '',
-                response: '',
-                status: '',
+                response: null,
+                status: null,
                 execut: '',
                 comment: ''
             },
@@ -128087,6 +128088,11 @@ var render = function() {
                       "item-text": "name",
                       "item-value": "name",
                       label: "Customer",
+                      rules: [
+                        function(v) {
+                          return !!v || "Item is required"
+                        }
+                      ],
                       required: ""
                     },
                     model: {

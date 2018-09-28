@@ -13,6 +13,7 @@
                                     item-text="name"
                                     item-value="name"
                                     label="Customer"
+                                    :rules="[(v) => !!v || 'Item is required']"
                                     required
                                 ></v-select>
                             </li>
@@ -449,17 +450,17 @@
             return {
 
                 form: {
-                    customer: '',
-                    source: '',
+                    customer: null,
+                    source: null,
                     link: '',
                     niche: '',
                     site: '',
                     segment: '',
                     descr: '',
-                    timing: '',
+                    timing: null,
                     budget: '',
-                    response: '',
-                    status: '',
+                    response: null,
+                    status: null,
                     execut: '',
                     comment: '',
                 },
