@@ -430,7 +430,7 @@
                 dateFormatted: '',
                 menu2: false,
 
-                responses: ['', 'Yes', 'No'],
+                responses: ['Yes', 'No'],
 
                 ssource: [],
                 sagent: [],

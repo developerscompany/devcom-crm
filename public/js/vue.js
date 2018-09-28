@@ -127729,7 +127729,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             dateFormatted: '',
             menu2: false,
 
-            responses: ['', 'Yes', 'No'],
+            responses: ['Yes', 'No'],
 
             ssource: [],
             sagent: [],
