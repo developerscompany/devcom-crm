@@ -115647,6 +115647,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -115676,7 +115741,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             condition: this.$props.conds[0] ? this.$props.conds[0].name : '',
             amount: 0,
             amount_year: 0,
-            errorsCondAdd: ''
+            errorsCondAdd: '',
+            errorsCondShow: '',
+            condShowEdit: '',
+            condActive: {}
 
         };
     },
@@ -115689,8 +115757,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __WEBPACK_IMPORTED_MODULE_0__vue__["Events"].$on('getListNewAcc', function (data) {
             uplists(data);
         });
-        console.log(this.conds);
-        console.log(this.lists);
     },
 
     computed: {
@@ -115755,6 +115821,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         close: function close() {
             this.condShow = false;
+            this.condShowEdit = false;
+            this.condActive = {};
+        },
+        showEditCond: function showEditCond(condition) {
+            this.condShowEdit = true;
+            this.condActive = condition;
         },
         saveCond: function saveCond() {
             var _this = this;
@@ -115766,15 +115838,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 data.amount_year = this.amount_year;
                 data.hosting_id = this.condIdActive;
                 this.$http.post('/admin/hostings/account/' + this.condIdActive + '/add-condition', data).then(function (res) {
-                    console.log(res.data);
                     _this.lists[_this.condNumberActive].conditions.push(res.data.data);
                     _this.condShow = false;
                 });
-                console.log(this.condIdActive);
-                console.log(data);
             } else {
                 this.errorsCondAdd = true;
             }
+        },
+        amountAll: function amountAll(conditions) {
+            var sum = 0;
+            if (conditions) {
+                for (var i = 0; i < conditions.length; i++) {
+                    sum += parseInt(conditions[i].amount);
+                }
+            }
+
+            return sum;
+        },
+        amountAllYear: function amountAllYear(conditions) {
+            var sum = 0;
+            if (conditions) {
+                for (var i = 0; i < conditions.length; i++) {
+                    sum += parseInt(conditions[i].amount_year);
+                }
+            }
+
+            return sum;
         }
     }
 
@@ -117502,9 +117591,44 @@ var render = function() {
                         _vm._l(_vm.conds, function(itemCond) {
                           return _c("div", [
                             condListItem.condition == itemCond.name
-                              ? _c("div", { class: itemCond.class }, [
-                                  _vm._v(_vm._s(itemCond.name_ua))
-                                ])
+                              ? _c(
+                                  "div",
+                                  { class: itemCond.class },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            _vm.showEditCond(condListItem)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(itemCond.name_ua))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        staticClass: "mr-2",
+                                        staticStyle: {
+                                          display: "inline-block",
+                                          color: "red",
+                                          margin: "0 !important",
+                                          "font-weight": "600"
+                                        },
+                                        attrs: { small: "" },
+                                        on: { click: function($event) {} }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                clear\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
                               : _vm._e()
                           ])
                         })
@@ -117522,16 +117646,31 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n                    edit\n                ")]
+                      [_vm._v("\n                    add\n                ")]
                     )
                   ],
                   2
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                  _vm._v(
-                    _vm._s(list.amount_all) + "/" + _vm._s(list.amount_all_year)
-                  )
+                  _vm.amountAll(list.conditions) > 0
+                    ? _c("span", [
+                        _vm._v(_vm._s(_vm.amountAll(list.conditions)) + "(м)")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.amountAll(list.conditions) > 0 &&
+                  _vm.amountAllYear(list.conditions) > 0
+                    ? _c("span", [_vm._v("/")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.amountAllYear(list.conditions) > 0
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(_vm.amountAllYear(list.conditions)) + "(р)"
+                        )
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 list.latest_finance
@@ -118102,6 +118241,169 @@ var render = function() {
                               _vm.amount_year = $$v
                             },
                             expression: "amount_year"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", flat: "" },
+                      nativeOn: {
+                        click: function($event) {
+                          return _vm.close($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", flat: "" },
+                      nativeOn: {
+                        click: function($event) {
+                          return _vm.saveCond($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "500px" },
+          model: {
+            value: _vm.condShowEdit,
+            callback: function($$v) {
+              _vm.condShowEdit = $$v
+            },
+            expression: "condShowEdit"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-text",
+                [
+                  _c("v-layout", { attrs: { wrap: "" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12" },
+                      [
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errorsCondShow,
+                                expression: "errorsCondShow"
+                              }
+                            ],
+                            staticClass: "error"
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Помилка\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("v-select", {
+                          attrs: {
+                            items: _vm.cond,
+                            label: "Тип",
+                            "item-text": "name_ua",
+                            "item-value": "name",
+                            required: "",
+                            "error-messages": _vm.conditionErrors
+                          },
+                          on: {
+                            change: function($event) {
+                              _vm.$v.condition.$touch()
+                            },
+                            blur: function($event) {
+                              _vm.$v.condition.$touch()
+                            }
+                          },
+                          model: {
+                            value: _vm.condActive.condition,
+                            callback: function($$v) {
+                              _vm.$set(_vm.condActive, "condition", $$v)
+                            },
+                            expression: "condActive.condition"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "За місяць",
+                            "error-messages": _vm.amountErrors,
+                            required: ""
+                          },
+                          on: {
+                            input: function($event) {
+                              _vm.$v.amount.$touch()
+                            },
+                            blur: function($event) {
+                              _vm.$v.amount.$touch()
+                            }
+                          },
+                          model: {
+                            value: _vm.condActive.amount,
+                            callback: function($$v) {
+                              _vm.$set(_vm.condActive, "amount", $$v)
+                            },
+                            expression: "condActive.amount"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "За рік",
+                            "error-messages": _vm.amountYearErrors,
+                            required: ""
+                          },
+                          on: {
+                            input: function($event) {
+                              _vm.$v.amount_year.$touch()
+                            },
+                            blur: function($event) {
+                              _vm.$v.amount_year.$touch()
+                            }
+                          },
+                          model: {
+                            value: _vm.condActive.amount_year,
+                            callback: function($$v) {
+                              _vm.$set(_vm.condActive, "amount_year", $$v)
+                            },
+                            expression: "condActive.amount_year"
                           }
                         })
                       ],
