@@ -2,13 +2,13 @@
     <div class="bids">
         <div class="text-xs-left">
             <v-dialog v-model="dialog" width="500">
-                <v-btn small slot="activator" color="red lighten-2" dark>
-                    Customer Add
+                <v-btn class="sbm-button" small slot="activator">
+                    Добавити клієнта
                 </v-btn>
 
                 <v-card>
                     <v-card-title class="headline grey lighten-2" primary-title>
-                        Customer Add
+                        Клієнт
                     </v-card-title>
 
                     <v-card-text>
@@ -29,12 +29,13 @@
                                     @blur="$v.country.$touch()"
                             ></v-text-field>
                             <v-select
-                                    v-model="status"
-                                    :items="select"
+                                    v-model="select"
+                                    :items="status"
                                     label="Status"
                                     required
-                                    @change="$v.status.$touch()"
-                                    @blur="$v.status.$touch()"
+                                    :error-messages="selectErrors"
+                                    @change="$v.select.$touch()"
+                                    @blur="$v.select.$touch()"
                             ></v-select>
                             <v-textarea
                                     v-model="info"
@@ -42,12 +43,12 @@
                                     label="Info"
                                     required
                                     rows="2"
-                                    @change="$v.info.$touch()"
+                                    @input="$v.info.$touch()"
                                     @blur="$v.info.$touch()"
                             ></v-textarea>
 
                             <v-btn @click="submit(name, country, info)">Відправити</v-btn>
-                            <!--<v-btn @click="clear">Очистити</v-btn>-->
+                            <v-btn @click="clear">Очистити</v-btn>
                         </form>
 
                     </v-card-text>
@@ -85,8 +86,8 @@
                 name: '',
                 country: '',
                 info: '',
-                status: '',
-                select: ['First time', 'Regular', 'Problematic'],
+                status: ['First time', 'Regular', 'Problematic'],
+                select: '',
 
                 customer: {
                     name: '',
@@ -99,27 +100,12 @@
             }
         },
         computed: {
-            // infoErrors () {
-            //     const errors = [];
-            //     // this.$v.editedItem.select
-            //     if (!this.$v.select.$dirty) return errors;
-            //     !this.$v.select.required && errors.push('Item is required');
-            //     return errors;
-            // },
-            // nameErrors () {
-            //     const errors = [];
-            //     if (!this.$v.name.$dirty) return errors;
-            //     !this.$v.name.maxLength && errors.push('Name must be at most 1 characters long');
-            //     !this.$v.name.required && errors.push('Name is required.');
-            //     return errors;
-            // },
-            // countryErrors () {
-            //     const errors = [];
-            //     if (!this.$v.email.$dirty) return errors;
-            //     !this.$v.email.email && errors.push('Must be valid e-mail');
-            //     !this.$v.email.required && errors.push('E-mail is required');
-            //     return errors;
-            // }
+            selectErrors () {
+                const errors = [];
+                if (!this.select.$dirty) return errors;
+                !this.select.required && errors.push('Item is required');
+                return errors;
+            },
         },
         methods: {
             submit (name, country, info) {
@@ -128,13 +114,13 @@
                 this.customer.name = this.name;
                 this.customer.country = this.country;
                 this.customer.info = this.info;
-                this.customer.status = this.status;
+                this.customer.status = this.select;
 
                 let data = this.customer;
                 axios.post('/user/add-customer', {data})
-                    .then();
-
-                this.dialog = false;
+                    .then(
+                        this.dialog = false,
+                    );
             },
             clear () {
                 this.$v.$reset();

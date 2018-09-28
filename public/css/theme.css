@@ -1,0 +1,108 @@
+#app div,
+#app a,
+#app .table i {
+    color: #404447;
+}
+header {
+    background: #ffffff;
+}
+#app {
+    max-height: 100vh;
+}
+.page-content {
+    height: calc(100vh - 50px);
+}
+.page-container {
+    background: #ffffff;
+}
+.navbar {
+    background: none;
+}
+.sidebar {
+    background: url('../img/stars.png') no-repeat 0 95%;
+}
+.sidebar .active a {
+    background: none !important;
+    color: #ffd134 !important;
+}
+.viewPager a,
+.viewNumber a {
+    padding: 5px;
+    border: 1px solid #ebebeb;
+}
+.viewNumber a:hover {
+    background: #000;
+    color: #ffffff;
+}
+.viewNumber a.active {
+    color: #ffffff !important;
+    background: #f8dd3f;
+}
+.table thead td {
+    border-top: none;
+    font-weight: bold;
+}
+button.sbm-button {
+    background: #f8dd3f;
+    color: #404447;
+    border: none;
+    box-shadow: none !important;
+    padding: 5px 20px;
+    font-size: 14px;
+    border-radius: 15px;
+    text-transform: none;
+}
+.sbm-button div.v-btn__content {
+    color: #404447 !important;
+}
+button.sbm-button:hover {
+    background: #000;
+}
+
+
+
+.filter-cell.date .layout {
+    width: 80%;
+}
+.filter-cell.date .layout div {
+    margin: 0;
+}
+.v-menu__content {
+    top: 0 !important;
+    left: 0 !important;
+}
+.v-picker__title.primary {
+    background: blue;
+}
+.v-picker__body {
+    background: white;
+    overflow-y: unset;
+}
+.v-tooltip__content {
+    top: 0 !important;
+    left: 100% !important;
+}
+input.el-range-input::placeholder {
+    color: #a1a1a1 !important;
+}
+.el-range-editor {
+    max-width: 120px;
+    padding: 0 !important;
+    padding-left: 5px !important;
+    border: none;
+    border-bottom: 1px solid #404447;
+    border-radius: 0;
+    height: 30px;
+}
+.el-date-editor .el-range-input {
+    width: 30%;
+}
+.el-date-editor .el-range__icon {
+    line-height: 27px;
+}
+.v-dialog {
+    overflow: initial;
+}
+.v-dialog .v-card {
+    background: #ffffff;
+}

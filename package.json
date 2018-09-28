@@ -23,6 +23,7 @@
         "chart.js": "^2.7.2",
         "element-ui": "^2.4.6",
         "v-calendar": "^0.9.7",
+        "vee-validate": "^2.1.0-beta.9",
         "vue-resource": "^1.5.1",
         "vue-simple-calendar": "^4.0.2",
         "vue2-event-calendar": "^0.4.4",

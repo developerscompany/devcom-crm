@@ -1,127 +1,166 @@
 <template>
     <!--<div class="">-->
         <div class="bids">
-            <div class="content-wrap p-3">
-                <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
-                <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
+            <div class="content-wrap pb-4">
+                <div class="form-wrap py-3">
+                    <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
+                        <ul class="row nav">
+                            <li class="col-md-1">
+                                <v-select
+                                    name="customer" id="customer"
+                                    v-model="form.customer"
+                                    :items="customers"
+                                    item-text="name"
+                                    item-value="name"
+                                    label="Customer"
+                                    required
+                                ></v-select>
+                            </li>
+                            <li class="col-md-1">
+                                <v-select
+                                        name="source" id="source"
+                                        v-model="form.source"
+                                        :items="sources"
+                                        item-text="name"
+                                        item-value="name"
+                                        label="Source"
+                                        required
+                                ></v-select>
+                            </li>
 
-                    <ul class="row nav">
-                        <li class="col-md-1">
-                            <label for="customer" class="label">Customer</label>
-                            <select name="customer" id="customer" class="form-control" required v-model="form.customer">
-                                <option value="">Customer...</option>
-                                <option v-for="customer in customers">
-                                    {{ customer.name }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <v-text-field
+                                    id="link" name="link"
+                                    v-model="form.link"
+                                    label="Link"
+                                    required
+                                ></v-text-field>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="source" class="label">Source</label>
-                            <select name="source" id="source" class="form-control" required v-model="form.source">
-                                <option value="">Source...</option>
-                                <option v-for="source in sources">
-                                    {{ source.name }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <v-text-field
+                                        id="niche" name="niche"
+                                        v-model="form.niche"
+                                        label="Niche"
+                                        required
+                                ></v-text-field>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="link" class="label">Link</label>
-                            <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">
-                        </li>
-
-                        <li class="col-md-1">
-                            <label for="niche" class="label">Niche</label>
-                            <input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">
-                        </li>
-
-                        <li class="col-md-1">
-                            <div class="row">
-                                <div class="col-4 text-left border-right px-1">
-                                    <label for="site" class="label">Site</label>
-                                    <input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">
+                            <li class="col-md-1">
+                                <div class="row">
+                                    <div class="col-4 text-left border-right px-1">
+                                        <v-text-field
+                                                id="site" name="site"
+                                                v-model="form.site"
+                                                label="Site"
+                                                required
+                                        ></v-text-field>
+                                    </div>
+                                    <div class="col-8">
+                                        <v-text-field
+                                                id="segment" name="segment"
+                                                v-model="form.segment"
+                                                label="Segment"
+                                                required
+                                        ></v-text-field>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="segment" class="label">Segment</label>
-                                    <input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">
-                                </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="desc" class="label">Description</label>
-                            <input type="text" id="desc" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">
-                        </li>
+                            <li class="col-md-1">
+                                <v-text-field
+                                        id="desc" name="desc"
+                                        v-model="form.descr"
+                                        label="Description"
+                                        required
+                                ></v-text-field>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="timing" class="label">Timing</label>
-                            <select name="timing" id="timing" class="form-control" required v-model="form.timing">
-                                <option value="">Timing...</option>
-                                <option v-for="time in timing">
-                                    {{ time.title }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <v-select
+                                        name="timing" id="timing"
+                                        v-model="form.timing"
+                                        :items="timing"
+                                        item-text="title"
+                                        item-value="title"
+                                        label="Timing"
+                                        required
+                                ></v-select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="budget" class="label">Budget</label>
-                            <input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">
-                        </li>
+                            <li class="col-md-1">
+                                <v-text-field
+                                        id="budget" name="budget"
+                                        v-model="form.budget"
+                                        label="Budget"
+                                        required
+                                ></v-text-field>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="resp" class="label">Response</label>
-                            <select name="resp" id="resp" class="form-control" required v-model="form.response">
-                                <option value="">Yes/No...</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <v-select
+                                        name="resp" id="resp"
+                                        v-model="form.response"
+                                        :items="responses"
+                                        label="Response"
+                                        required
+                                ></v-select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="status" class="label">Status</label>
-                            <select name="status" id="status" class="form-control" required v-model="form.status">
-                                <option value="">Status...</option>
-                                <option v-for="status in statuss">
-                                    {{ status.title }}
-                                </option>
-                            </select>
-                        </li>
+                            <li class="col-md-1">
+                                <v-select
+                                        name="status" id="status"
+                                        v-model="form.status"
+                                        :items="statuss"
+                                        item-text="title"
+                                        item-value="title"
+                                        label="Status"
+                                        required
+                                ></v-select>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="execut" class="label">Executive</label>
-                            <input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">
-                        </li>
+                            <li class="col-md-1">
+                                <v-text-field
+                                        id="execut" name="execut"
+                                        v-model="form.execut"
+                                        label="Executive"
+                                        required
+                                ></v-text-field>
+                            </li>
 
-                        <li class="col-md-1">
-                            <label for="comment" class="label">Comment</label>
-                            <input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">
-                        </li>
-                    </ul>
-                    <div class="my-2 text-center">
-                        <button id="btn-save" type="submit" class="btn btn-primary">Зберегти</button>
-                    </div>
-                </form>
-                <div id="root" class="content">
+                            <li class="col-md-1">
+                                <v-text-field
+                                        id="comment" name="comment"
+                                        v-model="form.comment"
+                                        label="Comment"
+                                        required
+                                ></v-text-field>
+                            </li>
+                        </ul>
+                        <div class="mt-3 text-center">
+                            <button id="btn-save" type="submit" class="btn btn-primary sbm-button">Зберегти</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="root" class="content mt-4 py-3">
                     <div class="pager-view clearfix text-center">
                         <div class="pull-left text-left viewNumber">
-                            <span>Show: </span>
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
 
-                        <span class="font-weight-bold" v-text="paginatedData.length"></span>
+                        <span class="font-weight-bold" v-text="lines1.length"></span>
 
                         <div class="pull-right text-right viewPager">
-                            <button
+                            <a
                                     :disabled="pageNumber === 0"
                                     @click="prevPage">
-                                prev
-                            </button>
-                            <button
+                                <
+                            </a>
+                            <a
                                     :disabled="pageNumber >= pageCount"
                                     @click="nextPage">
-                                next
-                            </button>
+                                >
+                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -129,13 +168,13 @@
                             <thead>
                             <tr>
                                 <td></td>
-                                <td>
+                                <td class="">
                                     Customer
                                 </td>
-                                <td class="filter-cell date">
+                                <td class="filter-cell date col-md-1">
                                     Date
                                     <!--<template>-->
-                                        <div class="mt-1">
+                                        <div class="">
                                             <el-date-picker
                                                     v-model="value6"
                                                     format="dd.MM"
@@ -148,24 +187,32 @@
                                         </div>
                                     <!--</template>-->
                                 </td>
-                                <td class="filter-cell sourse">
+                                <td class="filter-cell sourse col-md-1">
                                     Source
-                                    <select v-model="ssource" class="form-control mt-1">
-                                        <option selected value="">Source...</option>
-                                        <option v-for="source in sources"> {{ source.name }}</option>
-                                    </select>
+                                    <v-select
+                                            v-model="ssource"
+                                            :items="sources"
+                                            item-text="name"
+                                            item-value="name"
+                                            label="Source"
+                                            required
+                                    ></v-select>
                                 </td>
-                                <td>
+                                <td class="col-md-1">
                                     Link to lead
                                 </td>
-                                <td class="filter-cell niche">
+                                <td class="filter-cell niche col-md-1">
                                     Niche
-                                    <input v-model="stech" class="form-control mt-1" placeholder="Filter">
+                                    <v-text-field
+                                            v-model="stech"
+                                            label="Niche"
+                                            required
+                                    ></v-text-field>
                                 </td>
                                 <td class="curr-site-cell">
                                     Current site
                                 </td>
-                                <td>
+                                <td class="">
                                     Segment
                                 </td>
                                 <td>
@@ -177,20 +224,25 @@
                                 <td class="budget-td">
                                     Budget $
                                 </td>
-                                <td class="filter-cell response">
+                                <td class="filter-cell response col-md-1">
                                     Responce
-                                    <select v-model="sresp" class="form-control mt-1">
-                                        <option selected value="">Resp...</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                    <v-select
+                                            v-model="sresp"
+                                            :items="responses"
+                                            label="Responce"
+                                            required
+                                    ></v-select>
                                 </td>
-                                <td class="filter-cell status">
+                                <td class="filter-cell status col-md-1">
                                     Status
-                                    <select v-model="sstatus" class="form-control mt-1">
-                                        <option selected value="">Status...</option>
-                                        <option v-for="status in statuss"> {{ status.title }}</option>
-                                    </select>
+                                    <v-select
+                                            v-model="sstatus"
+                                            :items="statuss"
+                                            item-text="title"
+                                            item-value="title"
+                                            label="Status"
+                                            required
+                                    ></v-select>
                                 </td>
                                 <td>
                                     Executive
@@ -253,8 +305,22 @@
                                 </td>
                                 <td>
                                     {{ line.execut }}
+                                    <v-icon
+                                            small
+                                            class=""
+                                            @click="editItem3(line)">
+                                        edit
+                                    </v-icon>
                                 </td>
-                                <td>{{ line.comment }}</td>
+                                <td>
+                                    {{ line.comment }}
+                                    <v-icon
+                                            small
+                                            class=""
+                                            @click="editItem4(line)">
+                                        edit
+                                    </v-icon>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -308,22 +374,63 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+                    <v-dialog v-model="dialog3" max-width="500px">
+                        <v-card>
+                            <v-card-text>
+                                <v-layout wrap>
+                                    <v-flex xs12 sm6 md4>
+                                        <v-text-field
+                                                v-model="editedItem.exec"
+                                                label="Executive"
+                                                required
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" flat @click.native="close3">Cancel</v-btn>
+                                <v-btn color="blue darken-1" flat @click.native="save3">Save</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog v-model="dialog4" max-width="500px">
+                        <v-card>
+                            <v-card-text>
+                                <v-layout wrap>
+                                    <v-flex xs12 sm6 md4>
+                                        <v-text-field
+                                                v-model="editedItem.comm"
+                                                label="Comment"
+                                                required
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" flat @click.native="close4">Cancel</v-btn>
+                                <v-btn color="blue darken-1" flat @click.native="save4">Save</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                     <div class="pager-view clearfix">
                         <div class="pull-left text-left viewNumber">
-                            <span>Show: </span>
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                         </div>
                         <div class="pull-right text-right viewPager">
-                            <button
+                            <a
                                     :disabled="pageNumber === 0"
                                     @click="prevPage">
-                                prev
-                            </button>
-                            <button
+                                <
+                            </a>
+                            <a
                                     :disabled="pageNumber >= pageCount"
                                     @click="nextPage">
-                                next
-                            </button>
+                                >
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -333,8 +440,6 @@
 </template>
 
 <script>
-
-    import {en} from "element-ui/lib/umd/locale/en"
 
     export default {
 
@@ -363,14 +468,20 @@
 
                 dialog: false,
                 dialog2: false,
+                dialog3: false,
+                dialog4: false,
                 editedIndex: -1,
                 editedItem: {
                     10: '',
                     res: '',
+                    exec: '',
+                    comm: '',
                 },
                 defaultItem: {
                     10: '',
                     res: '',
+                    exec: '',
+                    comm: '',
                 },
 
                 value6: '',
@@ -525,6 +636,16 @@
                 this.editedItem = Object.assign({}, item);
                 this.dialog2 = true;
             },
+            editItem3 (item) {
+                this.editedIndex = this.paginatedData.indexOf(item);
+                this.editedItem = Object.assign({}, item);
+                this.dialog3 = true;
+            },
+            editItem4 (item) {
+                this.editedIndex = this.paginatedData.indexOf(item);
+                this.editedItem = Object.assign({}, item);
+                this.dialog4 = true;
+            },
             close () {
                 this.dialog = false;
                 setTimeout(() => {
@@ -534,6 +655,20 @@
             },
             close2 () {
                 this.dialog2 = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
+                }, 300)
+            },
+            close3 () {
+                this.dialog3 = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
+                }, 300)
+            },
+            close4 () {
+                this.dialog4 = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem);
                     this.editedIndex = -1;
@@ -573,6 +708,40 @@
                 }
                 this.dialog2 = false;
             },
+            save3 () {
+
+                let data = this.editedItem;
+                let index = this.editedIndex;
+
+                if (this.editedIndex > -1) {
+
+                    axios.post('/user/edit-bid-exec', {data, index})
+                        .then(
+                            this.paginatedData[this.editedIndex].execut = data['exec']
+                        );
+
+                } else {
+                    this.lines1.push(this.editedItem)
+                }
+                this.dialog3 = false;
+            },
+            save4 () {
+
+                let data = this.editedItem;
+                let index = this.editedIndex;
+
+                if (this.editedIndex > -1) {
+
+                    axios.post('/user/edit-bid-comm', {data, index})
+                        .then(
+                            this.paginatedData[this.editedIndex].comment = data['comm']
+                        );
+
+                } else {
+                    this.lines1.push(this.editedItem)
+                }
+                this.dialog4 = false;
+            },
 
             formatDate (date) {
                 if (!date) return null;
@@ -598,6 +767,19 @@
 </script>
 
 <style>
+    .menuable__content__active {
+        background: #fff;
+    }
+    .content-wrapper {
+        background: #f0f0f1;
+    }
+    .el-date-editor .el-range-separator {
+        line-height: 24px;
+    }
+    #line-form label {
+        font-weight: bold;
+        font-size: 15px;
+    }
     #line-form ul {
         justify-content: center;
     }
@@ -609,7 +791,7 @@
         text-align: center;
         position: relative;
     }
-    .col-md-1:after {
+    .form-wrap .col-md-1:after {
         content: '';
         display: block;
         position: absolute;
@@ -626,7 +808,7 @@
         border-color: #e5e5e5;
         padding: 0.02rem 0.1rem;
         height: auto !important;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
         border: none;
         color: #000000;
@@ -636,6 +818,10 @@
     }
     .form-control:focus {
         box-shadow: none;
+    }
+    .filter-cell.date > div {
+        margin-top: 4px !important;
+        padding-top: 16px !important;
     }
     .btn {
         font-size: 13px;
@@ -658,5 +844,13 @@
         font-size: 13px;
         height: auto !important;
         text-align: left;
+    }
+    td.filter-cell .v-select,
+    td.filter-cell .v-text-field{
+        /*padding: 0;*/
+        /*margin: 0;*/
+    }
+    input::placeholder{
+        color: #404447;
     }
 </style>
