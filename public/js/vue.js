@@ -127682,6 +127682,33 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127711,14 +127738,17 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             dialog: false,
             dialog2: false,
+            dialog3: false,
             editedIndex: -1,
             editedItem: {
                 10: '',
-                res: ''
+                res: '',
+                exec: ''
             },
             defaultItem: {
                 10: '',
-                res: ''
+                res: '',
+                exec: ''
             },
 
             value6: '',
@@ -127854,6 +127884,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             this.editedItem = Object.assign({}, item);
             this.dialog2 = true;
         },
+        editItem3: function editItem3(item) {
+            this.editedIndex = this.paginatedData.indexOf(item);
+            this.editedItem = Object.assign({}, item);
+            this.dialog3 = true;
+        },
         close: function close() {
             var _this2 = this;
 
@@ -127870,6 +127905,15 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             setTimeout(function () {
                 _this3.editedItem = Object.assign({}, _this3.defaultItem);
                 _this3.editedIndex = -1;
+            }, 300);
+        },
+        close3: function close3() {
+            var _this4 = this;
+
+            this.dialog3 = false;
+            setTimeout(function () {
+                _this4.editedItem = Object.assign({}, _this4.defaultItem);
+                _this4.editedIndex = -1;
             }, 300);
         },
         save: function save() {
@@ -127897,6 +127941,19 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 this.lines1.push(this.editedItem);
             }
             this.dialog2 = false;
+        },
+        save3: function save3() {
+
+            var data = this.editedItem;
+            var index = this.editedIndex;
+
+            if (this.editedIndex > -1) {
+
+                axios.post('/user/edit-bid-exec', { data: data, index: index }).then(this.paginatedData[this.editedIndex].execut = data['exec']);
+            } else {
+                this.lines1.push(this.editedItem);
+            }
+            this.dialog3 = false;
         },
         formatDate: function formatDate(date) {
             if (!date) return null;
@@ -128704,13 +128761,33 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(line.execut) +
-                          "\n                            "
-                      )
-                    ]),
+                    _c(
+                      "td",
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(line.execut) +
+                            "\n                                "
+                        ),
+                        _c(
+                          "v-icon",
+                          {
+                            attrs: { small: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.editItem3(line)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    edit\n                                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(line.comment))])
                   ])
@@ -128890,6 +128967,93 @@ var render = function() {
                           nativeOn: {
                             click: function($event) {
                               return _vm.save2($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Save")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { "max-width": "500px" },
+              model: {
+                value: _vm.dialog3,
+                callback: function($$v) {
+                  _vm.dialog3 = $$v
+                },
+                expression: "dialog3"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md4: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Executive", required: "" },
+                                model: {
+                                  value: _vm.editedItem.exec,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.editedItem, "exec", $$v)
+                                  },
+                                  expression: "editedItem.exec"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", flat: "" },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.close3($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", flat: "" },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.save3($event)
                             }
                           }
                         },

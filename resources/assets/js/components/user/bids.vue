@@ -305,6 +305,12 @@
                                 </td>
                                 <td>
                                     {{ line.execut }}
+                                    <v-icon
+                                            small
+                                            class=""
+                                            @click="editItem3(line)">
+                                        edit
+                                    </v-icon>
                                 </td>
                                 <td>{{ line.comment }}</td>
                             </tr>
@@ -360,6 +366,27 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+                    <v-dialog v-model="dialog3" max-width="500px">
+                        <v-card>
+                            <v-card-text>
+                                <v-layout wrap>
+                                    <v-flex xs12 sm6 md4>
+                                        <v-text-field
+                                                v-model="editedItem.exec"
+                                                label="Executive"
+                                                required
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" flat @click.native="close3">Cancel</v-btn>
+                                <v-btn color="blue darken-1" flat @click.native="save3">Save</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                     <div class="pager-view clearfix">
                         <div class="pull-left text-left viewNumber">
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
@@ -412,14 +439,17 @@
 
                 dialog: false,
                 dialog2: false,
+                dialog3: false,
                 editedIndex: -1,
                 editedItem: {
                     10: '',
                     res: '',
+                    exec: '',
                 },
                 defaultItem: {
                     10: '',
                     res: '',
+                    exec: '',
                 },
 
                 value6: '',
@@ -574,6 +604,11 @@
                 this.editedItem = Object.assign({}, item);
                 this.dialog2 = true;
             },
+            editItem3 (item) {
+                this.editedIndex = this.paginatedData.indexOf(item);
+                this.editedItem = Object.assign({}, item);
+                this.dialog3 = true;
+            },
             close () {
                 this.dialog = false;
                 setTimeout(() => {
@@ -583,6 +618,13 @@
             },
             close2 () {
                 this.dialog2 = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
+                }, 300)
+            },
+            close3 () {
+                this.dialog3 = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem);
                     this.editedIndex = -1;
@@ -621,6 +663,23 @@
                     this.lines1.push(this.editedItem)
                 }
                 this.dialog2 = false;
+            },
+            save3 () {
+
+                let data = this.editedItem;
+                let index = this.editedIndex;
+
+                if (this.editedIndex > -1) {
+
+                    axios.post('/user/edit-bid-exec', {data, index})
+                        .then(
+                            this.paginatedData[this.editedIndex].execut = data['exec']
+                        );
+
+                } else {
+                    this.lines1.push(this.editedItem)
+                }
+                this.dialog3 = false;
             },
 
             formatDate (date) {
