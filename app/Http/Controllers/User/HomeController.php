@@ -128,6 +128,15 @@ class HomeController extends Controller
             'execut' => request('data')['exec']
         ]);
     }
+    public function bidComm()
+    {
+        $bid = Bid::where('user_id', auth()->user()->id)->where('id', request('data')['id'])->first();
+
+        $bid->update([
+            'comment' => request('data')['comm']
+        ]);
+    }
+
 
     public function stat()
     {

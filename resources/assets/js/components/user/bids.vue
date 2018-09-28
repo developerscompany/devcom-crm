@@ -312,7 +312,15 @@
                                         edit
                                     </v-icon>
                                 </td>
-                                <td>{{ line.comment }}</td>
+                                <td>
+                                    {{ line.comment }}
+                                    <v-icon
+                                            small
+                                            class=""
+                                            @click="editItem4(line)">
+                                        edit
+                                    </v-icon>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -387,6 +395,27 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+                    <v-dialog v-model="dialog4" max-width="500px">
+                        <v-card>
+                            <v-card-text>
+                                <v-layout wrap>
+                                    <v-flex xs12 sm6 md4>
+                                        <v-text-field
+                                                v-model="editedItem.comm"
+                                                label="Comment"
+                                                required
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" flat @click.native="close4">Cancel</v-btn>
+                                <v-btn color="blue darken-1" flat @click.native="save4">Save</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                     <div class="pager-view clearfix">
                         <div class="pull-left text-left viewNumber">
                             <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
@@ -440,16 +469,19 @@
                 dialog: false,
                 dialog2: false,
                 dialog3: false,
+                dialog4: false,
                 editedIndex: -1,
                 editedItem: {
                     10: '',
                     res: '',
                     exec: '',
+                    comm: '',
                 },
                 defaultItem: {
                     10: '',
                     res: '',
                     exec: '',
+                    comm: '',
                 },
 
                 value6: '',
@@ -609,6 +641,11 @@
                 this.editedItem = Object.assign({}, item);
                 this.dialog3 = true;
             },
+            editItem4 (item) {
+                this.editedIndex = this.paginatedData.indexOf(item);
+                this.editedItem = Object.assign({}, item);
+                this.dialog4 = true;
+            },
             close () {
                 this.dialog = false;
                 setTimeout(() => {
@@ -625,6 +662,13 @@
             },
             close3 () {
                 this.dialog3 = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
+                }, 300)
+            },
+            close4 () {
+                this.dialog4 = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem);
                     this.editedIndex = -1;
@@ -680,6 +724,23 @@
                     this.lines1.push(this.editedItem)
                 }
                 this.dialog3 = false;
+            },
+            save4 () {
+
+                let data = this.editedItem;
+                let index = this.editedIndex;
+
+                if (this.editedIndex > -1) {
+
+                    axios.post('/user/edit-bid-comm', {data, index})
+                        .then(
+                            this.paginatedData[this.editedIndex].comment = data['comm']
+                        );
+
+                } else {
+                    this.lines1.push(this.editedItem)
+                }
+                this.dialog4 = false;
             },
 
             formatDate (date) {
