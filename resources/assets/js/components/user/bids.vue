@@ -4,8 +4,6 @@
             <div class="content-wrap pb-4">
                 <div class="form-wrap py-3">
                     <form id="line-form" v-model="form" method="post" action="/" enctype="multipart/form-data" @submit.prevent="onSubmit" style="width: 100%;">
-                        <!--<form id="line-form"  method="post" action="/user/bid/add" enctype="multipart/form-data" style="width: 100%;">-->
-
                         <ul class="row nav">
                             <li class="col-md-1">
                                 <v-select
@@ -17,15 +15,7 @@
                                     label="Customer"
                                     required
                                 ></v-select>
-                                <!--<label for="customer" class="label">Customer</label>-->
-                                <!--<select name="customer" id="customer" class="form-control" required v-model="form.customer">-->
-                                    <!--<option value="">Customer...</option>-->
-                                    <!--<option v-for="customer in customers">-->
-                                        <!--{{ customer.name }}-->
-                                    <!--</option>-->
-                                <!--</select>-->
                             </li>
-
                             <li class="col-md-1">
                                 <v-select
                                         name="source" id="source"
@@ -36,13 +26,6 @@
                                         label="Source"
                                         required
                                 ></v-select>
-                                <!--<label for="source" class="label">Source</label>-->
-                                <!--<select name="source" id="source" class="form-control" required v-model="form.source">-->
-                                    <!--<option value="">Source...</option>-->
-                                    <!--<option v-for="source in sources">-->
-                                        <!--{{ source.name }}-->
-                                    <!--</option>-->
-                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
@@ -52,8 +35,6 @@
                                     label="Link"
                                     required
                                 ></v-text-field>
-                                <!--<label for="link" class="label">Link</label>-->
-                                <!--<input type="text" id="link" name="link" class="form-control" placeholder="Link..." required v-model="form.link">-->
                             </li>
 
                             <li class="col-md-1">
@@ -63,8 +44,6 @@
                                         label="Niche"
                                         required
                                 ></v-text-field>
-                                <!--<label for="niche" class="label">Niche</label>-->
-                                <!--<input type="text" id="niche" name="niche" class="form-control" placeholder="Niche..." required v-model="form.niche">-->
                             </li>
 
                             <li class="col-md-1">
@@ -76,8 +55,6 @@
                                                 label="Site"
                                                 required
                                         ></v-text-field>
-                                        <!--<label for="site" class="label">Site</label>-->
-                                        <!--<input type="text" id="site" name="site" class="form-control" placeholder="Site..." required  v-model="form.site">-->
                                     </div>
                                     <div class="col-8">
                                         <v-text-field
@@ -86,8 +63,6 @@
                                                 label="Segment"
                                                 required
                                         ></v-text-field>
-                                        <!--<label for="segment" class="label">Segment</label>-->
-                                        <!--<input type="text" id="segment" name="segment" class="form-control" placeholder="Segment..." v-model="form.segment">-->
                                     </div>
                                 </div>
                             </li>
@@ -99,8 +74,6 @@
                                         label="Description"
                                         required
                                 ></v-text-field>
-                                <!--<label for="desc" class="label">Description</label>-->
-                                <!--<input type="text" id="Description" name="desc" class="form-control" placeholder="Description..." required v-model="form.descr">-->
                             </li>
 
                             <li class="col-md-1">
@@ -113,13 +86,6 @@
                                         label="Timing"
                                         required
                                 ></v-select>
-                                <!--<label for="timing" class="label">Timing</label>-->
-                                <!--<select name="timing" id="timing" class="form-control" required v-model="form.timing">-->
-                                    <!--<option value="">Timing...</option>-->
-                                    <!--<option v-for="time in timing">-->
-                                        <!--{{ time.title }}-->
-                                    <!--</option>-->
-                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
@@ -129,8 +95,6 @@
                                         label="Budget"
                                         required
                                 ></v-text-field>
-                                <!--<label for="budget" class="label">Budget</label>-->
-                                <!--<input type="text" id="budget" name="budget" class="form-control" placeholder="Budget..." required v-model="form.budget">-->
                             </li>
 
                             <li class="col-md-1">
@@ -141,12 +105,6 @@
                                         label="Response"
                                         required
                                 ></v-select>
-                                <!--<label for="resp" class="label">Response</label>-->
-                                <!--<select name="resp" id="resp" class="form-control" required v-model="form.response">-->
-                                    <!--<option value="">Yes/No...</option>-->
-                                    <!--<option value="Yes">Yes</option>-->
-                                    <!--<option value="No">No</option>-->
-                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
@@ -159,13 +117,6 @@
                                         label="Status"
                                         required
                                 ></v-select>
-                                <!--<label for="status" class="label">Status</label>-->
-                                <!--<select name="status" id="status" class="form-control" required v-model="form.status">-->
-                                    <!--<option value="">Status...</option>-->
-                                    <!--<option v-for="status in statuss">-->
-                                        <!--{{ status.title }}-->
-                                    <!--</option>-->
-                                <!--</select>-->
                             </li>
 
                             <li class="col-md-1">
@@ -175,8 +126,6 @@
                                         label="Executive"
                                         required
                                 ></v-text-field>
-                                <!--<label for="execut" class="label">Executive</label>-->
-                                <!--<input type="text" id="execut" name="execut" class="form-control" placeholder="Executive..." v-model="form.execut">-->
                             </li>
 
                             <li class="col-md-1">
@@ -186,8 +135,6 @@
                                         label="Comment"
                                         required
                                 ></v-text-field>
-                                <!--<label for="comment" class="label">Comment</label>-->
-                                <!--<input type="text" id="comment" name="comment" class="form-control" placeholder="Comment..." v-model="form.comment">-->
                             </li>
                         </ul>
                         <div class="mt-3 text-center">
@@ -221,13 +168,13 @@
                             <thead>
                             <tr>
                                 <td></td>
-                                <td>
+                                <td class="">
                                     Customer
                                 </td>
-                                <td class="filter-cell date">
+                                <td class="filter-cell date col-md-1">
                                     Date
                                     <!--<template>-->
-                                        <div class="mt-1">
+                                        <div class="">
                                             <el-date-picker
                                                     v-model="value6"
                                                     format="dd.MM"
@@ -240,24 +187,32 @@
                                         </div>
                                     <!--</template>-->
                                 </td>
-                                <td class="filter-cell sourse">
+                                <td class="filter-cell sourse col-md-1">
                                     Source
-                                    <select v-model="ssource" class="form-control mt-1">
-                                        <option selected value="">Source...</option>
-                                        <option v-for="source in sources"> {{ source.name }}</option>
-                                    </select>
+                                    <v-select
+                                            v-model="ssource"
+                                            :items="sources"
+                                            item-text="name"
+                                            item-value="name"
+                                            label="Source"
+                                            required
+                                    ></v-select>
                                 </td>
-                                <td>
+                                <td class="col-md-1">
                                     Link to lead
                                 </td>
-                                <td class="filter-cell niche">
+                                <td class="filter-cell niche col-md-1">
                                     Niche
-                                    <input v-model="stech" class="form-control mt-1" placeholder="Filter">
+                                    <v-text-field
+                                            v-model="stech"
+                                            label="Niche"
+                                            required
+                                    ></v-text-field>
                                 </td>
                                 <td class="curr-site-cell">
                                     Current site
                                 </td>
-                                <td>
+                                <td class="">
                                     Segment
                                 </td>
                                 <td>
@@ -269,20 +224,25 @@
                                 <td class="budget-td">
                                     Budget $
                                 </td>
-                                <td class="filter-cell response">
+                                <td class="filter-cell response col-md-1">
                                     Responce
-                                    <select v-model="sresp" class="form-control mt-1">
-                                        <option selected value="">Resp...</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                    <v-select
+                                            v-model="sresp"
+                                            :items="responses"
+                                            label="Responce"
+                                            required
+                                    ></v-select>
                                 </td>
-                                <td class="filter-cell status">
+                                <td class="filter-cell status col-md-1">
                                     Status
-                                    <select v-model="sstatus" class="form-control mt-1">
-                                        <option selected value="">Status...</option>
-                                        <option v-for="status in statuss"> {{ status.title }}</option>
-                                    </select>
+                                    <v-select
+                                            v-model="sstatus"
+                                            :items="statuss"
+                                            item-text="title"
+                                            item-value="title"
+                                            label="Status"
+                                            required
+                                    ></v-select>
                                 </td>
                                 <td>
                                     Executive
@@ -470,7 +430,7 @@
                 dateFormatted: '',
                 menu2: false,
 
-                responses: ['Yes', 'No'],
+                responses: ['', 'Yes', 'No'],
 
                 ssource: [],
                 sagent: [],
@@ -693,6 +653,9 @@
     .content-wrapper {
         background: #f0f0f1;
     }
+    .el-date-editor .el-range-separator {
+        line-height: 24px;
+    }
     #line-form label {
         font-weight: bold;
         font-size: 15px;
@@ -708,7 +671,7 @@
         text-align: center;
         position: relative;
     }
-    .col-md-1:after {
+    .form-wrap .col-md-1:after {
         content: '';
         display: block;
         position: absolute;
@@ -736,6 +699,10 @@
     .form-control:focus {
         box-shadow: none;
     }
+    .filter-cell.date > div {
+        margin-top: 4px !important;
+        padding-top: 16px !important;
+    }
     .btn {
         font-size: 13px;
         padding: 0.02rem 0.3rem;
@@ -757,5 +724,13 @@
         font-size: 13px;
         height: auto !important;
         text-align: left;
+    }
+    td.filter-cell .v-select,
+    td.filter-cell .v-text-field{
+        /*padding: 0;*/
+        /*margin: 0;*/
+    }
+    input::placeholder{
+        color: #404447;
     }
 </style>

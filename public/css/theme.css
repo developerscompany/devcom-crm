@@ -1,5 +1,6 @@
 #app div,
-#app a {
+#app a,
+#app .table i {
     color: #404447;
 }
 header {
@@ -44,7 +45,7 @@ header {
 }
 button.sbm-button {
     background: #f8dd3f;
-    color: #fff;
+    color: #404447;
     border: none;
     box-shadow: none !important;
     padding: 5px 20px;
@@ -53,7 +54,7 @@ button.sbm-button {
     text-transform: none;
 }
 .sbm-button div.v-btn__content {
-    color: #fff !important;
+    color: #404447 !important;
 }
 button.sbm-button:hover {
     background: #000;
