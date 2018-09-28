@@ -10863,6 +10863,7 @@ a.text-dark:focus {
   display: inline-block;
   margin-right: 2px;
   padding: 2px 5px;
+  cursor: pointer;
 }
 
 .mark-green {
@@ -10878,6 +10879,7 @@ a.text-dark:focus {
   display: inline-block;
   margin-right: 2px;
   padding: 2px 5px;
+  cursor: pointer;
 }
 
 .mark-primary {
@@ -10893,6 +10895,7 @@ a.text-dark:focus {
   text-align: center;
   display: inline-block;
   margin-right: 2px;
+  cursor: pointer;
 }
 
 .mark-orange {
@@ -10908,6 +10911,7 @@ a.text-dark:focus {
   text-align: center;
   display: inline-block;
   margin-right: 2px;
+  cursor: pointer;
 }
 
 .mark-fiolet {
@@ -10923,6 +10927,7 @@ a.text-dark:focus {
   text-align: center;
   display: inline-block;
   margin-right: 2px;
+  cursor: pointer;
 }
 
 .servers-list {

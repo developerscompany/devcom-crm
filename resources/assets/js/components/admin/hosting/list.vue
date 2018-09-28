@@ -150,7 +150,15 @@
                 <div class="col-md-2 col-sm-12 mark-all">
                     <div v-for="condListItem in list.conditions">
                         <div  v-for="itemCond in conds">
-                            <div v-if="condListItem.condition == itemCond.name" :class="itemCond.class">{{itemCond.name_ua}}</div>
+                            <div v-if="condListItem.condition == itemCond.name"  :class="itemCond.class"><span @click="showEditCond(condListItem)">{{itemCond.name_ua}}</span>
+                                <v-icon
+                                        small
+                                        style="display: inline-block; color: red; margin: 0 !important; font-weight: 600;"
+                                        class="mr-2"
+                                        @click="">
+                                    clear
+                                </v-icon>
+                            </div>
                         </div>
                     </div>
 
@@ -158,10 +166,12 @@
                             small
                             class="mr-2"
                             @click="addCond(list.id, index)">
-                        edit
+                        add
                     </v-icon>
                 </div>
-                <div class="col-md-2 col-sm-12 list-column">{{list.amount_all}}/{{list.amount_all_year}}</div>
+                <div class="col-md-2 col-sm-12 list-column"><span v-if="amountAll(list.conditions) > 0">{{amountAll(list.conditions)}}(м)</span>
+                    <span v-if="amountAll(list.conditions) > 0 && amountAllYear(list.conditions) > 0">/</span>
+                    <span v-if="amountAllYear(list.conditions) > 0">{{amountAllYear(list.conditions)}}(р)</span></div>
                 <div class="col-md-2 col-sm-12 list-column" v-if="list.latest_finance">
                     {{editShortDate(list.latest_finance.really_to)}}
                 </div>
@@ -354,7 +364,62 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="condShowEdit" max-width="500px">
+            <v-card>
+                <v-card-text>
+                    <v-layout wrap>
+                        <div class="col-md-12">
+                            <span
+                                    v-show="errorsCondShow"
+                                    class="error"
+                            >
+                                Помилка
+                            </span>
+                            <v-select
+                                    v-model="condActive.condition"
+                                    :items="cond"
+                                    label="Тип"
+                                    item-text="name_ua"
+                                    item-value="name"
+                                    required
+                                    :error-messages="conditionErrors"
+                                    @change="$v.condition.$touch()"
 
+                                    @blur="$v.condition.$touch()"
+
+                            ></v-select>
+                            <v-text-field
+                                    label="За місяць"
+                                    v-model="condActive.amount"
+                                    :error-messages="amountErrors"
+                                    @input="$v.amount.$touch()"
+                                    @blur="$v.amount.$touch()"
+                                    required
+                            >
+                                <!--v-model="name"
+                                -->
+                            </v-text-field>
+                            <v-text-field
+                                    label="За рік"
+                                    v-model="condActive.amount_year"
+                                    :error-messages="amountYearErrors"
+                                    @input="$v.amount_year.$touch()"
+
+                                    @blur="$v.amount_year.$touch()"
+                                    required
+                            >
+                            </v-text-field>
+                        </div>
+                    </v-layout>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                    <v-btn color="blue darken-1" flat @click.native="saveCond">Save</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -388,6 +453,9 @@
                 amount: 0,
                 amount_year: 0,
                 errorsCondAdd: '',
+                errorsCondShow: '',
+                condShowEdit: '',
+                condActive: {},
 
 
             }
@@ -400,8 +468,6 @@
             Events.$on('getListNewAcc', function (data) {
                 uplists(data)
             });
-            console.log(this.conds)
-            console.log(this.lists)
         },
         computed: {
             totalPages: function () {
@@ -467,6 +533,13 @@
             },
             close() {
                 this.condShow = false
+                this.condShowEdit = false
+                this.condActive = {}
+
+            },
+            showEditCond(condition){
+                this.condShowEdit = true
+                this.condActive = condition
 
             },
             saveCond(){
@@ -478,18 +551,36 @@
                     data.hosting_id = this.condIdActive
                     this.$http.post('/admin/hostings/account/'+this.condIdActive +'/add-condition', data)
                         .then(res => {
-                            console.log(res.data)
                             this.lists[this.condNumberActive].conditions.push(res.data.data);
                             this.condShow = false
 
                         })
-                    console.log(this.condIdActive)
-                    console.log(data)
 
                 }
                 else {
                     this.errorsCondAdd = true
                 }
+
+            },
+            amountAll(conditions){
+                let sum = 0;
+                if(conditions){
+                    for(let i = 0 ; i < conditions.length; i++){
+                        sum += parseInt(conditions[i].amount)
+                    }
+                }
+
+                return sum
+            },
+            amountAllYear(conditions){
+                let sum = 0;
+                if(conditions){
+                    for(let i = 0 ; i < conditions.length; i++){
+                        sum += parseInt(conditions[i].amount_year)
+                    }
+                }
+
+                return sum
 
             },
 
