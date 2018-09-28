@@ -59,5 +59,6 @@ Route::prefix('user')->namespace('User')->middleware('sale')->group(function () 
     Route::post('edit-google-line', 'HomeController@update');
     Route::post('edit-bid-response', 'HomeController@bidResp');
     Route::post('edit-bid-exec', 'HomeController@bidExec');
+    Route::post('edit-bid-comm', 'HomeController@bidComm');
 
 });
