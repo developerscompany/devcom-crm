@@ -44,6 +44,15 @@ class HostingController extends Controller
 
     }
 
+
+    public function conditionRemove(Hosting $hosting, HostingsCondition $condition){
+
+        $condition->delete();
+        return response()->json([], 200);
+
+
+    }
+
     public function create(HostingsCreate $request){
 
         $hosting = $request->only('name','last_name','second_name', 'phone', 'site');
@@ -83,43 +92,11 @@ class HostingController extends Controller
 
     public function update(HostingsCreate $request, Hosting $hosting){
 
-        $data = $request->only('name','last_name','second_name', 'phone', 'site');
-        $conditions = $request->get('conditions');
-        $conditions_id = $hosting->conditions()->select('id')->get()->toArray();
-        DB::transaction(function () use ($hosting, $conditions, $data, $conditions_id) {
-            $hosting->update($data);
+        $data = $request->all();
+        $hosting->update($data);
 
 
-            foreach ($conditions as $condition){
-                if(!empty($condition['condition'])){
-                    if(!empty($condition['id']) && isset($condition['id'])){
-                        $hosting->conditions()->where('id', $condition['id'])->update($condition);
-
-                        foreach ($conditions_id as $key=>$item){
-                            if($condition['id'] == $item['id']){
-                                unset($conditions_id[$key]);
-                            }
-                        }
-
-                    }
-                    else{
-                        $hosting->conditions()->create($condition);
-                    }
-
-                }
-            }
-
-            $delete_id = array_map(
-                function ($item){
-                    return $item['id'];
-                }
-            , $conditions_id);
-
-            $hosting->conditions()->whereIn('id',$delete_id)->update(['hosting_id' => 0]);
-
-        });
-
-        return response()->json([ 'data' => $conditions], 201);
+        return response()->json([ 'data' => $hosting], 200);
 
     }
 

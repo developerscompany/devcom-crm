@@ -148,14 +148,14 @@
                 <div class="col-md-2 col-sm-12 list-column">{{list.site}}</div>
                 <div class="col-md-2 col-sm-12 list-column">{{list.phone}}</div>
                 <div class="col-md-2 col-sm-12 mark-all">
-                    <div v-for="condListItem in list.conditions">
+                    <div v-for="(condListItem,number) in list.conditions">
                         <div  v-for="itemCond in conds">
                             <div v-if="condListItem.condition == itemCond.name"  :class="itemCond.class"><span @click="showEditCond(condListItem)">{{itemCond.name_ua}}</span>
                                 <v-icon
                                         small
-                                        style="display: inline-block; color: red; margin: 0 !important; font-weight: 600;"
+                                        style="display: inline-block; color: white; margin: 0 !important; font-weight: 600;"
                                         class="mr-2"
-                                        @click="">
+                                        @click="removeCond(condListItem, itemCond.name_ua, number, index)">
                                     clear
                                 </v-icon>
                             </div>
@@ -172,8 +172,16 @@
                 <div class="col-md-2 col-sm-12 list-column"><span v-if="amountAll(list.conditions) > 0">{{amountAll(list.conditions)}}(м)</span>
                     <span v-if="amountAll(list.conditions) > 0 && amountAllYear(list.conditions) > 0">/</span>
                     <span v-if="amountAllYear(list.conditions) > 0">{{amountAllYear(list.conditions)}}(р)</span></div>
-                <div class="col-md-2 col-sm-12 list-column" v-if="list.latest_finance">
-                    {{editShortDate(list.latest_finance.really_to)}}
+                <div class="col-md-1 col-sm-12 list-column" >
+                    <div v-if="list.latest_finance">{{editShortDate(list.latest_finance.really_to)}}</div>
+                </div>
+                <div class="col-md-1 col-sm-12 list-column" >
+                    <v-icon
+                            small
+                            class="mr-2"
+                            @click="showEditPopup(list)">
+                        edit
+                    </v-icon>
                 </div>
             </div>
             <div class="row">
@@ -420,6 +428,84 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="showEdit" width="500">
+
+            <v-card>
+                <v-card-title class="headline grey lighten-2" primary-title>
+                </v-card-title>
+
+                <v-card-text>
+
+                    <form>
+                        <v-text-field
+                                v-model="edit.last_name"
+                                :error-messages="lastNameErrors"
+                                label="Прізвище"
+                                required
+
+                                @input="$v.last_name.$touch()"
+                                @blur="$v.last_name.$touch()"
+                        ></v-text-field>
+                        <v-text-field
+                                v-model="edit.name"
+                                :error-messages="nameErrors"
+                                label="Ім'я"
+                                required
+                                @input="$v.name.$touch()"
+                                @blur="$v.name.$touch()"
+                        ></v-text-field>
+                        <v-text-field
+                                v-model="edit.second_name"
+                                :error-messages="secondNameErrors"
+                                label="По батькові"
+                                required
+                                @input="$v.second_name.$touch()"
+                                @blur="$v.second_name.$touch()"
+                        ></v-text-field>
+                        <v-text-field
+                                v-model="edit.phone"
+                                :error-messages="phoneErrors"
+                                label="Номер телефону"
+                                required
+                                @input="$v.phone.$touch()"
+                                @blur="$v.phone.$touch()"
+                        ></v-text-field>
+                        <v-text-field
+                                v-model="edit.site"
+                                :error-messages="siteErrors"
+                                label="Домен"
+                                required
+                                @input="$v.site.$touch()"
+                                @blur="$v.site.$touch()"
+                        ></v-text-field>
+                        <!--<v-select
+                                v-model="select"
+                                :items="roles"
+                                item-text="name"
+                                item-value="name"
+                                :error-messages="selectErrors"
+                                label="Item"
+                                required
+                                @change="$v.select.$touch()"
+                                @blur="$v.select.$touch()"
+                        ></v-select>-->
+
+                        <v-btn @click="update()">Відправити</v-btn>
+                        <v-btn @click="">Очистити</v-btn>
+                    </form>
+
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" flat @click="showEdit = false">
+                        Закрити
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -429,6 +515,7 @@
     import { validationMixin } from 'vuelidate'
     import { required, numeric } from 'vuelidate/lib/validators'
 
+
     export default {
         mixins: [validationMixin],
 
@@ -436,9 +523,16 @@
             condition: { required},
             amount: { required, numeric},
             amount_year: { required, numeric},
+            name: { required },
+            last_name: { required },
+            second_name: { required },
+            phone: { required, numeric },
+            site: { required },
+
         },
         data() {
             return {
+                edit: {},
                 title: "Hostings",
                 currentPage: 1,
                 itemsPerPage: 20,
@@ -456,7 +550,8 @@
                 errorsCondShow: '',
                 condShowEdit: '',
                 condActive: {},
-
+                showEdit: false,
+                errors: {},
 
             }
         },
@@ -504,10 +599,62 @@
                 !this.$v.condition.required && errors.push("Тип - обов'язково.");
                 return errors;
             },
+            lastNameErrors () {
+                const errors = [];
+                console.log(this.$v)
+                if (!this.$v.last_name.$dirty) return errors;
+                // !this.$v.last_name.required && errors.push("Прізвище - обов'язково.");
+                this.errors.last_name && errors.push(this.errors.last_name[0])
+
+                return errors;
+            },
+            secondNameErrors () {
+                const errors = [];
+                if (!this.$v.second_name.$dirty) return errors;
+                // !this.$v.second_name.required && errors.push("По батькові - обов'язково.");
+                this.errors.second_name && errors.push(this.errors.second_name[0])
+                return errors;
+            },
+            nameErrors () {
+                const errors = [];
+                if (!this.$v.name.$dirty) return errors;
+                // !this.$v.name.required && errors.push("Ім'я - обов'язково.");
+                this.errors.name && errors.push(this.errors.name[0])
+                return errors;
+            },
+            phoneErrors () {
+                const errors = [];
+                if (!this.$v.phone.$dirty) return errors;
+                // !this.$v.phone.numeric && errors.push('Мають бути цифри або спецзнаки.');
+                // !this.$v.phone.required && errors.push("Телефон - обов'язково.");
+                this.errors.phone && errors.push(this.errors.phone[0])
+
+                return errors;
+            },
+            siteErrors () {
+                const errors = [];
+                if (!this.$v.site.$dirty) return errors;
+                // !this.$v.site.required && errors.push("Домен - обов'язково.");
+                this.errors.site && errors.push(this.errors.site[0])
+                return errors;
+            }
+
         },
         props: ['listsAll', 'conds'],
 
         methods: {
+            update() {
+                this.$http.post('/admin/hostings/account/'+this.edit.id+'/update/', this.edit)
+                    .then(res => {
+                        this.showEdit = false
+                        this.edit = {}
+                    },
+                        err => {
+                            this.errors = err.data.errors
+
+                        }
+                    )
+            },
             updateLists(data) {
                 this.lists.unshift(data.valueOf())
             },
@@ -525,7 +672,10 @@
                     return date
                 }
             },
-
+            showEditPopup(item){
+                this.edit = item
+                this.showEdit = true
+            },
             addCond(id, number) {
                 this.condShow = true
                 this.condIdActive = id
@@ -541,6 +691,14 @@
                 this.condShowEdit = true
                 this.condActive = condition
 
+            },
+            removeCond(item, name, number, index){
+                if(confirm("Видалити послугу "+name+"?")){
+                    this.$http.post('/admin/hostings/account/'+item.hosting_id +'/remove-condition/'+item.id)
+                        .then(res => {
+                            this.lists[index].conditions.splice(number, 1);
+                        })
+                }
             },
             saveCond(){
                 if(!this.amountErrors['0'] && !this.amountYearErrors['0'] && !this.conditionErrors['0']){
