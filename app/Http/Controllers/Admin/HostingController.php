@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ConditionType;
 use App\Exports\HostingsExport;
 use App\Http\Requests\Admin\{HostingSale, HostingsCreate, HostingsMessage, ServerCreate};
 use App\Model\Admin\Hosting\Hosting;
@@ -20,28 +21,13 @@ class HostingController extends Controller
 {
     public function index(){
 
-        /*$lists = Hosting::orderBy("updated_at","desc")->with('conditions')->with(['finances' => function($query) {
-            return $query->where('condition', 'hosting' )->orderBy("really_to", "desc")->first();
-        }])->get();*/
-//        $lists = Hosting::with('conditions')->join('hostings_finances', 'hostings.id', '=', 'hostings_finances.hosting_id')->get();
-        /*$lists = Hosting::rightJoin('hostings_finances', 'hostings_finances.hosting_id','=','hostings.id')
-            ->orderBy('really_to','desc')
-            ->get()->groupBy('hosting_id');*/
 
-        $lists = Hosting::with('conditions','finances')->get();
 
-        foreach ($lists as $list){
+        $lists = Hosting::with('conditions','latestFinance')->get()->sortBy('latestFinance.really_to')->values();
 
-            $really_to = $list->finances()->where('condition', '=' ,'hosting')->orderBy('really_to', 'desc')->first();
+        $conds = ConditionType::all()->toArray();
 
-            if(!empty($really_to->really_to)){
-                $list->really_to = $really_to->really_to;
-            }
-        }
-
-        $lists = $lists->sortBy("really_to")->values()->all();
-
-        return view('admin.hosting.list')->with(['lists' => $lists]);
+        return view('admin.hosting.list')->with(['lists' => $lists, 'conds' => $conds]);
 
     }
 
@@ -50,22 +36,29 @@ class HostingController extends Controller
         return view('admin.hosting.add');
     }
 
+    public function conditionAdd(HostingsCondition $condition, Request $request){
+
+        $cond = $condition->create($request->all());
+        return response()->json(['data' => $cond], 200);
+
+
+    }
+
+
+    public function conditionRemove(Hosting $hosting, HostingsCondition $condition){
+
+        $condition->delete();
+        return response()->json([], 200);
+
+
+    }
+
     public function create(HostingsCreate $request){
 
         $hosting = $request->only('name','last_name','second_name', 'phone', 'site');
-        $conditions = $request->get('conditions');
+        $acc = Hosting::create($hosting);
 
-        DB::transaction(function () use ($hosting, $conditions) {
-            $acc = Hosting::create($hosting);
-            foreach ($conditions as $condition){
-
-                if(!empty($condition['condition'])){
-                    $acc->conditions()->create($condition);
-                }
-            }
-        });
-
-        return response()->json([ 'data' => $conditions], 201);
+        return response()->json([ 'data' => $acc], 201);
     }
 
     public function show(Hosting $hosting){
@@ -99,43 +92,11 @@ class HostingController extends Controller
 
     public function update(HostingsCreate $request, Hosting $hosting){
 
-        $data = $request->only('name','last_name','second_name', 'phone', 'site');
-        $conditions = $request->get('conditions');
-        $conditions_id = $hosting->conditions()->select('id')->get()->toArray();
-        DB::transaction(function () use ($hosting, $conditions, $data, $conditions_id) {
-            $hosting->update($data);
+        $data = $request->all();
+        $hosting->update($data);
 
 
-            foreach ($conditions as $condition){
-                if(!empty($condition['condition'])){
-                    if(!empty($condition['id']) && isset($condition['id'])){
-                        $hosting->conditions()->where('id', $condition['id'])->update($condition);
-
-                        foreach ($conditions_id as $key=>$item){
-                            if($condition['id'] == $item['id']){
-                                unset($conditions_id[$key]);
-                            }
-                        }
-
-                    }
-                    else{
-                        $hosting->conditions()->create($condition);
-                    }
-
-                }
-            }
-
-            $delete_id = array_map(
-                function ($item){
-                    return $item['id'];
-                }
-            , $conditions_id);
-
-            $hosting->conditions()->whereIn('id',$delete_id)->update(['hosting_id' => 0]);
-
-        });
-
-        return response()->json([ 'data' => $conditions], 201);
+        return response()->json([ 'data' => $hosting], 200);
 
     }
 
@@ -217,6 +178,7 @@ class HostingController extends Controller
                 $result[$key1]['pay'] = 0;
             }
         }
+
         ksort($result);
         return view("admin.hosting.servers",['servers' => $server->get(), 'pay' => $result,  'amounts' => $amounts]);
     }

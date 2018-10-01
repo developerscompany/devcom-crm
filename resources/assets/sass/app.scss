@@ -459,6 +459,7 @@ $green-color: #0ec99b;
   display: inline-block;
   margin-right: 2px;
   padding: 2px 5px;
+  cursor: pointer;
 
 }
 .mark-green{
@@ -473,6 +474,7 @@ $green-color: #0ec99b;
   display: inline-block;
   margin-right: 2px;
   padding: 2px 5px;
+  cursor: pointer;
 
 }
 .mark-primary{
@@ -487,6 +489,8 @@ $green-color: #0ec99b;
   text-align: center;
   display: inline-block;
   margin-right: 2px;
+  cursor: pointer;
+
 }
 .mark-orange{
   padding: 2px 5px;
@@ -500,6 +504,24 @@ $green-color: #0ec99b;
   text-align: center;
   display: inline-block;
   margin-right: 2px;
+  cursor: pointer;
+
+
+}
+.mark-fiolet{
+  padding: 2px 5px;
+  box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
+  border-radius: 11px;
+  background-color: #6517d5;
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  margin-right: 2px;
+  cursor: pointer;
+
 
 }
 
