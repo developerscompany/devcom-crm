@@ -128887,41 +128887,33 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     }
                 }).slice(start, end);
             }
-            if (self.sresp.length > 0 || self.ssource.length > 0 || self.stech.length > 0 || self.sstatus.length > 0) {
+
+            if (self.sresp.length > 0) {
+
                 return self.lines1.filter(function (item) {
-                    return self.sresp.indexOf(item.response) > -1 && self.ssource.indexOf(item.source) > -1 && self.sstatus.indexOf(item.status) > -1;
+                    return self.sresp.indexOf(item.response) > -1;
                 }).slice(start, end);
             }
+            if (self.ssource.length > 0) {
 
-            // if (self.sresp.length > 0) {
-            //
-            //     return self.lines1.filter(function(item) {
-            //         return self.sresp.indexOf(item.response) > -1;
-            //     }).slice(start, end);
-            //
-            // }
-            // if (self.ssource.length > 0) {
-            //
-            //     return self.lines1.filter(function(item) {
-            //         return self.ssource.indexOf(item.source) > -1;
-            //     }).slice(start, end);
-            //
-            // }
-            // if (self.stech.length > 0) {
-            //
-            //     return self.lines1.filter(function (item) {
-            //         return Object.keys(item).some(function (key) {
-            //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
-            //         });
-            //     }).slice(start, end);
-            // }
-            // if (self.sstatus.length > 0) {
-            //
-            //     return self.lines1.filter(function(item) {
-            //         return self.sstatus.indexOf(item.status) > -1;
-            //     }).slice(start, end);
-            //
-            // }
+                return self.lines1.filter(function (item) {
+                    return self.ssource.indexOf(item.source) > -1;
+                }).slice(start, end);
+            }
+            if (self.stech.length > 0) {
+
+                return self.lines1.filter(function (item) {
+                    return Object.keys(item).some(function (key) {
+                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
+                    });
+                }).slice(start, end);
+            }
+            if (self.sstatus.length > 0) {
+
+                return self.lines1.filter(function (item) {
+                    return self.sstatus.indexOf(item.status) > -1;
+                }).slice(start, end);
+            }
 
             return this.lines1.slice(start, end);
         }
