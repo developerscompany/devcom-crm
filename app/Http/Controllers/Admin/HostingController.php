@@ -64,13 +64,15 @@ class HostingController extends Controller
     public function show(Hosting $hosting){
 
         $conds = ConditionType::all()->toArray();
+        $finances = $hosting->finances()->with('hosting')->orderBy('created_at', 'desc')->get();
 
         return view('admin.hosting.card')->with(['hosting' => $hosting
             ->load(['conditions.finance' => function($query) use($hosting) {
                 $query->where('hosting_id', $hosting->id );
             }])
             ->load('comments.user'),
-            'conds' => $conds]);
+            'conds' => $conds,
+            'finances' => $finances]);
     }
 
     public function getComment(HostingsMessage $comment, $hosting){

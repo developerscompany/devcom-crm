@@ -13,9 +13,10 @@
 
 
 // Vars
-$primary-color: #1763ff;
+$primary-color: #5bc0de;
 $red-color: #ee2a82;
 $green-color: #0ec99b;
+$yellow-color: #f8dd3f;
 
 .navbar-laravel {
   background-color: #fff;
@@ -357,6 +358,7 @@ $green-color: #0ec99b;
       font-weight: 400;
       line-height: normal;
       padding: 8px 13px;
+      box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
     }
   }
 
@@ -367,11 +369,22 @@ $green-color: #0ec99b;
       padding-right: 30px;
       font-family: "Open Sans", sans-serif;
     }
-
+    .btn-edit{
+      border-radius: 18px;
+      background-color: $primary-color;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: normal;
+      padding: 8px 13px;
+      outline: none;
+      box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+    }
     .message-list{
       &{
         margin-bottom: 125px;
-        height: 50vh;
+        margin-top: 20px;
+        height: 60vh;
         overflow-y: scroll;
       }
 

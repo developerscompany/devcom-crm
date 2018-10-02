@@ -110,35 +110,39 @@
                     <br>
                     <!--<button class="btn-edit" @click="openEdit">Змінити</button>-->
                     <button class="btn-edit" @click="showSale = !showSale">Оплатити</button>
-                    <button class="btn-edit" @click="openArchive">Архів</button>
 
 
                 </div>
 
                 <div class="col-sm-12 col-md-7 col-lg-8 message-box">
-                    <div class="message-list" id="block-scroll">
-                        <div class="message-item" v-for="comment in hosting.comments">
-                            <div class="message-image">
-                            </div>
-                            <div class="message-content">
-                                <div class="message-time">
-                                    {{editDate(comment.created_at)}}
+                    <button class="btn-edit" @click="openComments">Коментарі</button>
+                    <button class="btn-edit" @click="openArchive">Архів</button>
+                    <hosting-archive v-if="toogleBox" :conds="conds" :finances="finances"></hosting-archive>
+                    <div v-if="!toogleBox">
+                        <div class="message-list" id="block-scroll">
+                            <div class="message-item" v-for="comment in hosting.comments">
+                                <div class="message-image">
                                 </div>
-                                <div class="message-email">
-                                    {{comment.user.email}}
-                                </div>
-                                <div class="message-text">
-                                    {{comment.message}}
+                                <div class="message-content">
+                                    <div class="message-time">
+                                        {{editDate(comment.created_at)}}
+                                    </div>
+                                    <div class="message-email">
+                                        {{comment.user.email}}
+                                    </div>
+                                    <div class="message-text">
+                                        {{comment.message}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="writing-block">
-                        <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
-                        <textarea name="comment" v-model="data.comment" class="form-control"></textarea>
-                        <br>
+                        <div class="writing-block">
+                            <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
+                            <textarea name="comment" v-model="data.comment" class="form-control"></textarea>
+                            <br>
 
-                        <button class="btn-create" @click="comment">Відправити</button>
+                            <button class="btn-create" @click="comment">Відправити</button>
+                        </div>
                     </div>
 
 
@@ -162,6 +166,7 @@
 <script>
 
     import HostingSale from './sale'
+    import HostingArchive from './archive'
     export default {
 
         data() {
@@ -174,11 +179,13 @@
                 errors: {},
                 storeStatus: false,
                 showSale: false,
+                toogleBox: false,
             }
         },
-        props: ['hosting', 'conds'],
+        props: ['hosting', 'conds', 'finances'],
         components: {
             HostingSale,
+            HostingArchive,
         },
         mounted() {
             this.scrollToEnd();
@@ -188,7 +195,15 @@
 
         },
         methods: {
+            openComments(){
+                this.toogleBox = false
+            },
+            openArchive () {
+                this.toogleBox = true
 
+                // return location.href = "/admin/hostings/account/" + this.hosting.id + "/archive";
+
+            },
             comment() {
                 this.$http.post('/admin/hostings/account/' + this.hosting.id + '/comment', this.data).then(res => {
                     if (res.status === 201) {
@@ -230,8 +245,11 @@
                 }
             },
             scrollToEnd() {
-                let block = document.querySelector("#block-scroll");
-                block.scrollTop = block.scrollHeight;
+                if(!this.toogleBox){
+
+                    let block = document.querySelector("#block-scroll");
+                    block.scrollTop = block.scrollHeight;
+                }
             },
             openEdit() {
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/edit";
@@ -241,11 +259,7 @@
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/sale";
 
             },
-            openArchive () {
 
-                return location.href = "/admin/hostings/account/" + this.hosting.id + "/archive";
-
-            }
 
         }
 
