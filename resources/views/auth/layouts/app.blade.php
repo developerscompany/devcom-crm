@@ -54,6 +54,8 @@
 
             </div>
         </div>
+
+        @include('auth.layouts.footer')
     </div>
 
 
