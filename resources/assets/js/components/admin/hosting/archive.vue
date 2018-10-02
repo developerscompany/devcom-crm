@@ -5,10 +5,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <select v-model="type" class="form-control">
-                        <option value="hosting">Хостинг</option>
-                        <option value="cert">Сертифікат</option>
-                        <option value="support">Підтримка</option>
-                        <option value="domain">Домен</option>
+                        <option :value="cond.name" v-for="cond in conds">{{cond.name_ua}}</option>
                     </select>
                 </div>
 
@@ -54,7 +51,7 @@
 
             }
         },
-        props: ['finances'],
+        props: ['finances', 'conds'],
 
         methods: {
 

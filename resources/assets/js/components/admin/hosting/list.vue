@@ -179,8 +179,17 @@
                     <v-icon
                             small
                             class="mr-2"
+                            style="display: inline-block;"
+
                             @click="showEditPopup(list)">
                         edit
+                    </v-icon>
+                    <v-icon
+                            small
+                            class="mr-2"
+                            style="display: inline-block;"
+                            @click="showSalePopup(list)">
+                        attach_money
                     </v-icon>
                 </div>
             </div>
@@ -491,7 +500,7 @@
                         ></v-select>-->
 
                         <v-btn @click="update()">Відправити</v-btn>
-                        <v-btn @click="">Очистити</v-btn>
+                        <!--<v-btn @click="">Очистити</v-btn>-->
                     </form>
 
                 </v-card-text>
@@ -504,14 +513,24 @@
                         Закрити
                     </v-btn>
                 </v-card-actions>
+
+
             </v-card>
         </v-dialog>
+        <div id="modal-sale" v-if="showSale">
+
+            <div class="x-block" @click="showSale = false">X</div>
+
+            <hosting-sale :hosting="hostingSale" :conds="conds"></hosting-sale>
+
+        </div>
     </div>
 </template>
 
 <script>
     import {Events} from '../../../vue'
     import HostingAdd from './add'
+    import HostingSale from './sale'
     import { validationMixin } from 'vuelidate'
     import { required, numeric } from 'vuelidate/lib/validators'
 
@@ -552,11 +571,14 @@
                 condActive: {},
                 showEdit: false,
                 errors: {},
+                showSale: false,
+                hostingSale: {},
 
             }
         },
         components: {
             HostingAdd,
+            HostingSale,
         },
         created() {
             let uplists = this.updateLists
@@ -655,6 +677,15 @@
                         }
                     )
             },
+            showSalePopup(item){
+
+                this.showSale = true;
+                this.hostingSale = item
+                console.log(item)
+                console.log(this.showSale)
+
+            },
+
             updateLists(data) {
                 this.lists.unshift(data.valueOf())
             },
