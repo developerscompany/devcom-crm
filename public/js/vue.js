@@ -127068,7 +127068,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -127322,8 +127322,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 }).slice(start, end);
             }
             if (self.ssource.length > 0) {
-
-                console.log(self.ssource);
 
                 return self.lines.filter(function (item) {
                     return self.ssource.indexOf(item.source) > -1;
@@ -128775,6 +128773,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -128785,17 +128784,17 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         return {
 
             form: {
-                customer: '',
-                source: '',
+                customer: null,
+                source: null,
                 link: '',
                 niche: '',
                 site: '',
                 segment: '',
                 descr: '',
-                timing: '',
+                timing: null,
                 budget: '',
-                response: '',
-                status: '',
+                response: null,
+                status: null,
                 execut: '',
                 comment: ''
             },
@@ -128830,11 +128829,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             responses: ['Yes', 'No'],
 
-            ssource: [],
+            ssource: '',
             sagent: [],
-            sstatus: [],
-            stech: [],
-            sresp: [],
+            sstatus: '',
+            stech: '',
+            sresp: '',
 
             number: 15,
             pageNumber: 0,
@@ -128888,6 +128887,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     }
                 }).slice(start, end);
             }
+
             if (self.sresp.length > 0) {
 
                 return self.lines1.filter(function (item) {
@@ -129124,6 +129124,11 @@ var render = function() {
                       "item-text": "name",
                       "item-value": "name",
                       label: "Customer",
+                      rules: [
+                        function(v) {
+                          return !!v || "Item is required"
+                        }
+                      ],
                       required: ""
                     },
                     model: {

@@ -13,6 +13,7 @@
                                     item-text="name"
                                     item-value="name"
                                     label="Customer"
+                                    :rules="[(v) => !!v || 'Item is required']"
                                     required
                                 ></v-select>
                             </li>
@@ -449,17 +450,17 @@
             return {
 
                 form: {
-                    customer: '',
-                    source: '',
+                    customer: null,
+                    source: null,
                     link: '',
                     niche: '',
                     site: '',
                     segment: '',
                     descr: '',
-                    timing: '',
+                    timing: null,
                     budget: '',
-                    response: '',
-                    status: '',
+                    response: null,
+                    status: null,
                     execut: '',
                     comment: '',
                 },
@@ -494,11 +495,11 @@
 
                 responses: ['Yes', 'No'],
 
-                ssource: [],
+                ssource: '',
                 sagent: [],
-                sstatus: [],
-                stech: [],
-                sresp: [],
+                sstatus: '',
+                stech: '',
+                sresp: '',
 
                 number: 15,
                 pageNumber: 0,
@@ -544,7 +545,6 @@
                 const start = self.pageNumber * self.number,
                     end = start + self.number;
 
-
                 if (self.value6 == null) {
                     self.value6 = '';
                 }
@@ -565,6 +565,7 @@
                     }).slice(start, end);
 
                 }
+
                 if (self.sresp.length > 0) {
 
                     return self.lines1.filter(function(item) {

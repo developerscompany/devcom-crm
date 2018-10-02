@@ -35,7 +35,7 @@ header {
     color: #ffffff;
 }
 .viewNumber a.active {
-    color: #ffffff !important;
+    color: #000 !important;
     background: #f8dd3f;
 }
 .table thead td {
