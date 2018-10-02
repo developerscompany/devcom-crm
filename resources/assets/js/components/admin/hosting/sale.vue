@@ -15,10 +15,10 @@
                     <span class="error" v-if="errors.condition">{{errors.condition[0]}}</span>
                     <select class="form-control" @change="change" v-model="condition">
                         <option v-for="condition in hosting.conditions" :value="condition" selected>
-                            <div v-if=" condition.condition == 'hosting'">Хостинг</div>
-                            <div v-else-if="condition.condition == 'cert'">Сертифікат</div>
-                            <div v-else-if="condition.condition == 'support'">Підтримка</div>
-                            <div v-else-if="condition.condition == 'domain'">Домен</div>
+                            <div v-for="cond in conds">
+                                <div v-if=" condition.condition == cond.name">{{cond.name_ua}}</div>
+
+                            </div>
                         </option>
                     </select>
 
@@ -117,9 +117,9 @@
             let really0 = new Date(Date.now())
             this.data.created_at = really0.getFullYear() + '-' + (really0.getMonth() + 1) + '-' + really0.getDate()
 
-
+            console.log(this.hosting)
         },
-        props: ['hosting'],
+        props: ['hosting','conds'],
 
         methods: {
 
@@ -239,7 +239,7 @@
                 this.$http.post('/admin/hostings/account/' + this.hosting.id + '/sale', this.data).then(res => {
                     if (res.status === 201) {
                         // console.log(res.data)
-                        location.href = '/admin/hostings/account/' + this.hosting.id
+                        location.href = '/admin/hostings'///account/' //+ this.hosting.id
                     }
                     else {
 

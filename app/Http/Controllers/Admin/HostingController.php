@@ -63,11 +63,14 @@ class HostingController extends Controller
 
     public function show(Hosting $hosting){
 
+        $conds = ConditionType::all()->toArray();
+
         return view('admin.hosting.card')->with(['hosting' => $hosting
             ->load(['conditions.finance' => function($query) use($hosting) {
                 $query->where('hosting_id', $hosting->id );
             }])
-            ->load('comments.user')]);
+            ->load('comments.user'),
+            'conds' => $conds]);
     }
 
     public function getComment(HostingsMessage $comment, $hosting){
@@ -111,7 +114,17 @@ class HostingController extends Controller
 
     public function sale(Hosting $hosting, HostingSale $sale){
 
-        $hosting->finances()->insert($sale->all());
+        $data['user_id'] = Auth::id();
+        $type = $sale->get('type') == 'm'? 'місяць': 'рік';
+        $data['message'] = "Оплачено сумою за ". $type." до ".$sale->get('really_to').". Сума - ".$sale->get('amount');
+
+        DB::transaction(function () use ($data, $hosting, $sale) {
+            $hosting->finances()->insert($sale->all());
+            $hosting->comments()->create($data);
+
+
+        });
+
 
         return response()->json([], 201);
 
@@ -121,7 +134,9 @@ class HostingController extends Controller
         $finances = $hosting->finances()->with('hosting')->orderBy('created_at', 'desc')->get();
 //        dd($finances);
 
-        return view('admin.hosting.archive')->with(['finances' => $finances]);
+        $conds = ConditionType::all()->toArray();
+
+        return view('admin.hosting.archive')->with(['finances' => $finances, 'conds' => $conds]);
     }
 
 
