@@ -46,17 +46,26 @@
                             </td>
                             <td class="filter-cell agent">
                                 Agent
-                                <select v-model="sagent" class="form-control mt-1">
-                                    <option value="">Agent...</option>
-                                    <option v-for="agent in agents"> {{ agent.name }}</option>
-                                </select>
+                                <v-select
+                                        v-model="sagent"
+                                        :items="agents"
+                                        item-text="name"
+                                        item-value="name"
+                                        label="Agent"
+                                        required
+                                        clearable
+                                ></v-select>
                             </td>
                             <td class="filter-cell sourse">
                                 Source
-                                <select v-model="ssource" class="form-control mt-1">
-                                    <option value="">Source...</option>
-                                    <option v-for="source in sources"> {{ source.name }}</option>
-                                </select>
+                                <v-select
+                                        v-model="ssource"
+                                        :items="sources"
+                                        item-text="name"
+                                        item-value="name"
+                                        label="Source"
+                                        required
+                                ></v-select>
                             </td>
                             <td>
                                 Link to lead
@@ -79,18 +88,23 @@
                             </td>
                             <td class="filter-cell response">
                                 Responce
-                                <select v-model="sresp" class="form-control mt-1">
-                                    <option selected value="">Resp...</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
+                                <v-select
+                                        v-model="sresp"
+                                        :items="responses"
+                                        label="Responce"
+                                        required
+                                ></v-select>
                             </td>
                             <td class="filter-cell status">
                                 Status
-                                <select v-model="sstatus" class="form-control mt-1">
-                                    <option value="">Status...</option>
-                                    <option v-for="status in statuss"> {{ status.title }}</option>
-                                </select>
+                                <v-select
+                                        v-model="sstatus"
+                                        :items="statuss"
+                                        item-text="title"
+                                        item-value="title"
+                                        label="Status"
+                                        required
+                                ></v-select>
                             </td>
                             <td>
                                 Comments
@@ -187,6 +201,8 @@
 
                 number: 15,
                 pageNumber: 0,
+
+                responses: ['Yes', 'No'],
 
                 active: false,
                 show: false,
