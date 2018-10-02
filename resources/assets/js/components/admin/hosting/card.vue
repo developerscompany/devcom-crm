@@ -23,114 +23,126 @@
 
                     <p class="label">Послуги:</p>
                     <div class="conditions" v-for="condition in hosting.conditions">
-                        <div v-if="condition.condition == 'hosting'" class="condition-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="mark-primary mark">Хостинг</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
-                                    <br>
+                        <div v-for="cond in conds">
+                            <div v-if="condition.condition == cond.name" class="condition-item">
 
+
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div :class="cond.class" class="mark">{{cond.name_ua}}</div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                        <br>
+                                        <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                        <br>
+                                        <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                        <br>
+                                        <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                        <br>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div v-else-if="condition.condition == 'cert'" class="condition-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="mark-orange mark">Сертифікат</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
-                                    <br>
 
-                                </div>
+                    <!--<div v-else-if="condition.condition == 'cert'" class="condition-item">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="mark-orange mark">Сертифікат</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                <br>
+                                <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                <br>
+
                             </div>
                         </div>
-                        <div v-else-if="condition.condition == 'support'" class="condition-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="mark-red mark">Підтримка</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
-                                    <br>
+                    </div>
+                    <div v-else-if="condition.condition == 'support'" class="condition-item">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="mark-red mark">Підтримка</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                <br>
+                                <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                <br>
 
-                                </div>
                             </div>
                         </div>
-                        <div v-else-if="condition.condition == 'domain'" class="condition-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="mark-green mark">Домен</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
-                                    <br>
-                                    <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
-                                    <br>
+                    </div>
+                    <div v-else-if="condition.condition == 'domain'" class="condition-item">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="mark-green mark">Домен</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                <br>
+                                <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
+                                <br>
+                                <div class="col-12 finance-item" v-if="condition.finance">Оплачено - {{editShortDate(condition.finance.created_at)}}</div>
+                                <br>
 
-                                </div>
                             </div>
                         </div>
-                        <div v-else></div>
+                    </div>
+                    <div v-else></div>-->
 
                     </div>
 
                     <br>
-                    <button class="btn-edit" @click="openEdit">Змінити</button>
+                    <!--<button class="btn-edit" @click="openEdit">Змінити</button>-->
                     <button class="btn-edit" @click="showSale = !showSale">Оплатити</button>
-                    <button class="btn-edit" @click="openArchive">Архів</button>
 
 
                 </div>
 
                 <div class="col-sm-12 col-md-7 col-lg-8 message-box">
-                    <div class="message-list" id="block-scroll">
-                        <div class="message-item" v-for="comment in hosting.comments">
-                            <div class="message-image">
-                            </div>
-                            <div class="message-content">
-                                <div class="message-time">
-                                    {{editDate(comment.created_at)}}
+                    <button class="btn-edit" @click="openComments">Коментарі</button>
+                    <button class="btn-edit" @click="openArchive">Архів</button>
+                    <hosting-archive v-if="toogleBox" :conds="conds" :finances="finances"></hosting-archive>
+                    <div v-if="!toogleBox">
+                        <div class="message-list" id="block-scroll">
+                            <div class="message-item" v-for="comment in hosting.comments">
+                                <div class="message-image">
                                 </div>
-                                <div class="message-email">
-                                    {{comment.user.email}}
-                                </div>
-                                <div class="message-text">
-                                    {{comment.message}}
+                                <div class="message-content">
+                                    <div class="message-time">
+                                        {{editDate(comment.created_at)}}
+                                    </div>
+                                    <div class="message-email">
+                                        {{comment.user.email}}
+                                    </div>
+                                    <div class="message-text">
+                                        {{comment.message}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="writing-block">
-                        <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
-                        <textarea name="comment" v-model="data.comment" class="form-control"></textarea>
-                        <br>
+                        <div class="writing-block">
+                            <span class="error" v-if="errors.comment">{{errors.comment[0]}}</span>
+                            <textarea name="comment" v-model="data.comment" class="form-control"></textarea>
+                            <br>
 
-                        <button class="btn-create" @click="comment">Відправити</button>
+                            <button class="btn-create" @click="comment">Відправити</button>
+                        </div>
                     </div>
 
 
@@ -154,6 +166,7 @@
 <script>
 
     import HostingSale from './sale'
+    import HostingArchive from './archive'
     export default {
 
         data() {
@@ -166,11 +179,13 @@
                 errors: {},
                 storeStatus: false,
                 showSale: false,
+                toogleBox: false,
             }
         },
-        props: ['hosting'],
+        props: ['hosting', 'conds', 'finances'],
         components: {
             HostingSale,
+            HostingArchive,
         },
         mounted() {
             this.scrollToEnd();
@@ -180,7 +195,15 @@
 
         },
         methods: {
+            openComments(){
+                this.toogleBox = false
+            },
+            openArchive () {
+                this.toogleBox = true
 
+                // return location.href = "/admin/hostings/account/" + this.hosting.id + "/archive";
+
+            },
             comment() {
                 this.$http.post('/admin/hostings/account/' + this.hosting.id + '/comment', this.data).then(res => {
                     if (res.status === 201) {
@@ -222,8 +245,11 @@
                 }
             },
             scrollToEnd() {
-                let block = document.querySelector("#block-scroll");
-                block.scrollTop = block.scrollHeight;
+                if(!this.toogleBox){
+
+                    let block = document.querySelector("#block-scroll");
+                    block.scrollTop = block.scrollHeight;
+                }
             },
             openEdit() {
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/edit";
@@ -233,11 +259,7 @@
                 return location.href = "/admin/hostings/account/" + this.hosting.id + "/sale";
 
             },
-            openArchive () {
 
-                return location.href = "/admin/hostings/account/" + this.hosting.id + "/archive";
-
-            }
 
         }
 

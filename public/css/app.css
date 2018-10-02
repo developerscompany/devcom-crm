@@ -10477,6 +10477,38 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.hosting-list #modal-sale {
+  position: absolute;
+  width: 60%;
+  height: 40vh;
+  top: 100px;
+  left: 32%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  margin: 24px;
+  pointer-events: auto;
+  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hosting-list #modal-sale .x-block {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 25px;
+  color: red;
+  text-align: center;
+  height: 25px;
+  padding: 2px;
+  border: 1px solid red;
+  border-radius: 18px;
+  z-index: 3;
+}
+
 .hosting-list {
   background-color: white;
   padding: 20px 10px;
@@ -10492,7 +10524,7 @@ a.text-dark:focus {
 
 .hosting-list .div-btn-add button.btn-add {
   border-radius: 18px;
-  background-color: #1763ff;
+  background-color: #5bc0de;
   color: #ffffff;
   font-size: 15px;
   font-weight: 400;
@@ -10572,7 +10604,7 @@ a.text-dark:focus {
 }
 
 .hosting-list .showing-elements .showing-number .active {
-  color: #1763ff;
+  color: #5bc0de;
 }
 
 .hosting-list .paginate-right {
@@ -10614,7 +10646,7 @@ a.text-dark:focus {
 
 .hosting-add .label-column {
   display: block;
-  color: #1763ff;
+  color: #5bc0de;
   opacity: 0.5;
   font-weight: 400;
   font-size: 14px;
@@ -10637,7 +10669,7 @@ a.text-dark:focus {
 .hosting-add .btn-add {
   margin-top: 5px;
   border-radius: 18px;
-  background-color: #1763ff;
+  background-color: #5bc0de;
   color: #ffffff;
   font-size: 30px;
   font-weight: 400;
@@ -10748,12 +10780,14 @@ a.text-dark:focus {
 
 .hosting-card .acc-data .btn-edit {
   border-radius: 18px;
-  background-color: #1763ff;
+  background-color: #5bc0de;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   padding: 8px 13px;
+  -webkit-box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+          box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
 }
 
 .hosting-card .message-box {
@@ -10763,9 +10797,23 @@ a.text-dark:focus {
   font-family: "Open Sans", sans-serif;
 }
 
+.hosting-card .message-box .btn-edit {
+  border-radius: 18px;
+  background-color: #5bc0de;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 8px 13px;
+  outline: none;
+  -webkit-box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+          box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+}
+
 .hosting-card .message-box .message-list {
   margin-bottom: 125px;
-  height: 50vh;
+  margin-top: 20px;
+  height: 60vh;
   overflow-y: scroll;
 }
 
