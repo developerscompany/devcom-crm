@@ -6,7 +6,7 @@
 
 #app-auth {
     height: 100vh;
-    background: url("../img/login-bg.png") no-repeat center center / auto 100%;
+    background: url("../img/log-bg2.jpg") no-repeat center center / cover;
 }
 .text-block {
     font-family: MontserratBlack;
@@ -53,4 +53,10 @@ input.form-control:focus {
 }
 footer {
     height: 85px;
+}
+footer a {
+    color: #f8dd3f;
+}
+footer a:hover {
+    color: #000;
 }
