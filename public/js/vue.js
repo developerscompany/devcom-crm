@@ -127068,7 +127068,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -127081,6 +127081,37 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -127270,6 +127301,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             number: 15,
             pageNumber: 0,
+
+            responses: ['Yes', 'No'],
 
             active: false,
             show: false,
@@ -127481,99 +127514,62 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _c("td", { staticClass: "filter-cell agent" }, [
-                    _vm._v(
-                      "\n                            Agent\n                            "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sagent,
-                            expression: "sagent"
-                          }
-                        ],
-                        staticClass: "form-control mt-1",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.sagent = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
+                  _c(
+                    "td",
+                    { staticClass: "filter-cell agent" },
+                    [
+                      _vm._v(
+                        "\n                            Agent\n                            "
+                      ),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.agents,
+                          "item-text": "name",
+                          "item-value": "name",
+                          label: "Agent",
+                          required: "",
+                          clearable: ""
+                        },
+                        model: {
+                          value: _vm.sagent,
+                          callback: function($$v) {
+                            _vm.sagent = $$v
+                          },
+                          expression: "sagent"
                         }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Agent...")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.agents, function(agent) {
-                          return _c("option", [
-                            _vm._v(" " + _vm._s(agent.name))
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("td", { staticClass: "filter-cell sourse" }, [
-                    _vm._v(
-                      "\n                            Source\n                            "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.ssource,
-                            expression: "ssource"
-                          }
-                        ],
-                        staticClass: "form-control mt-1",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.ssource = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
+                  _c(
+                    "td",
+                    { staticClass: "filter-cell sourse" },
+                    [
+                      _vm._v(
+                        "\n                            Source\n                            "
+                      ),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.sources,
+                          "item-text": "name",
+                          "item-value": "name",
+                          label: "Source",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.ssource,
+                          callback: function($$v) {
+                            _vm.ssource = $$v
+                          },
+                          expression: "ssource"
                         }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Source...")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.sources, function(source) {
-                          return _c("option", [
-                            _vm._v(" " + _vm._s(source.name))
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
@@ -127632,98 +127628,59 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "filter-cell response" }, [
-                    _vm._v(
-                      "\n                            Responce\n                            "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sresp,
-                            expression: "sresp"
-                          }
-                        ],
-                        staticClass: "form-control mt-1",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.sresp = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
+                  _c(
+                    "td",
+                    { staticClass: "filter-cell response" },
+                    [
+                      _vm._v(
+                        "\n                            Responce\n                            "
+                      ),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.responses,
+                          label: "Responce",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.sresp,
+                          callback: function($$v) {
+                            _vm.sresp = $$v
+                          },
+                          expression: "sresp"
                         }
-                      },
-                      [
-                        _c("option", { attrs: { selected: "", value: "" } }, [
-                          _vm._v("Resp...")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Yes" } }, [
-                          _vm._v("Yes")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "No" } }, [_vm._v("No")])
-                      ]
-                    )
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("td", { staticClass: "filter-cell status" }, [
-                    _vm._v(
-                      "\n                            Status\n                            "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sstatus,
-                            expression: "sstatus"
-                          }
-                        ],
-                        staticClass: "form-control mt-1",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.sstatus = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
+                  _c(
+                    "td",
+                    { staticClass: "filter-cell status" },
+                    [
+                      _vm._v(
+                        "\n                            Status\n                            "
+                      ),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.statuss,
+                          "item-text": "title",
+                          "item-value": "title",
+                          label: "Status",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.sstatus,
+                          callback: function($$v) {
+                            _vm.sstatus = $$v
+                          },
+                          expression: "sstatus"
                         }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Status...")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.statuss, function(status) {
-                          return _c("option", [
-                            _vm._v(" " + _vm._s(status.title))
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
