@@ -4,7 +4,7 @@
             <h2>Users</h2>
         </div>
         <div class="col-2 text-right">
-            <v-dialog v-model="dialog" width="500">
+            <v-dialog v-model="dialog" width="800">
                 <v-btn slot="activator">
                     Add a new user +
                 </v-btn>

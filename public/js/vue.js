@@ -124304,6 +124304,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -124385,7 +124392,7 @@ var render = function() {
           _c(
             "v-dialog",
             {
-              attrs: { "max-width": "500px" },
+              attrs: { "max-width": "800px" },
               model: {
                 value: _vm.dialog,
                 callback: function($$v) {
@@ -124477,39 +124484,51 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "blue darken-1", flat: "" },
-                          nativeOn: {
-                            click: function($event) {
-                              return _vm.close($event)
-                            }
-                          }
-                        },
-                        [_vm._v("Cancel")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "blue darken-1", flat: "" },
-                          nativeOn: {
-                            click: function($event) {
-                              return _vm.save($event)
-                            }
-                          }
-                        },
-                        [_vm._v("Save")]
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-card-actions", [
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-2" },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", flat: "" },
+                                nativeOn: {
+                                  click: function($event) {
+                                    return _vm.close($event)
+                                  }
+                                }
+                              },
+                              [_vm._v("Cancel")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-2" },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", flat: "" },
+                                nativeOn: {
+                                  click: function($event) {
+                                    return _vm.save($event)
+                                  }
+                                }
+                              },
+                              [_vm._v("Save")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ])
                 ],
                 1
               )
@@ -124705,7 +124724,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\nh2 {\n    font-family: UbuntuBold;\n    font-size: 18px;\n}\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n.v-card__title {\n    color: #f8dd3f !important;\n}\n.btn-close {\n    position: absolute;\n    top: 15px;\n    right: 20px;\n}\nbutton.reset {\n    background: none;\n    padding: 0;\n}\nbutton.reset:before {\n    background: none;\n}\nbutton.reset div {\n    color: #a0a0a0 !important;\n}\nbutton.reset:hover {\n    background: none !important;\n}\nbutton.reset:hover div {\n    color: #000 !important;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n    font-family: UbuntuBold;\n    font-size: 18px;\n}\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n.v-card__title {\n    color: #f8dd3f !important;\n}\n.btn-close {\n    position: absolute;\n    top: 15px;\n    right: 20px;\n}\nbutton.reset {\n    background: none;\n    padding: 0;\n}\nbutton.reset:before {\n    background: none !important;\n}\nbutton.reset div {\n    color: #a0a0a0 !important;\n}\nbutton.reset:hover {\n    background: none !important;\n}\nbutton.reset:hover div {\n    color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -125625,7 +125644,7 @@ var render = function() {
           _c(
             "v-dialog",
             {
-              attrs: { width: "500" },
+              attrs: { width: "800" },
               model: {
                 value: _vm.dialog,
                 callback: function($$v) {
