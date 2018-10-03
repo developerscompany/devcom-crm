@@ -48,19 +48,19 @@
                     hide-actions
                     class="elevation-1">
                 <template slot="items" slot-scope="props">
-                    <td>
+                    <td class="my-2">
                         <a :href="'/admin/user/'+props.item.id">
                         <img class="img-fluid mr-2" src="/img/user.png">
                             {{ props.item.name }}
                         </a>
                     </td>
-                    <td>{{ props.item.email }}</td>
-                    <td>
+                    <td class="my-2">{{ props.item.email }}</td>
+                    <td class="my-2">
                         <span :class="props.item.role" class="px-4 py-1 text-uppercase">
                             {{ props.item.role }}
                         </span>
                     </td>
-                    <td class="justify-center layout px-0">
+                    <td class="justify-center layout px-0 my-2">
                         <v-icon
                                 small
                                 class="mr-2"
