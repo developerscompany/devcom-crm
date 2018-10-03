@@ -7,7 +7,7 @@
 
                     <div class="x-block" @click="showSale = false">X</div>
 
-                    <hosting-sale :hosting="hosting"></hosting-sale>
+                    <hosting-sale :hosting="hosting" :conds="conds"></hosting-sale>
 
                 </div>
                 <div class=" col-sm-12 col-md-5 col-lg-4 acc-data">

@@ -4,32 +4,32 @@
         <ul class="nav navigation">
             <li class="{{ is_active('admin') }}">
                 <a href="{{ url('admin') }}">
-                    <i class="icon-home4"></i>
-                    <span>Dashboard</span>
+                    <img src="/img/dashboard.png" class="icon-menu" alt="">
+                    <span class="item-menu">Головна</span>
                 </a>
             </li>
             <li class="{{ is_active('admin/users') }}">
                 <a href="{{ url('admin/users') }}">
-                    <i class="icon-home4"></i>
-                    <span>Users</span>
+                    <img src="/img/users.svg" style="color: black" class="icon-menu" alt="">
+                    <span class="item-menu">Користувачі</span>
                 </a>
             </li>
             <li class="{{ is_active('admin/transactions') }}">
                 <a href="{{ url('admin/transactions') }}">
                     <i class="icon-home4"></i>
-                    <span>Транзакції</span>
+                    <span class="item-menu">Транзакції</span>
                 </a>
             </li>
             <li class="{{ is_active('admin/bids') }}">
                 <a href="{{ url('admin/bids') }}">
-                    <i class="icon-home4"></i>
-                    <span>Біди</span>
+                    <img src="/img/bids.png" class="icon-menu" alt="">
+                    <span class="item-menu">Біди</span>
                 </a>
             </li>
             <li class="{{ is_active('admin/hosting') }}">
                 <a href="#" onclick="showSub()">
-                    <i class="icon-home4"></i>
-                    <span>Хостинг</span>
+                    <img src="/img/hosting.png" class="icon-menu" alt="">
+                    <span class="item-menu">Хостинг</span>
                 </a>
                     <ul class="sub-menu">
                         <li><a href="{{ url('admin/hostings') }}">Список аккаунтів</a></li>
