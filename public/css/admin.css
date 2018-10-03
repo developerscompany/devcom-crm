@@ -1,5 +1,21 @@
+@font-face {
+    font-family: UbuntuBold;
+    src: url("../fonts/ubuntu/Ubuntu-B.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: PoppinsMedium;
+    src: url("../fonts/poppins/Poppins-Medium.otf");
+    font-weight: 500;
+    font-style: normal;
+}
+
 a {
     cursor: pointer;
+}
+.content-wrapper {
+    background: #f0f0f1;
 }
 header .dropdown-menu.show {
     position: absolute;
