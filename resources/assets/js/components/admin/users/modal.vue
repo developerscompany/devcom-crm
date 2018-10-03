@@ -1,9 +1,12 @@
 <template>
-    <div class="add-user">
-        <div class="text-xs-left">
+    <div class="add-user row justify-content-between align-items-center">
+        <div class="col-2">
+            <h2>Users</h2>
+        </div>
+        <div class="col-2 text-right">
             <v-dialog v-model="dialog" width="500">
-                <v-btn slot="activator" color="red lighten-2" dark>
-                    Добавить
+                <v-btn slot="activator">
+                    Add a new user +
                 </v-btn>
 
                 <v-card>
@@ -138,3 +141,26 @@
         }
     };
 </script>
+
+<style>
+    h2 {
+        font-family: UbuntuBold;
+        font-size: 18px;
+    }
+    button.v-btn {
+        background: #f8dd3f;
+        color: #404447;
+        border: none;
+        box-shadow: none !important;
+        padding: 5px 20px;
+        font-size: 14px;
+        border-radius: 15px;
+        text-transform: none;
+    }
+    button.v-btn:hover {
+        background: #000;
+    }
+    button.v-btn:hover div {
+        color: #fff !important;
+    }
+</style>

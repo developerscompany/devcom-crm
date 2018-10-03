@@ -58,6 +58,9 @@ button.sbm-button {
 button.sbm-button:hover {
     background: #000;
 }
+button.sbm-button:hover div {
+    color: #fff !important;
+}
 
 
 
