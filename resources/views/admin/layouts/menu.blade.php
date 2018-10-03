@@ -26,15 +26,15 @@
                     <span class="item-menu">Біди</span>
                 </a>
             </li>
-            <li class="{{ is_active('admin/hosting') }}">
-                <a href="#" onclick="showSub()">
+            <li >
+                <a href="#" onclick="showSub()" class="{{ is_active('admin/hostings') }} {{ is_active('admin/hostings/calendar') }} {{ is_active('admin/hostings/servers') }}">
                     <img src="/img/hosting.png" class="icon-menu" alt="">
-                    <span class="item-menu">Хостинг</span>
+                    <span class="{{ is_active('admin/hostings') }} {{ is_active('admin/hostings/calendar') }} {{ is_active('admin/hostings/servers') }} item-menu" >Хостинг</span>
                 </a>
                     <ul class="sub-menu">
-                        <li><a href="{{ url('admin/hostings') }}">Список аккаунтів</a></li>
-                        <li><a href="{{ url('admin/hostings/calendar') }}">Календар</a></li>
-                        <li><a href="{{ url('admin/hostings/servers') }}">Сервери</a></li>
+                        <li><a href="{{ url('admin/hostings') }}" class="{{ is_active('admin/hostings') }}">Список аккаунтів</a></li>
+                        <li><a href="{{ url('admin/hostings/calendar') }}" class="{{ is_active('admin/hostings/calendar') }}">Календар</a></li>
+                        <li><a href="{{ url('admin/hostings/servers') }}" class="{{ is_active('admin/hostings/servers') }}">Сервери</a></li>
                     </ul>
 
             </li>
@@ -44,6 +44,27 @@
 <style>
     .sub-menu{
         display: none;
+    }
+    .sub-menu:hover{
+        color: #ffd134 !important;
+    }
+    .nav>li:hover{
+        color: #ffd134 !important;
+
+    }
+    .navigation li a:hover{
+        background-color: white !important;
+        color: #ffd134 !important;
+    }
+    .navigation li a:focus{
+        background-color: white !important;
+
+    }
+    .navigation > li ul{
+        background-color: white;
+    }
+    .active{
+        color: #ffd134 !important;
     }
 </style>
 <script>
