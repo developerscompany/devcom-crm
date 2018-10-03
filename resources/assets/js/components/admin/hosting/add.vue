@@ -4,8 +4,14 @@
 
         <div class="text-xs-left">
             <v-dialog v-model="dialog" width="500">
-                <v-btn slot="activator" color="red lighten-2" dark>
+                <v-btn slot="activator" class="btn-yellow">
                     Додати
+                    <v-icon
+                        small
+                        class="mr-2"
+                        >
+                    add
+                    </v-icon>
                 </v-btn>
 
                 <v-card>

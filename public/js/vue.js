@@ -116392,6 +116392,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -117277,10 +117283,17 @@ var render = function() {
             _c(
               "v-btn",
               {
-                attrs: { slot: "activator", color: "red lighten-2", dark: "" },
+                staticClass: "btn-yellow",
+                attrs: { slot: "activator" },
                 slot: "activator"
               },
-              [_vm._v("\n                Додати\n            ")]
+              [
+                _vm._v("\n                Додати\n                "),
+                _c("v-icon", { staticClass: "mr-2", attrs: { small: "" } }, [
+                  _vm._v("\n                add\n                ")
+                ])
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -118119,10 +118132,7 @@ var render = function() {
                             "a",
                             {
                               key: 1,
-                              class: [
-                                { active: _vm.currentPage !== 1 },
-                                "page-link"
-                              ],
+                              class: ["page-link"],
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -118136,10 +118146,7 @@ var render = function() {
                             "div",
                             {
                               key: 1,
-                              class: [
-                                { active: _vm.currentPage !== 1 },
-                                "page-link"
-                              ],
+                              class: ["page-link"],
                               attrs: { href: "#" }
                             },
                             [_vm._v("Назад\n                        ")]
@@ -118378,10 +118385,7 @@ var render = function() {
                                 "a",
                                 {
                                   key: 1,
-                                  class: [
-                                    { active: _vm.currentPage !== 1 },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
@@ -118395,10 +118399,7 @@ var render = function() {
                                 "div",
                                 {
                                   key: 1,
-                                  class: [
-                                    { active: _vm.currentPage !== 1 },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" }
                                 },
                                 [_vm._v("Назад\n                        ")]
@@ -118433,12 +118434,7 @@ var render = function() {
                                 "a",
                                 {
                                   key: 1,
-                                  class: [
-                                    {
-                                      active: _vm.currentPage !== _vm.totalPages
-                                    },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
@@ -118452,12 +118448,7 @@ var render = function() {
                                 "div",
                                 {
                                   key: 1,
-                                  class: [
-                                    {
-                                      active: _vm.currentPage !== _vm.totalPages
-                                    },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" }
                                 },
                                 [_vm._v("Вперед\n                        ")]
@@ -118473,185 +118464,177 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _vm._l(_vm.paginate, function(list, index) {
-            return _c(
-              "div",
-              { class: [{ greyLine: index % 2 == 0 }, "row", "table-content"] },
-              [
-                _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                  _c("a", { attrs: { href: "hostings/account/" + list.id } }, [
-                    _vm._v(
-                      _vm._s(list.last_name) +
-                        "\n                " +
-                        _vm._s(list.name) +
-                        " " +
-                        _vm._s(list.second_name)
+            return _c("div", { class: ["row", "table-content"] }, [
+              _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
+                _c("a", { attrs: { href: "hostings/account/" + list.id } }, [
+                  _vm._v(
+                    _vm._s(list.last_name) +
+                      "\n                " +
+                      _vm._s(list.name) +
+                      " " +
+                      _vm._s(list.second_name)
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
+                _vm._v(_vm._s(list.site))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
+                _vm._v(_vm._s(list.phone))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-2 col-sm-12 mark-all" },
+                [
+                  _vm._l(list.conditions, function(condListItem, number) {
+                    return _c(
+                      "div",
+                      _vm._l(_vm.conds, function(itemCond) {
+                        return _c("div", [
+                          condListItem.condition == itemCond.name
+                            ? _c(
+                                "div",
+                                { class: itemCond.class },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showEditCond(condListItem)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(itemCond.name_ua))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-icon",
+                                    {
+                                      staticClass: "mr-2",
+                                      staticStyle: {
+                                        display: "inline-block",
+                                        color: "white",
+                                        margin: "0 !important",
+                                        "font-weight": "600"
+                                      },
+                                      attrs: { small: "" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.removeCond(
+                                            condListItem,
+                                            itemCond.name_ua,
+                                            number,
+                                            index
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                clear\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ])
+                      })
                     )
-                  ])
-                ]),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "mr-2",
+                      attrs: { small: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.addCond(list.id, index)
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    add\n                ")]
+                  )
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
+                _vm.amountAll(list.conditions) > 0
+                  ? _c("span", [
+                      _vm._v(_vm._s(_vm.amountAll(list.conditions)) + "(м)")
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                  _vm._v(_vm._s(list.site))
-                ]),
+                _vm.amountAll(list.conditions) > 0 &&
+                _vm.amountAllYear(list.conditions) > 0
+                  ? _c("span", [_vm._v("/")])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                  _vm._v(_vm._s(list.phone))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-2 col-sm-12 mark-all" },
-                  [
-                    _vm._l(list.conditions, function(condListItem, number) {
-                      return _c(
-                        "div",
-                        _vm._l(_vm.conds, function(itemCond) {
-                          return _c("div", [
-                            condListItem.condition == itemCond.name
-                              ? _c(
-                                  "div",
-                                  { class: itemCond.class },
-                                  [
-                                    _c(
-                                      "span",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            _vm.showEditCond(condListItem)
-                                          }
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(itemCond.name_ua))]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-icon",
-                                      {
-                                        staticClass: "mr-2",
-                                        staticStyle: {
-                                          display: "inline-block",
-                                          color: "white",
-                                          margin: "0 !important",
-                                          "font-weight": "600"
-                                        },
-                                        attrs: { small: "" },
-                                        on: {
-                                          click: function($event) {
-                                            _vm.removeCond(
-                                              condListItem,
-                                              itemCond.name_ua,
-                                              number,
-                                              index
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                clear\n                            "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              : _vm._e()
-                          ])
-                        })
+                _vm.amountAllYear(list.conditions) > 0
+                  ? _c("span", [
+                      _vm._v(_vm._s(_vm.amountAllYear(list.conditions)) + "(р)")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-1 col-sm-12 list-column" }, [
+                list.latest_finance
+                  ? _c("div", [
+                      _vm._v(
+                        _vm._s(_vm.editShortDate(list.latest_finance.really_to))
                       )
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "v-icon",
-                      {
-                        staticClass: "mr-2",
-                        attrs: { small: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.addCond(list.id, index)
-                          }
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-1 col-sm-12 list-column" },
+                [
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "mr-2",
+                      staticStyle: { display: "inline-block" },
+                      attrs: { small: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.showEditPopup(list)
                         }
-                      },
-                      [_vm._v("\n                    add\n                ")]
-                    )
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
-                  _vm.amountAll(list.conditions) > 0
-                    ? _c("span", [
-                        _vm._v(_vm._s(_vm.amountAll(list.conditions)) + "(м)")
-                      ])
-                    : _vm._e(),
+                      }
+                    },
+                    [_vm._v("\n                    edit\n                ")]
+                  ),
                   _vm._v(" "),
-                  _vm.amountAll(list.conditions) > 0 &&
-                  _vm.amountAllYear(list.conditions) > 0
-                    ? _c("span", [_vm._v("/")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.amountAllYear(list.conditions) > 0
-                    ? _c("span", [
-                        _vm._v(
-                          _vm._s(_vm.amountAllYear(list.conditions)) + "(р)"
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-1 col-sm-12 list-column" }, [
-                  list.latest_finance
-                    ? _c("div", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.editShortDate(list.latest_finance.really_to)
-                          )
-                        )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-1 col-sm-12 list-column" },
-                  [
-                    _c(
-                      "v-icon",
-                      {
-                        staticClass: "mr-2",
-                        staticStyle: { display: "inline-block" },
-                        attrs: { small: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.showEditPopup(list)
-                          }
+                  _c(
+                    "v-icon",
+                    {
+                      staticClass: "mr-2",
+                      staticStyle: { display: "inline-block" },
+                      attrs: { small: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.showSalePopup(list)
                         }
-                      },
-                      [_vm._v("\n                    edit\n                ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-icon",
-                      {
-                        staticClass: "mr-2",
-                        staticStyle: { display: "inline-block" },
-                        attrs: { small: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.showSalePopup(list)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    attach_money\n                "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    attach_money\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
           }),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -118957,10 +118940,7 @@ var render = function() {
                             "a",
                             {
                               key: 1,
-                              class: [
-                                { active: _vm.currentPage !== _vm.totalPages },
-                                "page-link"
-                              ],
+                              class: ["page-link"],
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -118974,10 +118954,7 @@ var render = function() {
                             "div",
                             {
                               key: 1,
-                              class: [
-                                { active: _vm.currentPage !== _vm.totalPages },
-                                "page-link"
-                              ],
+                              class: ["page-link"],
                               attrs: { href: "#" }
                             },
                             [_vm._v("Вперед\n                        ")]
@@ -118995,10 +118972,7 @@ var render = function() {
                                 "a",
                                 {
                                   key: 1,
-                                  class: [
-                                    { active: _vm.currentPage !== 1 },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
@@ -119012,10 +118986,7 @@ var render = function() {
                                 "div",
                                 {
                                   key: 1,
-                                  class: [
-                                    { active: _vm.currentPage !== 1 },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" }
                                 },
                                 [_vm._v("Назад\n                        ")]
@@ -119050,12 +119021,7 @@ var render = function() {
                                 "a",
                                 {
                                   key: 1,
-                                  class: [
-                                    {
-                                      active: _vm.currentPage !== _vm.totalPages
-                                    },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
@@ -119069,12 +119035,7 @@ var render = function() {
                                 "div",
                                 {
                                   key: 1,
-                                  class: [
-                                    {
-                                      active: _vm.currentPage !== _vm.totalPages
-                                    },
-                                    "page-link"
-                                  ],
+                                  class: ["page-link"],
                                   attrs: { href: "#" }
                                 },
                                 [_vm._v("Вперед\n                        ")]
