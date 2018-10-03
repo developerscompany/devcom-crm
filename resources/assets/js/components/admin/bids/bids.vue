@@ -72,7 +72,11 @@
                             </td>
                             <td class="filter-cell niche">
                                 Niche
-                                <input v-model="stech" class="form-control mt-1" placeholder="Filter">
+                                <v-text-field
+                                        v-model="stech"
+                                        label="Niche"
+                                        required
+                                ></v-text-field>
                             </td>
                             <td class="curr-site-cell">
                                 Current site
