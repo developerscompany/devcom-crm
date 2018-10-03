@@ -10,8 +10,17 @@
                 </v-btn>
 
                 <v-card>
-                    <v-card-title class="headline grey lighten-2" primary-title>
-                        Запросити нового користувача
+                    <v-card-title class="headline" primary-title>
+                        Invite a new user
+
+                        <a class="btn-close pull-right" @click="dialog = false">
+                            X
+                        </a>
+                        <!--<v-card-actions>-->
+                            <!--<v-btn color="primary" flat >-->
+                                <!--X-->
+                            <!--</v-btn>-->
+                        <!--</v-card-actions>-->
                     </v-card-title>
 
                     <v-card-text>
@@ -46,20 +55,17 @@
                                     @blur="$v.select.$touch()"
                             ></v-select>
 
-                            <v-btn @click="submit(name, email, select)">Відправити</v-btn>
-                            <v-btn @click="clear">Очистити</v-btn>
+                            <div class="row mb-0 justify-content-between">
+                                <div class="col-6 text-left">
+                                    <v-btn class="reset" @click="clear">Очистити</v-btn>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <v-btn class="add" @click="submit(name, email, select)">Відправити</v-btn>
+                                </div>
+                            </div>
                         </form>
 
                     </v-card-text>
-
-                    <v-divider></v-divider>
-
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="primary" flat @click="dialog = false">
-                            Закрити
-                        </v-btn>
-                    </v-card-actions>
                 </v-card>
             </v-dialog>
         </div>
@@ -162,5 +168,29 @@
     }
     button.v-btn:hover div {
         color: #fff !important;
+    }
+    .v-card__title {
+        color: #f8dd3f !important;
+    }
+    .btn-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+    button.reset {
+        background: none;
+        padding: 0;
+    }
+    button.reset:before {
+        background: none !important;
+    }
+    button.reset div {
+        color: #a0a0a0 !important;
+    }
+    button.reset:hover {
+        background: none !important;
+    }
+    button.reset:hover div {
+        color: #000 !important;
     }
 </style>
