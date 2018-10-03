@@ -2,7 +2,7 @@
 
     <div class="users">
         <v-toolbar flat color="white">
-            <v-dialog v-model="dialog" max-width="500px">
+            <v-dialog v-model="dialog" max-width="800px">
                 <v-card>
                     <v-card-text>
                         <v-container grid-list-md>
@@ -27,9 +27,16 @@
                     </v-card-text>
 
                     <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-                        <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                                </div>
+                                <div class="col-md-2">
+                                    <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+                                </div>
+                            </div>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
