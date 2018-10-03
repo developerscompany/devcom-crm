@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="home-page page">
-        <div id="app-vue" class="wrapper p-3">
+        <div id="app-vue" class="wrapper p-4">
 
             <add-user :roles="{{json_encode($roles)}}"></add-user>
 
