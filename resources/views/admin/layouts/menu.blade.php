@@ -54,7 +54,7 @@
     }
     .navigation li a:hover{
         background-color: white !important;
-        color: #ffd134 !important;
+        /*color: #ffd134 !important;*/
     }
     .navigation li a:focus{
         background-color: white !important;
@@ -63,9 +63,9 @@
     .navigation > li ul{
         background-color: white;
     }
-    .active{
+    /*.active{
         color: #ffd134 !important;
-    }
+    }*/
 </style>
 <script>
     function showSub() {
