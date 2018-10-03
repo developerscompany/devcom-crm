@@ -124705,7 +124705,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\nh2 {\n    font-family: UbuntuBold;\n    font-size: 18px;\n}\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n    font-family: UbuntuBold;\n    font-size: 18px;\n}\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n.v-card__title {\n    color: #f8dd3f !important;\n}\n.btn-close {\n    position: absolute;\n    top: 15px;\n    right: 20px;\n}\nbutton.reset {\n    background: none;\n    padding: 0;\n}\nbutton.reset:before {\n    background: none;\n}\nbutton.reset div {\n    color: #a0a0a0 !important;\n}\nbutton.reset:hover {\n    background: none !important;\n}\nbutton.reset:hover div {\n    color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -124720,6 +124720,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -125638,13 +125644,26 @@ var render = function() {
                 [
                   _c(
                     "v-card-title",
-                    {
-                      staticClass: "headline grey lighten-2",
-                      attrs: { "primary-title": "" }
-                    },
+                    { staticClass: "headline", attrs: { "primary-title": "" } },
                     [
                       _vm._v(
-                        "\n                    Запросити нового користувача\n                "
+                        "\n                    Invite a new user\n\n                    "
+                      ),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn-close pull-right",
+                          on: {
+                            click: function($event) {
+                              _vm.dialog = false
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        X\n                    "
+                          )
+                        ]
                       )
                     ]
                   ),
@@ -125727,51 +125746,54 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c(
-                          "v-btn",
-                          {
-                            on: {
-                              click: function($event) {
-                                _vm.submit(_vm.name, _vm.email, _vm.select)
-                              }
-                            }
-                          },
-                          [_vm._v("Відправити")]
-                        ),
-                        _vm._v(" "),
-                        _c("v-btn", { on: { click: _vm.clear } }, [
-                          _vm._v("Очистити")
-                        ])
+                          "div",
+                          { staticClass: "row mb-0 justify-content-between" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-6 text-left" },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "reset",
+                                    on: { click: _vm.clear }
+                                  },
+                                  [_vm._v("Очистити")]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-6 text-right" },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "add",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.submit(
+                                          _vm.name,
+                                          _vm.email,
+                                          _vm.select
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Відправити")]
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        )
                       ],
                       1
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("v-divider"),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "primary", flat: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.dialog = false
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Закрити\n                    "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
+                  ])
                 ],
                 1
               )
