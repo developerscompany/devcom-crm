@@ -126220,7 +126220,7 @@ var render = function() {
                 key: "items",
                 fn: function(props) {
                   return [
-                    _c("td", [
+                    _c("td", { staticClass: "my-2" }, [
                       _c(
                         "a",
                         { attrs: { href: "/admin/user/" + props.item.id } },
@@ -126238,9 +126238,11 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.email))]),
+                    _c("td", { staticClass: "my-2" }, [
+                      _vm._v(_vm._s(props.item.email))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "my-2" }, [
                       _c(
                         "span",
                         {
@@ -126259,7 +126261,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "td",
-                      { staticClass: "justify-center layout px-0" },
+                      { staticClass: "justify-center layout px-0 my-2" },
                       [
                         _c(
                           "v-icon",
