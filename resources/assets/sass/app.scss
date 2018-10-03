@@ -323,6 +323,7 @@ $yellow-color: #f8dd3f;
       &{
         display: block;
         font-weight: 400;
+        color: #8f8f8f;
       }
       .mark{
         margin-top: 5px;
@@ -710,6 +711,19 @@ $yellow-color: #f8dd3f;
 
 
   }
+}
+
+.item-menu{
+   opacity: 0.9;
+   color: #404447;
+   font-size: 15px;
+   font-weight: 500;
+ }
+.item-menu:hover{
+  color: #ffd134;
+}
+.icon-menu{
+  margin-right: 10px;
 }
 
 
