@@ -38,6 +38,13 @@
                     </ul>
 
             </li>
+            <li class="{{ is_active('admin/bids') }} bids-menu-item menu-item">
+                <a class="pl-5" href="{{ url('admin/bids') }}">
+                    {{--<img src="/img/bids.png" class="icon-menu" alt="">--}}
+                    <span class="item-menu">Налаштування</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

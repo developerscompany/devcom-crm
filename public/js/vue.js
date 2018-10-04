@@ -120808,7 +120808,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _vm._v(_vm._s(finance.amount))
+                  _vm._v(
+                    _vm._s(finance.amount) +
+                      " " +
+                      _vm._s(finance.currency.symbol)
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-3" }, [
@@ -125679,7 +125683,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "number", placeholder: "Amount month" },
+                  attrs: { type: "number", placeholder: "Amount month ($)" },
                   domProps: { value: _vm.data.amount_month },
                   on: {
                     input: function($event) {
@@ -125709,7 +125713,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "number", placeholder: "Amount year" },
+                  attrs: { type: "number", placeholder: "Amount year ($)" },
                   domProps: { value: _vm.data.amount_year },
                   on: {
                     input: function($event) {
@@ -125801,7 +125805,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "number", placeholder: "Amount month" },
+                  attrs: { type: "number", placeholder: "Amount month ($)" },
                   domProps: { value: _vm.edit.amount_month },
                   on: {
                     input: function($event) {
@@ -125831,7 +125835,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "number", placeholder: "Amount year" },
+                  attrs: { type: "number", placeholder: "Amount year ($)" },
                   domProps: { value: _vm.edit.amount_year },
                   on: {
                     input: function($event) {
@@ -125903,8 +125907,9 @@ var render = function() {
               _c("div", { staticClass: "server-amount" }, [
                 _vm._v(
                   _vm._s(server.amount_month) +
-                    " / " +
-                    _vm._s(server.amount_year)
+                    "$ / " +
+                    _vm._s(server.amount_year) +
+                    "$"
                 )
               ]),
               _vm._v(" "),
