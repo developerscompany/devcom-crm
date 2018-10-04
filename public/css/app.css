@@ -10477,7 +10477,17 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.hosting-list #modal-sale {
+#app-vue .hosting-list .text-xs-left .btn-yellow {
+  border-radius: 10px;
+  -webkit-box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+          box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+  background-color: #f8dd3f;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+}
+
+#app-vue .hosting-list #modal-sale {
   position: absolute;
   width: 60%;
   height: 40vh;
@@ -10494,7 +10504,7 @@ a.text-dark:focus {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.hosting-list #modal-sale .x-block {
+#app-vue .hosting-list #modal-sale .x-block {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -10509,20 +10519,20 @@ a.text-dark:focus {
   z-index: 3;
 }
 
-.hosting-list {
+#app-vue .hosting-list {
   background-color: white;
   padding: 20px 10px;
   border-radius: 8px;
 }
 
-.hosting-list .div-btn-add {
+#app-vue .hosting-list .div-btn-add {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 30px;
   font-family: "Open Sans", sans-serif;
 }
 
-.hosting-list .div-btn-add button.btn-add {
+#app-vue .hosting-list .div-btn-add button.btn-add {
   border-radius: 18px;
   background-color: #5bc0de;
   color: #ffffff;
@@ -10531,39 +10541,64 @@ a.text-dark:focus {
   padding: 8px 12px;
 }
 
-.hosting-list .container-fluid .table-head {
-  color: #000000;
-  font-size: 13px;
+#app-vue .hosting-list .container-fluid {
+  /*.row:hover{
+      box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+
+    }*/
+}
+
+#app-vue .hosting-list .container-fluid .table-head {
+  font-size: 14px;
+  color: #484848;
+  line-height: 24px;
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
 }
 
-.hosting-list .container-fluid .table-head div {
+#app-vue .hosting-list .container-fluid .table-head div {
+  color: #484848;
   padding-left: 35px;
   padding-bottom: 7px;
   border-bottom: 1px solid #b2b9c6;
 }
 
-.hosting-list .container-fluid .table-content {
-  color: #000000;
+#app-vue .hosting-list .container-fluid .table-content {
+  color: #8f8f8f;
   font-size: 13px;
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
 }
 
-.hosting-list .container-fluid .table-content .list-column {
+#app-vue .hosting-list .container-fluid .table-content:hover {
+  -webkit-box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+}
+
+#app-vue .hosting-list .container-fluid .table-content .list-column {
+  color: #8f8f8f;
   padding-left: 35px;
   padding-bottom: 6px;
   padding-top: 6px;
 }
 
-.hosting-list .container-fluid .table-content .col-md-3 {
+#app-vue .hosting-list .container-fluid .table-content .list-column a {
+  color: #8f8f8f;
+}
+
+#app-vue .hosting-list .container-fluid .table-content .list-column div {
+  color: #8f8f8f;
+}
+
+#app-vue .hosting-list .container-fluid .table-content .col-md-3 {
+  color: #8f8f8f;
   padding-left: 30px;
   padding-bottom: 6px;
   padding-top: 6px;
 }
 
-.hosting-list .container-fluid .table-content .mark-all {
+#app-vue .hosting-list .container-fluid .table-content .mark-all {
+  color: #8f8f8f;
   padding-left: 30px;
   padding-bottom: 6px;
   padding-top: 6px;
@@ -10575,11 +10610,11 @@ a.text-dark:focus {
       flex-wrap: wrap;
 }
 
-.hosting-list .container-fluid .greyLine {
+#app-vue .hosting-list .container-fluid .greyLine {
   background-color: #f2f2f2;
 }
 
-.hosting-list .showing-elements {
+#app-vue .hosting-list .showing-elements {
   display: inline-block;
   font-size: 13px;
   font-weight: 400;
@@ -10587,55 +10622,63 @@ a.text-dark:focus {
   margin-top: 10px;
 }
 
-.hosting-list .showing-elements .showing-text {
+#app-vue .hosting-list .showing-elements .showing-text {
   display: inline-block;
   padding: 0.5rem 0.75rem;
 }
 
-.hosting-list .showing-elements .showing-number {
+#app-vue .hosting-list .showing-elements .showing-number {
   display: inline-block;
   color: grey;
 }
 
-.hosting-list .showing-elements .showing-number .number-column {
+#app-vue .hosting-list .showing-elements .showing-number .number-column {
   cursor: pointer;
   padding: 0.3rem 0.5rem;
   display: inline-block;
+  border: 1px solid #ebebeb;
 }
 
-.hosting-list .showing-elements .showing-number .active {
-  color: #5bc0de;
+#app-vue .hosting-list .showing-elements .showing-number .active {
+  color: #404447;
+  -webkit-box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+          box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+  background-color: #f8dd3f;
 }
 
-.hosting-list .paginate-right {
+#app-vue .hosting-list .paginate-right {
   margin-top: 10px;
 }
 
-.hosting-list .paginate-right .pagination {
+#app-vue .hosting-list .paginate-right .pagination {
   float: right;
 }
 
-.hosting-list .paginate-right .pagination .page-item .page-link {
-  color: grey;
-  font-size: 14px;
-  font-weight: 400;
-  background: none;
-  border: none;
+#app-vue .hosting-list .paginate-right .pagination .page-item :focus {
+  outline: none;
 }
 
-.hosting-list .paginate-right .pagination .page-item .page-link:hover {
+#app-vue .hosting-list .paginate-right .pagination .page-item .page-link {
+  color: #4f4f4f;
+  font-size: 12px;
+  font-weight: 400;
+  background: none;
+  border: 1px solid #ebebeb;
+}
+
+#app-vue .hosting-list .paginate-right .pagination .page-item .page-link:hover {
   color: #000000;
 }
 
-.hosting-list .paginate-right .pagination .page-item .page-link:focus {
-  border: none;
+#app-vue .hosting-list .paginate-right .pagination .page-item .page-link:focus {
   outline: none !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
-.hosting-list .paginate-right .pagination .page-item .active {
-  color: #1763ff;
+#app-vue .hosting-list .paginate-right .pagination .page-item a.active.page-link {
+  -webkit-box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+          box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+  background-color: #f8dd3f;
+  color: #404447;
 }
 
 .hosting-add {
@@ -10681,7 +10724,7 @@ a.text-dark:focus {
   margin-top: 5px;
   margin-left: 10px;
   border-radius: 18px;
-  background-color: #ee2a82;
+  background-color: #d9534f;
   color: #ffffff;
   font-size: 30px;
   font-weight: 400;
@@ -10693,7 +10736,7 @@ a.text-dark:focus {
   display: block;
   margin-top: 10px;
   border-radius: 18px;
-  background-color: #0ec99b;
+  background-color: #5cb85c;
   color: #ffffff;
   font-size: 18px;
   font-weight: 400;
@@ -10875,7 +10918,7 @@ a.text-dark:focus {
 
 .hosting-card .message-box .writing-block .btn-create {
   border-radius: 18px;
-  background-color: #0ec99b;
+  background-color: #5cb85c;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
@@ -10919,7 +10962,7 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
           box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
   border-radius: 11px;
-  background-color: #0ec99b;
+  background-color: #5cb85c;
   opacity: 0.7;
   color: #ffffff;
   font-size: 13px;
@@ -10936,7 +10979,7 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
           box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
   border-radius: 11px;
-  background-color: #1763ff;
+  background-color: #5bc0de;
   opacity: 0.7;
   color: #ffffff;
   font-size: 13px;
@@ -10952,7 +10995,7 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
           box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
   border-radius: 11px;
-  background-color: #ff7200;
+  background-color: #f8dd3f;
   opacity: 0.7;
   color: #ffffff;
   font-size: 13px;
@@ -11001,7 +11044,7 @@ a.text-dark:focus {
 
 .servers-list .btn-del {
   border-radius: 18px;
-  background-color: #ee2a82;
+  background-color: #d9534f;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
@@ -11028,7 +11071,7 @@ a.text-dark:focus {
   display: inline-block;
   margin: auto;
   border-radius: 18px;
-  background-color: #0ec99b;
+  background-color: #5cb85c;
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
@@ -11098,4 +11141,3 @@ a.text-dark:focus {
   font-weight: 400;
   line-height: 40px;
 }
-

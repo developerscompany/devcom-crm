@@ -14,8 +14,8 @@
 
 // Vars
 $primary-color: #5bc0de;
-$red-color: #ee2a82;
-$green-color: #0ec99b;
+$red-color: #d9534f;
+$green-color: #5cb85c;
 $yellow-color: #f8dd3f;
 
 .navbar-laravel {
@@ -24,7 +24,18 @@ $yellow-color: #f8dd3f;
 }
 
 
-.hosting-list {
+#app-vue .hosting-list {
+  .text-xs-left{
+
+    .btn-yellow{
+      border-radius: 10px;
+      box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+      background-color: #f8dd3f;
+      position: absolute;
+      right: 50px;
+      top: 50px;
+    }
+  }
   #modal-sale{
     position: absolute;
     width: 60%;
@@ -83,36 +94,61 @@ $yellow-color: #f8dd3f;
 
   .container-fluid{
     .table-head{
-      color: #000000;
-      font-size: 13px;
+      font-size: 14px;
+      color: #484848;
+      line-height: 24px;
       font-weight: 400;
       font-family: "Open Sans", sans-serif;
 
 
       div{
+        color: #484848;
+
         padding-left: 35px;
         padding-bottom: 7px;
         border-bottom: 1px solid #b2b9c6;
       }
     }
+    /*.row:hover{
+      box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+
+    }*/
     .table-content{
       & {
-        color: #000000;
+        color:  #8f8f8f;
         font-size: 13px;
         font-weight: 400;
         font-family: "Open Sans", sans-serif;
       }
+      &:hover{
+        box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+      }
       .list-column{
-        padding-left: 35px;
-        padding-bottom: 6px;
-        padding-top: 6px;
+
+        &{
+          color:  #8f8f8f;
+          padding-left: 35px;
+          padding-bottom: 6px;
+          padding-top: 6px;
+        }
+
+        a{
+          color:  #8f8f8f;
+        }
+        div{
+          color:  #8f8f8f;
+        }
       }
       .col-md-3{
+        color:  #8f8f8f;
+
         padding-left: 30px;
         padding-bottom: 6px;
         padding-top: 6px;
       }
       .mark-all{
+        color:  #8f8f8f;
+
         padding-left: 30px;
 
         padding-bottom: 6px;
@@ -156,11 +192,15 @@ $yellow-color: #f8dd3f;
         cursor: pointer;
         padding: 0.3rem 0.5rem;
         display: inline-block;
+        border: 1px solid #ebebeb;
+
 
       }
 
       .active{
-        color: $primary-color;
+        color: #404447;
+        box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+        background-color: #f8dd3f;
       }
 
     }
@@ -175,24 +215,31 @@ $yellow-color: #f8dd3f;
 
 
       .page-item{
+        &{
+          :focus{
+            outline: none;
+          }
+        }
+
+
 
         .page-link{
-          color: grey;
-          font-size: 14px;
+          color: #4f4f4f;
+          font-size: 12px;
           font-weight: 400;
           background: none;
-          border: none;
+          border: 1px solid #ebebeb;
         }
         .page-link:hover{
           color: #000000;
         }
         .page-link:focus{
-          border: none;
           outline: none !important;
-          box-shadow: none;
         }
-        .active{
-          color: #1763ff;
+        a.active.page-link{
+          box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+          background-color: #f8dd3f;
+          color: #404447;
         }
       }
 
@@ -524,7 +571,7 @@ $yellow-color: #f8dd3f;
   padding: 2px 5px;
   box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
   border-radius: 11px;
-  background-color: #1763ff;
+  background-color: $primary-color;
   opacity: 0.7;
   color: #ffffff;
   font-size: 13px;
@@ -539,7 +586,7 @@ $yellow-color: #f8dd3f;
   padding: 2px 5px;
   box-shadow: 0 4px 11px 3px rgba(150, 163, 181, 0.54);
   border-radius: 11px;
-  background-color: #ff7200;
+  background-color: $yellow-color;
   opacity: 0.7;
   color: #ffffff;
   font-size: 13px;
@@ -711,4 +758,3 @@ $yellow-color: #f8dd3f;
 
 
   }
-}

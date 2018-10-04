@@ -16,13 +16,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{{ asset('css/vuetify.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
         <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
         <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/jBox/jBox.Notice.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
     </head>
