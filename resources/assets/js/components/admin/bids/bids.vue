@@ -344,7 +344,7 @@
                             return item;
                         }
 
-                    });
+                    }).slice(start, end);
                 }
 
                 return this.lines1.slice(start, end);

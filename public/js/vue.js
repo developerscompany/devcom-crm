@@ -127434,7 +127434,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     } else {
                         return item;
                     }
-                });
+                }).slice(start, end);
             }
 
             return this.lines1.slice(start, end);
@@ -128967,7 +128967,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                     } else {
                         return item;
                     }
-                });
+                }).slice(start, end);
             }
 
             return this.lines1.slice(start, end);
