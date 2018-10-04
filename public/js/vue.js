@@ -127280,6 +127280,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127289,7 +127292,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         return {
             value6: '',
-
             sdate: [],
 
             date: null,
@@ -127300,11 +127302,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             // sources: [],
             // statuss: [],
             // lines: [],
-            ssource: [],
-            sagent: [],
-            sstatus: [],
-            stech: [],
-            sresp: [],
+            ssource: '',
+            sagent: '',
+            sstatus: '',
+            stech: '',
+            sresp: '',
 
             number: 15,
             pageNumber: 0,
@@ -127314,6 +127316,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             active: false,
             show: false,
 
+            lines1: this.$props.lines,
             nums: [5, 10, 15, 20, 50, 100]
         };
     },
@@ -127338,57 +127341,91 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             var start = self.pageNumber * self.number,
                 end = start + self.number;
 
-            if (self.value6 == null) {
-                self.value6 = '';
-            }
-            if (self.value6.length > 0) {
+            // if (self.value6 == null) {
+            //     self.value6 = '';
+            // }
+            // if (self.value6.length > 0) {
+            //
+            //     var st = new Date(this.value6[0].split('.').reverse());
+            //     var en = new Date(this.value6[1].split('.').reverse());
+            //
+            //     return self.lines.filter(function(item) {
+            //
+            //         var current = new Date(item.date.split('.').reverse());
+            //
+            //         if (current >= st && current <= en)
+            //         {
+            //             return true;
+            //         }
+            //
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.sresp.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sresp.indexOf(item.response) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.ssource.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.ssource.indexOf(item.source) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.sagent.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sagent.indexOf(item.agent) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.stech.length > 0) {
+            //
+            //     return self.lines.filter(function (item) {
+            //         return Object.keys(item).some(function (key) {
+            //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+            //         });
+            //     }).slice(start, end);
+            // }
+            // if (self.sstatus.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sstatus.indexOf(item.status) > -1;
+            //     }).slice(start, end);
+            //
+            // }
 
-                var st = new Date(this.value6[0].split('.').reverse());
-                var en = new Date(this.value6[1].split('.').reverse());
+            if (self.lines1) {
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.value6.length > 0) {
+                    var st = new Date(this.value6[0].split('.').reverse());
+                    var en = new Date(this.value6[1].split('.').reverse());
+                }
 
-                return self.lines.filter(function (item) {
-
-                    var current = new Date(item.date.split('.').reverse());
-
-                    if (current >= st && current <= en) {
-                        return true;
-                    }
-                }).slice(start, end);
-            }
-            if (self.sresp.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.sresp.indexOf(item.response) > -1;
-                }).slice(start, end);
-            }
-            if (self.ssource.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.ssource.indexOf(item.source) > -1;
-                }).slice(start, end);
-            }
-            if (self.sagent.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.sagent.indexOf(item.agent) > -1;
-                }).slice(start, end);
-            }
-            if (self.stech.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return Object.keys(item).some(function (key) {
-                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
+                return self.lines1.filter(function (el) {
+                    return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 && el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 && el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 && el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 && Object.keys(el).some(function (key) {
+                        return String(el.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
-                }).slice(start, end);
-            }
-            if (self.sstatus.length > 0) {
+                }).filter(function (item) {
 
-                return self.lines.filter(function (item) {
-                    return self.sstatus.indexOf(item.status) > -1;
-                }).slice(start, end);
+                    if (self.value6 != '') {
+                        var current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en) {
+                            return true;
+                        }
+                    } else {
+                        return item;
+                    }
+                });
             }
 
-            return this.lines.slice(start, end);
+            return this.lines1.slice(start, end);
         }
     },
 
@@ -127562,7 +127599,8 @@ var render = function() {
                           "item-text": "name",
                           "item-value": "name",
                           label: "Source",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.ssource,
@@ -127638,7 +127676,8 @@ var render = function() {
                         attrs: {
                           items: _vm.responses,
                           label: "Responce",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sresp,
@@ -127665,7 +127704,8 @@ var render = function() {
                           "item-text": "title",
                           "item-value": "title",
                           label: "Status",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sstatus,
@@ -128728,6 +128768,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -128774,7 +128815,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             },
 
             value6: '',
-
             sdate: [],
 
             date: null,
@@ -128824,49 +128864,83 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             var start = self.pageNumber * self.number,
                 end = start + self.number;
 
-            if (self.value6 == null) {
-                self.value6 = '';
-            }
-            if (self.value6.length > 0) {
+            // if (self.value6 == null) {
+            //     self.value6 = '';
+            // }
 
-                var st = new Date(this.value6[0].split('.').reverse());
-                var en = new Date(this.value6[1].split('.').reverse());
+            // if (self.value6.length > 0) {
+            //
+            //     var st = new Date(this.value6[0].split('.').reverse());
+            //     var en = new Date(this.value6[1].split('.').reverse());
+            //
+            //     return self.lines1.filter(function(item) {
+            //
+            //         var current = new Date(item.date.split('.').reverse());
+            //
+            //         if (current >= st && current <= en)
+            //         {
+            //             return true;
+            //         }
+            //
+            //     }).slice(start, end);
+            //
+            // }
+            //
+            // if (self.sresp.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.sresp.indexOf(item.response) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.ssource.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.ssource.indexOf(item.source) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.stech.length > 0) {
+            //
+            //     return self.lines1.filter(function (item) {
+            //         return Object.keys(item).some(function (key) {
+            //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+            //         });
+            //     }).slice(start, end);
+            // }
+            // if (self.sstatus.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.sstatus.indexOf(item.status) > -1;
+            //     }).slice(start, end);
+            //
+            // }
 
-                return self.lines1.filter(function (item) {
+            if (self.lines1) {
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.value6.length > 0) {
+                    var st = new Date(this.value6[0].split('.').reverse());
+                    var en = new Date(this.value6[1].split('.').reverse());
+                }
 
-                    var current = new Date(item.date.split('.').reverse());
-
-                    if (current >= st && current <= en) {
-                        return true;
-                    }
-                }).slice(start, end);
-            }
-
-            if (self.sresp.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return self.sresp.indexOf(item.response) > -1;
-                }).slice(start, end);
-            }
-            if (self.ssource.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return self.ssource.indexOf(item.source) > -1;
-                }).slice(start, end);
-            }
-            if (self.stech.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return Object.keys(item).some(function (key) {
-                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
+                return self.lines1.filter(function (el) {
+                    return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 && el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 && el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 && Object.keys(el).some(function (key) {
+                        return String(el.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
-                }).slice(start, end);
-            }
-            if (self.sstatus.length > 0) {
+                }).filter(function (item) {
 
-                return self.lines1.filter(function (item) {
-                    return self.sstatus.indexOf(item.status) > -1;
-                }).slice(start, end);
+                    if (self.value6 != '') {
+                        var current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en) {
+                            return true;
+                        }
+                    } else {
+                        return item;
+                    }
+                });
             }
 
             return this.lines1.slice(start, end);
@@ -129468,7 +129542,6 @@ var render = function() {
                     _vm._v(
                       "\n                                Date\n                                "
                     ),
-                    _vm._v(" "),
                     _c(
                       "div",
                       {},
@@ -129508,7 +129581,8 @@ var render = function() {
                           "item-text": "name",
                           "item-value": "name",
                           label: "Source",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.ssource,
@@ -129590,7 +129664,8 @@ var render = function() {
                         attrs: {
                           items: _vm.responses,
                           label: "Responce",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sresp,
@@ -129617,7 +129692,8 @@ var render = function() {
                           "item-text": "title",
                           "item-value": "title",
                           label: "Status",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sstatus,

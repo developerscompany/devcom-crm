@@ -65,6 +65,7 @@
                                         item-value="name"
                                         label="Source"
                                         required
+                                        clearable
                                 ></v-select>
                             </td>
                             <td>
@@ -97,6 +98,7 @@
                                         :items="responses"
                                         label="Responce"
                                         required
+                                        clearable
                                 ></v-select>
                             </td>
                             <td class="filter-cell status">
@@ -108,6 +110,7 @@
                                         item-value="title"
                                         label="Status"
                                         required
+                                        clearable
                                 ></v-select>
                             </td>
                             <td>
@@ -186,7 +189,6 @@
 
             return {
                 value6: '',
-
                 sdate: [],
 
                 date: null,
@@ -197,11 +199,11 @@
                 // sources: [],
                 // statuss: [],
                 // lines: [],
-                ssource: [],
-                sagent: [],
-                sstatus: [],
-                stech: [],
-                sresp: [],
+                ssource: '',
+                sagent: '',
+                sstatus: '',
+                stech: '',
+                sresp: '',
 
                 number: 15,
                 pageNumber: 0,
@@ -211,6 +213,7 @@
                 active: false,
                 show: false,
 
+                lines1: this.$props.lines,
                 nums: [5,10,15,20,50,100]
             }
         },
@@ -240,64 +243,99 @@
                     end = start + self.number;
 
 
-                if (self.value6 == null) {
-                    self.value6 = '';
-                }
-                if (self.value6.length > 0) {
+                // if (self.value6 == null) {
+                //     self.value6 = '';
+                // }
+                // if (self.value6.length > 0) {
+                //
+                //     var st = new Date(this.value6[0].split('.').reverse());
+                //     var en = new Date(this.value6[1].split('.').reverse());
+                //
+                //     return self.lines.filter(function(item) {
+                //
+                //         var current = new Date(item.date.split('.').reverse());
+                //
+                //         if (current >= st && current <= en)
+                //         {
+                //             return true;
+                //         }
+                //
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.sresp.length > 0) {
+                //
+                //     return self.lines.filter(function(item) {
+                //         return self.sresp.indexOf(item.response) > -1;
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.ssource.length > 0) {
+                //
+                //     return self.lines.filter(function(item) {
+                //         return self.ssource.indexOf(item.source) > -1;
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.sagent.length > 0) {
+                //
+                //     return self.lines.filter(function(item) {
+                //         return self.sagent.indexOf(item.agent) > -1;
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.stech.length > 0) {
+                //
+                //     return self.lines.filter(function (item) {
+                //         return Object.keys(item).some(function (key) {
+                //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+                //         });
+                //     }).slice(start, end);
+                // }
+                // if (self.sstatus.length > 0) {
+                //
+                //     return self.lines.filter(function(item) {
+                //         return self.sstatus.indexOf(item.status) > -1;
+                //     }).slice(start, end);
+                //
+                // }
 
-                    var st = new Date(this.value6[0].split('.').reverse());
-                    var en = new Date(this.value6[1].split('.').reverse());
+                if (self.lines1) {
+                    if (self.value6 == null) {
+                        self.value6 = '';
+                    }
+                    if (self.value6.length > 0) {
+                        var st = new Date(this.value6[0].split('.').reverse());
+                        var en = new Date(this.value6[1].split('.').reverse());
+                    }
 
-                    return self.lines.filter(function(item) {
+                    return self.lines1.filter((el) => {
+                        return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                            el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                            el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 &&
+                            el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 &&
+                            Object.keys(el).some(function (key) {
+                                return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                            })
+                    }).filter(function(item) {
 
-                        var current = new Date(item.date.split('.').reverse());
-
-                        if (current >= st && current <= en)
+                        if (self.value6 != '')
                         {
-                            return true;
+                            var current = new Date(item.date.split('.').reverse());
+
+                            if (current >= st && current <= en)
+                            {
+                                return true;
+                            }
+                        }
+                        else {
+                            return item;
                         }
 
-                    }).slice(start, end);
-
-                }
-                if (self.sresp.length > 0) {
-
-                    return self.lines.filter(function(item) {
-                        return self.sresp.indexOf(item.response) > -1;
-                    }).slice(start, end);
-
-                }
-                if (self.ssource.length > 0) {
-
-                    return self.lines.filter(function(item) {
-                        return self.ssource.indexOf(item.source) > -1;
-                    }).slice(start, end);
-
-                }
-                if (self.sagent.length > 0) {
-
-                    return self.lines.filter(function(item) {
-                        return self.sagent.indexOf(item.agent) > -1;
-                    }).slice(start, end);
-
-                }
-                if (self.stech.length > 0) {
-
-                    return self.lines.filter(function (item) {
-                        return Object.keys(item).some(function (key) {
-                            return String(item.niche).toLowerCase().indexOf(self.stech) > -1
-                        });
-                    }).slice(start, end);
-                }
-                if (self.sstatus.length > 0) {
-
-                    return self.lines.filter(function(item) {
-                        return self.sstatus.indexOf(item.status) > -1;
-                    }).slice(start, end);
-
+                    });
                 }
 
-                return this.lines.slice(start, end);
+                return this.lines1.slice(start, end);
             }
         },
 
