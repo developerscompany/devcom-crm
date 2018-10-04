@@ -126475,11 +126475,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -130409,7 +130404,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.customerAdd-form input {\n    padding: 8px 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.customerAdd-form input {*/\n    /*padding: 8px 0;;*/\n/*}*/\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n.v-card__title {\n    color: #f8dd3f !important;\n}\n.btn-close {\n    position: absolute;\n    top: 15px;\n    right: 20px;\n}\nbutton.reset {\n    background: none;\n    padding: 0;\n}\nbutton.reset:before {\n    background: none !important;\n}\nbutton.reset div {\n    color: #a0a0a0 !important;\n}\nbutton.reset:hover {\n    background: none !important;\n}\nbutton.reset:hover div {\n    color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -130424,6 +130419,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -130518,8 +130529,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             customer: {
                 name: '',
                 country: '',
-                info: '',
-                status: ''
+                status: '',
+                info: ''
             },
 
             dialog: false
@@ -130535,13 +130546,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        submit: function submit(name, country, info) {
+        submit: function submit(name, country, select, info) {
             this.$v.$touch();
 
-            this.customer.name = this.name;
-            this.customer.country = this.country;
-            this.customer.info = this.info;
-            this.customer.status = this.select;
+            this.customer.name = name;
+            this.customer.country = country;
+            this.customer.status = select;
+            this.customer.info = info;
 
             var data = this.customer;
             axios.post('/user/add-customer', { data: data }).then(this.dialog = false);
@@ -130597,11 +130608,28 @@ var render = function() {
               [
                 _c(
                   "v-card-title",
-                  {
-                    staticClass: "headline grey lighten-2",
-                    attrs: { "primary-title": "" }
-                  },
-                  [_vm._v("\n                    Клієнт\n                ")]
+                  { staticClass: "headline", attrs: { "primary-title": "" } },
+                  [
+                    _vm._v(
+                      "\n                    Клієнт\n\n                    "
+                    ),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn-close pull-right",
+                        on: {
+                          click: function($event) {
+                            _vm.dialog = false
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        X\n                    "
+                        )
+                      ]
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("v-card-text", [
@@ -130696,51 +130724,72 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c(
-                        "v-btn",
-                        {
-                          on: {
-                            click: function($event) {
-                              _vm.submit(_vm.name, _vm.country, _vm.info)
-                            }
-                          }
-                        },
-                        [_vm._v("Відправити")]
-                      ),
-                      _vm._v(" "),
-                      _c("v-btn", { on: { click: _vm.clear } }, [
-                        _vm._v("Очистити")
-                      ])
+                        "div",
+                        { staticClass: "row mb-0 justify-content-between" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "col-5 text-left" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "reset",
+                                  on: { click: _vm.clear }
+                                },
+                                [_vm._v("Очистити")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-7 text-right" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "primary", flat: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Закрити\n                                "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "add",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.submit(
+                                        _vm.name,
+                                        _vm.country,
+                                        _vm.select,
+                                        _vm.info
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Відправити")]
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
-                ]),
-                _vm._v(" "),
-                _c("v-divider"),
-                _vm._v(" "),
-                _c(
-                  "v-card-actions",
-                  [
-                    _c("v-spacer"),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { color: "primary", flat: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.dialog = false
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Закрити\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
+                ])
               ],
               1
             )

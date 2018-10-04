@@ -16,11 +16,6 @@
                         <a class="btn-close pull-right" @click="dialog = false">
                             X
                         </a>
-                        <!--<v-card-actions>-->
-                            <!--<v-btn color="primary" flat >-->
-                                <!--X-->
-                            <!--</v-btn>-->
-                        <!--</v-card-actions>-->
                     </v-card-title>
 
                     <v-card-text>

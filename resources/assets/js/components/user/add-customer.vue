@@ -7,8 +7,12 @@
                 </v-btn>
 
                 <v-card>
-                    <v-card-title class="headline grey lighten-2" primary-title>
+                    <v-card-title class="headline" primary-title>
                         Клієнт
+
+                        <a class="btn-close pull-right" @click="dialog = false">
+                            X
+                        </a>
                     </v-card-title>
 
                     <v-card-text>
@@ -47,20 +51,32 @@
                                     @blur="$v.info.$touch()"
                             ></v-textarea>
 
-                            <v-btn @click="submit(name, country, info)">Відправити</v-btn>
-                            <v-btn @click="clear">Очистити</v-btn>
+                            <div class="row mb-0 justify-content-between">
+                                <div class="col-5 text-left">
+                                    <v-btn class="reset" @click="clear">Очистити</v-btn>
+                                </div>
+                                <div class="col-7 text-right">
+                                    <v-btn color="primary" flat @click="dialog = false">
+                                        Закрити
+                                    </v-btn>
+                                    <v-btn class="add" @click="submit(name, country, select, info)">Відправити</v-btn>
+                                </div>
+                            </div>
+
+                            <!--<v-btn @click="submit(name, country, info)">Відправити</v-btn>-->
+                            <!--<v-btn @click="clear">Очистити</v-btn>-->
                         </form>
 
                     </v-card-text>
 
-                    <v-divider></v-divider>
+                    <!--<v-divider></v-divider>-->
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="primary" flat @click="dialog = false">
-                            Закрити
-                        </v-btn>
-                    </v-card-actions>
+                    <!--<v-card-actions>-->
+                        <!--<v-spacer></v-spacer>-->
+                        <!--<v-btn color="primary" flat @click="dialog = false">-->
+                            <!--Закрити-->
+                        <!--</v-btn>-->
+                    <!--</v-card-actions>-->
                 </v-card>
             </v-dialog>
         </div>
@@ -92,8 +108,8 @@
                 customer: {
                     name: '',
                     country: '',
-                    info: '',
                     status: '',
+                    info: '',
                 },
 
                 dialog: false,
@@ -108,13 +124,13 @@
             },
         },
         methods: {
-            submit (name, country, info) {
+            submit (name, country, select, info) {
                 this.$v.$touch();
 
-                this.customer.name = this.name;
-                this.customer.country = this.country;
-                this.customer.info = this.info;
-                this.customer.status = this.select;
+                this.customer.name = name;
+                this.customer.country = country;
+                this.customer.status = select;
+                this.customer.info = info;
 
                 let data = this.customer;
                 axios.post('/user/add-customer', {data})
@@ -134,7 +150,47 @@
 </script>
 
 <style>
-    .customerAdd-form input {
-        padding: 8px 0;;
+    /*.customerAdd-form input {*/
+        /*padding: 8px 0;;*/
+    /*}*/
+    button.v-btn {
+        background: #f8dd3f;
+        color: #404447;
+        border: none;
+        box-shadow: none !important;
+        padding: 5px 20px;
+        font-size: 14px;
+        border-radius: 15px;
+        text-transform: none;
+    }
+    button.v-btn:hover {
+        background: #000;
+    }
+    button.v-btn:hover div {
+        color: #fff !important;
+    }
+    .v-card__title {
+        color: #f8dd3f !important;
+    }
+    .btn-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+    button.reset {
+        background: none;
+        padding: 0;
+    }
+    button.reset:before {
+        background: none !important;
+    }
+    button.reset div {
+        color: #a0a0a0 !important;
+    }
+    button.reset:hover {
+        background: none !important;
+    }
+    button.reset:hover div {
+        color: #000 !important;
     }
 </style>
