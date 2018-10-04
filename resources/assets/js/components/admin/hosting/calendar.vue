@@ -37,8 +37,8 @@
                             <div class="col-md-6">{{editShortDate(message.data.really_to)}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">Сума</div>
-                            <div class="col-md-6">{{message.data.amount}}</div>
+                            <div class="col-md-6">Сума </div>
+                            <div class="col-md-6">{{message.data.amount}} {{message.data.currency.symbol}}</div>
                         </div>
                         <div class="calendar-btn-group">
                             <button class="btn btn-close" @click="openAccount(message.data.hosting_id)">Аккаунт</button>
@@ -78,7 +78,7 @@
                 <div class="col-md-2"><a v-if="finance.hosting" :href="'/admin/hostings/account/'+ finance.hosting.id">{{finance.hosting.last_name + "  " + finance.hosting.name}}</a></div>
                 <div class="col-md-2">{{finance.hosting.site}}</div>
                 <div class="col-md-2">{{finance.conds.name_ua}}</div>
-                <div class="col-md-1">{{finance.amount}}</div>
+                <div class="col-md-1">{{finance.amount}} {{finance.currency.symbol}}</div>
                 <div class="col-md-2">{{editShortDate(finance.really_to)}}</div>
                 <div class="col-md-2">{{editShortDate(finance.created_at)}}</div>
                 <div class="col-md-1">{{finance.type == 'm' ? 'Місяць' : 'Рік'}}</div>

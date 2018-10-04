@@ -31,7 +31,7 @@
                     </select>
                     <input type="number" class="form-control" @change="change" @keyup="change"  v-model="number" placeholder="Кількість">
 
-                    <label class="label-column">Сума <b>*</b></label>
+                    <label class="label-column">Сума ($)<b>*</b></label>
                     <span class="error" v-if="errors.amount">{{errors.amount[0]}}</span>
 
                     <input type="number"  class="form-control" v-model="data.amount">

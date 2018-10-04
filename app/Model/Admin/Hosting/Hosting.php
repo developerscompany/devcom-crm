@@ -21,6 +21,7 @@ class Hosting extends Model
     protected $appends = [
         'amount_all',
         'amount_all_year',
+        'currency'
     ];
 
 
@@ -32,14 +33,21 @@ class Hosting extends Model
     {
 
 
-        return $this->conditions()->sum('amount');
+        return $this->conditions()->sum('amount') * Auth::user()->currency()->first()->coeff;
     }
     public function getAmountAllYearAttribute()
     {
 
 
-        return $this->conditions()->sum('amount_year');
+        return $this->conditions()->sum('amount_year') * Auth::user()->currency()->first()->coeff;
     }
+    public function getCurrencyAttribute()
+    {
+
+
+        return Auth::user()->currency()->first();
+    }
+
 
 
 
