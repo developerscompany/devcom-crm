@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <td></td>
@@ -768,6 +768,9 @@
 </script>
 
 <style>
+    .bids {
+        background: #fff;
+    }
     .menuable__content__active {
         background: #fff;
     }
@@ -834,6 +837,13 @@
     tbody {
         border-top: 1px solid #f4f5f5;
         border-bottom: 1px solid #f4f5f5;
+    }
+    tr {
+        transition: all 0.3s;
+        box-shadow: none;
+    }
+    tr:hover {
+        box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
     }
     td {
         border: none;
