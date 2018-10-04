@@ -2,6 +2,7 @@
 
 namespace App\Model\Admin\Hosting;
 
+use App\ConditionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,5 +64,7 @@ class Hosting extends Model
 
         return $this->hasOne(HostingsFinance::class, 'hosting_id', 'id')->where('condition','=','site')->latest('really_to');
     }
+
+
 
 }

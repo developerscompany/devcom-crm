@@ -2,9 +2,8 @@
 
 @section('content')
             <div id="app-vue">
-                {{--{{dd($finances)}}--}}
 
-                <hosting-calendar :finances="{{json_encode($finances)}}"></hosting-calendar>
+                <hosting-calendar :finances="{{json_encode($finances)}}" :conds="{{json_encode($conds)}}"></hosting-calendar>
 
             </div>
 
