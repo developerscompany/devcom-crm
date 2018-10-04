@@ -127093,7 +127093,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.admin-bids {\n    background: #fff;\n}\n.filter-cell.date > div {\n    margin-top: 4px !important;\n    padding-top: 16px !important;\n}\n.el-date-editor .el-range-separator {\n    line-height: 24px;\n}\ntr {\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\ntr:hover {\n    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);\n            box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);\n}\n", ""]);
 
 // exports
 
@@ -127106,6 +127106,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
+//
+//
 //
 //
 //
@@ -127426,7 +127430,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "admin-bids" }, [
-    _c("div", { staticClass: "form-wrapper mb-4 p-3" }, [
+    _c("div", { staticClass: "form-wrapper mb-4 p-4" }, [
       _c("div", { staticClass: "pager-view clearfix text-center" }, [
         _c(
           "div",
@@ -127455,21 +127459,21 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "pull-right text-right viewPager" }, [
           _c(
-            "button",
+            "a",
             {
               attrs: { disabled: _vm.pageNumber === 0 },
               on: { click: _vm.prevPage }
             },
-            [_vm._v("\n                    prev\n                ")]
+            [_vm._v("\n                    <\n                ")]
           ),
           _vm._v(" "),
           _c(
-            "button",
+            "a",
             {
               attrs: { disabled: _vm.pageNumber >= _vm.pageCount },
               on: { click: _vm.nextPage }
             },
-            [_vm._v("\n                    next\n                ")]
+            [_vm._v("\n                    >\n                ")]
           )
         ])
       ]),
@@ -127479,7 +127483,7 @@ var render = function() {
           _c(
             "table",
             {
-              staticClass: "table table-striped",
+              staticClass: "table",
               staticStyle: { "font-size": "14px", "line-height": "15px" }
             },
             [
@@ -127495,7 +127499,7 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "mt-1" },
+                          {},
                           [
                             _c("el-date-picker", {
                               attrs: {
@@ -127583,32 +127587,26 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "filter-cell niche" }, [
-                    _vm._v(
-                      "\n                            Niche\n                            "
-                    ),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
+                  _c(
+                    "td",
+                    { staticClass: "filter-cell niche" },
+                    [
+                      _vm._v(
+                        "\n                            Niche\n                            "
+                      ),
+                      _c("v-text-field", {
+                        attrs: { label: "Niche", required: "" },
+                        model: {
                           value: _vm.stech,
+                          callback: function($$v) {
+                            _vm.stech = $$v
+                          },
                           expression: "stech"
                         }
-                      ],
-                      staticClass: "form-control mt-1",
-                      attrs: { placeholder: "Filter" },
-                      domProps: { value: _vm.stech },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.stech = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("td", { staticClass: "curr-site-cell" }, [
                     _vm._v(
@@ -127833,21 +127831,21 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "pull-right text-right viewPager" }, [
           _c(
-            "button",
+            "a",
             {
               attrs: { disabled: _vm.pageNumber === 0 },
               on: { click: _vm.prevPage }
             },
-            [_vm._v("\n                    prev\n                ")]
+            [_vm._v("\n                    <\n                ")]
           ),
           _vm._v(" "),
           _c(
-            "button",
+            "a",
             {
               attrs: { disabled: _vm.pageNumber >= _vm.pageCount },
               on: { click: _vm.nextPage }
             },
-            [_vm._v("\n                    next\n                ")]
+            [_vm._v("\n                    >\n                ")]
           )
         ])
       ])

@@ -3,6 +3,49 @@
 #app .table i {
     color: #404447;
 }
+
+.sidebar .menu-item a {
+    padding-left: 0;
+}
+.sidebar .menu-item:hover a {
+    color: #ffd134 !important;
+    text-decoration: none;
+}
+.dash-menu-item {
+    background: url('../img/dash-gray.png') no-repeat 5% center;
+}
+.dash-menu-item.active,
+.dash-menu-item:hover {
+    background-image: url('../img/dash-yellow.png');
+}
+.users-menu-item {
+    background: url('../img/users-grey.png') no-repeat 5% center;
+}
+.users-menu-item.active,
+.users-menu-item:hover {
+    background-image: url('../img/users-yellow.png');
+}
+.bids-menu-item {
+    background: url('../img/bids-gray.png') no-repeat 5% center;
+}
+.bids-menu-item.active,
+.bids-menu-item:hover {
+    background-image: url('../img/bids-yellow.png');
+}
+.trans-menu-item {
+    background: url('../img/trans-gray.png') no-repeat 5% center;
+}
+.trans-menu-item.active,
+.trans-menu-item:hover {
+    background-image: url('../img/trans-yellow.png');
+}
+.host-menu-item:hover {
+
+}
+
+
+
+
 header {
     background: #ffffff;
 }

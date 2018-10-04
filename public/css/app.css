@@ -11099,18 +11099,3 @@ a.text-dark:focus {
   line-height: 40px;
 }
 
-.item-menu {
-  opacity: 0.9;
-  color: #404447;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.item-menu:hover {
-  color: #ffd134;
-}
-
-.icon-menu {
-  margin-right: 10px;
-}
-

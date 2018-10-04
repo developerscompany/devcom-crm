@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div id="app-vue" class="wrapper p-3">
+    <div id="app-vue" class="wrapper">
         <admin-bids
                 :lines="{{json_encode($lines)}}"
                 :agents="{{json_encode($agents)}}"

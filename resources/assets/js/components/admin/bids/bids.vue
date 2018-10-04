@@ -1,6 +1,6 @@
 <template>
     <div class="admin-bids">
-        <div class="form-wrapper mb-4 p-3">
+        <div class="form-wrapper mb-4 p-4">
 
             <div class="pager-view clearfix text-center">
                 <div class="pull-left text-left viewNumber">
@@ -10,28 +10,28 @@
                 <span class="font-weight-bold" v-text="paginatedData.length"></span>
 
                 <div class="pull-right text-right viewPager">
-                    <button
+                    <a
                             :disabled="pageNumber === 0"
                             @click="prevPage">
-                        prev
-                    </button>
-                    <button
+                        <
+                    </a>
+                    <a
                             :disabled="pageNumber >= pageCount"
                             @click="nextPage">
-                        next
-                    </button>
+                        >
+                    </a>
                 </div>
             </div>
 
             <div class="mt-2">
                 <div class="table-responsive">
-                    <table class="table table-striped" style="font-size: 14px; line-height: 15px">
+                    <table class="table" style="font-size: 14px; line-height: 15px">
                         <thead>
                         <tr>
                             <td class="filter-cell date">
                                 Date
                                 <template>
-                                    <div class="mt-1">
+                                    <div class="">
                                         <el-date-picker
                                                 v-model="value6"
                                                 format="dd.MM"
@@ -160,16 +160,16 @@
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
                 <div class="pull-right text-right viewPager">
-                    <button
+                    <a
                             :disabled="pageNumber === 0"
                             @click="prevPage">
-                        prev
-                    </button>
-                    <button
+                        <
+                    </a>
+                    <a
                             :disabled="pageNumber >= pageCount"
                             @click="nextPage">
-                        next
-                    </button>
+                        >
+                    </a>
                 </div>
             </div>
 
@@ -326,5 +326,21 @@
 </script>
 
 <style>
-
+    .admin-bids {
+        background: #fff;
+    }
+    .filter-cell.date > div {
+        margin-top: 4px !important;
+        padding-top: 16px !important;
+    }
+    .el-date-editor .el-range-separator {
+        line-height: 24px;
+    }
+    tr {
+        transition: all 0.3s;
+        box-shadow: none;
+    }
+    tr:hover {
+        box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
+    }
 </style>
