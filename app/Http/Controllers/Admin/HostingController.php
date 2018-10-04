@@ -118,7 +118,7 @@ class HostingController extends Controller
 
         $data['user_id'] = Auth::id();
         $type = $sale->get('type') == 'm'? 'місяць': 'рік';
-        $data['message'] = "Оплачено сумою за ". $type." до ".$sale->get('really_to').". Сума - ".$sale->get('amount');
+        $data['message'] = "Оплачено сумою за ". $type." до ".$sale->get('really_to').". Сума - ".$sale->get('amount')."$";
 
         DB::transaction(function () use ($data, $hosting, $sale) {
             $hosting->finances()->insert($sale->all());

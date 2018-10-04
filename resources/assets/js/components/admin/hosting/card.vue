@@ -35,9 +35,9 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-12 finance-item">За місяць - {{condition.amount}}</div>
+                                        <div class="col-12 finance-item">За місяць - {{condition.amount}}$</div>
                                         <br>
-                                        <div class="col-12 finance-item">За рік - {{condition.amount_year}}</div>
+                                        <div class="col-12 finance-item">За рік - {{condition.amount_year}}$</div>
                                         <br>
                                         <div class="col-12 finance-item" v-if="condition.finance">Дійсно до - {{editShortDate(condition.finance.really_to)}}</div>
                                         <br>

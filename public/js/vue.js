@@ -118009,7 +118009,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "label-column" }, [
-      _vm._v("Сума "),
+      _vm._v("Сума ($)"),
       _c("b", [_vm._v("*")])
     ])
   },
@@ -118568,7 +118568,11 @@ var render = function() {
               _c("div", { staticClass: "col-md-2 col-sm-12 list-column" }, [
                 _vm.amountAll(list.conditions) > 0
                   ? _c("span", [
-                      _vm._v(_vm._s(_vm.amountAll(list.conditions)) + "(м)")
+                      _vm._v(
+                        _vm._s(_vm.amountAll(list.conditions)) +
+                          _vm._s(list.currency.symbol) +
+                          " (м)"
+                      )
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -118579,7 +118583,11 @@ var render = function() {
                 _vm._v(" "),
                 _vm.amountAllYear(list.conditions) > 0
                   ? _c("span", [
-                      _vm._v(_vm._s(_vm.amountAllYear(list.conditions)) + "(р)")
+                      _vm._v(
+                        _vm._s(_vm.amountAllYear(list.conditions)) +
+                          _vm._s(list.currency.symbol) +
+                          " (р)"
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -119123,7 +119131,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
-                            label: "За місяць",
+                            label: "За місяць ($)",
                             "error-messages": _vm.amountErrors,
                             required: ""
                           },
@@ -119146,7 +119154,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
-                            label: "За рік",
+                            label: "За рік ($)",
                             "error-messages": _vm.amountYearErrors,
                             required: ""
                           },
@@ -119286,7 +119294,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
-                            label: "За місяць",
+                            label: "За місяць ($)",
                             "error-messages": _vm.amountErrors,
                             required: ""
                           },
@@ -119309,7 +119317,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
-                            label: "За рік",
+                            label: "За рік ($)",
                             "error-messages": _vm.amountYearErrors,
                             required: ""
                           },
@@ -120947,7 +120955,9 @@ var render = function() {
                                 { staticClass: "col-12 finance-item" },
                                 [
                                   _vm._v(
-                                    "За місяць - " + _vm._s(condition.amount)
+                                    "За місяць - " +
+                                      _vm._s(condition.amount) +
+                                      "$"
                                   )
                                 ]
                               ),
@@ -120959,7 +120969,9 @@ var render = function() {
                                 { staticClass: "col-12 finance-item" },
                                 [
                                   _vm._v(
-                                    "За рік - " + _vm._s(condition.amount_year)
+                                    "За рік - " +
+                                      _vm._s(condition.amount_year) +
+                                      "$"
                                   )
                                 ]
                               ),
@@ -124976,10 +124988,14 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [_vm._v("Сума")]),
+                    _c("div", { staticClass: "col-md-6" }, [_vm._v("Сума ")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6" }, [
-                      _vm._v(_vm._s(_vm.message.data.amount))
+                      _vm._v(
+                        _vm._s(_vm.message.data.amount) +
+                          " " +
+                          _vm._s(_vm.message.data.currency.symbol)
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -125079,7 +125095,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-1" }, [
-                  _vm._v(_vm._s(finance.amount))
+                  _vm._v(
+                    _vm._s(finance.amount) +
+                      " " +
+                      _vm._s(finance.currency.symbol)
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [

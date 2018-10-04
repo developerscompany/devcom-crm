@@ -169,9 +169,9 @@
                         add
                     </v-icon>
                 </div>
-                <div class="col-md-2 col-sm-12 list-column"><span v-if="amountAll(list.conditions) > 0">{{amountAll(list.conditions)}}(м)</span>
+                <div class="col-md-2 col-sm-12 list-column"><span v-if="amountAll(list.conditions) > 0">{{amountAll(list.conditions)}}{{list.currency.symbol}} (м)</span>
                     <span v-if="amountAll(list.conditions) > 0 && amountAllYear(list.conditions) > 0">/</span>
-                    <span v-if="amountAllYear(list.conditions) > 0">{{amountAllYear(list.conditions)}}(р)</span></div>
+                    <span v-if="amountAllYear(list.conditions) > 0">{{amountAllYear(list.conditions)}}{{list.currency.symbol}} (р)</span></div>
                 <div class="col-md-1 col-sm-12 list-column" >
                     <div v-if="list.latest_finance">{{editShortDate(list.latest_finance.really_to)}}</div>
                 </div>
@@ -350,7 +350,7 @@
 
                             ></v-select>
                             <v-text-field
-                                    label="За місяць"
+                                    label="За місяць ($)"
                                     v-model="amount"
                                     :error-messages="amountErrors"
                                     @input="$v.amount.$touch()"
@@ -361,7 +361,7 @@
                                 -->
                             </v-text-field>
                             <v-text-field
-                                    label="За рік"
+                                    label="За рік ($)"
                                     v-model="amount_year"
                                     :error-messages="amountYearErrors"
                                     @input="$v.amount_year.$touch()"
@@ -406,7 +406,7 @@
 
                             ></v-select>
                             <v-text-field
-                                    label="За місяць"
+                                    label="За місяць ($)"
                                     v-model="condActive.amount"
                                     :error-messages="amountErrors"
                                     @input="$v.amount.$touch()"
@@ -417,7 +417,7 @@
                                 -->
                             </v-text-field>
                             <v-text-field
-                                    label="За рік"
+                                    label="За рік ($)"
                                     v-model="condActive.amount_year"
                                     :error-messages="amountYearErrors"
                                     @input="$v.amount_year.$touch()"
