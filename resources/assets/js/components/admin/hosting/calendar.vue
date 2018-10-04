@@ -1,7 +1,15 @@
 <template>
     <div class="calendar">
         <div class="container-fluid">
+            <div id="modal-sale" v-if="showSale">
+
+                <div class="x-block" @click="showSale = false">X</div>
+
+                <hosting-sale :hosting="message.data.hosting" :conds="conds"></hosting-sale>
+
+            </div>
             <div  v-if="showMes" >
+
                 <div id="message">
                     <div class="container">
                         <h2>Календар.Подія</h2>
@@ -33,8 +41,8 @@
                             <div class="col-md-6">{{message.data.amount}}</div>
                         </div>
                         <div class="calendar-btn-group">
-                            <button class="btn btn-close" @click="closeMes">Аккаунт</button>
-                            <button class="btn btn-close" @click="closeMes">Оплатити</button>
+                            <button class="btn btn-close" @click="openAccount(message.data.hosting_id)">Аккаунт</button>
+                            <button class="btn btn-close" @click="showSalePopup">Оплатити</button>
                             <button class="btn btn-close" @click="closeMes">Закрити</button>
 
                         </div>
@@ -89,7 +97,7 @@
 
 <script>
     import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
-
+    import HostingSale from "./sale"
     require("vue-simple-calendar/static/css/default.css")
     require("vue-simple-calendar/static/css/holidays-us.css")
 
@@ -97,6 +105,7 @@
         data: () => ({
 
             showDate: new Date(),
+            showSale: false,
             events: [],
             showMes: false,
             message: {
@@ -116,6 +125,7 @@
         components: {
             CalendarView,
             CalendarViewHeader,
+            HostingSale,
         },
         props: ['finances', 'conds'],
         mounted: function(){
@@ -151,6 +161,13 @@
         },
 
         methods: {
+            openAccount(id){
+                location.href = '/admin/hostings/account/'+id
+            },
+            showSalePopup(){
+                this.showMes = false;
+                this.showSale = true;
+            },
             closeMes(){
                 this.showMes = false
 
@@ -159,14 +176,12 @@
                 this.showDate = d;
             },
             onClickEvent(e) {
-                console.log(e)
                 this.showMes = true
                 this.message.title = `${e.title}`
                 this.message.url = `${e.originalEvent.url}`
                 this.message.classes = `${e.originalEvent.classes}`
                 this.message.data = e.originalEvent.data
 
-                console.log(this.message.data)
 
             },
             periodChanged(range) {
