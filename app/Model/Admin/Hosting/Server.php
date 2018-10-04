@@ -2,6 +2,8 @@
 
 namespace App\Model\Admin\Hosting;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
@@ -13,4 +15,8 @@ class Server extends Model
         'amount_month',
         'amount_year',
     ];
+
+
+
+
 }

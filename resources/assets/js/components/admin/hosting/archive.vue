@@ -22,7 +22,7 @@
             <div class="row" v-for="finance in finances" v-if="finance.condition == type">
 
                 <div class="col-md-2">{{condition[finance.condition]}}</div>
-                <div class="col-md-2">{{finance.amount}}</div>
+                <div class="col-md-2">{{finance.amount}} {{finance.currency.symbol}}</div>
                 <div class="col-md-3">{{editShortDate(finance.really_to)}}</div>
                 <div class="col-md-3">{{editShortDate(finance.created_at)}}</div>
                 <div class="col-md-2">{{finance.type == 'm' ? 'Місяць' : 'Рік'}}</div>

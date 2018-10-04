@@ -10,13 +10,13 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" placeholder="Amount month"  v-model="data.amount_month">
+                    <input type="number" class="form-control" placeholder="Amount month ($)"  v-model="data.amount_month">
                     <span class="error" v-if="errors.amount_month">{{errors.amount_month[0]}}</span>
 
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" placeholder="Amount year" v-model="data.amount_year">
+                    <input type="number" class="form-control" placeholder="Amount year ($)" v-model="data.amount_year">
                     <span class="error" v-if="errors.amount_year">{{errors.amount_year[0]}}</span>
 
                 </div>
@@ -35,13 +35,13 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" placeholder="Amount month"  v-model="edit.amount_month">
+                    <input type="number" class="form-control" placeholder="Amount month ($)"  v-model="edit.amount_month">
                     <span class="error" v-if="errors.amount_month">{{errors.amount_month[0]}}</span>
 
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" placeholder="Amount year" v-model="edit.amount_year">
+                    <input type="number" class="form-control" placeholder="Amount year ($)" v-model="edit.amount_year">
                     <span class="error" v-if="errors.amount_year">{{errors.amount_year[0]}}</span>
 
                 </div>
@@ -58,7 +58,7 @@
                 <div class="col-md-3 " v-for="server in servers">
                     <div class="label-server">
                         <div class="server-name">{{server.name}}</div>
-                        <div class="server-amount">{{server.amount_month}} / {{server.amount_year}}</div>
+                        <div class="server-amount">{{server.amount_month}}$ / {{server.amount_year}}$</div>
                         <button class="btn btn-edit" @click="editForm(server)" ><img src="/icons/012-pencil.svg" alt="" id="edit-server"></button>
                         <button class="btn btn-del" @click="delServer(server)" ><img src="/icons/112-garbage.svg" alt="" id="del-server"></button>
                     </div>
