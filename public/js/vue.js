@@ -127402,6 +127402,18 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 if (self.value6 == null) {
                     self.value6 = '';
                 }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+                if (self.sstatus == null) {
+                    self.sstatus = '';
+                }
                 if (self.value6.length > 0) {
                     var st = new Date(this.value6[0].split('.').reverse());
                     var en = new Date(this.value6[1].split('.').reverse());
@@ -128919,6 +128931,21 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             if (self.lines1) {
                 if (self.value6 == null) {
                     self.value6 = '';
+                }
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+                if (self.sstatus == null) {
+                    self.sstatus = '';
                 }
                 if (self.value6.length > 0) {
                     var st = new Date(this.value6[0].split('.').reverse());
