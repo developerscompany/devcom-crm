@@ -121315,6 +121315,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -121327,9 +121364,11 @@ __webpack_require__(411);
 
             showDate: new Date(),
             events: [],
+            showMes: false,
             message: {
                 title: "",
-                url: ""
+                url: "",
+                data: {}
             },
             month_now: "",
             condition: {
@@ -121345,39 +121384,51 @@ __webpack_require__(411);
         CalendarView: __WEBPACK_IMPORTED_MODULE_0_vue_simple_calendar__["CalendarView"],
         CalendarViewHeader: __WEBPACK_IMPORTED_MODULE_0_vue_simple_calendar__["CalendarViewHeader"]
     },
-    props: ['finances'],
+    props: ['finances', 'conds'],
     mounted: function mounted() {
         var events = [];
-        var condition = this.condition;
         this.finances.forEach(function (finance) {
-            var event = {
-                id: finance.id,
-                startDate: finance.really_to,
-                title: "Оплата  за " + condition[finance.condition] + " - " + finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
-                url: "/admin/hostings/account/" + finance.hosting.id
-            };
-            events.push(event);
-            event = {
-                id: finance.id,
-                startDate: finance.created_at,
-                title: "Оплата  за " + condition[finance.condition] + " - " + finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
-                url: "/admin/hostings/account/" + finance.hosting.id,
-                classes: "create"
-            };
-            events.push(event);
+            if (finance.hosting) {
+
+                var event = {
+                    id: finance.id,
+                    data: finance,
+                    startDate: finance.really_to,
+                    title: "Час оплати " + finance.hosting.site + " за " + finance.conds.name_ua + " - " + finance.hosting.last_name + " " + finance.hosting.name,
+                    url: "/admin/hostings/account/" + finance.hosting.id
+                };
+                events.push(event);
+                event = {
+                    id: finance.id,
+                    data: finance,
+                    startDate: finance.created_at,
+                    title: "Оплачено " + finance.hosting.site + " за " + finance.conds.name_ua + " - " + finance.hosting.last_name + " " + finance.hosting.name,
+                    url: "/admin/hostings/account/" + finance.hosting.id,
+                    classes: "create"
+                };
+                events.push(event);
+            }
         });
 
         this.events = events;
     },
 
     methods: {
+        closeMes: function closeMes() {
+            this.showMes = false;
+        },
         setShowDate: function setShowDate(d) {
             this.showDate = d;
         },
         onClickEvent: function onClickEvent(e) {
+            console.log(e);
+            this.showMes = true;
             this.message.title = "" + e.title;
             this.message.url = "" + e.originalEvent.url;
             this.message.classes = "" + e.originalEvent.classes;
+            this.message.data = e.originalEvent.data;
+
+            console.log(this.message.data);
         },
         periodChanged: function periodChanged(range) {
             var date = new Date(range.periodStart);
@@ -124812,21 +124863,115 @@ var render = function() {
       "div",
       { staticClass: "container-fluid" },
       [
-        _vm.message
-          ? _c(
-              "div",
-              {
-                class: { create: _vm.message.classes == "create" },
-                attrs: { id: "message" }
-              },
-              [
-                _vm.message.url
-                  ? _c("a", { attrs: { href: _vm.message.url } }, [
-                      _vm._v(" " + _vm._s(_vm.message.title))
+        _vm.showMes
+          ? _c("div", [
+              _c("div", { attrs: { id: "message" } }, [
+                _c("div", { staticClass: "container" }, [
+                  _c("h2", [_vm._v("Календар.Подія")]),
+                  _vm._v(" "),
+                  _vm.message.data.hosting
+                    ? _c("div", [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._v("Особиста інформація")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.message.data.hosting.last_name +
+                                  " " +
+                                  _vm.message.data.hosting.name
+                              )
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._v("Домен")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._v(_vm._s(_vm.message.data.hosting.site))
+                          ])
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.message.data.conds
+                    ? _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _vm._v("Послуга")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _vm._v(_vm._s(_vm.message.data.conds.name_ua))
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v("Оплачено")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v(
+                        _vm._s(_vm.editShortDate(_vm.message.data.created_at))
+                      )
                     ])
-                  : _c("div", [_vm._v(" " + _vm._s(_vm.message.title))])
-              ]
-            )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [_vm._v("До")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v(
+                        _vm._s(_vm.editShortDate(_vm.message.data.really_to))
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [_vm._v("Сума")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v(_vm._s(_vm.message.data.amount))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "calendar-btn-group" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-close",
+                        on: { click: _vm.closeMes }
+                      },
+                      [_vm._v("Аккаунт")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-close",
+                        on: { click: _vm.closeMes }
+                      },
+                      [_vm._v("Оплатити")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-close",
+                        on: { click: _vm.closeMes }
+                      },
+                      [_vm._v("Закрити")]
+                    )
+                  ])
+                ])
+              ])
+            ])
           : _vm._e(),
         _vm._v(" "),
         _c("calendar-view", {
@@ -124857,23 +125002,26 @@ var render = function() {
           return _vm.transformDate(finance.created_at) == _vm.month_now
             ? _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-2" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: "/admin/hostings/account/" + finance.hosting.id
-                      }
-                    },
-                    [
-                      _vm._v(
-                        _vm._s(
-                          finance.hosting.last_name +
-                            "  " +
-                            finance.hosting.name
-                        )
+                  finance.hosting
+                    ? _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "/admin/hostings/account/" + finance.hosting.id
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              finance.hosting.last_name +
+                                "  " +
+                                finance.hosting.name
+                            )
+                          )
+                        ]
                       )
-                    ]
-                  )
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
@@ -124881,7 +125029,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _vm._v(_vm._s(_vm.condition[finance.condition]))
+                  _vm._v(_vm._s(finance.conds.name_ua))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-1" }, [

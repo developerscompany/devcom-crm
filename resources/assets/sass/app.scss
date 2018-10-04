@@ -529,12 +529,44 @@ $yellow-color: #f8dd3f;
 .calendar{
 
   #message{
-    padding: 5px 5px;
-    background-color: #f5f8fa;
-    border: 1px solid #f5f8fa;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    width: max-content;
+
+    &{
+      position: absolute;
+      padding: 10px 25px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      min-height: 40vh;
+      min-width: 500px;
+      z-index: 2;
+      left: 45%;
+      top: 10%;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+    h2{
+      color: #f8dd3f;
+
+    }
+    .row{
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 35px;
+    }
+    .calendar-btn-group{
+      &{
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+
+      }
+      .btn-close{
+        box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
+        background-color: #f8dd3f;
+        color: white;
+      }
+    }
+
+
   }
 }
 .mark-red{

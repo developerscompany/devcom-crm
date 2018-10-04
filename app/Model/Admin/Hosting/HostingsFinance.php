@@ -4,6 +4,7 @@ namespace App\Model\Admin\Hosting;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\ConditionType;
 
 class HostingsFinance extends Model
 {
@@ -22,6 +23,11 @@ class HostingsFinance extends Model
     // Relations
     public function hosting(){
         return $this->belongsTo(Hosting::class);
+    }
+
+    public function conds(){
+
+        return $this->belongsTo(ConditionType::class, 'condition', 'name');
     }
 
 }

@@ -1,9 +1,46 @@
 <template>
     <div class="calendar">
         <div class="container-fluid">
-            <div id="message" v-if="message" :class="{ create : message.classes == 'create'}">
-                <a  v-if="message.url" :href="message.url"> {{message.title}}</a>
-                <div v-else> {{message.title}}</div>
+            <div  v-if="showMes" >
+                <div id="message">
+                    <div class="container">
+                        <h2>Календар.Подія</h2>
+                        <div v-if="message.data.hosting">
+                            <div class="row">
+                                <div class="col-md-6">Особиста інформація</div>
+                                <div class="col-md-6">{{message.data.hosting.last_name+" "+ message.data.hosting.name}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">Домен</div>
+                                <div class="col-md-6">{{message.data.hosting.site}}</div>
+                            </div>
+                        </div>
+
+                        <div class="row" v-if="message.data.conds">
+                            <div class="col-md-6">Послуга</div>
+                            <div class="col-md-6">{{message.data.conds.name_ua}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">Оплачено</div>
+                            <div class="col-md-6">{{editShortDate(message.data.created_at)}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">До</div>
+                            <div class="col-md-6">{{editShortDate(message.data.really_to)}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">Сума</div>
+                            <div class="col-md-6">{{message.data.amount}}</div>
+                        </div>
+                        <div class="calendar-btn-group">
+                            <button class="btn btn-close" @click="closeMes">Аккаунт</button>
+                            <button class="btn btn-close" @click="closeMes">Оплатити</button>
+                            <button class="btn btn-close" @click="closeMes">Закрити</button>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <calendar-view
                     :events="events"
@@ -30,9 +67,9 @@
             </div>
             <div class="row" v-for="finance in finances" v-if="transformDate(finance.created_at) == month_now">
                 <!--v-if="transformDate(finance.created_at) == month_now"-->
-                <div class="col-md-2"><a :href="'/admin/hostings/account/'+ finance.hosting.id">{{finance.hosting.last_name + "  " + finance.hosting.name}}</a></div>
+                <div class="col-md-2"><a v-if="finance.hosting" :href="'/admin/hostings/account/'+ finance.hosting.id">{{finance.hosting.last_name + "  " + finance.hosting.name}}</a></div>
                 <div class="col-md-2">{{finance.hosting.site}}</div>
-                <div class="col-md-2">{{condition[finance.condition]}}</div>
+                <div class="col-md-2">{{finance.conds.name_ua}}</div>
                 <div class="col-md-1">{{finance.amount}}</div>
                 <div class="col-md-2">{{editShortDate(finance.really_to)}}</div>
                 <div class="col-md-2">{{editShortDate(finance.created_at)}}</div>
@@ -61,9 +98,11 @@
 
             showDate: new Date(),
             events: [],
+            showMes: false,
             message: {
                 title: "",
                 url: "",
+                data: {},
             },
             month_now: "",
             condition: {
@@ -78,27 +117,32 @@
             CalendarView,
             CalendarViewHeader,
         },
-        props: ['finances'],
+        props: ['finances', 'conds'],
         mounted: function(){
             let events = []
-            let condition =this.condition
             this.finances.forEach(
-                function (finance) {
-                    let event = {
-                        id: finance.id,
-                        startDate: finance.really_to,
-                        title: "Оплата  за " +condition[finance.condition]+ " - "+finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
-                        url: "/admin/hostings/account/"+ finance.hosting.id,
+                function (finance)  {
+                    if(finance.hosting){
+
+                        let event = {
+                            id: finance.id,
+                            data: finance,
+                            startDate: finance.really_to,
+                            title: "Час оплати " + finance.hosting.site +" за "+ finance.conds.name_ua+ " - "+finance.hosting.last_name + " " + finance.hosting.name,
+                            url: "/admin/hostings/account/"+ finance.hosting.id,
+                        }
+                        events.push(event)
+                        event = {
+                            id: finance.id,
+                            data: finance,
+                            startDate: finance.created_at,
+                            title: "Оплачено " + finance.hosting.site +" за "+ finance.conds.name_ua+ " - "+finance.hosting.last_name + " " + finance.hosting.name,
+                            url: "/admin/hostings/account/"+ finance.hosting.id,
+                            classes: "create",
+                        }
+                        events.push(event)
+
                     }
-                    events.push(event)
-                    event = {
-                        id: finance.id,
-                        startDate: finance.created_at,
-                        title: "Оплата  за " +condition[finance.condition]+ " - "+finance.hosting.last_name + " " + finance.hosting.name + " " + finance.hosting.second_name,
-                        url: "/admin/hostings/account/"+ finance.hosting.id,
-                        classes: "create",
-                    }
-                    events.push(event)
 
                 }
             );
@@ -107,13 +151,23 @@
         },
 
         methods: {
+            closeMes(){
+                this.showMes = false
+
+            },
             setShowDate(d) {
                 this.showDate = d;
             },
             onClickEvent(e) {
+                console.log(e)
+                this.showMes = true
                 this.message.title = `${e.title}`
                 this.message.url = `${e.originalEvent.url}`
                 this.message.classes = `${e.originalEvent.classes}`
+                this.message.data = e.originalEvent.data
+
+                console.log(this.message.data)
+
             },
             periodChanged(range) {
                 let date = new Date(range.periodStart)
