@@ -28,14 +28,14 @@
     </div>
     <div class="sidebar-content">
         <ul class="nav navigation">
-            <li class="{{ is_active('user/cab') }}">
-                <a href="{{ url('user/cab') }}">
+            <li class="{{ is_active('user/cab') }} dash-menu-item menu-item">
+                <a class="pl-5" href="{{ url('user/cab') }}">
                     <i class="icon-home4"></i>
                     <span>Особистий кабінет</span>
                 </a>
             </li>
-            <li class="{{ is_active('user') }}">
-                <a href="{{ url('user') }}">
+            <li class="{{ is_active('user') }} bids-menu-item menu-item">
+                <a class="pl-5" href="{{ url('user') }}">
                     <i class="icon-home4"></i>
                     <span>Біди</span>
                 </a>
