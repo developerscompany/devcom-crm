@@ -126655,11 +126655,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -127465,6 +127460,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127474,7 +127472,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         return {
             value6: '',
-
             sdate: [],
 
             date: null,
@@ -127485,11 +127482,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             // sources: [],
             // statuss: [],
             // lines: [],
-            ssource: [],
-            sagent: [],
-            sstatus: [],
-            stech: [],
-            sresp: [],
+            ssource: '',
+            sagent: '',
+            sstatus: '',
+            stech: '',
+            sresp: '',
 
             number: 15,
             pageNumber: 0,
@@ -127499,6 +127496,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             active: false,
             show: false,
 
+            lines1: this.$props.lines,
             nums: [5, 10, 15, 20, 50, 100]
         };
     },
@@ -127523,57 +127521,103 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             var start = self.pageNumber * self.number,
                 end = start + self.number;
 
-            if (self.value6 == null) {
-                self.value6 = '';
-            }
-            if (self.value6.length > 0) {
+            // if (self.value6 == null) {
+            //     self.value6 = '';
+            // }
+            // if (self.value6.length > 0) {
+            //
+            //     var st = new Date(this.value6[0].split('.').reverse());
+            //     var en = new Date(this.value6[1].split('.').reverse());
+            //
+            //     return self.lines.filter(function(item) {
+            //
+            //         var current = new Date(item.date.split('.').reverse());
+            //
+            //         if (current >= st && current <= en)
+            //         {
+            //             return true;
+            //         }
+            //
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.sresp.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sresp.indexOf(item.response) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.ssource.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.ssource.indexOf(item.source) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.sagent.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sagent.indexOf(item.agent) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.stech.length > 0) {
+            //
+            //     return self.lines.filter(function (item) {
+            //         return Object.keys(item).some(function (key) {
+            //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+            //         });
+            //     }).slice(start, end);
+            // }
+            // if (self.sstatus.length > 0) {
+            //
+            //     return self.lines.filter(function(item) {
+            //         return self.sstatus.indexOf(item.status) > -1;
+            //     }).slice(start, end);
+            //
+            // }
 
-                var st = new Date(this.value6[0].split('.').reverse());
-                var en = new Date(this.value6[1].split('.').reverse());
+            if (self.lines1) {
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+                if (self.sstatus == null) {
+                    self.sstatus = '';
+                }
+                if (self.value6.length > 0) {
+                    var st = new Date(this.value6[0].split('.').reverse());
+                    var en = new Date(this.value6[1].split('.').reverse());
+                }
 
-                return self.lines.filter(function (item) {
-
-                    var current = new Date(item.date.split('.').reverse());
-
-                    if (current >= st && current <= en) {
-                        return true;
-                    }
-                }).slice(start, end);
-            }
-            if (self.sresp.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.sresp.indexOf(item.response) > -1;
-                }).slice(start, end);
-            }
-            if (self.ssource.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.ssource.indexOf(item.source) > -1;
-                }).slice(start, end);
-            }
-            if (self.sagent.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return self.sagent.indexOf(item.agent) > -1;
-                }).slice(start, end);
-            }
-            if (self.stech.length > 0) {
-
-                return self.lines.filter(function (item) {
-                    return Object.keys(item).some(function (key) {
-                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
+                return self.lines1.filter(function (el) {
+                    return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 && el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 && el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 && el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 && Object.keys(el).some(function (key) {
+                        return String(el.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
-                }).slice(start, end);
-            }
-            if (self.sstatus.length > 0) {
+                }).filter(function (item) {
 
-                return self.lines.filter(function (item) {
-                    return self.sstatus.indexOf(item.status) > -1;
-                }).slice(start, end);
+                    if (self.value6 != '') {
+                        var current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en) {
+                            return true;
+                        }
+                    } else {
+                        return item;
+                    }
+                });
             }
 
-            return this.lines.slice(start, end);
+            return this.lines1.slice(start, end);
         }
     },
 
@@ -127747,7 +127791,8 @@ var render = function() {
                           "item-text": "name",
                           "item-value": "name",
                           label: "Source",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.ssource,
@@ -127823,7 +127868,8 @@ var render = function() {
                         attrs: {
                           items: _vm.responses,
                           label: "Responce",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sresp,
@@ -127850,7 +127896,8 @@ var render = function() {
                           "item-text": "title",
                           "item-value": "title",
                           label: "Status",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sstatus,
@@ -128913,6 +128960,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -128959,7 +129007,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             },
 
             value6: '',
-
             sdate: [],
 
             date: null,
@@ -129009,49 +129056,98 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             var start = self.pageNumber * self.number,
                 end = start + self.number;
 
-            if (self.value6 == null) {
-                self.value6 = '';
-            }
-            if (self.value6.length > 0) {
+            // if (self.value6 == null) {
+            //     self.value6 = '';
+            // }
 
-                var st = new Date(this.value6[0].split('.').reverse());
-                var en = new Date(this.value6[1].split('.').reverse());
+            // if (self.value6.length > 0) {
+            //
+            //     var st = new Date(this.value6[0].split('.').reverse());
+            //     var en = new Date(this.value6[1].split('.').reverse());
+            //
+            //     return self.lines1.filter(function(item) {
+            //
+            //         var current = new Date(item.date.split('.').reverse());
+            //
+            //         if (current >= st && current <= en)
+            //         {
+            //             return true;
+            //         }
+            //
+            //     }).slice(start, end);
+            //
+            // }
+            //
+            // if (self.sresp.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.sresp.indexOf(item.response) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.ssource.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.ssource.indexOf(item.source) > -1;
+            //     }).slice(start, end);
+            //
+            // }
+            // if (self.stech.length > 0) {
+            //
+            //     return self.lines1.filter(function (item) {
+            //         return Object.keys(item).some(function (key) {
+            //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+            //         });
+            //     }).slice(start, end);
+            // }
+            // if (self.sstatus.length > 0) {
+            //
+            //     return self.lines1.filter(function(item) {
+            //         return self.sstatus.indexOf(item.status) > -1;
+            //     }).slice(start, end);
+            //
+            // }
 
-                return self.lines1.filter(function (item) {
+            if (self.lines1) {
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+                if (self.sstatus == null) {
+                    self.sstatus = '';
+                }
+                if (self.value6.length > 0) {
+                    var st = new Date(this.value6[0].split('.').reverse());
+                    var en = new Date(this.value6[1].split('.').reverse());
+                }
 
-                    var current = new Date(item.date.split('.').reverse());
-
-                    if (current >= st && current <= en) {
-                        return true;
-                    }
-                }).slice(start, end);
-            }
-
-            if (self.sresp.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return self.sresp.indexOf(item.response) > -1;
-                }).slice(start, end);
-            }
-            if (self.ssource.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return self.ssource.indexOf(item.source) > -1;
-                }).slice(start, end);
-            }
-            if (self.stech.length > 0) {
-
-                return self.lines1.filter(function (item) {
-                    return Object.keys(item).some(function (key) {
-                        return String(item.niche).toLowerCase().indexOf(self.stech) > -1;
+                return self.lines1.filter(function (el) {
+                    return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 && el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 && el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 && Object.keys(el).some(function (key) {
+                        return String(el.niche).toLowerCase().indexOf(self.stech) > -1;
                     });
-                }).slice(start, end);
-            }
-            if (self.sstatus.length > 0) {
+                }).filter(function (item) {
 
-                return self.lines1.filter(function (item) {
-                    return self.sstatus.indexOf(item.status) > -1;
-                }).slice(start, end);
+                    if (self.value6 != '') {
+                        var current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en) {
+                            return true;
+                        }
+                    } else {
+                        return item;
+                    }
+                });
             }
 
             return this.lines1.slice(start, end);
@@ -129653,7 +129749,6 @@ var render = function() {
                     _vm._v(
                       "\n                                Date\n                                "
                     ),
-                    _vm._v(" "),
                     _c(
                       "div",
                       {},
@@ -129693,7 +129788,8 @@ var render = function() {
                           "item-text": "name",
                           "item-value": "name",
                           label: "Source",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.ssource,
@@ -129775,7 +129871,8 @@ var render = function() {
                         attrs: {
                           items: _vm.responses,
                           label: "Responce",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sresp,
@@ -129802,7 +129899,8 @@ var render = function() {
                           "item-text": "title",
                           "item-value": "title",
                           label: "Status",
-                          required: ""
+                          required: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.sstatus,
@@ -130589,7 +130687,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.customerAdd-form input {\n    padding: 8px 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.customerAdd-form input {*/\n    /*padding: 8px 0;;*/\n/*}*/\nbutton.v-btn {\n    background: #f8dd3f;\n    color: #404447;\n    border: none;\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    padding: 5px 20px;\n    font-size: 14px;\n    border-radius: 15px;\n    text-transform: none;\n}\nbutton.v-btn:hover {\n    background: #000;\n}\nbutton.v-btn:hover div {\n    color: #fff !important;\n}\n.v-card__title {\n    color: #f8dd3f !important;\n}\n.btn-close {\n    position: absolute;\n    top: 15px;\n    right: 20px;\n}\nbutton.reset {\n    background: none;\n    padding: 0;\n}\nbutton.reset:before {\n    background: none !important;\n}\nbutton.reset div {\n    color: #a0a0a0 !important;\n}\nbutton.reset:hover {\n    background: none !important;\n}\nbutton.reset:hover div {\n    color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -130604,6 +130702,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -130698,8 +130812,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             customer: {
                 name: '',
                 country: '',
-                info: '',
-                status: ''
+                status: '',
+                info: ''
             },
 
             dialog: false
@@ -130715,13 +130829,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        submit: function submit(name, country, info) {
+        submit: function submit(name, country, select, info) {
             this.$v.$touch();
 
-            this.customer.name = this.name;
-            this.customer.country = this.country;
-            this.customer.info = this.info;
-            this.customer.status = this.select;
+            this.customer.name = name;
+            this.customer.country = country;
+            this.customer.status = select;
+            this.customer.info = info;
 
             var data = this.customer;
             axios.post('/user/add-customer', { data: data }).then(this.dialog = false);
@@ -130777,11 +130891,28 @@ var render = function() {
               [
                 _c(
                   "v-card-title",
-                  {
-                    staticClass: "headline grey lighten-2",
-                    attrs: { "primary-title": "" }
-                  },
-                  [_vm._v("\n                    Клієнт\n                ")]
+                  { staticClass: "headline", attrs: { "primary-title": "" } },
+                  [
+                    _vm._v(
+                      "\n                    Клієнт\n\n                    "
+                    ),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn-close pull-right",
+                        on: {
+                          click: function($event) {
+                            _vm.dialog = false
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        X\n                    "
+                        )
+                      ]
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("v-card-text", [
@@ -130876,51 +131007,72 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c(
-                        "v-btn",
-                        {
-                          on: {
-                            click: function($event) {
-                              _vm.submit(_vm.name, _vm.country, _vm.info)
-                            }
-                          }
-                        },
-                        [_vm._v("Відправити")]
-                      ),
-                      _vm._v(" "),
-                      _c("v-btn", { on: { click: _vm.clear } }, [
-                        _vm._v("Очистити")
-                      ])
+                        "div",
+                        { staticClass: "row mb-0 justify-content-between" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "col-5 text-left" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "reset",
+                                  on: { click: _vm.clear }
+                                },
+                                [_vm._v("Очистити")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-7 text-right" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "primary", flat: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Закрити\n                                "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "add",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.submit(
+                                        _vm.name,
+                                        _vm.country,
+                                        _vm.select,
+                                        _vm.info
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Відправити")]
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
-                ]),
-                _vm._v(" "),
-                _c("v-divider"),
-                _vm._v(" "),
-                _c(
-                  "v-card-actions",
-                  [
-                    _c("v-spacer"),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { color: "primary", flat: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.dialog = false
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Закрити\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
+                ])
               ],
               1
             )

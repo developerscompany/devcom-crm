@@ -174,19 +174,17 @@
                                 </td>
                                 <td class="filter-cell date col-md-1">
                                     Date
-                                    <!--<template>-->
-                                        <div class="">
-                                            <el-date-picker
-                                                    v-model="value6"
-                                                    format="dd.MM"
-                                                    value-format="dd.MM.yyyy"
-                                                    type="daterange"
-                                                    range-separator="-"
-                                                    start-placeholder="From"
-                                                    end-placeholder="To">
-                                            </el-date-picker>
-                                        </div>
-                                    <!--</template>-->
+                                    <div class="">
+                                        <el-date-picker
+                                                v-model="value6"
+                                                format="dd.MM"
+                                                value-format="dd.MM.yyyy"
+                                                type="daterange"
+                                                range-separator="-"
+                                                start-placeholder="From"
+                                                end-placeholder="To">
+                                        </el-date-picker>
+                                    </div>
                                 </td>
                                 <td class="filter-cell sourse col-md-1">
                                     Source
@@ -197,6 +195,7 @@
                                             item-value="name"
                                             label="Source"
                                             required
+                                            clearable
                                     ></v-select>
                                 </td>
                                 <td class="col-md-1">
@@ -232,6 +231,7 @@
                                             :items="responses"
                                             label="Responce"
                                             required
+                                            clearable
                                     ></v-select>
                                 </td>
                                 <td class="filter-cell status col-md-1">
@@ -243,6 +243,7 @@
                                             item-value="title"
                                             label="Status"
                                             required
+                                            clearable
                                     ></v-select>
                                 </td>
                                 <td>
@@ -486,7 +487,6 @@
                 },
 
                 value6: '',
-
                 sdate: [],
 
                 date: null,
@@ -545,55 +545,105 @@
                 const start = self.pageNumber * self.number,
                     end = start + self.number;
 
-                if (self.value6 == null) {
-                    self.value6 = '';
-                }
-                if (self.value6.length > 0) {
+                    // if (self.value6 == null) {
+                    //     self.value6 = '';
+                    // }
 
-                    var st = new Date(this.value6[0].split('.').reverse());
-                    var en = new Date(this.value6[1].split('.').reverse());
+                // if (self.value6.length > 0) {
+                //
+                //     var st = new Date(this.value6[0].split('.').reverse());
+                //     var en = new Date(this.value6[1].split('.').reverse());
+                //
+                //     return self.lines1.filter(function(item) {
+                //
+                //         var current = new Date(item.date.split('.').reverse());
+                //
+                //         if (current >= st && current <= en)
+                //         {
+                //             return true;
+                //         }
+                //
+                //     }).slice(start, end);
+                //
+                // }
+                //
+                // if (self.sresp.length > 0) {
+                //
+                //     return self.lines1.filter(function(item) {
+                //         return self.sresp.indexOf(item.response) > -1;
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.ssource.length > 0) {
+                //
+                //     return self.lines1.filter(function(item) {
+                //         return self.ssource.indexOf(item.source) > -1;
+                //     }).slice(start, end);
+                //
+                // }
+                // if (self.stech.length > 0) {
+                //
+                //     return self.lines1.filter(function (item) {
+                //         return Object.keys(item).some(function (key) {
+                //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
+                //         });
+                //     }).slice(start, end);
+                // }
+                // if (self.sstatus.length > 0) {
+                //
+                //     return self.lines1.filter(function(item) {
+                //         return self.sstatus.indexOf(item.status) > -1;
+                //     }).slice(start, end);
+                //
+                // }
 
-                    return self.lines1.filter(function(item) {
+                if (self.lines1) {
+                    if (self.value6 == null) {
+                        self.value6 = '';
+                    }
+                    if (self.value6 == null) {
+                        self.value6 = '';
+                    }
+                    if (self.sagent == null) {
+                        self.sagent = '';
+                    }
+                    if (self.ssource == null) {
+                        self.ssource = '';
+                    }
+                    if (self.sresp == null) {
+                        self.sresp = '';
+                    }
+                    if (self.sstatus == null) {
+                        self.sstatus = '';
+                    }
+                    if (self.value6.length > 0) {
+                        var st = new Date(this.value6[0].split('.').reverse());
+                        var en = new Date(this.value6[1].split('.').reverse());
+                    }
 
-                        var current = new Date(item.date.split('.').reverse());
+                    return self.lines1.filter((el) => {
+                        return el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                                el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                                el.status.toLowerCase().indexOf(self.sstatus.toLowerCase()) > -1 &&
+                                Object.keys(el).some(function (key) {
+                                    return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                                })
+                    }).filter(function(item) {
 
-                        if (current >= st && current <= en)
+                        if (self.value6 != '')
                         {
-                            return true;
+                            var current = new Date(item.date.split('.').reverse());
+
+                            if (current >= st && current <= en)
+                            {
+                                return true;
+                            }
+                        }
+                        else {
+                            return item;
                         }
 
-                    }).slice(start, end);
-
-                }
-
-                if (self.sresp.length > 0) {
-
-                    return self.lines1.filter(function(item) {
-                        return self.sresp.indexOf(item.response) > -1;
-                    }).slice(start, end);
-
-                }
-                if (self.ssource.length > 0) {
-
-                    return self.lines1.filter(function(item) {
-                        return self.ssource.indexOf(item.source) > -1;
-                    }).slice(start, end);
-
-                }
-                if (self.stech.length > 0) {
-
-                    return self.lines1.filter(function (item) {
-                        return Object.keys(item).some(function (key) {
-                            return String(item.niche).toLowerCase().indexOf(self.stech) > -1
-                        });
-                    }).slice(start, end);
-                }
-                if (self.sstatus.length > 0) {
-
-                    return self.lines1.filter(function(item) {
-                        return self.sstatus.indexOf(item.status) > -1;
-                    }).slice(start, end);
-
+                    });
                 }
 
                 return this.lines1.slice(start, end);
