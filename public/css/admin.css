@@ -28,7 +28,6 @@ header .dropdown-menu.show {
 }
 td.filter-cell select,
 td.filter-cell input {
-    padding: 0.02rem 0.3rem;
     border-color: #a1a1a1;
     font-size: 13px;
     height: auto !important;
