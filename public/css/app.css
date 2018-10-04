@@ -10931,6 +10931,38 @@ a.text-dark:focus {
   overflow-y: scroll;
 }
 
+.calendar #modal-sale {
+  position: absolute;
+  width: 60%;
+  height: 40vh;
+  top: 100px;
+  left: 32%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  margin: 24px;
+  pointer-events: auto;
+  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.calendar #modal-sale .x-block {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 25px;
+  color: red;
+  text-align: center;
+  height: 25px;
+  padding: 2px;
+  border: 1px solid red;
+  border-radius: 18px;
+  z-index: 3;
+}
+
 .calendar #message {
   position: absolute;
   padding: 10px 25px;
@@ -10966,7 +10998,7 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
           box-shadow: 0 13px 29px rgba(249, 222, 67, 0.6);
   background-color: #f8dd3f;
-  color: white;
+  color: black;
 }
 
 .mark-red {
@@ -11117,7 +11149,7 @@ a.text-dark:focus {
   padding-left: 10px;
 }
 
-.servers-list .label-server {
+.label-server {
   width: 100%;
   -webkit-box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
           box-shadow: 0 4px 24px 6px rgba(73, 205, 228, 0.4);
@@ -11130,35 +11162,35 @@ a.text-dark:focus {
   text-align: center;
 }
 
-.servers-list .label-server .server-name,
-.servers-list .label-server .server-amount {
+.label-server .server-name,
+.label-server .server-amount {
   color: #ffffff;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
 
-.servers-list .label-server .server-name {
+.label-server .server-name {
   font-size: 16px;
 }
 
-.servers-list .label-server .server-amount {
+.label-server .server-amount {
   font-size: 24px;
 }
 
-.servers-list .label-server .btn-green {
+.label-server .btn-green {
   font-size: 13px;
   font-weight: 400;
 }
 
-.servers-list .label-server #edit-server {
+.label-server #edit-server {
   width: 16px;
 }
 
-.servers-list .label-server #del-server {
+.label-server #del-server {
   width: 16px;
 }
 
-.servers-list .grafic .grafic-block .month {
+.grafic .grafic-block .month {
   width: 100%;
   text-align: center;
   opacity: 0.5;
@@ -11168,3 +11200,4 @@ a.text-dark:focus {
   font-weight: 400;
   line-height: 40px;
 }
+

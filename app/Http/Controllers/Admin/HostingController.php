@@ -148,7 +148,7 @@ class HostingController extends Controller
 
     public function getCalendar(){
 
-        $finances = HostingsFinance::all()->load('hosting', 'conds');
+        $finances = HostingsFinance::all()->load('hosting.conditions', 'conds');
         $conds = ConditionType::all()->toArray();
 
         $events = [];
