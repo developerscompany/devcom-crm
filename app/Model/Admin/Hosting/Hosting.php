@@ -31,7 +31,7 @@ class Hosting extends Model
     //appends
     public function getAmountAllAttribute()
     {
-        if(Auth::user()->currency()){
+        if(Auth::user()->currency()->first()){
 
             return $this->conditions()->sum('amount') * Auth::user()->currency()->first()->coeff;
         }
@@ -41,14 +41,14 @@ class Hosting extends Model
     public function getAmountAllYearAttribute()
     {
 
-        if(Auth::user()->currency()) {
+        if(Auth::user()->currency()->first()) {
 
             return $this->conditions()->sum('amount_year') * Auth::user()->currency()->first()->coeff;
         }
     }
     public function getCurrencyAttribute()
     {
-        if(Auth::user()->currency()) {
+        if(Auth::user()->currency()->first()) {
 
 
             return Auth::user()->currency()->first();

@@ -23,7 +23,7 @@ class HostingsFinance extends Model
 
 
     public function getAmountAttribute(){
-        if(Auth::user()->currency()) {
+        if(Auth::user()->currency()->first()) {
 
 
             return $this->attributes['amount'] * Auth::user()->currency()->first()->coeff;
@@ -31,7 +31,7 @@ class HostingsFinance extends Model
     }
 
     public function getCurrencyAttribute() {
-        if(Auth::user()->currency()) {
+        if(Auth::user()->currency()->first()) {
 
             return Auth::user()->currency()->first();
         }
