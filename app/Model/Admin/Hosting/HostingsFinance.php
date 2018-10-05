@@ -23,13 +23,18 @@ class HostingsFinance extends Model
 
 
     public function getAmountAttribute(){
+        if(Auth::user()->currency()) {
 
 
-        return $this->attributes['amount'] * Auth::user()->currency()->first()->coeff;
+            return $this->attributes['amount'] * Auth::user()->currency()->first()->coeff;
+        }
     }
 
     public function getCurrencyAttribute() {
-        return Auth::user()->currency()->first();
+        if(Auth::user()->currency()) {
+
+            return Auth::user()->currency()->first();
+        }
 
     }
 
