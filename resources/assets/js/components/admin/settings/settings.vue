@@ -37,6 +37,46 @@
 
             </div>
         </div>
+        <div class="container-fluid">
+            <h2>Валюта</h2>
+            <div class="row">
+                <div class="col-md-3">Назва(англ)</div>
+                <div class="col-md-3">Назва(укр)</div>
+                <div class="col-md-1">Символ</div>
+                <div class="col-md-2">Коефіцієнт</div>
+                <div class="col-md-3">Події</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" v-model="currencyNew.name">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" v-model="currencyNew.name_ua">
+                </div>
+
+                <div class="col-md-1">
+                    <input type="text" class="form-control" v-model="currencyNew.symbol">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" v-model="currencyNew.coeff">
+                </div>
+
+                <div class="col-md-3">
+
+                    <button class="btn" @click="saveCurrency">Зберегти</button>
+                </div>
+
+            </div>
+            <div class="row" v-for="currency in currencies">
+                <div class="col-md-3">{{currency.name}}</div>
+                <div class="col-md-3">{{currency.name_ua}}</div>
+                <div class="col-md-1">{{currency.symbol}}</div>
+                <div class="col-md-2">{{currency.coeff}}</div>
+                <div class="col-md-3"></div>
+
+
+            </div>
+        </div>
     </div>
 
 </template>
@@ -48,13 +88,14 @@
         data(){
             return {
 
-                cond: {}
+                cond: {},
+                currencyNew: {},
 
 
             }
         },
 
-        props: ['conditions'],
+        props: ['conditions', 'currencies'],
 
 
         mounted() {
@@ -64,7 +105,18 @@
         methods: {
             saveConditions() {
 
-                this.$http.post('/admin/settings/add', this.cond).then(res => {
+                this.$http.post('/admin/settings/add-condition', this.cond).then(res => {
+                    location.href = '/admin/settings'
+                }, err => {
+
+                    console.log(err.data)
+                })
+
+
+            },
+            saveCurrency() {
+
+                this.$http.post('/admin/settings/add-currency', this.currencyNew).then(res => {
                     location.href = '/admin/settings'
                 }, err => {
 
