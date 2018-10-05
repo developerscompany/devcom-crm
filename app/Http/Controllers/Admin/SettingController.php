@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\ConditionType;
+use App\Currency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,13 +14,15 @@ class SettingController extends Controller
 
 
 
-    public function index(ConditionType $type){
+    public function index(ConditionType $type, Currency $currency){
 
         $conditions = $type->get();
 
+        $currencies = $currency->get();
 
 
-        return view('admin.settings.index', compact('conditions'));
+
+        return view('admin.settings.index', compact('conditions', 'currencies'));
 
     }
 
@@ -31,6 +34,15 @@ class SettingController extends Controller
 
         return response()->json();
 
+
+    }
+
+    public function addCurrency(Currency $currency, Request $request){
+
+
+        $currency->create($request->all());
+
+        return response()->json();
 
     }
 
