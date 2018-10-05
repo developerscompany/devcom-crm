@@ -21,6 +21,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 
     Route::get('/transactions', 'AdminTransactionsController@index');
 
+
+    Route::get('/settings', 'SettingController@index');
+    Route::post('/settings/add', 'SettingController@addCondition');
+
     Route::prefix('hostings')->group(
         function () {
 
@@ -29,6 +33,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
             Route::get('/', 'HostingController@index');
             Route::get('/account/{hosting}', 'HostingController@show');
             Route::post('/account/{hosting}/add-condition', 'HostingController@conditionAdd');
+            Route::post('/account/{hosting}/update-condition/{condition}', 'HostingController@conditionUpdate');
             Route::post('/account/{hosting}/remove-condition/{condition}', 'HostingController@conditionRemove');
             Route::post('/account/{hosting}/comment', 'HostingController@getComment');
             Route::get('/account/{hosting}/edit', 'HostingController@edit');
@@ -50,6 +55,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
             Route::post('/server/add', 'HostingController@addServer');
             Route::post('/server/edit', 'HostingController@editServer');
             Route::post('/server/del/{server}', 'HostingController@deleteServer');
+
 
 
             // Export xls

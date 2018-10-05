@@ -44,6 +44,16 @@ class HostingController extends Controller
 
     }
 
+    public function conditionUpdate($hosting,HostingsCondition $condition, Request $request){
+
+        $cond = $condition->update($request->all());
+
+
+        return response()->json(['data' => $condition], 200);
+
+
+    }
+
 
     public function conditionRemove(Hosting $hosting, HostingsCondition $condition){
 
