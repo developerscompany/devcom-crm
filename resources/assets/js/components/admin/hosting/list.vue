@@ -150,7 +150,7 @@
                 <div class="col-md-2 col-sm-12 mark-all">
                     <div v-for="(condListItem,number) in list.conditions">
                         <div  v-for="itemCond in conds">
-                            <div v-if="condListItem.condition == itemCond.name"  :class="itemCond.class"><span @click="showEditCond(condListItem)">{{itemCond.name_ua}}</span>
+                            <div v-if="condListItem.condition == itemCond.name"  :class="itemCond.class"><span @click="showEditCond(condListItem,number,index)">{{itemCond.name_ua}}</span>
                                 <v-icon
                                         small
                                         style="display: inline-block; color: white; margin: 0 !important; font-weight: 600;"
@@ -433,7 +433,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-                    <v-btn color="blue darken-1" flat @click.native="saveCond">Save</v-btn>
+                    <v-btn color="blue darken-1" flat @click.native="updateCond">Update</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -573,6 +573,7 @@
                 errors: {},
                 showSale: false,
                 hostingSale: {},
+                condActiveIndex: '',
 
             }
         },
@@ -718,9 +719,11 @@
                 this.condActive = {}
 
             },
-            showEditCond(condition){
+            showEditCond(condition, number ,index ){
                 this.condShowEdit = true
                 this.condActive = condition
+                this.condActiveIndex = number
+                this.condNumberActive = index
 
             },
             removeCond(item, name, number, index){
@@ -730,6 +733,26 @@
                             this.lists[index].conditions.splice(number, 1);
                         })
                 }
+            },
+            updateCond(){
+                if(!this.amountErrors['0'] && !this.amountYearErrors['0'] && !this.conditionErrors['0']){
+                    let data = {}
+                    data.condition = this.condActive.condition
+                    data.amount = this.condActive.amount
+                    data.amount_year = this.condActive.amount_year
+                    data.hosting_id = this.condActive.hosting_id
+                    this.$http.post('/admin/hostings/account/'+data.hosting_id +'/update-condition/'+this.condActive.id, data)
+                        .then(res => {
+                            this.lists[this.condNumberActive].conditions[this.condActiveIndex] = res.data.data;
+                            this.condShowEdit = false
+
+                        })
+
+                }
+                else {
+                    this.errorsCondAdd = true
+                }
+
             },
             saveCond(){
                 if(!this.amountErrors['0'] && !this.amountYearErrors['0'] && !this.conditionErrors['0']){
