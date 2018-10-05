@@ -24,7 +24,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
 
     Route::get('/settings', 'SettingController@index');
     Route::post('/settings/add-condition', 'SettingController@addCondition');
+    Route::post('/settings/rem-condition/{condition}', 'SettingController@remCondition');
     Route::post('/settings/add-currency', 'SettingController@addCurrency');
+    Route::post('/settings/rem-currency/{currency}', 'SettingController@remCurrency');
 
     Route::prefix('hostings')->group(
         function () {

@@ -46,6 +46,25 @@ class SettingController extends Controller
 
     }
 
+    public function remCondition(ConditionType $condition){
+
+        $condition->delete();
+
+
+
+        return response()->json();
+
+
+    }
+
+    public function remCurrency(Currency $currency){
+
+        $currency->delete();
+
+        return response()->json();
+
+    }
+
 
 
 

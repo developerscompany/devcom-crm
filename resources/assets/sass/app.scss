@@ -835,8 +835,18 @@ $yellow-color: #f8dd3f;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
-    padding: 8px 13px;
-    box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+    padding: 6px 13px;
+    //box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
+  }
+  .btn-remove{
+    border-radius: 18px;
+    background-color: $red-color;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 6px 13px;
+    //box-shadow: 0 13px 29px rgba(63, 198, 248, 0.6);
   }
   h2{
     margin: 5px 0;
@@ -848,6 +858,7 @@ $yellow-color: #f8dd3f;
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
+    margin-bottom: 10px;
   }
 
   .table-content-field{
@@ -859,9 +870,20 @@ $yellow-color: #f8dd3f;
       color: #8f8f8f;
       font-size: 13px;
       font-weight: 400;
-      line-height: 56px;
+      line-height: 24px;
 
     }
+
+  }
+  .table-content-field:hover{
+    box-shadow: 0 1px 13px rgba(0, 0, 0, 0.1);
+  }
+
+  .table-input-field{
+    color: #8f8f8f;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
 
   }
 
