@@ -393,4 +393,7 @@
     tr:hover {
         box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
     }
+    a[disabled="disabled"] {
+        visibility: hidden;
+    }
 </style>
