@@ -7,7 +7,7 @@
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
 
-                <span class="font-weight-bold" v-text="paginatedData.length"></span>
+                <span class="font-weight-bold" v-text="bids.length"></span>
 
                 <div class="pull-right text-right viewPager">
                     <a
@@ -236,69 +236,66 @@
                     s = this.number;
                 return Math.floor(l/s);
             },
+
+            bids(){
+                var self1 = this;
+
+                if (self1.lines1) {
+                    if (self1.value6 == null) {
+                        self1.value6 = '';
+                    }
+                    if (self1.sagent == null) {
+                        self1.sagent = '';
+                    }
+                    if (self1.ssource == null) {
+                        self1.ssource = '';
+                    }
+                    if (self1.sresp == null) {
+                        self1.sresp = '';
+                    }
+                    if (self1.sstatus == null) {
+                        self1.sstatus = '';
+                    }
+                    if (self1.value6.length > 0) {
+                        var st = new Date(this.value6[0].split('.').reverse());
+                        var en = new Date(this.value6[1].split('.').reverse());
+                    }
+
+                    return self1.lines1.filter((el) => {
+                        return el.source.toLowerCase().indexOf(self1.ssource.toLowerCase()) > -1 &&
+                            el.response.toLowerCase().indexOf(self1.sresp.toLowerCase()) > -1 &&
+                            el.status.toLowerCase().indexOf(self1.sstatus.toLowerCase()) > -1 &&
+                            el.agent.toLowerCase().indexOf(self1.sagent.toLowerCase()) > -1 &&
+                            Object.keys(el).some(function (key) {
+                                return String(el.niche).toLowerCase().indexOf(self1.stech) > -1
+                            })
+                    }).filter(function(item) {
+
+                        if (self1.value6 != '')
+                        {
+                            var current = new Date(item.date.split('.').reverse());
+
+                            if (current >= st && current <= en)
+                            {
+                                return true;
+                            }
+                        }
+                        else {
+                            return item;
+                        }
+
+                    });
+                }
+
+                return this.lines1;
+
+            },
+
             paginatedData(){
                 var self = this;
 
                 const start = self.pageNumber * self.number,
                     end = start + self.number;
-
-
-                // if (self.value6 == null) {
-                //     self.value6 = '';
-                // }
-                // if (self.value6.length > 0) {
-                //
-                //     var st = new Date(this.value6[0].split('.').reverse());
-                //     var en = new Date(this.value6[1].split('.').reverse());
-                //
-                //     return self.lines.filter(function(item) {
-                //
-                //         var current = new Date(item.date.split('.').reverse());
-                //
-                //         if (current >= st && current <= en)
-                //         {
-                //             return true;
-                //         }
-                //
-                //     }).slice(start, end);
-                //
-                // }
-                // if (self.sresp.length > 0) {
-                //
-                //     return self.lines.filter(function(item) {
-                //         return self.sresp.indexOf(item.response) > -1;
-                //     }).slice(start, end);
-                //
-                // }
-                // if (self.ssource.length > 0) {
-                //
-                //     return self.lines.filter(function(item) {
-                //         return self.ssource.indexOf(item.source) > -1;
-                //     }).slice(start, end);
-                //
-                // }
-                // if (self.sagent.length > 0) {
-                //
-                //     return self.lines.filter(function(item) {
-                //         return self.sagent.indexOf(item.agent) > -1;
-                //     }).slice(start, end);
-                //
-                // }
-                // if (self.stech.length > 0) {
-                //
-                //     return self.lines.filter(function (item) {
-                //         return Object.keys(item).some(function (key) {
-                //             return String(item.niche).toLowerCase().indexOf(self.stech) > -1
-                //         });
-                //     }).slice(start, end);
-                // }
-                // if (self.sstatus.length > 0) {
-                //
-                //     return self.lines.filter(function(item) {
-                //         return self.sstatus.indexOf(item.status) > -1;
-                //     }).slice(start, end);
-                //
-                // }
 
                 if (self.lines1) {
                     if (self.value6 == null) {
