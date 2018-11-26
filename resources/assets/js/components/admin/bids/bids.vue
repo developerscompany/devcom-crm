@@ -7,10 +7,10 @@
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
 
-                <span class="font-weight-bold">Sent - {{ sentOffer.length }} </span>
-                <span class="font-weight-bold">Interested - {{ interested.length }} </span>
-                <span class="font-weight-bold">In progress - {{ inProgress.length }} </span>
-                <span class="font-weight-bold">Complete - {{ complete.length }} </span>
+                <span class="font-weight-bold mr-2">Sent - {{ sentOffer.length }} </span>
+                <span class="font-weight-bold mr-2">Interested - {{ interested.length }} </span>
+                <span class="font-weight-bold mr-2">In progress - {{ inProgress.length }} </span>
+                <span class="font-weight-bold mr-0">Complete - {{ complete.length }} </span>
 
                 <div class="pull-right text-right viewPager">
                     <a
