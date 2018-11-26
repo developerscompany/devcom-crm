@@ -7,7 +7,10 @@
                     <a class="mx-1 nums" :class="{ 'active' : num == number }" v-for="num in nums" @click="changeNum(num)">{{num}}</a>
                 </div>
 
-                <span class="font-weight-bold" v-text="bids.length"></span>
+                <span class="font-weight-bold">Sent - {{ sentOffer.length }} </span>
+                <span class="font-weight-bold">Interested - {{ interested.length }} </span>
+                <span class="font-weight-bold">In progress - {{ inProgress.length }} </span>
+                <span class="font-weight-bold">Complete - {{ complete.length }} </span>
 
                 <div class="pull-right text-right viewPager">
                     <a
@@ -214,7 +217,12 @@
                 show: false,
 
                 lines1: this.$props.lines,
-                nums: [5,10,15,20,50,100]
+                nums: [5,10,15,20,50,100],
+
+                // sentOffer: 0,
+                // interested: 0,
+                // inProgress: 0,
+                // complete: 0,
             }
         },
 
@@ -223,13 +231,189 @@
         },
 
         watch: {
-
             date (val) {
                 this.dateFormatted = this.formatDate(this.date)
             }
         },
 
         computed: {
+
+            sentOffer() {
+                let self = this;
+
+                if (self.value6.length > 0) {
+                    let st = new Date(this.value6[0].split('.').reverse());
+                    let en = new Date(this.value6[1].split('.').reverse());
+                } else if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+
+                return self.lines1.filter((el) => {
+                    return el.status.toLowerCase().indexOf('sent offer') > -1 &&
+                        el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                        el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                        el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 &&
+                        Object.keys(el).some(function (key) {
+                            return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                        })
+                }).filter(function(item) {
+
+                    if (self.value6 !== '')
+                    {
+                        let current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en)
+                        {
+                            return true;
+                        }
+                    }
+                    else {
+                        return item;
+                    }
+
+                });
+            },
+            interested() {
+                let self = this;
+
+                if (self.value6.length > 0) {
+                    let st = new Date(this.value6[0].split('.').reverse());
+                    let en = new Date(this.value6[1].split('.').reverse());
+                } else if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+
+                return self.lines1.filter((el) => {
+                    return el.status.toLowerCase().indexOf('interested') > -1 &&
+                        el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                        el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                        el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 &&
+                        Object.keys(el).some(function (key) {
+                            return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                        })
+                }).filter(function(item) {
+
+                    if (self.value6 !== '')
+                    {
+                        let current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en)
+                        {
+                            return true;
+                        }
+                    }
+                    else {
+                        return item;
+                    }
+
+                });
+            },
+            inProgress() {
+                let self = this;
+
+                if (self.value6.length > 0) {
+                    let st = new Date(this.value6[0].split('.').reverse());
+                    let en = new Date(this.value6[1].split('.').reverse());
+                } else if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+
+                return self.lines1.filter((el) => {
+                    return el.status.toLowerCase().indexOf('in progress') > -1 &&
+                        el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                        el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                        el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 &&
+                        Object.keys(el).some(function (key) {
+                            return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                        })
+                }).filter(function(item) {
+
+                    if (self.value6 !== '')
+                    {
+                        let current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en)
+                        {
+                            return true;
+                        }
+                    }
+                    else {
+                        return item;
+                    }
+
+                });
+            },
+            complete() {
+                let self = this;
+
+                if (self.value6.length > 0) {
+                    let st = new Date(this.value6[0].split('.').reverse());
+                    let en = new Date(this.value6[1].split('.').reverse());
+                } else if (self.value6 == null) {
+                    self.value6 = '';
+                }
+                if (self.sagent == null) {
+                    self.sagent = '';
+                }
+                if (self.ssource == null) {
+                    self.ssource = '';
+                }
+                if (self.sresp == null) {
+                    self.sresp = '';
+                }
+
+                return self.lines1.filter((el) => {
+                    return el.status.toLowerCase().indexOf('complete') > -1 &&
+                        el.source.toLowerCase().indexOf(self.ssource.toLowerCase()) > -1 &&
+                        el.response.toLowerCase().indexOf(self.sresp.toLowerCase()) > -1 &&
+                        el.agent.toLowerCase().indexOf(self.sagent.toLowerCase()) > -1 &&
+                        Object.keys(el).some(function (key) {
+                            return String(el.niche).toLowerCase().indexOf(self.stech) > -1
+                        })
+                }).filter(function(item) {
+
+                    if (self.value6 !== '')
+                    {
+                        let current = new Date(item.date.split('.').reverse());
+
+                        if (current >= st && current <= en)
+                        {
+                            return true;
+                        }
+                    }
+                    else {
+                        return item;
+                    }
+
+                });
+            },
 
             pageCount(){
                 let l = this.lines.length,
@@ -238,7 +422,7 @@
             },
 
             bids(){
-                var self1 = this;
+                let self1 = this;
 
                 if (self1.lines1) {
                     if (self1.value6 == null) {
@@ -257,8 +441,8 @@
                         self1.sstatus = '';
                     }
                     if (self1.value6.length > 0) {
-                        var st = new Date(this.value6[0].split('.').reverse());
-                        var en = new Date(this.value6[1].split('.').reverse());
+                        let st = new Date(this.value6[0].split('.').reverse());
+                        let en = new Date(this.value6[1].split('.').reverse());
                     }
 
                     return self1.lines1.filter((el) => {
@@ -273,7 +457,7 @@
 
                         if (self1.value6 != '')
                         {
-                            var current = new Date(item.date.split('.').reverse());
+                            let current = new Date(item.date.split('.').reverse());
 
                             if (current >= st && current <= en)
                             {
