@@ -10,7 +10,7 @@
                 <span class="font-weight-bold mr-2">Sent - {{ sentOffer.length }} </span>
                 <span class="font-weight-bold mr-2">Interested - {{ interested.length }} </span>
                 <span class="font-weight-bold mr-2">In progress - {{ inProgress.length }} </span>
-                <span class="font-weight-bold">Complete - {{ complete.length }} </span>
+                <span class="font-weight-bold mr-0">Complete - {{ complete.length }} </span>
 
                 <div class="pull-right text-right viewPager">
                     <a
